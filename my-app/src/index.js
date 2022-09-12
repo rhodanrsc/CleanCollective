@@ -6,3 +6,4 @@ var test  = 1;
 var hayley = "hello";
 console.log(hayley);
 
+test
