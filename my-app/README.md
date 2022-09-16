@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## FAQ
+Q: I am running into this error "Could not connect to database : MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017".  What should I do?
+A: 1. Re-download MongoDB 5.0.12
+   2. clone the project to a folder with terminal command $git clone https://github.com/JShenLee/CleanCollective.git 
+   3. cd to the backend directory > npm install
+   5. cd to the my-app directory > npm install
+   7. cd to backend directory > npm start
+   8. cd to my-app directory > npm start 
+   9. App should be working now. 
