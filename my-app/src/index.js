@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-<<<<<<< HEAD
-var test  = 1;
-var jimTest = "Testing1";
-=======
->>>>>>> c1b86f6eea617ad6bf49b9a91d2a1383893c85df
+
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';

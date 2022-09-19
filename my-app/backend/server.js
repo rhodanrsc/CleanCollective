@@ -1,52 +1,36 @@
-let express = require("express");
-let mongoose = require("mongoose");
-let cors = require("cors");
-let bodyParser = require("body-parser");
-let dbConfig = require("./database/db");
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
-// Express Route
-const studentRoute = require("../backend/routes/student.route");
 
-// Configure mongoDB Database
-// mongoose.set("useNewUrlParser", true);
-// mongoose.set("useFindAndModify", false);
-// mongoose.set("useCreateIndex", true);
-// mongoose.set("useUnifiedTopology", true);
 
-// Connecting MongoDB Database
-mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.db).then(
-  () => {
-    console.log("Database successfully connected!");
-  },
-  (error) => {
-    console.log("Could not connect to database : " + error);
-  }
-);
+require('dotenv').config();
 
 const app = express();
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+//Our Port 
+const port = process.env.PORT || 5000;
+
+
 app.use(cors());
-app.use("/students", studentRoute);
+app.use(express.json());
 
-// PORT
-const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-  console.log("Connected to port " + port);
-});
+//
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true}
+);
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 
-// 404 Error
-app.use((req, res, next) => {
-  res.status(404).send("Error 404!");
-});
+const companyRouter = require('./routes/company');
 
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
+
+//Anytime someone goes to /exercises
+//it will load everything from the exercisesRouter
+app.use('/company', companyRouter);
+
+
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
 });
