@@ -15,6 +15,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
+import SaveBasicInfo from "./Components/registration/company-info.component";
+import CreateCompany from "./Components/registration/create-company.component";
 
 // App Component
 const App = () => {
@@ -42,6 +44,17 @@ const App = () => {
                     Student List
                   </Link>
                 </Nav>
+              <Nav>
+                  <Link to={"/basic.info.component"} className="nav-link">
+                    Basice Company Information
+                  </Link>
+                </Nav>
+                <Nav>
+                  <Link to={"/create-company"} className="nav-link">
+                    Create Company
+                  </Link>
+                </Nav>
+
               </Nav>
             </Container>
           </Navbar>
@@ -56,6 +69,10 @@ const App = () => {
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />
+
+
+                  <Route path="/registration/company-info.component" element={<SaveBasicInfo/>}/>
+                  <Route path="/registration/create-company.component" element={<CreateCompany/>}/>
                 </Routes>
               </div>
             </Col>

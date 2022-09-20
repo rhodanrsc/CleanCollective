@@ -24,11 +24,13 @@ connection.once('open', () => {
 })
 
 const companyRouter = require('./routes/company');
+const sectorRouter = require('./routes/sector');
 
 
 //Anytime someone goes to /exercises
 //it will load everything from the exercisesRouter
 app.use('/company', companyRouter);
+app.use('/sector', sectorRouter);
 
 
 app.listen(port, () => {
