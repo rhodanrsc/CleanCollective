@@ -9,8 +9,8 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const newCompany = new Company({username});
+    const companyName = req.body.companyName;
+    const newCompany = new Company({companyName});
 
     newCompany.save()
     .then(() => res.json('Company added!'))

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const sectorSchema = new Schema({
     name:{
-        type: String
+        type: String,
+        required: true
     }
 });
 
