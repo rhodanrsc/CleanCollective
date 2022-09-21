@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Company = require('../models/company.model');
+const Sector = require('../models/sector.model');
 
 
 router.route('/').get((req, res) => {
@@ -10,10 +11,22 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const companyName = req.body.companyName;
-    const newCompany = new Company({companyName});
+    
+    let thisSector;
+    Sector.Sector.find({name: req.body.sector})
+    .then(function(sector){
+        thisSector = sector
+        console.log("Sector Found: " + thisSector);
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+    
+    const newCompany = new Company({
+        companyName,
+        thisSector
+    });
 
     newCompany.save()
-    .then(() => res.json('Company added!'))
+    .then(() => res.json('Company added!' + thisSector))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

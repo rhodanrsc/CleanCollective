@@ -12,4 +12,4 @@ const sectorSchema = new Schema({
 
 const Sector = mongoose.model("Sector",  sectorSchema);
 
-module.exports = Sector;
+module.exports = {Sector, sectorSchema};
