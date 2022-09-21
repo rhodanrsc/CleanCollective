@@ -13,8 +13,10 @@ router.route('/add').post((req, res) => {
     const companyName = req.body.companyName;
     
     let thisSector;
+    //Find the sector object that has this name
     Sector.Sector.find({name: req.body.sector})
     .then(function(sector){
+        //if returned, assign  that object to thisSector
         thisSector = sector
         console.log("Sector Found: " + thisSector);
     })
@@ -22,6 +24,7 @@ router.route('/add').post((req, res) => {
     
     const newCompany = new Company({
         companyName,
+        //Make this part of the company
         thisSector
     });
 
