@@ -15,11 +15,12 @@ const CreateCompany = () => {
   const onSubmit = (companyObject) => {
     axios
       .post("http://localhost:5000/company/add", companyObject)
+      
       .then((res) => {
         if (res.status === 200) alert("Company successfully created");
         else Promise.reject();
       })
-      .catch((err) => alert("Something went wrong"));
+      .catch((err) => alert("Something went wrong: " + companyObject.companyName));
   };
 
   // Return student form
