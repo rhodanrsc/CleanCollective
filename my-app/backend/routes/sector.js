@@ -10,7 +10,7 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const name = req.body.name;
-    const new_sector = new Sector.Sector({name});
+    const new_sector = new Sector.Sector({name : name});
 
     new_sector.save()
     .then(() => res.json('Sector added!'))

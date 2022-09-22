@@ -11,8 +11,8 @@ const companySchema = new Schema({
         required: true
     },
     sector: {
-        type: sector.sectorSchema
-    
+        type: sector.sectorSchema,
+        required: true
     }
 });
 
