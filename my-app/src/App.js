@@ -4,7 +4,6 @@ import React from "react";
 // Import Bootstrap
 import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import CustomCSS  from "./css/topNavBar.css"
 
 // Import Custom CSS
 import "./App.css";
@@ -17,7 +16,6 @@ import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateCompany from "./Components/registration/create-company.component";
-import CustomNavBar from "./Components/topNavBarComponent";
 
 // App Component
 const App = () => {
@@ -25,8 +23,7 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-      <CustomNavBar />
-          {/* <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark">
             <Container>
               <Navbar.Brand>
                 <Link to={"/create-student"} className="nav-link">
@@ -54,7 +51,7 @@ const App = () => {
 
               </Nav>
             </Container>
-          </Navbar> */}
+          </Navbar>
         </header>
 
         <Container>
