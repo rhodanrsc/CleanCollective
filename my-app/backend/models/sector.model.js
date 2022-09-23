@@ -10,6 +10,6 @@ const sectorSchema = new Schema({
 });
 
 
-const Sector = mongoose.model("Sector",  sectorSchema);
+const SectorCollection = mongoose.model("Sector",  sectorSchema);
 
-module.exports = {Sector, sectorSchema};
+module.exports = {SectorCollection, sectorSchema};

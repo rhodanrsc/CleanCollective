@@ -16,14 +16,16 @@ const userPostSchema = new Schema({
   },
   postLikes: {
     type: Number,
+    default: 0,
     required: false,
   },
   postDislikes: {
     type: Number,
+    default: 0,
     required: false,
   },
 });
 
-const UserPost = mongoose.model("UserPost", userPostSchema);
+const UserPostCollection = mongoose.model("UserPost", userPostSchema);
 
-module.exports = UserPost;
+module.exports = {UserPostCollection, userPostSchema};

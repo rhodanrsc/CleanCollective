@@ -14,6 +14,6 @@ const companySchema = new Schema({
   },
 });
 
-const Company = mongoose.model("Company", companySchema);
+const CompanyCollection = mongoose.model("Company", companySchema);
 
-module.exports = Company;
+module.exports = {CompanyCollection, companySchema};
