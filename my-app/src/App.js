@@ -16,6 +16,8 @@ import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateCompany from "./Components/registration/create-company.component";
+import CustomNavBar from "./Components/topNavBarComponent";
+import CustomNavCSS  from  "./css/topNavBar.css";
 
 // App Component
 const App = () => {
@@ -23,7 +25,7 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          {/* <Navbar bg="dark" variant="dark">
             <Container>
               <Navbar.Brand>
                 <Link to={"/create-student"} className="nav-link">
@@ -51,7 +53,8 @@ const App = () => {
 
               </Nav>
             </Container>
-          </Navbar>
+          </Navbar> */}
+          <CustomNavBar /> 
         </header>
 
         <Container>
