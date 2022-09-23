@@ -1,22 +1,19 @@
-const sector = require('./sector.model');
-const mongoose = require('mongoose');
+const sector = require("./sector.model");
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-
-
 const companySchema = new Schema({
-    companyName:{
-        type: String,
-        required: true
-    },
-    sector: {
-        type: sector.sectorSchema,
-        required: true
-    }
+  companyName: {
+    type: String,
+    required: true,
+  },
+  sector: {
+    type: sector.sectorSchema,
+    required: false,
+  },
 });
 
-
-const Company = mongoose.model("Company",  companySchema);
+const Company = mongoose.model("Company", companySchema);
 
 module.exports = Company;

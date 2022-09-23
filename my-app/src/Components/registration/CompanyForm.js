@@ -3,10 +3,10 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 
- const CompanyForm = (props) => {
+const CompanyForm = (props) => {
   const validationSchema = Yup.object().shape({
     companyName: Yup.string().required("Required"),
-  }); 
+  });
 
   console.log(props);
   return (
@@ -29,6 +29,5 @@ import { FormGroup, Button } from "react-bootstrap";
     </div>
   );
 };
-
 
 export default CompanyForm;
