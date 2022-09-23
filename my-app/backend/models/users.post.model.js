@@ -24,7 +24,11 @@ const userPostSchema = new Schema({
     default: 0,
     required: false,
   },
-});
+},
+{
+  timestamps: true
+}
+);
 
 const UserPostCollection = mongoose.model("UserPost", userPostSchema);
 

@@ -12,6 +12,9 @@ const companySchema = new Schema({
     type: sector.sectorSchema,
     required: false,
   },
+},
+{
+  timestamps: true
 });
 
 const CompanyCollection = mongoose.model("Company", companySchema);
