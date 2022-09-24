@@ -68,5 +68,27 @@ router.route('/delete/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+/*
+Description: Updates the User fields
+Pre-Condition: 
+1. All required fields are needed to execute (username, password and email). 
+2. The user id msut be in url
+*/
+router.route('/update/:id').post((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user => {
+      user.username = req.body.username;
+      user.password = req.body.password;
+      user.email = req.body.email;
+      user.associatedCompanies = req.body.associatedCompanies;
+      user.posts = req.body.posts;
+
+
+      user.save()
+        .then(() => res.json('User '+ user.username + ' updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;
