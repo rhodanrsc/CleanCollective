@@ -10,6 +10,14 @@ const userPostSchema = new Schema({
   postUserProfilePic: {
     type: String, //We still need to figure out how to use images within Mongo DB
   },
+  postSector: {
+    type: String,
+    required: false,
+  },
+  postTitle: {
+    type: String,
+    required: false,
+  },
   postBody: {
     type: String,
     required: false,
