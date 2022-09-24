@@ -2,6 +2,8 @@ const router = require('express').Router();
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
 
+const UserPost = require('../models/users.post.model');
+const { Router } = require('express');
 
 //Returns list of Users
 router.route('/').get((req, res) =>{
@@ -61,6 +63,7 @@ router.route('/addCompany/:id').post((req,res) => {
     })
 })
 
+
 //Delete a user via id
 router.route('/delete/:id').delete((req, res) => {
   User.UserCollection.findByIdAndDelete(req.params.id)
@@ -90,5 +93,29 @@ router.route('/update/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route("/login").post((req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+
+    //confirm if matches user in database
+    User.UserCollection.findOne({email: req.body.email},{password: req.body.password})
+
+    .then(function (userFound){
+        //if the specific user is found then login
+        if(userFound != null){
+            console.log("User exists!");
+            //navigate to diffrent page with user logged in
+            
+        }else{
+            //throw error
+            alert("Incorrect Username or password, please try again");
+            console.log("User does not exist");
+            res.json("User does not exist");
+         }
+    })
+    .catch((err) => res.status(400).json("Error: user not found " + err));
+
+})
 
 module.exports = router;
