@@ -23,7 +23,7 @@ const UserLoginComponent = () => {
         Promise.reject();
       }
     })
-    .catch((err) => alert("OOOOOOPS, somthign went wrong"));
+    .catch((err) => alert("Incorrect username or password"));
   };
 
   // Return student form
