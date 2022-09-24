@@ -13,20 +13,20 @@ router.route("/add").post((req, res) => {
 
   //Find the sector object that has this name
   Sector.Sector.find({ name: req.body.sector })
-    .then(function (sector) {
+    .then(function (foundSector) {
       //if returned, assign  that object to thisSector
 
-      console.log("Sector Found: " + sector);
+      console.log("Sector Found: " + foundSector);
 
       const newCompany = new Company({
         companyName: companyName,
         //Make this part of the company
-        sector: sector[0],
+        sector: foundSector[0],
       });
 
       newCompany
         .save()
-        .then(() => res.json("Company added!" + sector))
+        .then(() => res.json("Company added!" + foundSector))
         .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
