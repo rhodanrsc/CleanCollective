@@ -5,7 +5,7 @@ import { FormGroup, Button } from "react-bootstrap";
 
 const UserPostForm = (props) => {
   const validationSchema = Yup.object().shape({
-    companyName: Yup.string().required("Required"),
+    postTitle: Yup.string().required("Required"),
   });
 
   console.log(props);
@@ -14,27 +14,41 @@ const UserPostForm = (props) => {
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
-            <Field name="postTitle" type="text" placeholder="Type catching attention title" className="form-control" />
+            <Field
+              name="postTitle"
+              type="text"
+              placeholder="Type catching attention title"
+              className="form-control"
+            />
             <ErrorMessage
               name="postTitle"
               className="d-block invalid-feedback"
               component={"span"}
             />
 
-            <Field name="postSector" type="text" placeholder="Choose Categories" className="form-control" />
+            <Field
+              name="postSector"
+              type="text"
+              placeholder="Choose Categories"
+              className="form-control"
+            />
             <ErrorMessage
               name="postSector"
               className="d-block invalid-feedback"
               component={"span"}
             />
 
-            <Field name="postBody" type="text" placeholder="Type your question" className="form-control" />
+            <Field
+              name="postBody"
+              type="text"
+              placeholder="Type your question"
+              className="form-control"
+            />
             <ErrorMessage
               name="postBody"
               className="d-block invalid-feedback"
               component={"span"}
             />
-
           </FormGroup>
           <Button variant="danger" size="lg" block="block" type="submit">
             {props.children}

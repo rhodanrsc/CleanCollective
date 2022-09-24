@@ -17,7 +17,8 @@ import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateCompany from "./Components/registration/create-company.component";
 import CustomNavBar from "./Components/topNavBarComponent";
-import CustomNavCSS  from  "./css/topNavBar.css";
+import CreateUserPost from "./Components/UserProfile/create-user-post.component";
+import CustomNavCSS from "./css/topNavBar.css";
 
 // App Component
 const App = () => {
@@ -54,7 +55,7 @@ const App = () => {
               </Nav>
             </Container>
           </Navbar> */}
-          <CustomNavBar /> 
+          <CustomNavBar />
         </header>
 
         <Container>
@@ -66,8 +67,11 @@ const App = () => {
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />
-
-                  <Route path="/create-company" element={<CreateCompany/>}/>
+                  <Route path="/create-company" element={<CreateCompany />} />
+                  <Route
+                    path="/create-user-post"
+                    element={<CreateUserPost />}
+                  />
                 </Routes>
               </div>
             </Col>

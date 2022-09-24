@@ -8,7 +8,7 @@ import UserPostForm from "./UserPostForm";
 const CreateUserPost = () => {
   const [formValues, setFormValues] = useState({
     postSector: "",
-    postTitle: "", 
+    postTitle: "",
     postBody: "",
   });
 
@@ -16,29 +16,25 @@ const CreateUserPost = () => {
   const onSubmit = (userPostObject) => {
     axios
       .post("http://localhost:5000/user.post.route/add/:id", userPostObject)
-      
+
       .then((res) => {
         if (res.status === 200) alert("User Post successfully displayed");
         else Promise.reject();
       })
-      .catch((err) => alert("Something went wrong: " + companyObject.companyName));
+      .catch((err) => alert("Something went wrong"));
   };
 
   // Return student form
   return (
-    <UserProfile
+    <UserPostForm
       initialValues={formValues}
       onSubmit={onSubmit}
       enableReinitialize
     >
       User Post
-    </UserProfile>
+    </UserPostForm>
   );
 };
 
 // Export CreateStudent Component
 export default CreateUserPost;
-
-
-
-
