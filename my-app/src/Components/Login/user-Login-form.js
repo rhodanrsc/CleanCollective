@@ -15,12 +15,14 @@ const UserLoginForm = (props) => {
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
+            <label htmlFor="login_email_feild">Email: </label>
             <Field name="login_email_feild" type="text" className="form-control" />
             <ErrorMessage
               name="login_email_feild"
               className="d-block invalid-feedback"
               component={"span"}
             />
+            <label htmlFor="login_password_feild">Password: </label>
             <Field name="login_password_feild" type="password" className="form-control" />
             <ErrorMessage
               name="login_password_feild"
