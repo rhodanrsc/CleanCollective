@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
-const UserPost = require('../models/users.post.model');
+
 
 //Returns list of Users
 router.route('/').get((req, res) =>{
@@ -34,6 +34,7 @@ router.route('/add').post((req, res) => {
 
 });
 
+//Adds a company to a User Array via id
 router.route('/addCompany/:id').post((req,res) => {
     //Find the user
     User.UserCollection.findById(req.params.id)
@@ -59,6 +60,13 @@ router.route('/addCompany/:id').post((req,res) => {
         .catch((err) => res.status(400).json("Error: user not found " + err));
     })
 })
+
+//Delete a user via id
+router.route('/delete/:id').delete((req, res) => {
+  User.UserCollection.findByIdAndDelete(req.params.id)
+    .then(user => res.json('User ' + user.username + ' deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 module.exports = router;
