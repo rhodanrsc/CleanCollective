@@ -15,6 +15,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
+import CreateCompany from "./Components/registration/create-company.component";
+import CustomNavBar from "./Components/topNavBarComponent";
+import CustomNavCSS  from  "./css/topNavBar.css";
 
 // App Component
 const App = () => {
@@ -22,7 +25,7 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          {/* <Navbar bg="dark" variant="dark">
             <Container>
               <Navbar.Brand>
                 <Link to={"/create-student"} className="nav-link">
@@ -42,9 +45,16 @@ const App = () => {
                     Student List
                   </Link>
                 </Nav>
+                <Nav>
+                  <Link to={"/create-company"} className="nav-link">
+                    Create Company
+                  </Link>
+                </Nav>
+
               </Nav>
             </Container>
-          </Navbar>
+          </Navbar> */}
+          <CustomNavBar /> 
         </header>
 
         <Container>
@@ -56,6 +66,8 @@ const App = () => {
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />
+
+                  <Route path="/create-company" element={<CreateCompany/>}/>
                 </Routes>
               </div>
             </Col>
