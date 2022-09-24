@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
+
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
 
@@ -35,6 +36,7 @@ router.route('/add').post((req, res) => {
 
 });
 
+//Adds a company to a User Array via id
 router.route('/addCompany/:id').post((req,res) => {
     //Find the user
     User.UserCollection.findById(req.params.id)
@@ -60,6 +62,37 @@ router.route('/addCompany/:id').post((req,res) => {
         .catch((err) => res.status(400).json("Error: user not found " + err));
     })
 })
+
+
+//Delete a user via id
+router.route('/delete/:id').delete((req, res) => {
+  User.UserCollection.findByIdAndDelete(req.params.id)
+    .then(user => res.json('User ' + user.username + ' deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+/*
+Description: Updates the User fields
+Pre-Condition: 
+1. All required fields are needed to execute (username, password and email). 
+2. The user id msut be in url
+*/
+router.route('/update/:id').post((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user => {
+      user.username = req.body.username;
+      user.password = req.body.password;
+      user.email = req.body.email;
+      user.associatedCompanies = req.body.associatedCompanies;
+      user.posts = req.body.posts;
+
+
+      user.save()
+        .then(() => res.json('User '+ user.username + ' updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 router.route("/login").post((req, res) => {
     const password = req.body.password;
