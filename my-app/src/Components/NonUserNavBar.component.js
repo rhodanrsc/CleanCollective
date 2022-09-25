@@ -12,12 +12,12 @@ const NonUserNavBar = () => { return (
                 </a>
             </div>
             <div className="login buttons">
-                <Link to={"/create-company"} className="nav-link">
+                <Link to={"/login"} className="nav-link">
                     <button className="loginButton" type="submit">Login</button>
                 </Link>
             </div>
             <div className="register buttons">
-                <Link to={"/create-company"} className="nav-link">
+                <Link to={"/create-user"} className="nav-link">
                     <button className="registerButton" type="submit">Register</button>
                 </Link>
             </div>
