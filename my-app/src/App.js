@@ -18,6 +18,7 @@ import StudentList from "./Components/student-list.component";
 import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/topNavBarComponent";
 import CustomNavCSS  from  "./css/topNavBar.css";
+import ConfirmEmail from "./Components/registration/confirm-email.component";
 
 // App Component
 const App = () => {
@@ -68,6 +69,8 @@ const App = () => {
                   <Route path="/student-list" element={<StudentList />} />
 
                   <Route path="/create-user" element={<CreateUser/>}/>
+
+                  <Route path="/registered" element={<ConfirmEmail />}/>
                 </Routes>
               </div>
             </Col>

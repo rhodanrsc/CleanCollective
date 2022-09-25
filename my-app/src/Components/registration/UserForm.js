@@ -47,6 +47,7 @@ const UserForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            
           </FormGroup>
           <Button variant="danger" size="lg" block="block" type="submit">
             {props.children}

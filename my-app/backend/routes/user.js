@@ -8,6 +8,7 @@ router.route('/').get((req, res) =>{
     User.UserCollection.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
+
 });
 
 //Creates a new User
@@ -88,6 +89,13 @@ router.route('/update/:id').post((req, res) => {
         .then(() => res.json('User '+ user.username + ' updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//Find user by ID
+router.route('/:id').get((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
