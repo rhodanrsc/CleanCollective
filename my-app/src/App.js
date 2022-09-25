@@ -16,8 +16,10 @@ import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateUser from "./Components/registration/create-user.component";
-import CustomNavBar from "./Components/topNavBarComponent";
-import CustomNavCSS  from  "./css/topNavBar.css";
+// import CustomNavBar from "./Components/topNavBarComponent";
+import CustomNavBar from "./Components/NavBar";
+// import CustomNavCSS  from  "./css/topNavBar.css";
+import CustomNavCSS  from  "./shared/css/topNavBar.css";
 import UserLoginForm from "./Components/Login/user-login-form.component.js";
 
 // App Component
