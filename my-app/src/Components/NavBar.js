@@ -9,9 +9,9 @@ const NavBar = () => {
     
     if (isLoggedIn) {
         return <UserNavBar />;
-    } 
-    return <NonUserNavBar />;
-    
+    } else {
+        return <NonUserNavBar />;
+    }
 };
 
 export default NavBar;
