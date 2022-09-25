@@ -12,8 +12,11 @@ const companySchema = new Schema({
     type: sector.sectorSchema,
     required: false,
   },
+},
+{
+  timestamps: true
 });
 
-const Company = mongoose.model("Company", companySchema);
+const CompanyCollection = mongoose.model("Company", companySchema);
 
-module.exports = Company;
+module.exports = {CompanyCollection, companySchema};

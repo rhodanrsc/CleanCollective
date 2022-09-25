@@ -22,12 +22,15 @@ connection.once("open", () => {
 const companyRouter = require("./routes/company");
 const sectorRouter = require("./routes/sector");
 const userPostRouter = require("./routes/user.post.route");
+const userRouter = require("./routes/user");
 
 //Anytime someone goes to /exercises
 //it will load everything from the exercisesRouter
 app.use("/company", companyRouter);
 app.use("/sector", sectorRouter);
 app.use("/user.post.route", userPostRouter);
+app.use("/user", userRouter);
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

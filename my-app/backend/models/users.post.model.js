@@ -24,14 +24,20 @@ const userPostSchema = new Schema({
   },
   postLikes: {
     type: Number,
+    default: 0,
     required: false,
   },
   postDislikes: {
     type: Number,
+    default: 0,
     required: false,
   },
-});
+},
+{
+  timestamps: true
+}
+);
 
-const UserPost = mongoose.model("UserPost", userPostSchema);
+const UserPostCollection = mongoose.model("UserPost", userPostSchema);
 
-module.exports = UserPost;
+module.exports = {UserPostCollection, userPostSchema};
