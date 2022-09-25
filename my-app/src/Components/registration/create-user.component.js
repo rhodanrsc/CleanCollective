@@ -37,6 +37,7 @@ const CreateUser = () => {
       .then((res) => {
         if (res.status === 200){ 
             alert("User successfully created");
+            //Take us to the email page after
             navigate('/registered');
         } 
         else{
