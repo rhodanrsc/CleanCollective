@@ -10,7 +10,7 @@ const NavBar = () => { return (
             </a>
         </div>
         <div className="login buttons">
-            <Link to={"/create-user"}>
+            <Link to={"/login"}>
                 <form>
                     <button className="loginButton" type="submit">Login</button>
                 </form>

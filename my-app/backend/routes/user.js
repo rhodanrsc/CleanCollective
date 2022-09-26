@@ -124,14 +124,16 @@ router.route("/login").post((req, res) => {
     const email = req.body.email;
 
     //confirm if matches user in database
-    User.UserCollection.findOne({email: req.body.email},{password: req.body.password})
-
+    User.UserCollection.findOne({email: req.body.email, password: req.body.password})
+    
     .then(function (userFound){
+        console.log(userFound);
         //if the specific user is found then login
         if(userFound != null){
             console.log("User exists!");
             //navigate to diffrent page with user logged in
             
+            res.json("User exists!")
         }else{
             //throw error
             alert("Incorrect Username or password, please try again");

@@ -16,9 +16,11 @@ import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateUser from "./Components/registration/create-user.component";
-import CustomNavBar from "./Components/topNavBarComponent";
-import CustomNavCSS  from  "./css/topNavBar.css";
-import ConfirmEmail from "./Components/registration/confirm-email.component";
+// import CustomNavBar from "./Components/topNavBarComponent";
+import CustomNavBar from "./Components/NavBar";
+// import CustomNavCSS  from  "./css/topNavBar.css";
+import CustomNavCSS  from  "./shared/css/topNavBar.css";
+import UserLoginForm from "./Components/Login/user-login-form.component.js";
 
 // App Component
 const App = () => {
@@ -69,8 +71,7 @@ const App = () => {
                   <Route path="/student-list" element={<StudentList />} />
 
                   <Route path="/create-user" element={<CreateUser/>}/>
-
-                  <Route path="/registered" element={<ConfirmEmail />}/>
+                  <Route path="/login" element={<UserLoginForm />}/>
                 </Routes>
               </div>
             </Col>
