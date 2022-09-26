@@ -15,9 +15,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
-import CreateCompany from "./Components/registration/create-company.component";
-import CustomNavBar from "./Components/topNavBarComponent";
-import CustomNavCSS  from  "./css/topNavBar.css";
+import CreateUser from "./Components/registration/create-user.component";
+// import CustomNavBar from "./Components/topNavBarComponent";
+import CustomNavBar from "./Components/NavBar";
+// import CustomNavCSS  from  "./css/topNavBar.css";
+import CustomNavCSS  from  "./shared/css/topNavBar.css";
+import UserLoginForm from "./Components/Login/user-login-form.component.js";
 
 // App Component
 const App = () => {
@@ -67,7 +70,8 @@ const App = () => {
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />
 
-                  <Route path="/create-company" element={<CreateCompany/>}/>
+                  <Route path="/create-user" element={<CreateUser/>}/>
+                  <Route path="/login" element={<UserLoginForm />}/>
                 </Routes>
               </div>
             </Col>

@@ -1,0 +1,54 @@
+.everything {
+    border-bottom: 1px rgb(175, 171, 171) solid;
+    height: 5em;
+}
+
+.logo {
+    width: 100%;
+    height: 200px;
+    width: auto;
+    margin: -60px 0;
+    display: inline;
+}
+
+form {
+    width: fit-content;
+    margin: 20px 0;
+}
+
+.buttons {
+    float: right;
+}
+
+.navBar {
+    width: fit-content;
+    margin: 0;
+    display: inline;
+    float: left;
+}
+
+.loginButton{
+    background-color: #EAEAEA;
+    border-radius: 0.25em;
+    border-style: hidden;
+    color: #1682FD;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    width: 80px;
+    margin: 10px 10px 10px 0;
+}
+
+.registerButton{
+    padding: 10px;
+    border-style: hidden;
+    width: 90px;
+    background-color: #309A47;
+    color: white;
+    display: inline;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 0.25em;
+    margin: 10px 0 10px 10px;
+}
+
