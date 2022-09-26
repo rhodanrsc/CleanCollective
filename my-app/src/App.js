@@ -21,6 +21,7 @@ import CustomNavBar from "./Components/NavBar";
 // import CustomNavCSS  from  "./css/topNavBar.css";
 import CustomNavCSS  from  "./shared/css/topNavBar.css";
 import UserLoginForm from "./Components/Login/user-login-form.component.js";
+import ConfirmEmail from "./Components/registration/confirm-email.component";
 
 // App Component
 const App = () => {
@@ -69,7 +70,7 @@ const App = () => {
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />
-
+                  <Route path="/registered" element={<ConfirmEmail />} />
                   <Route path="/create-user" element={<CreateUser/>}/>
                   <Route path="/login" element={<UserLoginForm />}/>
                 </Routes>
