@@ -103,6 +103,22 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//Find user by username
+router.route('/findUserName').post((req, res) => {
+  User.UserCollection.findOne({username : req.body.username})
+    .then(function(user){
+        //If User exits return true
+        //Else return false
+        if(user != null){
+            res.send(true)
+        } else {
+            res.send(false);
+        }
+        
+    }) 
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route("/login").post((req, res) => {
     const password = req.body.password;
     const email = req.body.email;

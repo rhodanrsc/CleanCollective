@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserForm from "./UserForm";
-import emailValidator from "email-validator";
 import { useNavigate } from "react-router-dom";
+import {checkPassword, checkEmail, checkUsername} from "./registrationValidation";
 
 // CreateStudent Component
 const CreateUser = () => {
@@ -19,19 +19,25 @@ const CreateUser = () => {
  
   // onSubmit handler
   const onSubmit = (userObject) => {
-    
 
-    //Check if passwords match
-    if(userObject.password !== userObject.confirmPassword){
-      alert("passwords do not match");
-    } else if (emailValidator.validate(userObject.email) === false){
-      //Check for valid email
-      alert("Invalid Email");
-    } else{
+    //Validation
+    let checkedPassword = checkPassword(userObject.password, userObject.confirmPassword);
+    let checkedUsername = checkUsername(userObject.username);
+    let checkedEmail = checkEmail(userObject.email);
+    let isValid = true;
+
+
+    if(checkedUsername === false || checkedPassword === false || checkedEmail === false){
+      isValid = false;
+    }
+
+    
+    
+    if(isValid === true){
       axios.post("http://localhost:5000/user/add", {
-        username : userObject.username,
-        email : userObject.email,
-        password : userObject.password
+      username : userObject.username,
+      email : userObject.email,
+      password : userObject.password
       })
       
       .then((res) => {
@@ -44,9 +50,9 @@ const CreateUser = () => {
           Promise.reject();
         } 
       })
-      .catch((err) => alert("Something went wrong: " + userObject.username));
+      .catch((err) => alert("Something went wrong RIGT HERE: " + err));
     }
-    
+     
   };
 
   // Return student form
