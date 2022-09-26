@@ -1,6 +1,8 @@
 .everything {
+    background-color: white;
     border-bottom: 1px rgb(175, 171, 171) solid;
     height: 5em;
+
 }
 
 .logo {
@@ -26,6 +28,8 @@ form {
     display: inline;
     float: left;
 }
+
+
 
 .loginButton{
     background-color: #EAEAEA;
@@ -53,3 +57,116 @@ form {
     margin-right: 8px;
 }
 
+.bigLogo {
+    display: block;
+    width: auto;
+    height: 555px;
+    margin: -150px auto;
+
+}
+
+.bannerArea {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+.bigBlock {
+    display: block;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: none;
+    width: 80%;
+}
+
+.adoptor {
+    float: left;
+    text-align: center;
+    width: 50%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.innovator {
+    float: right;
+    text-align: center;
+    width: 50%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.landingPageButtons {
+    display: block;
+    text-align: center;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.landingPageButtons .nav-link {
+    display: block;
+    width: auto;
+    float: left;
+}
+
+.landingButton {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 auto;
+
+    width: 200px;
+    height: 86px;
+
+    background: #309A47;
+    border-radius: 8px;
+    border: none;
+}
+
+.landingFont {
+    color: white;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.buttonGreen {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 auto;
+    gap: 12px;
+
+    width: auto;
+    height: 47px;
+
+    background: #309A47;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+.getStarted {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
