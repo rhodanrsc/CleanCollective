@@ -10,14 +10,14 @@ const NavBar = () => { return (
                 </a>
             </div>
             <div className="login buttons">
-                <Link to={"/create-company"}>
+                <Link to={"/login"}>
                     <form>
                         <button className="loginButton" type="submit">Login</button>
                     </form>
                 </Link>
             </div>
             <div className="register buttons">
-                <Link to={"/create-company"}>
+                <Link to={"/register"}>
                     <form method="post" action="/">
                         <button className="registerButton" type="submit">Register</button>
                     </form>

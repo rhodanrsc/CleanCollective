@@ -26,11 +26,11 @@ const LandingPage = () => {
             <div className='bigBlock'>
                 <div className='adoptor'>
                     <h3>Adoptor</h3>
-                    <p>lorem asdfas dfasdf asdf;kjlhas dfjhaskld fhlaksjdhf lkjasdhflkjas dfhlk asdh flkasjdhf lkj</p>
+                    <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
                 </div> 
                 <div className='innovator'>
                     <h3>Innovator</h3>
-                    <p>lorema sdfj;akls dfj;lkasd fj;lsakd jf;aslkdjf ;alskdjf ;lasd kfj;laskd jf;lasdjf lasdkfj a;lsdkfj;</p>
+                    <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
                 </div>  
                 <Link to={"/register"} className="nav-link getStarted">
                     <button className='buttonGreen'>Get Started</button>

@@ -2,7 +2,7 @@
     background-color: white;
     border-bottom: 1px rgb(175, 171, 171) solid;
     height: 5em;
-
+    z-index: 10;   
 }
 
 .logo {
@@ -83,9 +83,12 @@ form {
 
 .adoptor {
     float: left;
+}
+
+.adoptor, .innovator {
     text-align: center;
     width: 50%;
-
+    padding: 50px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -98,17 +101,6 @@ form {
 
 .innovator {
     float: right;
-    text-align: center;
-    width: 50%;
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 21px;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.02em;
 }
 
 .landingPageButtons {
@@ -122,6 +114,7 @@ form {
     display: block;
     width: auto;
     float: left;
+    z-index: 1;
 }
 
 .landingButton {
@@ -135,6 +128,7 @@ form {
     background: #309A47;
     border-radius: 8px;
     border: none;
+
 }
 
 .landingFont {
