@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ConfirmEmail = props =>(
-    <div>
+    <div className="card">
         <h2>A verification link has been sent to your email</h2>
-        <p>Please click the link that has just been sent to complete registration!</p>
+        <p className="card-body">Please click the link that has just been sent to complete registration!</p>
     </div>
     
 )

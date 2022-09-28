@@ -21,40 +21,59 @@ function axiosGetUsers (populateData) {
 
 axiosGetUsers(populateData);
 
-//Validation Methods
-function checkPassword(password, confirmPassword){
-    //Will add regex here at some point
-    console.log(password, confirmPassword)
-    if(password === confirmPassword){
-        return true;
-    } else{
-        alert('Passwords do not match');
-        return false;
-    }
-}
+const checkPassword = values => {
+  let error = "";
+  const passwordRegex = /(?=.*[0-9])/;
+  if (!values) {
+    error = "*Required";
+  } else if (values.length < 8) {
+    error = "*Password must be 8 characters long.";
+  } else if (!passwordRegex.test(values)) {
+    error = "*Invalid password. Must contain one number.";
+  }
+  return error;
+};
 
+
+const checkConfirmPassword = (pass, value) => {
+
+  let error = "";
+  if(!value){
+    error = "*Required";
+  } else if (pass !== value){
+    error = "*Passwords do not match";
+  }
+  return error;
+};
+
+/*
+Validates
+1. input is not empty
+2. valid email format 
+3. email isnt already in use
+*/
 function checkEmail(email){
-    //Check if email is valid
-    let existEmail = true;
+    let error;
     let validEmail =  emailValidator.validate(email); 
-    if(validEmail === false){
-        alert('Invalid Email');
-        validEmail = false;
+    if(!email){
+        error = '*Required';
+    } else if (validEmail === false){
+        error = '*Invalid email format';
     } else{
-        validEmail = true;
-    }
-
-    //Check if email exists
-    listOfUsers[0].forEach(function (user) {
+        //Check if email exists
+        listOfUsers[0].forEach(function (user) {
         //If even one matches. Return false
         if(user.email === email){
-            existEmail = false;
-            alert("Email already exists");
+            error = '*This email is already in use'
                 
         }
     });
 
-    return (validEmail && existEmail)
+    }
+
+    
+
+    return error;
 
     //Check if email already exist
 }
@@ -62,17 +81,20 @@ function checkEmail(email){
 
 function checkUsername(username){
     //Check if email exists
-    let userExists = true;
-    listOfUsers[0].forEach(function (user) {
+    let error;
+    if(!username){
+        error = '*';
+    } else{
+        listOfUsers[0].forEach(function (user) {
         //If even one matches. Return false
         if(user.username === username){
-            userExists = false;
-            alert("Username already exists");
-                
+            error = "*Username is already in use";   
         }
-    });
+        });
+    }
+    
 
-    return userExists;
+    return error;
 }
 
-export {checkPassword, checkEmail, checkUsername};
+export {checkPassword, checkEmail, checkUsername, checkConfirmPassword};
