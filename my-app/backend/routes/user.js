@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
+
 const UserPost = require('../models/users.post.model');
+const { Router } = require('express');
 
 //Returns list of Users
 router.route('/').get((req, res) =>{
@@ -34,6 +36,7 @@ router.route('/add').post((req, res) => {
 
 });
 
+//Adds a company to a User Array via id
 router.route('/addCompany/:id').post((req,res) => {
     //Find the user
     User.UserCollection.findById(req.params.id)
@@ -60,5 +63,61 @@ router.route('/addCompany/:id').post((req,res) => {
     })
 })
 
+
+//Delete a user via id
+router.route('/delete/:id').delete((req, res) => {
+  User.UserCollection.findByIdAndDelete(req.params.id)
+    .then(user => res.json('User ' + user.username + ' deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+/*
+Description: Updates the User fields
+Pre-Condition: 
+1. All required fields are needed to execute (username, password and email). 
+2. The user id msut be in url
+*/
+router.route('/update/:id').post((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user => {
+      user.username = req.body.username;
+      user.password = req.body.password;
+      user.email = req.body.email;
+      user.associatedCompanies = req.body.associatedCompanies;
+      user.posts = req.body.posts;
+
+
+      user.save()
+        .then(() => res.json('User '+ user.username + ' updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route("/login").post((req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+
+    //confirm if matches user in database
+    User.UserCollection.findOne({email: req.body.email, password: req.body.password})
+    
+    .then(function (userFound){
+        console.log(userFound);
+        //if the specific user is found then login
+        if(userFound != null){
+            console.log("User exists!");
+            //navigate to diffrent page with user logged in
+            
+            res.json("User exists!")
+        }else{
+            //throw error
+            alert("Incorrect Username or password, please try again");
+            console.log("User does not exist");
+            res.json("User does not exist");
+         }
+    })
+    .catch((err) => res.status(400).json("Error: user not found " + err));
+
+})
 
 module.exports = router;
