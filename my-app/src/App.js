@@ -20,6 +20,7 @@ import CustomNavBar from "./Components/navbar/NavBar";
 import CustomNavCSS from "./shared/css/topNavBar.css";
 import UserLoginForm from "./Components/Login/user-login-form.component.js";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
+import LandingPage from "./Components/landingPage";
 
 // App Component
 const App = () => {
@@ -36,9 +37,9 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
-                  <Route path="/create-student" element={<CreateStudent />} />
+                  {/* <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
-                  <Route path="/student-list" element={<StudentList />} />
+                  <Route path="/student-list" element={<StudentList />} /> */}
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                 </Routes>
