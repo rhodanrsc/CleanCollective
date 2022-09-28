@@ -1,6 +1,8 @@
 .everything {
+    background-color: white;
     border-bottom: 1px rgb(175, 171, 171) solid;
     height: 5em;
+    z-index: 10;   
 }
 
 .logo {
@@ -11,13 +13,9 @@
     display: inline;
 }
 
-form {
-    width: fit-content;
-    margin: 20px 0;
-}
-
-.buttons {
+.navbuttons {
     float: right;
+    margin: 20px 0;
 }
 
 .navBar {
@@ -40,7 +38,7 @@ form {
     margin-right: 30px;
 }
 
-.registerButton{
+.buttonGreenSmall{
     padding: 10px;
     border-style: hidden;
     width: 90px;
@@ -53,3 +51,110 @@ form {
     margin-right: 8px;
 }
 
+.buttonGreenBig {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 auto;
+
+    width: 200px;
+    height: 86px;
+
+    background: #309A47;
+    border-radius: 8px;
+    border: none;
+
+    text-align: center;
+}
+
+.bigLogo {
+    display: block;
+    width: auto;
+    height: 555px;
+    margin: -150px auto;
+
+}
+
+.bannerArea {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+.bigBlock {
+    display: block;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: none;
+    width: 80%;
+}
+
+.adoptor {
+    float: left;
+}
+
+.adoptor, .innovator {
+    text-align: center;
+    width: 50%;
+    padding: 50px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.innovator {
+    float: right;
+}
+
+.landingPageButtons {
+    display: block;
+    text-align: center;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.landingPageButtons .nav-link {
+    display: block;
+    width: auto;
+    float: left;
+    z-index: 1;
+}
+
+
+.landingFont {
+    color: white;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.getStarted .landingButton {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 auto;
+    gap: 12px;
+
+    width: auto;
+    height: 47px;
+
+    background: #309A47;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+.getStarted {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
