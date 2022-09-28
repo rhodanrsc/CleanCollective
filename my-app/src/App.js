@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // Import Custom CSS
 import "./App.css";
+import "./shared/css/style.css";
 
 // Import from react-router-dom
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -33,11 +34,10 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 <Routes>
-                  {/* <Route exact path="/" element={<CreateStudent />} />
+                  <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
-  <Route path="/student-list" element={<StudentList />} />*/}
-
+                  <Route path="/student-list" element={<StudentList />} />
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                 </Routes>
