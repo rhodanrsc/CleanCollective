@@ -5,6 +5,22 @@ import axios from "axios";
 import UserForm from "./UserForm";
 import { useNavigate } from "react-router-dom";
 
+function SendEmail() {
+    const [sent, setSent] = useState(false)
+    const [text, setText] = useState("")
+    const handleSend = async () => {
+        setSent(true)
+        try{
+            await axios.post("http://localhost:5000/send_mail", {
+                text
+            });
+        }catch (error){
+
+        }
+    }
+}
+
+
 // CreateStudent Component
 const CreateUser = () => {
   const navigate = useNavigate();
@@ -19,6 +35,7 @@ const CreateUser = () => {
   // onSubmit handler
   const onSubmit = (userObject) => {
 
+      
       axios.post("http://localhost:5000/user/add", {
       username : userObject.username,
       email : userObject.email,
