@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // Import Custom CSS
 import "./App.css";
+import "./shared/css/style.css";
 
 // Import from react-router-dom
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -16,8 +17,9 @@ import CreateStudent from "./Components/create-student.component";
 import EditStudent from "./Components/edit-student.component";
 import StudentList from "./Components/student-list.component";
 import CreateCompany from "./Components/registration/create-company.component";
-import CustomNavBar from "./Components/topNavBarComponent";
-import CustomNavCSS  from  "./css/topNavBar.css";
+import CustomNavBar from "./Components/NavBar";
+
+import LandingPage from "./Components/landingPage"
 
 // App Component
 const App = () => {
@@ -25,35 +27,6 @@ const App = () => {
     <Router>
       <div className="App">
         <header className="App-header">
-          {/* <Navbar bg="dark" variant="dark">
-            <Container>
-              <Navbar.Brand>
-                <Link to={"/create-student"} className="nav-link">
-                  React MERN Stack App
-                </Link>
-              </Navbar.Brand>
-
-              <Nav className="justify-content-end">
-                <Nav>
-                  <Link to={"/create-student"} className="nav-link">
-                    Create Student
-                  </Link>
-                </Nav>
-
-                <Nav>
-                  <Link to={"/student-list"} className="nav-link">
-                    Student List
-                  </Link>
-                </Nav>
-                <Nav>
-                  <Link to={"/create-company"} className="nav-link">
-                    Create Company
-                  </Link>
-                </Nav>
-
-              </Nav>
-            </Container>
-          </Navbar> */}
           <CustomNavBar /> 
         </header>
 
@@ -62,7 +35,7 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 <Routes>
-                  <Route exact path="/" element={<CreateStudent />} />
+                  <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-student" element={<CreateStudent />} />
                   <Route path="/edit-student/:id" element={<EditStudent />} />
                   <Route path="/student-list" element={<StudentList />} />

@@ -5,11 +5,11 @@ const UserNavBar = () => { return (
     <header>
         <div className="everything">
             <div className="homeButton navBar">
-                <a href="/">
+                <a href="/forum">
                     <img className="logo" src={logo}/>
                 </a>
             </div>
-            <div className="login buttons">
+            <div className="login navbuttons">
                 Work in progress
             </div>
         </div>

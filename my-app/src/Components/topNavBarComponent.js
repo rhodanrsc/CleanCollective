@@ -9,18 +9,14 @@ const NavBar = () => { return (
                     <img className="logo" src={logo}/>
                 </a>
             </div>
-            <div className="login buttons">
+            <div className="login navbuttons">
                 <Link to={"/login"}>
-                    <form>
-                        <button className="loginButton" type="submit">Login</button>
-                    </form>
+                    <button className="loginButton" type="submit">Login</button>
                 </Link>
             </div>
-            <div className="register buttons">
+            <div className="register navbuttons">
                 <Link to={"/register"}>
-                    <form method="post" action="/">
-                        <button className="registerButton" type="submit">Register</button>
-                    </form>
+                    <button className="buttonGreenSmall" type="submit">Register</button>
                 </Link>
             </div>
         </div>

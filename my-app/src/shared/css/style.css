@@ -13,13 +13,9 @@
     display: inline;
 }
 
-form {
-    width: fit-content;
-    margin: 20px 0;
-}
-
-.buttons {
+.navbuttons {
     float: right;
+    margin: 20px 0;
 }
 
 .navBar {
@@ -28,8 +24,6 @@ form {
     display: inline;
     float: left;
 }
-
-
 
 .loginButton{
     background-color: #EAEAEA;
@@ -44,7 +38,7 @@ form {
     margin-right: 30px;
 }
 
-.registerButton{
+.buttonGreenSmall{
     padding: 10px;
     border-style: hidden;
     width: 90px;
@@ -55,6 +49,21 @@ form {
     font-family: 'Roboto', sans-serif;
     border-radius: 0.25em;
     margin-right: 8px;
+}
+
+.buttonGreenBig {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 auto;
+
+    width: 200px;
+    height: 86px;
+
+    background: #309A47;
+    border-radius: 8px;
+    border: none;
+
+    text-align: center;
 }
 
 .bigLogo {
@@ -117,19 +126,6 @@ form {
     z-index: 1;
 }
 
-.landingButton {
-    display: inline-block;
-    padding: 12px 20px;
-    margin: 0 auto;
-
-    width: 200px;
-    height: 86px;
-
-    background: #309A47;
-    border-radius: 8px;
-    border: none;
-
-}
 
 .landingFont {
     color: white;
@@ -138,13 +134,11 @@ form {
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
-    display: flex;
-    align-items: center;
     text-align: center;
     letter-spacing: 0.02em;
 }
 
-.buttonGreen {
+.getStarted .landingButton {
     display: inline-block;
     padding: 12px 20px;
     margin: 0 auto;

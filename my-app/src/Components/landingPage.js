@@ -14,13 +14,13 @@ const LandingPage = () => {
                 <p>Explore features of our knowledge and matching software</p>
                 
                 <Link to={"/forum"} className="nav-link">
-                    <button type='submit' className='landingButton landingFont'>Questions & Answers</button>
+                    <button type='submit' className='buttonGreenBig landingFont'>Questions & Answers</button>
                 </Link>
                 <Link to={"/FAQ"} className="nav-link">
-                    <button type='submit' className='landingButton landingFont'>FAQs</button>
+                    <button type='submit' className='buttonGreenBig landingFont'>FAQs</button>
                 </Link>
                 <Link to={"/register"} className="nav-link">
-                    <button type='submit' className='landingButton landingFont'>Meet The Team</button>
+                    <button type='submit' className='buttonGreenBig landingFont'>Meet The Team</button>
                 </Link> 
             </div>
             <div className='bigBlock'>
@@ -33,7 +33,7 @@ const LandingPage = () => {
                     <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
                 </div>  
                 <Link to={"/register"} className="nav-link getStarted">
-                    <button className='buttonGreen'>Get Started</button>
+                    <button className='landingButton'>Get Started</button>
                 </Link>
             </div>
             <div className='twoBoxes'>
