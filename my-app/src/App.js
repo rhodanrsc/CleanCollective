@@ -14,13 +14,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Import other React Component
 import CreateUser from "./Components/registration/create-user.component";
-// import CustomNavBar from "./Components/topNavBarComponent";
 import CustomNavBar from "./Components/navbar/NavBar";
-// import CustomNavCSS  from  "./css/topNavBar.css";
-import CustomNavCSS from "./shared/css/topNavBar.css";
-import UserLoginForm from "./Components/Login/user-login-form.component.js";
+import UserLoginForm from "./Components/Login/user-login-form.component";
+import LandingPage from "./Components/landingPage"
 import ConfirmEmail from "./Components/registration/confirm-email.component";
-import LandingPage from "./Components/landingPage";
 import RegisterPage from "./Components/registration/create-user.component"
 
 // App Component
