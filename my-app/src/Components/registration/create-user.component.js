@@ -21,19 +21,7 @@ const CreateUser = () => {
   // onSubmit handler
   const OnSubmit = (userObject) => {
 
-      //Take us to the email page after sending the email
-      try{
-      //Sends the email
-      axios.post("http://localhost:5000/send_email", {
-        username : userObject.username,
-        userEmail : userObject.email
-      });
-        //Takes us to the confirmEmail page if it was sent
-        navigate('/register/confirmEmail');
-      }catch (error){
-        console.log("Error: SendMail not working " + error)
-      }
-
+    
       //Adding the user to database
       axios.post("http://localhost:5000/user/add", {
       username : userObject.username,
@@ -50,6 +38,19 @@ const CreateUser = () => {
         } 
       })
       .catch((err) => alert("Something went wrong: " + err));
+
+      //Take us to the email page after sending the email
+      try{
+      //Sends the email
+      axios.post("http://localhost:5000/send_email", {
+        username : userObject.username,
+        userEmail : userObject.email
+      });
+        //Takes us to the confirmEmail page if it was sent
+        navigate('/register/confirmEmail');
+      }catch (error){
+        console.log("Error: SendMail not working " + error)
+      }
   };
 
   // Return student form
