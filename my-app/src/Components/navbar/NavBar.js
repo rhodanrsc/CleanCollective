@@ -3,7 +3,7 @@ import React from "react";
 import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
 
-const isLoggedIn = false;
+const isLoggedIn =  false;
 
 const NavBar = () => { 
     
