@@ -5,6 +5,16 @@ import UserLoginForm from "./user-login-form";
 
 // LoginUser Component
 const UserLoginComponent = () => {
+
+  // function useNavigate(){
+  //   const navigate = useNavigate();
+  
+  //   const navigateToPage = () => {
+  //     navigate('/create-user');
+  //   }
+  // }
+
+
   const [formValues] = useState({
     login_email_feild: "",
     login_password_feild: "",
@@ -37,6 +47,8 @@ const UserLoginComponent = () => {
     </UserLoginForm>
   );
 };
+
+
 
 // Export CreateStudent Component
 export default UserLoginComponent;

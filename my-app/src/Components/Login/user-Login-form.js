@@ -1,13 +1,21 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FormGroup, Button } from "react-bootstrap";
+import { FormGroup, Button, NavLink } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+
+
+
+
 
 const UserLoginForm = (props) => {
   const validationSchema = Yup.object().shape({
     
    // password: Yup.string().required("Required"),
   });
+
+
+
 
   console.log(props);
   return (
@@ -30,9 +38,16 @@ const UserLoginForm = (props) => {
               component={"span"}
             />
           </FormGroup>
-          <Button variant="danger" size="lg" block="block" type="submit">
+          <Button variant="danger" size="lg" block="block" onClick={""} type="submit">
             {props.children}
           </Button>
+
+          <div className="login_links">
+            <p><Link to={"/create-user"}>register now</Link></p>
+            <p><Link to={""}>Forgot Password?</Link></p>
+          </div>
+
+
         </Form>
       </Formik>
     </div>

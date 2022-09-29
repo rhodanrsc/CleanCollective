@@ -5,6 +5,7 @@ const Company = require('../models/company.model');
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
 
+
 //Returns list of Users
 router.route('/').get((req, res) =>{
     User.UserCollection.find()
@@ -95,10 +96,7 @@ router.route('/update/:id').post((req, res) => {
 });
 
 router.route("/login").post((req, res) => {
-    const password = req.body.password;
-    const email = req.body.email;
-
-    //confirm if matches user in database
+  //confirm if matches user in database
     User.UserCollection.findOne({email: req.body.email, password: req.body.password})
     
     .then(function (userFound){
@@ -106,9 +104,11 @@ router.route("/login").post((req, res) => {
         //if the specific user is found then login
         if(userFound != null){
             console.log("User exists!");
-            //navigate to diffrent page with user logged in
-            
             res.json("User exists!")
+            //save session 
+
+
+
         }else{
             //throw error
             alert("Incorrect Username or password, please try again");
