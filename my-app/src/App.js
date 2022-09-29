@@ -21,6 +21,7 @@ import CustomNavCSS from "./shared/css/topNavBar.css";
 import UserLoginForm from "./Components/Login/user-login-form.component.js";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import LandingPage from "./Components/landingPage";
+import RegisterPage from "./Components/registration/create-user.component"
 
 // App Component
 const App = () => {
@@ -37,11 +38,10 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
-                  {/* <Route path="/create-student" element={<CreateStudent />} />
-                  <Route path="/edit-student/:id" element={<EditStudent />} />
-                  <Route path="/student-list" element={<StudentList />} /> */}
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/register/confirmEmail" element={<ConfirmEmail />} />
                 </Routes>
               </div>
             </Col>

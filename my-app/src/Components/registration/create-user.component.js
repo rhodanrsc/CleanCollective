@@ -5,20 +5,6 @@ import axios from "axios";
 import UserForm from "./UserForm";
 import { useNavigate } from "react-router-dom";
 
-function SendEmail() {
-    const [sent, setSent] = useState(false)
-    const [text, setText] = useState("")
-    const handleSend = async () => {
-        setSent(true)
-        try{
-            await axios.post("http://localhost:5000/send_mail", {
-                text
-            });
-        }catch (error){
-
-        }
-    }
-}
 
 
 // CreateStudent Component
@@ -33,9 +19,22 @@ const CreateUser = () => {
   });
  
   // onSubmit handler
-  const onSubmit = (userObject) => {
+  const OnSubmit = (userObject) => {
 
-      
+      //Take us to the email page after sending the email
+      try{
+      //Sends the email
+      axios.post("http://localhost:5000/send_email", {
+        username : userObject.username,
+        userEmail : userObject.email
+      });
+        //Takes us to the confirmEmail page if it was sent
+        navigate('/register/confirmEmail');
+      }catch (error){
+        console.log("Error: SendMail not working " + error)
+      }
+
+      //Adding the user to database
       axios.post("http://localhost:5000/user/add", {
       username : userObject.username,
       email : userObject.email,
@@ -45,15 +44,12 @@ const CreateUser = () => {
       .then((res) => {
         if (res.status === 200){ 
             alert("User successfully created");
-            //Take us to the email page after
-            navigate('/registered');
         } 
         else{
           Promise.reject();
         } 
       })
-      .catch((err) => alert("Something went wrong RIGT HERE: " + err));
-    
+      .catch((err) => alert("Something went wrong: " + err));
   };
 
   // Return student form
@@ -61,7 +57,7 @@ const CreateUser = () => {
     return (
     <UserForm
       initialValues={formValues}
-      onSubmit={onSubmit}
+      onSubmit={OnSubmit}
       enableReinitialize
     >
       Sign Up

@@ -19,37 +19,47 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.post("/send_mail", cors(), async (req, res) => {
-  let {text} = req.body
-  const transport = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: process.env.MAIL_PORT,
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
-      }
+app.post("/send_email", cors(), async (req,es) => {
+
+  //Setting up the transporter via sendgrid.com
+  let transporter = nodemailer.createTransport({
+  host:'smtp.sendgrid.net',
+  port: 587,
+  auth: {
+    user : "apikey",
+    pass: process.env.SENDGRID_API_KEY
+  }
   })
 
-	await transport.sendMail({
-		from: process.env.MAIL_FROM,
-		to: "test@test.com",
-		subject: "test email",
-		html: `<div className="email" style="
-        border: 1px solid black;
-        padding: 20px;
+  //Function to send the mail
+  await transporter.sendMail({
+  from: "cleancollectivedev@gmail.com",
+  to: req.body.userEmail,
+  subject: "Registration",
+  html: `<div className="email" style="
         font-family: sans-serif;
         line-height: 2;
         font-size: 20px; 
         ">
-        <h2>Here is your email!</h2>
-        <p>${text}</p>
+        <h2>Welcome to Clean Collective, ${req.body.username}</h2>
+        <p>Thank you for signing up!</p>
     
         <p>All the best, Jimmy</p>
          </div>
-    `
-	})
+      `
+  }, function (error, info) {
+    if (error){
+      console.log("Error from server.js " + error);
+      
+    } else {
+      console.log("Email sent: " + info.response)
+    }
+  })
 
-}) 
+})
+
+
+
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true });

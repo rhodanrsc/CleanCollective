@@ -5,14 +5,7 @@ import { FormGroup, Button } from "react-bootstrap";
 import {checkPassword, checkEmail, checkUsername, checkConfirmPassword} from "./registrationValidation";
 
 const UserForm = (props) => {
-  // const validationSchema = Yup.object().shape({
-  //   username: Yup.string().required("Required"),
-  //   email: Yup.string().email("Invalid email").required("Required"),
-  //   password: Yup.string().required("Required"),
-  //   confirmPassword: Yup.string().required("Required")
-  // });
 
-  console.log(props);
   return (
     <div className="form-wrapper">
       <Formik {...props} validateOnChange={false} validateOnBlur={false} >
@@ -42,7 +35,7 @@ const UserForm = (props) => {
             {<div style={{color: "red"}}>{errors.confirmPassword}</div>}
             
           </FormGroup>
-          <Button variant="danger" size="lg" block="block" type="submit">
+          <Button variant="success" size="lg" block="block" type="submit">
             {props.children}
           </Button>
         </Form>
