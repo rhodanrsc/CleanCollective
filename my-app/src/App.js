@@ -14,11 +14,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Import other React Component
 import CreateUser from "./Components/registration/create-user.component";
-// import CustomNavBar from "./Components/topNavBarComponent";
 import CustomNavBar from "./Components/navbar/NavBar";
-// import CustomNavCSS  from  "./css/topNavBar.css";
-import CustomNavCSS from "./shared/css/topNavBar.css";
-import UserLoginForm from "./Components/Login/user-login-form.component.js";
+import UserLoginForm from "./Components/Login/user-login-form.component";
+import LandingPage from "./Components/landingPage"
 
 // App Component
 const App = () => {
@@ -35,9 +33,7 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
-                  <Route path="/create-student" element={<CreateStudent />} />
-                  <Route path="/edit-student/:id" element={<EditStudent />} />
-                  <Route path="/student-list" element={<StudentList />} />
+                  <Route path="/register" element={<CreateUser />} />
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                 </Routes>
