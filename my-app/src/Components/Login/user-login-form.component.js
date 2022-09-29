@@ -2,17 +2,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserLoginForm from "./user-login-form";
+import { Navigate, useNavigate } from "react-router-dom";
 
 // LoginUser Component
 const UserLoginComponent = () => {
 
-  // function useNavigate(){
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
   
-  //   const navigateToPage = () => {
-  //     navigate('/create-user');
-  //   }
-  // }
 
 
   const [formValues] = useState({
@@ -29,6 +25,7 @@ const UserLoginComponent = () => {
     .then((res) => {
       if(res.status === 200){
         alert("Login Sucsess");
+        navigate("/forumPage"); // page you go to after login 
       }else{
         Promise.reject();
       }
