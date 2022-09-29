@@ -17,6 +17,8 @@ import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage"
+import ConfirmEmail from "./Components/registration/confirm-email.component";
+import RegisterPage from "./Components/registration/create-user.component"
 
 // App Component
 const App = () => {
@@ -33,9 +35,10 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
-                  <Route path="/register" element={<CreateUser />} />
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/register/confirmEmail" element={<ConfirmEmail />} />
                 </Routes>
               </div>
             </Col>

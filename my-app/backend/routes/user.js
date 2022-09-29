@@ -10,6 +10,7 @@ router.route('/').get((req, res) =>{
     User.UserCollection.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
+
 });
 
 //Creates a new User
@@ -94,6 +95,30 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+//Find user by ID
+router.route('/:id').get((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//Find user by username
+router.route('/findUserName').post((req, res) => {
+  User.UserCollection.findOne({username : req.body.username})
+    .then(function(user){
+        //If User exits return true
+        //Else return false
+        if(user != null){
+            res.send(true)
+        } else {
+            res.send(false);
+        }
+        
+    }) 
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route("/login").post((req, res) => {
     const password = req.body.password;
     const email = req.body.email;
@@ -119,5 +144,6 @@ router.route("/login").post((req, res) => {
     .catch((err) => res.status(400).json("Error: user not found " + err));
 
 })
+
 
 module.exports = router;
