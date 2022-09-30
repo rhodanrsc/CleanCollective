@@ -4,6 +4,16 @@ const Company = require('../models/company.model');
 
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
+//For authentication
+const passport = require('passport');
+const passportLocal = require('passport-local').Strategy;
+//For hashing the passwords
+const bcrypt = require('bcryptjs');
+
+const hash = async (password)=>{
+    const hashedPassword = await bcrypt.hash(password,10);
+    return hashedPassword;
+}
 
 
 //Returns list of Users
@@ -16,7 +26,8 @@ router.route('/').get((req, res) =>{
 //Creates a new User
 router.route('/add').post((req, res) => {
     const username = req.body.username;
-    const password = req.body.password;
+    const hashedPassword = bcrypt.hashSync(req.body.password,10); //HASHING and SALTING
+    const password = hashedPassword;
     const email = req.body.email;
     //Creates an empty array
     const associatedCompanies = [];
