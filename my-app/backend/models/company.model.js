@@ -11,7 +11,7 @@ const companySchema = new Schema({
   },
   sector: {
     type: sector.sectorSchema,
-    required: false,
+    required: true,
   },
   file: {
     type: String,
@@ -23,7 +23,7 @@ const companySchema = new Schema({
   },
   developmentStage:{
     type: DevelopmentStage.developmentStageSchema,
-    required: false,
+    required: true,
   },
   employees:{
     type: String,
@@ -36,7 +36,7 @@ const companySchema = new Schema({
   check:{
     type: Boolean,
     default: false, 
-    required: true
+    required: false,
   }
   
 },
