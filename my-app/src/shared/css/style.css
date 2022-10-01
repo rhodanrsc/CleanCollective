@@ -14,6 +14,8 @@
 }
 
 .navbuttons {
+    display: block;
+    position: relative;
     float: right;
     margin: 20px 0;
 }
