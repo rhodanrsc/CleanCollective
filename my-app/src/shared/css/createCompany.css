@@ -2,7 +2,7 @@ body{
 }
 
 .company-creation-background{
-background-image: url('../images/clean.jpg');
+background-image: url("../images/clean.jpg");
 background-repeat: no-repeat;
   background-size: cover;
   background-position: fixed;

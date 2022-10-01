@@ -1,6 +1,5 @@
 import React from "react";
-import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import {checkPassword, checkEmail, checkUsername, checkConfirmPassword} from "./registrationValidation";
 

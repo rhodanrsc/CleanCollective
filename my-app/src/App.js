@@ -19,6 +19,9 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage"
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
+import CompanyCreation from "./Components/createCompany/CompanyForm";
+
+import CompanyCSS from "./shared/css/createCompany.css"
 
 // App Component
 const App = () => {
@@ -39,6 +42,7 @@ const App = () => {
                   <Route path="/login" element={<UserLoginForm />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/register/confirmEmail" element={<ConfirmEmail />} />
+                  <Route path="/companyCreation" element={<CompanyCreation />} />
                 </Routes>
               </div>
             </Col>

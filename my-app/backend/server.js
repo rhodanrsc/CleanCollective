@@ -18,16 +18,19 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+//Routers
 const companyRouter = require("./routes/company");
 const sectorRouter = require("./routes/sector");
+const developmentStageRouter = require("./routes/development.stage");
 const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
 
-//Anytime someone goes to /exercises
-//it will load everything from the exercisesRouter
+
+//Use the Routers
 app.use("/company", companyRouter);
 app.use("/sector", sectorRouter);
+app.use("/development.stage", developmentStageRouter);
 app.use("/user.post.route", userPostRouter);
 app.use("/user", userRouter);
 app.use("/", mailRouter);
