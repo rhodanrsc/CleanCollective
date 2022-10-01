@@ -19,7 +19,11 @@ const UserLoginForm = (props) => {
 
   console.log(props);
   return (
-    <div className="form-wrapper">
+
+    
+    
+    <div className="form-group">
+      <h2 classname="first-header">Welcome Back!</h2>
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
@@ -38,12 +42,12 @@ const UserLoginForm = (props) => {
               component={"span"}
             />
           </FormGroup>
-          <Button variant="danger" size="lg" block="block" onClick={""} type="submit">
+          <Button variant="btn btn-primary" size="lg" block="block" onClick={""} type="submit" >
             {props.children}
           </Button>
 
-          <div className="login_links">
-            <p><Link to={"/create-user"}>register now</Link></p>
+          <div className="login_links" >
+            <p><Link to={"/create-user"}>Register now</Link></p>
             <p><Link to={""}>Forgot Password?</Link></p>
           </div>
 
