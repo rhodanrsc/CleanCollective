@@ -7,10 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 // LoginUser Component
 const UserLoginComponent = () => {
 
-    const navigate = useNavigate();
-  
-
-
+  const navigate = useNavigate();
   const [formValues] = useState({
     login_email_feild: "",
     login_password_feild: "",
@@ -19,8 +16,11 @@ const UserLoginComponent = () => {
   const onSubmit = (userObject) => {
     
     axios.post("http://localhost:5000/user/login", {
-      email: userObject.login_email_feild,
-      password: userObject.login_password_feild
+
+        email: userObject.login_email_feild,
+        password: userObject.login_password_feild,
+        withCredentials: true
+
     })
     .then((res) => {
       if(res.status === 200){
@@ -29,6 +29,8 @@ const UserLoginComponent = () => {
       }else{
         Promise.reject();
       }
+
+      console.log(res);
     })
     .catch((err) => alert("Incorrect username or password"));
   };

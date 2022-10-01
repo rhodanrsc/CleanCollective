@@ -1,20 +1,37 @@
 const router = require('express').Router();
+const cors = require("cors");
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
 
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
-//For authentication
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const passportLocal = require('passport-local').Strategy;
-//For hashing the passwords
-const bcrypt = require('bcryptjs');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser')
 
-const hash = async (password)=>{
-    const hashedPassword = await bcrypt.hash(password,10);
-    return hashedPassword;
-}
+//-----------------------------END OF IMPORTS-----------------------------
 
+//Middleware
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: true}));
+router.use(cors({
+    origin: "http://localhost:3000", // <-- location of the react app we are connecting to
+    credentials: true
+  }));
+  router.use(session({
+    secret: "secretcode",
+    resave:true, 
+    saveUninitialized: true
+  }))
+  
+  router.use(cookieParser("secretcode"));
+  router.use(passport.initialize());
+  router.use(passport.session());
+  require("../passportConfig")(passport);
+//-----------------------------END OF MIDDLEWARE-----------------------------
 
 //Returns list of Users
 router.route('/').get((req, res) =>{
@@ -106,7 +123,23 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route("/login").post((req, res) => {
+router.route("/login").post((req, res,next) => {
+// passport.authenticate("local", (err,user, info)=>{
+//     if (err) throw err; 
+//     if (!user) {
+//         res.send("User does not exist"); 
+//     }else{
+//         req.login(user,err =>{
+//             if (err) throw err;
+//             res.send("Successfully Authenticated");
+//             console.log(req.user);
+//         })
+//     }
+
+// })(req, res, next);
+
+
+
   //confirm if matches user in database
     User.UserCollection.findOne({email: req.body.email, password: req.body.password})
     
