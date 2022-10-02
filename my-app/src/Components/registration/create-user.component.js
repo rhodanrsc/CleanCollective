@@ -26,7 +26,8 @@ const CreateUser = () => {
       axios.post("http://localhost:5000/user/add", {
       username : userObject.username,
       email : userObject.email,
-      password : userObject.password
+      password : userObject.password,
+      withCredentials: true
       })
       
       .then((res) => {

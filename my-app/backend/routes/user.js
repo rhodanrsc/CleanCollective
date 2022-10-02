@@ -4,6 +4,29 @@ const Company = require('../models/company.model');
 
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
+const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const passportLocal = require("passport-local").Strategy;
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+//-----------------------------END OF IMPORTS-----------------------------
+
+//Middleware
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(
+  session({
+    secret: "secretcode", //links cookies to the session
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+router.use(cookieParser("secretcode")); // links cookies to the session
+router.use(passport.initialize());
+router.use(passport.session());
+require("../passportConfig")(passport);
+//-----------------------------END OF MIDDLEWARE-----------------------------
 
 //Returns list of Users
 router.route('/').get((req, res) =>{
@@ -16,7 +39,8 @@ router.route('/').get((req, res) =>{
 //Creates a new User
 router.route('/add').post((req, res) => {
     const username = req.body.username;
-    const password = req.body.password;
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10); //HASHING and SALTING
+    const password = hashedPassword;
     const email = req.body.email;
     //Creates an empty array
     const associatedCompanies = [];
@@ -119,31 +143,27 @@ router.route('/findUserName').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route("/login").post((req, res) => {
-    const password = req.body.password;
-    const email = req.body.email;
-
-    //confirm if matches user in database
-    User.UserCollection.findOne({email: req.body.email, password: req.body.password})
-    
-    .then(function (userFound){
-        console.log(userFound);
-        //if the specific user is found then login
-        if(userFound != null){
-            console.log("User exists!");
-            //navigate to diffrent page with user logged in
-            
-            res.json("User exists!")
-        }else{
-            //throw error
-            alert("Incorrect Username or password, please try again");
-            console.log("User does not exist");
-            res.json("User does not exist");
-         }
-    })
-    .catch((err) => res.status(400).json("Error: user not found " + err));
-
-})
+router.route("/login").post((req, res, next) => {
+    console.log('login1');
+    passport.authenticate("local", (err, user, info) => {
+      console.log('login2');
+      if (err) throw err;
+      if (!user) {
+        console.log('login3');
+        res.status(400).json({ error: 'User does not exist' });
+        // res.send("User does not exist");
+      } else {
+        console.log('login4');
+        req.login(user, (err) => {
+          console.log('login5');
+          if (err) throw err;
+          // res.send("Successfully Authenticated");
+          res.send(req.user);
+          console.log(req.user);
+        });
+      }
+    })(req, res, next);
+});
 
 
 module.exports = router;
