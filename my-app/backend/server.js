@@ -8,7 +8,11 @@ const app = express();
 //Our Port
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  //This is part of the user session info storage
+  origin: "http://localhost:3000", // <-- location of the react app we are connecting to
+  credentials: true
+}));
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
