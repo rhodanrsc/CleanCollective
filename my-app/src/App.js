@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 // Import Custom CSS
 import "./App.css";
 import "./shared/css/style.css";
+import "./shared/css/createCompany.css";
 
 // Import from react-router-dom
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -21,7 +22,7 @@ import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
 import CompanyCreation from "./Components/createCompany/CompanyForm";
 
-import CompanyCSS from "./shared/css/createCompany.css"
+
 
 // App Component
 const App = () => {

@@ -17,10 +17,19 @@ const UserLoginForm = (props) => {
 
   console.log(props);
   return (
+    <div className="company-creation-background">
+    <div className="border">
+
+      <main>
+        <h2 className="first-header">We've Missed You!</h2>
+        <br/>
+        <div contentEditable="true" className="company-creation-description">More than 150 questions are waiting <br/>for your wise suggestions!</div>
+    <br/>
     <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
+          <div className="form-group-login">
             <label htmlFor="login_email_feild">Email: </label>
             <Field
               id="email"
@@ -33,6 +42,8 @@ const UserLoginForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            </div>
+            <div className="form-group-login">
             <label htmlFor="login_password_feild">Password: </label>
             <Field
               id="password"
@@ -45,20 +56,16 @@ const UserLoginForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            </div>
           </FormGroup>
           <Button
-            variant="danger"
-            size="lg"
-            block="block"
+           className="logButton" variant="danger" size="lg" block="block" name="logButton"
             // onClick={""}
-            type="submit"
-          >
-            {props.children}
-          </Button>
+            type="submit"><span>Login</span>{props.children}</Button>
 
           <div className="login_links">
             <p>
-              <Link to={"/create-user"}>register now</Link>
+              <Link to={"/create-user"}>Register Now</Link>
             </p>
             <p>
               <Link to={""}>Forgot Password?</Link>
@@ -66,6 +73,9 @@ const UserLoginForm = (props) => {
           </div>
         </Form>
       </Formik>
+    </div>
+    </main>
+    </div>
     </div>
   );
 };

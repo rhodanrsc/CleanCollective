@@ -22,7 +22,7 @@ const CreateCompany = (props) => {
               <Form>
                 <FormGroup>
                 {/* Company Name */}
-                <div className="form-group">
+                <div className="form-group-create">
                   <label htmlFor="companyNameInput">Name (required)
                     <span style={{
                       color: '#FF0000',
@@ -34,7 +34,7 @@ const CreateCompany = (props) => {
                 </div>
 
                 {/* Company Type*/}
-                <div className="form-group">
+                <div className="form-group-create-select">
                   <label htmlFor="companyType">Company Type</label>
                   <Field as="select" name="type" className="form-control" id="formControlSelect2" >
                     <option>Adoptor</option>
@@ -44,14 +44,14 @@ const CreateCompany = (props) => {
 
                 {/* Company Logo*/}
                 
-                  <div className="form-group">
+                  <div className="form-group-create">
                     <label htmlFor="formControlFile1">Company Logo</label>
                     <Field type="file" name="file" className="form-control-file" id="formControlFile" />
                   </div>
                 
 
                 {/* Company Status*/}
-                <div className="form-group">
+                <div className="form-group-create-select">
                   <label htmlFor="companyType">Sector</label>
                   <Field as="select" name="companyType" className="form-control" id="formControlSelect3" >
                     <option value="oil-gas">Oil & Gas</option>
@@ -60,7 +60,7 @@ const CreateCompany = (props) => {
                 </div>
 
                 {/* Company Stage*/}
-                <div className="form-group">
+                <div className="form-group-create-select">
                   <label htmlFor="companyStages">Development Stage</label>
                   <Field as="select" name="stage" className="form-control" id="formControlSelect4" >
                     <option value="seed">Seed and Development</option>
@@ -72,7 +72,7 @@ const CreateCompany = (props) => {
                 </div>
 
                 {/* Company Employees*/}
-                <div className="form-group">
+                <div className="form-group-create-select">
                   <label htmlFor="numberOfEmployees">Number of Employees</label>
                   <Field as="select" name="employees" className="form-control" id="exampleFormControlSelect5" >
                     <option value="zero-ten">0-10 Employees</option>
@@ -83,7 +83,7 @@ const CreateCompany = (props) => {
                 </div>
 
                 {/* Webiste URL*/}
-                <div className="form-group">
+                <div className="form-group-create">
                   <label htmlFor="websiteURL">Website</label>
                   <Field type="text" name="website" className="form-control" id="formControlInput6" placeholder="Website URL" />
                 </div>
