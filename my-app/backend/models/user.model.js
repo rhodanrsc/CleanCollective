@@ -10,6 +10,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username:{
         type: String,
+        unique: true,
         required: true
     },
     password: {
@@ -18,11 +19,12 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
+        unique: true,
         required: true
     },
     confirmedAccount: {
         type: Boolean,
-        default: true
+        default: false
     },
     associatedCompanies: {
         type: [company.companySchema]
