@@ -2,15 +2,15 @@
 import React from "react";
 
 // Import Bootstrap
-import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
+import { Container, Row, Col } from "react-bootstrap";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 // Import Custom CSS
 import "./App.css";
 import "./shared/css/style.css";
 
 // Import from react-router-dom
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import other React Component
 import CreateUser from "./Components/registration/create-user.component";

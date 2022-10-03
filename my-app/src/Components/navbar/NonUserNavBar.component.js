@@ -8,7 +8,7 @@ const NonUserNavBar = () => { return (
         <div className="everything">
             <div className="homeButton navBar">
                 <a href="/">
-                    <img className="logo" src={logo}/>
+                    <img className="logo" src={logo} alt="Logo not rendering"/>
                 </a>
             </div>
             <div className="navbuttons">

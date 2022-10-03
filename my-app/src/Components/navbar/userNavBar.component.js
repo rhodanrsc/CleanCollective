@@ -6,7 +6,7 @@ const UserNavBar = () => { return (
         <div className="everything">
             <div className="homeButton navBar">
                 <a href="/forum">
-                    <img className="logo" src={logo}/>
+                    <img className="logo" src={logo} alt="logo not rendering"/>
                 </a>
             </div>
             <div className="navbuttons">

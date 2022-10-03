@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from '../shared/images/CCLogo.png';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
     return(
         <div className='landingPage'>
             <div className='bannerArea'>
-                <img className='bigLogo' src={logo}/>
+                <img className='bigLogo' src={logo} alt="bigLogo not rendering"/>
                 <h3>Join Clean Collective</h3>
                 <p>Get more features and privileges by joining the most helpful community</p>
             </div>
