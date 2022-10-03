@@ -16,9 +16,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
-import LandingPage from "./Components/landingPage"
+import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
-import RegisterPage from "./Components/registration/create-user.component"
+import RegisterPage from "./Components/registration/create-user.component";
 
 // App Component
 const App = () => {
@@ -38,7 +38,10 @@ const App = () => {
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                   <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/register/confirmEmail" element={<ConfirmEmail />} />
+                  <Route
+                    path="/register/confirmEmail"
+                    element={<ConfirmEmail />}
+                  />
                 </Routes>
               </div>
             </Col>
