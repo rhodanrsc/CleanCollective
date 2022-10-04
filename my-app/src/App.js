@@ -19,6 +19,7 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component";
+import EditUser from "./Components/userProfile/editUser/edit-user.component"
 
 // App Component
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
                     path="/register/confirmEmail"
                     element={<ConfirmEmail />}
                   />
+                  <Route path="/editUser" element={<EditUser />} />
                 </Routes>
               </div>
             </Col>

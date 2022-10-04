@@ -101,13 +101,14 @@ router.route('/delete/:id').delete((req, res) => {
 Description: Updates the User fields
 Pre-Condition: 
 1. All required fields are needed to execute (username, password and email). 
-2. The user id msut be in url
+2. The user id must be in url
 */
 router.route('/update/:id').post((req, res) => {
   User.UserCollection.findById(req.params.id)
     .then(user => {
       user.username = req.body.username;
-      user.password = req.body.password;
+      const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+      user.password = hashedPassword;
       user.email = req.body.email;
       user.associatedCompanies = req.body.associatedCompanies;
       user.posts = req.body.posts;
