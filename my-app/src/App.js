@@ -19,6 +19,7 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component";
+import CustomSidePanel from "./Components/side/panel";
 
 // App Component
 const App = () => {
@@ -27,8 +28,8 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
+          <CustomSidePanel />
         </header>
-
         <Container>
           <Row>
             <Col md={12}>

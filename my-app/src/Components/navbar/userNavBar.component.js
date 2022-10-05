@@ -3,8 +3,8 @@ import logo from "../../shared/images/CCLogo.png";
 
 const UserNavBar = () => { return (
     <header>
-        <div className="everything">
-            <div className="homeButton navBar">
+        <div className="navBar loggedIn">
+            <div className="homeButton navLogo">
                 <a href="/forum">
                     <img className="logo" src={logo}/>
                 </a>
