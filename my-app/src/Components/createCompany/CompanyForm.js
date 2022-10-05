@@ -1,7 +1,7 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-// import { checkPassword, checkEmail, checkUsername, checkConfirmPassword } from ;
+// import { companyNameInput } from "./create-company-validation";
 
 
 const CreateCompany = (props) => {
@@ -12,13 +12,12 @@ const CreateCompany = (props) => {
 
         <main>
           <h2 className="first-header">Build Your Company's Profile</h2>
-          <div contentEditable="true" className="company-creation-description">Providing information about your company that <br />
+          <div className="company-creation-description">Providing information about your company that <br />
             will get you in front of the right people.</div>
 
           <h2 className="second-header">Viewable by all users</h2>
 
-          <Formik {...props} validateOnChange={false} validateOnBlur={false} >
-            {({ errors, touched, isValidating, values }) => (
+          <Formik {...props}>  
               <Form>
                 <FormGroup>
                 {/* Company Name */}
@@ -29,8 +28,8 @@ const CreateCompany = (props) => {
                     }}
                     > *</span>
                   </label>
-                  <Field type="text" name="companyName" className="form-control" id="formControlInput1" placeholder="Add your organization's name" required  />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
+                  <Field type="text" name="companyName" className="form-control" id="formControlInput1" placeholder="Add your organization's name"  required  />
+
                 </div>
 
                 {/* Company Type*/}
@@ -88,9 +87,10 @@ const CreateCompany = (props) => {
                   <Field type="text" name="website" className="form-control" id="formControlInput6" placeholder="Website URL" />
                 </div>
 
+
                 {/* Disclaimer Check*/}
                 <div className="form-check">
-                  <Field className="form-check-input" name="check" type="checkbox" value="" id="defaultCheck1" />
+                  <Field className="form-check-input" name="check" type="checkbox"  value="" id="defaultCheck1" />
                   
                   <label className="disclaimer" htmlFor="defaultCheck1">
                     I verify that I am an authorized representative of this organization
@@ -111,7 +111,7 @@ const CreateCompany = (props) => {
 
 
               </Form>
-            )}
+            
           </Formik>
         </main>
       </div>

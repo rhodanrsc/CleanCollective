@@ -16,13 +16,10 @@ main{
   margin: 0;
   text-align: center;
   font-family: 'Roboto', serif;
-
-
 }
 
-
 .border{
-  width: 620px;
+  width: 500px;
   padding: 10px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -114,8 +111,8 @@ a:hover{
 .form-group-login {
   font-size: 15px;
   font-weight: bold;
-  margin-left: -40px;
-  width: 590px;
+  margin-left: -75px;
+  width: 650px;
 }
 
 .form-group-login input{
@@ -125,6 +122,24 @@ a:hover{
 }
 
 .form-group-login select{
+  width: 40%;
+
+}
+
+.form-group-register {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: -75px;
+  width: 650px;
+}
+
+.form-group-register input{
+  margin: auto;
+  width: 38.5%;
+
+}
+
+.form-group-register select{
   width: 40%;
 
 }
@@ -267,6 +282,54 @@ div{
 }
 
 .logButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.registerButton{
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 10px 25px;
+    border-style: hidden;
+    width: 150px;
+    background-color: gray;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 0.25em;
+}
+
+.registerButton:active {
+  background-color: #309A47;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+  border-radius: 0.25em;
+}
+.registerButton:hover{
+  background-color: #309A47;
+}
+
+.registerButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.registerButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.registerButtonn:hover span {
+  padding-right: 25px;
+}
+
+.registerButton:hover span:after {
   opacity: 1;
   right: 0;
 }

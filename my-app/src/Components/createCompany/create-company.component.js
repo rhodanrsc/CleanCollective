@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import CompanyForm from "./CompanyForm";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-const CreateUser = () => {
-  const navigate = useNavigate();
+const CreateCompany = () => {
+  // const navigate = useNavigate();
   const [formValues] = useState({
     companyName: "",
     type: "",
@@ -16,8 +16,15 @@ const CreateUser = () => {
     check: false
   });
 
-
   
+
+  const OnSubmit = (companyObject) => {
+    console.log(companyObject.companyName)
+    // console.log(companyObject.type)
+    // console.log(companyObject.companyType)
+  }
+
+
 
   return(
     <CompanyForm
@@ -31,3 +38,5 @@ const CreateUser = () => {
   )
 
 }
+
+export default CreateCompany;
