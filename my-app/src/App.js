@@ -20,7 +20,7 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage"
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
-import CompanyCreation from "./Components/createCompany/CompanyForm";
+import CompanyCreation from "./Components/company/create-company-components";
 
 
 
