@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import {checkPassword, checkEmail, checkUsername, checkConfirmPassword} from "./registrationValidation";
 
@@ -23,12 +23,12 @@ const UserForm = (props) => {
            
             {/* Password */}
             <label htmlFor="passwordID">Password</label>
-            <Field id="passwordID" name="password" type="text" className="form-control" validate={checkPassword} />
+            <Field id="passwordID" name="password" type="password" className="form-control" validate={checkPassword} />
             {<div style={{color: "red"}}>{errors.password}</div>}
             
             {/*Confirm password */}
             <label htmlFor="confirmPasswordID">Confirm Password</label>
-            <Field id="confirmPasswordID" name="confirmPassword" type="text" className="form-control" validate={value =>
+            <Field id="confirmPasswordID" name="confirmPassword" type="password" className="form-control" validate={value =>
               checkConfirmPassword(values.password, value)
             }/>
             {<div style={{color: "red"}}>{errors.confirmPassword}</div>}

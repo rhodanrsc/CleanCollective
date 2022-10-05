@@ -16,8 +16,10 @@ const CreateUser = () => {
     check: false
   });
 
+  const OnSubmit = (companyObject) =>{
+    console.log(companyObject.companyName)
+  }
 
-  
 
   return(
     <CompanyForm
@@ -31,3 +33,5 @@ const CreateUser = () => {
   )
 
 }
+
+export default CreateUser;
