@@ -7,10 +7,11 @@ import { FormGroup, Button } from "react-bootstrap";
 const CreateCompany = (props) => {
 
   return (
-    <div className="company-creation-background">
-      <div className="border">
+    <body className="company-creation-background">
+      
 
         <main>
+        <div className="border">
           <h2 className="first-header">Build Your Company's Profile</h2>
           <div className="company-creation-description">Providing information about your company that <br />
             will get you in front of the right people.</div>
@@ -113,10 +114,11 @@ const CreateCompany = (props) => {
               </Form>
             
           </Formik>
+          </div>
         </main>
-      </div>
+      
 
-    </div>
+    </body>
   );
 };
 export default CreateCompany;

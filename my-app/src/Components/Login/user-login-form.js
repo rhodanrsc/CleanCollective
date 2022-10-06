@@ -25,6 +25,8 @@ const UserLoginForm = (props) => {
         <br/>
         <div contentEditable="true" className="company-creation-description">More than 150 questions are waiting <br/>for your wise suggestions!</div>
     <br/>
+    <br/>
+            <br/>
     <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
@@ -42,6 +44,8 @@ const UserLoginForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            <br/>
+            <br/>
             </div>
             <div className="form-group-login">
             <label htmlFor="login_password_feild">Password: </label>
@@ -57,6 +61,8 @@ const UserLoginForm = (props) => {
               component={"span"}
             />
             </div>
+            <br/>
+            <br/>
           </FormGroup>
           <Button
            className="logButton" variant="danger" size="lg" block="block" name="logButton"

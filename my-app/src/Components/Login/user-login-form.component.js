@@ -23,7 +23,7 @@ const UserLoginComponent = () => {
     })
     .then((res) => {
       if(res.status === 200){
-        alert("Login Sucsess");
+        alert("Login Success");
         navigate("/forumPage"); // page you go to after login 
       }else{
         Promise.reject();
@@ -40,7 +40,7 @@ const UserLoginComponent = () => {
       onSubmit={onSubmit}
       enableReinitialize
     >
-      Login
+      
     </UserLoginForm>
   );
 };
