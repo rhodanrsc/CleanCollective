@@ -6,41 +6,76 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  DialogContentText,
 } from "@mui/material";
 import axios from "axios";
 
 export default function ChangeUsername() {
   const [open, setOpen] = useState(false);
   const [newUsername, setUsername] = useState("");
+  const [error, setMessage] = useState({
+    color: "",
+    text: ""
+  }); 
 
+
+  //Handles the Dialog box
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
+  //Handles Error messages
+  const showMessage = (event) => {
+    if(event === false){
+      setMessage({
+        color: "red",
+        text : "*Username already in use"
+      });
+    } else {
+      setMessage({
+        color: "",
+        text : "Username succesfully changed!"
+      });
+    }
+    
+  };
+  const hideMessage = () => {
+    setMessage("");
+  };
+
+  //Handles username input
   const handleSetUsername = (event) => {
     setUsername(event.target.value);
   };
 
+  
+
   const onSubmit = () => {
     
-    axios.post("http://localhost:5000/user/update/633b3ac3b23b7cb0f3898378", {
+    //Post request to change username
+    axios.post("http://localhost:5000/user/updateOneField/633b3ac3b23b7cb0f3898378", {
         username : newUsername,
+        withCredentials: true
         
     })
     .then((res) => {
-        if (res.status === 200){ 
-            alert("User updated");
+        if (res.status === 200){
+            //If the user exists. Backend will return false 
+            if(res.data === false){
+              showMessage(false);
+            } else{
+              showMessage(true);
+            }
         } 
         else{
           Promise.reject();
         } 
       })
     .catch((err) => alert("Something went wrong: " + err));
-    handleClose();
+    
   };
 
   return (
@@ -71,7 +106,9 @@ export default function ChangeUsername() {
             variant="standard"
             onChange={handleSetUsername}
           />
+          <p style={{color: error.color}}>{error.text}</p>
         </DialogContent>
+        
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button type="submit" onClick={onSubmit}>

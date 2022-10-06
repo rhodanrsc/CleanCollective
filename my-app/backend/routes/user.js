@@ -103,22 +103,63 @@ Pre-Condition:
 1. All required fields are needed to execute (username, password and email). 
 2. The user id must be in url
 */
-router.route('/update/:id').post((req, res) => {
+router.route('/updateOneField/:id').post((req, res) => {
+  //Find the session user first.
   User.UserCollection.findById(req.params.id)
     .then(user => {
-      user.username = req.body.username;
-      const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-      user.password = hashedPassword;
-      user.email = req.body.email;
-      user.associatedCompanies = req.body.associatedCompanies;
-      user.posts = req.body.posts;
+      //Find this persons new Username
+      const newUsername = req.body.username;
+      const newEmail = req.body.email;
+      const oldPassword = req.body.oldPassword;
+      const newPassword = req.body.newPassword;
+      
+      User.UserCollection.find()
+      .then(function(users){
+        let existField = false;
+        //Check what parameter was passed
+        if(newUsername !== null){
+          //Find a username that exists
+          users.forEach(function(user){
+            if(newUsername === user.username){
+              existField = true;
+            }
+          });
+          //Save or send false if field exist
+          if(existField === true){
+            res.send(false);
+          } else{
+            user.username = req.body.username;
+            user.save()
+            .then(() => res.json('User '+ user.username + ' updated!'))
+            .catch(err => res.status(400).json('Error: saving user' + err));
+          }
+        } else if (newEmail !== null){
+          
+        }
+      })
+      .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
 
-
-      user.save()
-        .then(() => res.json('User '+ user.username + ' updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+      // if(newUsername != null){
+      //   User.UserCollection.findOne({username: newUsername})
+      //   .then(existingUsername => {
+      //     //If it doesnt exist, save username
+      //     if(existingUsername === null){
+      //       user.username = req.body.username;
+      //       user.save()
+      //       .then(() => res.json('User '+ user.username + ' updated!'))
+      //       .catch(err => res.status(400).json('Error: saving user' + err));
+      //     } else{
+      //       res.send(false)
+      //     }
+      //   })
+      //   .catch(err => res.status(400).json('Error: finding username ' + err));
+      // } else if (newEmail != null){
+      //   console.log("email")
+      // }
+      
+      
     })
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).json('Error: finding id' + err));
 });
 
 
