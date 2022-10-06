@@ -6,7 +6,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  DialogContentText,
 } from "@mui/material";
 import axios from "axios";
 
@@ -25,6 +24,8 @@ export default function ChangeUsername() {
   };
   const handleClose = () => {
     setOpen(false);
+    hideMessage();
+    resetUsername();
   };
 
   //Handles Error messages
@@ -40,7 +41,6 @@ export default function ChangeUsername() {
         text : "Username succesfully changed!"
       });
     }
-    
   };
   const hideMessage = () => {
     setMessage("");
@@ -50,16 +50,18 @@ export default function ChangeUsername() {
   const handleSetUsername = (event) => {
     setUsername(event.target.value);
   };
+  const resetUsername = () => {
+    setUsername("");
+  }
 
   
 
   const onSubmit = () => {
     
     //Post request to change username
-    axios.post("http://localhost:5000/user/updateOneField/633b3ac3b23b7cb0f3898378", {
-        username : newUsername,
-        withCredentials: true
-        
+    axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
+        updateType : "username",
+        username : newUsername
     })
     .then((res) => {
         if (res.status === 200){
@@ -110,7 +112,7 @@ export default function ChangeUsername() {
         </DialogContent>
         
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Exit</Button>
           <Button type="submit" onClick={onSubmit}>
             Save
           </Button>

@@ -108,16 +108,17 @@ router.route('/updateOneField/:id').post((req, res) => {
   User.UserCollection.findById(req.params.id)
     .then(user => {
       //Find this persons new Username
+      const updateType = req.body.updateType;
       const newUsername = req.body.username;
       const newEmail = req.body.email;
-      const oldPassword = req.body.oldPassword;
+      const currentPassword = req.body.currentPassword;
       const newPassword = req.body.newPassword;
       
       User.UserCollection.find()
       .then(function(users){
         let existField = false;
-        //Check what parameter was passed
-        if(newUsername !== null){
+        /******** Change Username *******/
+        if(updateType === "username"){
           //Find a username that exists
           users.forEach(function(user){
             if(newUsername === user.username){
@@ -128,36 +129,38 @@ router.route('/updateOneField/:id').post((req, res) => {
           if(existField === true){
             res.send(false);
           } else{
-            user.username = req.body.username;
+            user.username = newUsername;
             user.save()
             .then(() => res.json('User '+ user.username + ' updated!'))
             .catch(err => res.status(400).json('Error: saving user' + err));
           }
-        } else if (newEmail !== null){
+        /******** Change Email *******/
+        } else if (updateType === "email"){
+          //Check if password is correct
+          if(bcrypt.compareSync(currentPassword, user.password)){
+            users.forEach(function(user){
+            if(newEmail === user.email){
+              existField = true;
+            }
+            });
+            //Save or send 1 if field exist
+            if(existField === true){
+              res.send('existError');
+            } else{
+              user.email = newEmail;
+              user.save()
+              .then(() => res.send('success'))
+              .catch(err => res.status(400).json('Error: saving user' + err));
+            }
+          } else{
+            //Send 0 if password is incorrect
+            res.send('passwordError')
+          }
           
+
         }
       })
       .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
-
-      // if(newUsername != null){
-      //   User.UserCollection.findOne({username: newUsername})
-      //   .then(existingUsername => {
-      //     //If it doesnt exist, save username
-      //     if(existingUsername === null){
-      //       user.username = req.body.username;
-      //       user.save()
-      //       .then(() => res.json('User '+ user.username + ' updated!'))
-      //       .catch(err => res.status(400).json('Error: saving user' + err));
-      //     } else{
-      //       res.send(false)
-      //     }
-      //   })
-      //   .catch(err => res.status(400).json('Error: finding username ' + err));
-      // } else if (newEmail != null){
-      //   console.log("email")
-      // }
-      
-      
     })
     .catch(err => res.status(400).json('Error: finding id' + err));
 });
