@@ -175,8 +175,8 @@ export default function DeleteUser() {
         
         <DialogActions>
           <Button onClick={handleClose}>Exit</Button>
-          <Button type="submit" onClick={onSubmit}>
-            Save
+          <Button variant="contained" color="error" type="submit" onClick={onSubmit}>
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

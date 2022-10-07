@@ -192,7 +192,6 @@ router.route('/updateOneField/:id').post((req, res) => {
 
             } else{
               message = 'passwordError'
-              
             }
         }
         
