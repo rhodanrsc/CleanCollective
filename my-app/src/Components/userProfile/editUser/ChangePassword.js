@@ -18,6 +18,10 @@ export default function ChangeEmail() {
     color: "",
     text: ""
   }); 
+  const [currentError, setCurrentMessage] = useState({
+    color: "",
+    text: ""
+  }); 
 
 
   //Handles the Dialog box
@@ -27,7 +31,7 @@ export default function ChangeEmail() {
   const handleClose = () => {
     setOpen(false);
     hideMessage();
-    
+    hideCurrentMessage();
     resetConfirmPasswordText();
     resetCurrentPassword();
     resetNewPasswordText();
@@ -35,25 +39,44 @@ export default function ChangeEmail() {
 
   //Handles Error messages
   const showMessage = (event) => {
-    if(event === "existError"){
+    if (event === "shortPasswordError") {
       setMessage({
         color: "red",
-        text : "*Email already in use"
+        text : "*Password must be at least 8 characters"
       });
-    } else if (event === "passwordError") {
+    } else if (event === 'regexError') {
       setMessage({
         color: "red",
-        text : "Incorrect password"
+        text : "*Password must have at least one number"
+      });
+
+    } else if (event === 'matchPasswordError'){
+      setMessage({
+        color: "red",
+        text : "*Passwords must match"
       });
     } else {
       setMessage({
         color: "",
-        text : "Email succesfully changed!"
+        text : "Password succesfully changed!"
       });
     }
   };
   const hideMessage = () => {
     setMessage("");
+  };
+
+  const showCurrentMessage = (event) => {
+     if(event === "passwordError"){
+      setMessage({
+        color: "red",
+        text : "*Incorrect password"
+      });
+    }
+  };
+
+  const hideCurrentMessage = () => {
+    setCurrentMessage("");
   };
 
   //Handles Email input
@@ -83,27 +106,35 @@ export default function ChangeEmail() {
   
 
   const onSubmit = () => {
+    console.log(newPassword);
+    console.log(confirmPassword);
     
     //Post request to change Email
     axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
-        updateType : "email",
+        updateType : "password",
         currentPassword : currentPassword,
+        newPassword : newPassword,
+        confirmPassword : confirmPassword,
         withCredentials: true
         
         
     })
     .then((res) => {
         if (res.status === 200){
-            //If the Email exists. Backend will return false 
-            if(res.data === 'existError'){
-              showMessage('existError');
-            } else if (res.data === 'passwordError'){
-              showMessage('passwordError');
+            if(res.data === 'passwordError'){
+              showCurrentMessage('passwordError');
+            } else if (res.data === 'matchPasswordError'){
+              showMessage('matchPasswordError');
+            } else if (res.data === 'shortPasswordError'){
+              showMessage('shortPasswordError');
+            }else if (res.data === 'regexError'){
+              showMessage('regexError');
             } else {
               resetNewPasswordText();
               resetConfirmPasswordText();
               resetCurrentPassword();
               showMessage('success');
+              showCurrentMessage('success');
             }
         } 
         else{
@@ -121,14 +152,14 @@ export default function ChangeEmail() {
         variant="outlined"
         onClick={handleClickOpen}
       >
-        Change Email
+        Change Password
       </Button>
       <Dialog
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Change Email</DialogTitle>
+        <DialogTitle>Change Password</DialogTitle>
 
         <DialogContent>
           <TextField
@@ -142,6 +173,7 @@ export default function ChangeEmail() {
               variant="standard"
               onChange={handleSetCurrentPassword}
           />
+          <p style={{color: currentError.color}}>{currentError.text}</p>
           <TextField
               autoFocus
               margin="dense"

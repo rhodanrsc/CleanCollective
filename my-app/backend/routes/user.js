@@ -100,8 +100,10 @@ router.route('/delete/:id').delete((req, res) => {
 /*
 Description: Updates the User fields
 Pre-Condition: 
-1. All required fields are needed to execute (username, password and email). 
-2. The user id must be in url
+1. The user id must be in url
+Post-Conditions: 
+1. Saves the update if it was successful and returns "success" as a string
+2. Returns a string depending on error. Ex "passwordError" or "existError"
 */
 router.route('/updateOneField/:id').post((req, res) => {
   //Find the session user first.
@@ -113,10 +115,12 @@ router.route('/updateOneField/:id').post((req, res) => {
       const newEmail = req.body.email;
       const currentPassword = req.body.currentPassword;
       const newPassword = req.body.newPassword;
+      const confirmPassword = req.body.confirmPassword;
       
       User.UserCollection.find()
       .then(function(users){
         let existField = false;
+        let message = 'success';
         /******** Change Username *******/
         if(updateType === "username"){
           //Find a username that exists
@@ -126,13 +130,12 @@ router.route('/updateOneField/:id').post((req, res) => {
             }
           });
           //Save or send false if field exist
-          if(existField === true){
-            res.send(false);
+          if(!newUsername){
+            message = "emptyError";
+          } else if(existField === true){
+            message = "existError";
           } else{
             user.username = newUsername;
-            user.save()
-            .then(() => res.json('User '+ user.username + ' updated!'))
-            .catch(err => res.status(400).json('Error: saving user' + err));
           }
         /******** Change Email *******/
         } else if (updateType === "email"){
@@ -143,22 +146,43 @@ router.route('/updateOneField/:id').post((req, res) => {
               existField = true;
             }
             });
-            //Save or send 1 if field exist
             if(existField === true){
-              res.send('existError');
+              message = 'existError'
             } else{
               user.email = newEmail;
-              user.save()
-              .then(() => res.send('success'))
-              .catch(err => res.status(400).json('Error: saving user' + err));
             }
           } else{
-            //Send 0 if password is incorrect
-            res.send('passwordError')
+            message = 'passwordError'
+            
           }
-          
+          /******** Change Password *******/
+        } else if (updateType === "password"){
+          const passwordRegex = /(?=.*[0-9])/;
+            if(bcrypt.compareSync(currentPassword, user.password)){
+              console.log(newPassword);
+              console.log(confirmPassword)
+              if(newPassword.length < 8){
+                message = 'shortPasswordError'
+              } else if (!passwordRegex.test(newPassword)){
+                message = 'regexError'
+              } else if (newPassword === confirmPassword){
+                const hashedPassword = bcrypt.hashSync(newPassword, 10);
+                user.password = hashedPassword;
+              } else {
+                message = 'matchPasswordError'
+              }
 
+            } else{
+              message = 'passwordError'
+              
+            }
         }
+        
+        user.save()
+        .then(() => res.send(message))
+        .catch(err => res.status(400).json('Error: saving user' + err));
+        
+        
       })
       .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
     })

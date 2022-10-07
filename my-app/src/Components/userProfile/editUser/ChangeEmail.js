@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import axios from "axios";
+import emailValidator from "email-validator";
 
 export default function ChangeEmail() {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,11 @@ export default function ChangeEmail() {
       setMessage({
         color: "red",
         text : "Incorrect password"
+      });
+    } else if(event === "regexError"){
+      setMessage({
+        color: "red",
+        text : "Invalid email format"
       });
     } else {
       setMessage({
@@ -84,8 +90,11 @@ export default function ChangeEmail() {
     })
     .then((res) => {
         if (res.status === 200){
-            //If the Email exists. Backend will return false 
-            if(res.data === 'existError'){
+            //If the Email exists. Backend will return false
+            let validEmail =  emailValidator.validate(newEmail);
+            if(validEmail === false){
+              showMessage('regexError');
+            } else if(res.data === 'existError'){
               showMessage('existError');
             } else if (res.data === 'passwordError'){
               showMessage('passwordError');

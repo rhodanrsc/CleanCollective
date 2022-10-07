@@ -30,7 +30,12 @@ export default function ChangeUsername() {
 
   //Handles Error messages
   const showMessage = (event) => {
-    if(event === false){
+    if(event === "emptyError"){
+      setMessage({
+        color: "red",
+        text : "*Username cannot be blank"
+      });
+    } else if(event === "existError"){
       setMessage({
         color: "red",
         text : "*Username already in use"
@@ -65,11 +70,14 @@ export default function ChangeUsername() {
     })
     .then((res) => {
         if (res.status === 200){
-            //If the user exists. Backend will return false 
-            if(res.data === false){
-              showMessage(false);
+            if(res.data === "emptyError"){
+              showMessage('emptyError');
+            }
+            //If the user exists. Backend will return false
+            else if(res.data === "existError"){
+              showMessage('existError');
             } else{
-              showMessage(true);
+              showMessage('sucess');
             }
         } 
         else{
