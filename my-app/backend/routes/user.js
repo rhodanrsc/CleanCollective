@@ -118,6 +118,9 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/getUser').get((req, res) => {
+  (res.send(req.user));
+});
 
 //Find user by ID
 router.route('/:id').get((req, res) => {
