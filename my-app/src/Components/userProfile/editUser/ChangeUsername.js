@@ -91,8 +91,9 @@ export default function ChangeUsername() {
   return (
     <div>
       <Button
-        style={{ width: "200px" }}
+        style={{ width: "100%" }}
         variant="outlined"
+        color="success"
         onClick={handleClickOpen}
       >
         Change Username

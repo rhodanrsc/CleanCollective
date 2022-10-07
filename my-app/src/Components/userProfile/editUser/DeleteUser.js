@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
-export default function ChangeEmail() {
+export default function DeleteUser() {
   const [open, setOpen] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [error, setMessage] = useState({
@@ -22,7 +21,12 @@ export default function ChangeEmail() {
     color: "",
     text: ""
   }); 
+  const [buttonColor, setButton] = useState("outlined")
 
+
+  const handleFillButton = (event) => {
+    setButton("contained");
+  }
 
   //Handles the Dialog box
   const handleClickOpen = () => {
@@ -34,7 +38,6 @@ export default function ChangeEmail() {
     hideCurrentMessage();
     resetConfirmPasswordText();
     resetCurrentPassword();
-    resetNewPasswordText();
   };
 
   //Handles Error messages
@@ -58,7 +61,7 @@ export default function ChangeEmail() {
     } else {
       setMessage({
         color: "",
-        text : "Password succesfully changed!"
+        text : "Account Successfully Deleted!"
       });
     }
   };
@@ -70,7 +73,7 @@ export default function ChangeEmail() {
      if(event === "passwordError"){
       setMessage({
         color: "red",
-        text : "*Incorrect password"
+        text : "*Check your inputs."
       });
     }
   };
@@ -87,15 +90,8 @@ export default function ChangeEmail() {
     setCurrentPassword("");
   }
 
-  const handleSetNewPassword = (event) => {
-    setNewPassword(event.target.value);
-  }
 
-  const resetNewPasswordText = () => {
-    setNewPassword("");
-  }
-
-  const handleSetConfirmNewPassword = (event) => {
+  const handleSetConfirmPassword = (event) => {
     setConfirmPassword(event.target.value);
   }
 
@@ -108,25 +104,16 @@ export default function ChangeEmail() {
   const onSubmit = () => {
     
     //Post request to change Email
-    axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
-        updateType : "password",
+    axios.post("http://localhost:5000/user/delete/633f530cd44ec61d2510c83a", {
         currentPassword : currentPassword,
-        newPassword : newPassword,
         confirmPassword : confirmPassword,
-        withCredentials: true
+        withCredentials: true 
     })
     .then((res) => {
         if (res.status === 200){
             if(res.data === 'passwordError'){
               showCurrentMessage('passwordError');
-            } else if (res.data === 'matchPasswordError'){
-              showMessage('matchPasswordError');
-            } else if (res.data === 'shortPasswordError'){
-              showMessage('shortPasswordError');
-            }else if (res.data === 'regexError'){
-              showMessage('regexError');
             } else {
-              resetNewPasswordText();
               resetConfirmPasswordText();
               resetCurrentPassword();
               showMessage('success');
@@ -145,18 +132,19 @@ export default function ChangeEmail() {
     <div>
       <Button
         style={{ width: "100%" }}
-        variant="outlined"
-        color="success"
+        onMouseEnter={handleFillButton}
+        variant={buttonColor}
+        color="error"
         onClick={handleClickOpen}
       >
-        Change Password
+        Delete Account
       </Button>
       <Dialog
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Change Password</DialogTitle>
+        <DialogTitle>Delete Account</DialogTitle>
 
         <DialogContent>
           <TextField
@@ -172,17 +160,6 @@ export default function ChangeEmail() {
           />
           <p style={{color: currentError.color}}>{currentError.text}</p>
           <TextField
-              autoFocus
-              margin="dense"
-              value={newPassword}
-              name="newPassword"
-              label="New Password"
-              type="password"
-              fullWidth
-              variant="standard"
-              onChange={handleSetNewPassword}
-          />
-          <TextField
             autoFocus
             margin="dense"
             value={confirmPassword}
@@ -191,7 +168,7 @@ export default function ChangeEmail() {
             type="password"
             fullWidth
             variant="standard"
-            onChange={handleSetConfirmNewPassword}
+            onChange={handleSetConfirmPassword}
           />
           <p style={{color: error.color}}>{error.text}</p>
         </DialogContent>

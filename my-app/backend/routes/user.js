@@ -92,10 +92,28 @@ router.route('/addCompany/:id').post((req,res) => {
 
 //Delete a user via id
 router.route('/delete/:id').delete((req, res) => {
-  User.UserCollection.findByIdAndDelete(req.params.id)
-    .then(user => res.json('User ' + user.username + ' deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+  const currentPassword = req.body.currentPassword;
+  const confirmPassword = req.body.confirmPassword;
+
+  User.UserCollection.findById(req.params.id)
+  .then(user => {
+    if(bcrypt.compareSync(currentPassword, user.password)){
+
+      if(currentPassword === confirmPassword){
+        User.UserCollection.findByIdAndDelete(req.params.id)
+        .then(user => res.json('User ' + user.username + ' deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+        res.send("success")
+      } 
+      
+
+    } else{
+      res.send("passwordError")
+    }
+      
+  })
+  
+})
 
 /*
 Description: Updates the User fields
