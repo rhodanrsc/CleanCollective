@@ -9,15 +9,18 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import emailValidator from "email-validator";
+import getUser from "../../getUser";
 
 export default function ChangeEmail() {
+  let userSession = getUser(); 
   const [open, setOpen] = useState(false);
   const [newEmail, setEmail] = useState("");
   const [currentPassword, setPassword] = useState("");
   const [error, setMessage] = useState({
     color: "",
     text: ""
-  }); 
+  });
+  
 
 
   //Handles the Dialog box
@@ -78,14 +81,14 @@ export default function ChangeEmail() {
   
 
   const onSubmit = () => {
-    
+
+    if(userSession){
     //Post request to change Email
-    axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
+    axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
         updateType : "email",
         email : newEmail,
         currentPassword : currentPassword,
         withCredentials: true
-        
         
     })
     .then((res) => {
@@ -108,6 +111,7 @@ export default function ChangeEmail() {
         } 
       })
     .catch((err) => alert("Something went wrong: " + err));
+    }
     
   };
 

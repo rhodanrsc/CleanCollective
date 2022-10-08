@@ -4,22 +4,55 @@ import ChangeUsername from "./ChangeUsername";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 import DeleteUser from "./DeleteUser";
-import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableBody, TableCell , TableRow} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import getUser from "../../getUser";
+
 
 
 
 
 export default function ControlledAccordions() {
+  let userSession = getUser();
   const [expanded, setExpanded] = useState(false);
-
+  
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   return (
+    
     <div>
+    
       <Accordion style={{height: '100%'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            Account Information
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        
+          <Typography>
+            <Table>
+              <TableRow>
+                <TableCell>Username: </TableCell>
+                <TableCell>{userSession ? userSession.username : null}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Email: </TableCell>
+                <TableCell>{userSession ? userSession.email : null}</TableCell>
+              </TableRow>
+              
+            </Table>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion style={{height: '100%'}} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -38,7 +71,7 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2bh-content"
@@ -57,7 +90,7 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3bh-content"
@@ -77,7 +110,7 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel4bh-content"

@@ -8,14 +8,17 @@ import {
   DialogTitle,
 } from "@mui/material";
 import axios from "axios";
+import getUser from "../../getUser";
 
 export default function ChangeUsername() {
+  let userSession = getUser();
   const [open, setOpen] = useState(false);
   const [newUsername, setUsername] = useState("");
   const [error, setMessage] = useState({
     color: "",
     text: ""
   }); 
+  
 
 
   //Handles the Dialog box
@@ -63,8 +66,10 @@ export default function ChangeUsername() {
 
   const onSubmit = () => {
     
+
+    if(userSession){
     //Post request to change username
-    axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
+    axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
         updateType : "username",
         username : newUsername
     })
@@ -87,6 +92,7 @@ export default function ChangeUsername() {
     .catch((err) => alert("Something went wrong: " + err));
     
   };
+};
 
   return (
     <div>
@@ -117,7 +123,7 @@ export default function ChangeUsername() {
             variant="standard"
             onChange={handleSetUsername}
           />
-          <p style={{color: error.color}}>{error.text}</p>
+          <span style={{color: error.color}}>{error.text}</span>
         </DialogContent>
         
         <DialogActions>

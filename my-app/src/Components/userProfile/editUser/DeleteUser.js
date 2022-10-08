@@ -8,8 +8,12 @@ import {
   DialogTitle,
 } from "@mui/material";
 import axios from "axios";
+import getUser from "../../getUser";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteUser() {
+  let userSession = getUser();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
@@ -85,6 +89,7 @@ export default function DeleteUser() {
   //Handles Email input
   const handleSetCurrentPassword = (event) => {
     setCurrentPassword(event.target.value);
+    console.log(currentPassword)
   };
   const resetCurrentPassword = () => {
     setCurrentPassword("");
@@ -102,9 +107,11 @@ export default function DeleteUser() {
   
 
   const onSubmit = () => {
+    console.log("THIS" + currentPassword)
     
+    if(userSession){
     //Post request to change Email
-    axios.post("http://localhost:5000/user/delete/633f530cd44ec61d2510c83a", {
+    axios.post("http://localhost:5000/user/delete/" + userSession._id, {
         currentPassword : currentPassword,
         confirmPassword : confirmPassword,
         withCredentials: true 
@@ -122,9 +129,12 @@ export default function DeleteUser() {
         } 
         else{
           Promise.reject();
-        } 
+        }
+        navigate("/register");
       })
+      
     .catch((err) => alert("Something went wrong: " + err));
+    }
     
   };
 

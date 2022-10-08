@@ -8,8 +8,10 @@ import {
   DialogTitle,
 } from "@mui/material";
 import axios from "axios";
+import getUser from "../../getUser";
 
 export default function ChangeEmail() {
+  let userSession = getUser();
   const [open, setOpen] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -107,8 +109,9 @@ export default function ChangeEmail() {
 
   const onSubmit = () => {
     
+    if(userSession){
     //Post request to change Email
-    axios.post("http://localhost:5000/user/updateOneField/633f530cd44ec61d2510c83a", {
+    axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
         updateType : "password",
         currentPassword : currentPassword,
         newPassword : newPassword,
@@ -138,6 +141,7 @@ export default function ChangeEmail() {
         } 
       })
     .catch((err) => alert("Something went wrong: " + err));
+    }
     
   };
 

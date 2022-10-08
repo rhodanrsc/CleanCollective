@@ -11,6 +11,7 @@ const passportLocal = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+
 //-----------------------------END OF IMPORTS-----------------------------
 
 //Middleware
@@ -91,22 +92,21 @@ router.route('/addCompany/:id').post((req,res) => {
 
 
 //Delete a user via id
-router.route('/delete/:id').delete((req, res) => {
+router.route('/delete/:id').post((req, res) => {
   const currentPassword = req.body.currentPassword;
   const confirmPassword = req.body.confirmPassword;
-
   User.UserCollection.findById(req.params.id)
   .then(user => {
-    if(bcrypt.compareSync(currentPassword, user.password)){
-
+    let validCredentials = bcrypt.compareSync(currentPassword, user.password);
+    if(validCredentials){
       if(currentPassword === confirmPassword){
+        
         User.UserCollection.findByIdAndDelete(req.params.id)
-        .then(user => res.json('User ' + user.username + ' deleted.'))
+        .then(
+          res.send("success")
+        )
         .catch(err => res.status(400).json('Error: ' + err));
-        res.send("success")
       } 
-      
-
     } else{
       res.send("passwordError")
     }
@@ -206,6 +206,9 @@ router.route('/updateOneField/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: finding id' + err));
 });
 
+router.route('/getUser').get((req, res) => {
+  (res.send(req.user));
+});
 
 //Find user by ID
 router.route('/:id').get((req, res) => {
