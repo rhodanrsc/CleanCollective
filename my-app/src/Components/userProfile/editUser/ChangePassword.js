@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle,} from "@mui/material";
 import axios from "axios";
 import getUser from "../../getUser";
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ChangeEmail() {
   let userSession = getUser();
@@ -13,11 +18,16 @@ export default function ChangeEmail() {
     color: "",
     text: ""
   }); 
-  const [currentError, setCurrentMessage] = useState({
-    color: "",
-    text: ""
-  }); 
+  
+  const [buttonColor, setButton] = useState("outlined")
 
+  const handleFillButton = (event) => {
+    setButton("contained");
+  }
+
+  const handleEmptyButton = (event) => {
+    setButton("outlined");
+  }
 
   //Handles the Dialog box
   const handleClickOpen = () => {
@@ -26,7 +36,6 @@ export default function ChangeEmail() {
   const handleClose = () => {
     setOpen(false);
     hideMessage();
-    hideCurrentMessage();
     resetConfirmPasswordText();
     resetCurrentPassword();
     resetNewPasswordText();
@@ -34,7 +43,12 @@ export default function ChangeEmail() {
 
   //Handles Error messages
   const showMessage = (event) => {
-    if (event === "shortPasswordError") {
+    if(event === "passwordError"){
+      setMessage({
+        color: "red",
+        text : "*Invalid password"
+      });
+    } else if (event === "shortPasswordError") {
       setMessage({
         color: "red",
         text : "*Password must be at least 8 characters"
@@ -61,20 +75,7 @@ export default function ChangeEmail() {
     setMessage("");
   };
 
-  const showCurrentMessage = (event) => {
-     if(event === "passwordError"){
-      setMessage({
-        color: "red",
-        text : "*Incorrect password"
-      });
-    }
-  };
-
-  const hideCurrentMessage = () => {
-    setCurrentMessage("");
-  };
-
-  //Handles Email input
+  //Handles Password input
   const handleSetCurrentPassword = (event) => {
     setCurrentPassword(event.target.value);
   };
@@ -85,7 +86,6 @@ export default function ChangeEmail() {
   const handleSetNewPassword = (event) => {
     setNewPassword(event.target.value);
   }
-
   const resetNewPasswordText = () => {
     setNewPassword("");
   }
@@ -93,15 +93,11 @@ export default function ChangeEmail() {
   const handleSetConfirmNewPassword = (event) => {
     setConfirmPassword(event.target.value);
   }
-
   const resetConfirmPasswordText = () => {
     setConfirmPassword("");
   }
 
-  
-
   const onSubmit = () => {
-    
     if(userSession){
     //Post request to change Email
     axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
@@ -114,7 +110,7 @@ export default function ChangeEmail() {
     .then((res) => {
         if (res.status === 200){
             if(res.data === 'passwordError'){
-              showCurrentMessage('passwordError');
+              showMessage('passwordError');
             } else if (res.data === 'matchPasswordError'){
               showMessage('matchPasswordError');
             } else if (res.data === 'shortPasswordError'){
@@ -126,7 +122,6 @@ export default function ChangeEmail() {
               resetConfirmPasswordText();
               resetCurrentPassword();
               showMessage('success');
-              showCurrentMessage('success');
             }
         } 
         else{
@@ -135,14 +130,15 @@ export default function ChangeEmail() {
       })
     .catch((err) => alert("Something went wrong: " + err));
     }
-    
   };
 
   return (
     <div>
       <Button
         style={{ width: "100%" }}
-        variant="outlined"
+        onMouseEnter={handleFillButton}
+        onMouseLeave={handleEmptyButton}
+        variant={buttonColor}
         color="success"
         onClick={handleClickOpen}
       >
@@ -152,6 +148,8 @@ export default function ChangeEmail() {
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
+        TransitionComponent={Transition}
+        aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>Change Password</DialogTitle>
 
@@ -167,7 +165,6 @@ export default function ChangeEmail() {
               variant="standard"
               onChange={handleSetCurrentPassword}
           />
-          <p style={{color: currentError.color}}>{currentError.text}</p>
           <TextField
               autoFocus
               margin="dense"

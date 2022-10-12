@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import getUser from "../../getUser";
 import { useNavigate } from "react-router-dom";
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function DeleteUser() {
   let userSession = getUser();
@@ -17,19 +15,18 @@ export default function DeleteUser() {
   const [open, setOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [error, setMessage] = useState({
-    color: "",
-    text: ""
-  }); 
   const [currentError, setCurrentMessage] = useState({
     color: "",
     text: ""
   }); 
   const [buttonColor, setButton] = useState("outlined")
 
-
+  //Button Fill
   const handleFillButton = (event) => {
     setButton("contained");
+  }
+  const handleEmptyButton = (event) => {
+    setButton("outlined");
   }
 
   //Handles the Dialog box
@@ -38,47 +35,20 @@ export default function DeleteUser() {
   };
   const handleClose = () => {
     setOpen(false);
-    hideMessage();
     hideCurrentMessage();
     resetConfirmPasswordText();
     resetCurrentPassword();
   };
 
   //Handles Error messages
-  const showMessage = (event) => {
-    if (event === "shortPasswordError") {
-      setMessage({
-        color: "red",
-        text : "*Password must be at least 8 characters"
-      });
-    } else if (event === 'regexError') {
-      setMessage({
-        color: "red",
-        text : "*Password must have at least one number"
-      });
-
-    } else if (event === 'matchPasswordError'){
-      setMessage({
-        color: "red",
-        text : "*Passwords must match"
-      });
-    } else {
-      setMessage({
-        color: "",
-        text : "Account Successfully Deleted!"
-      });
-    }
-  };
-  const hideMessage = () => {
-    setMessage("");
-  };
-
   const showCurrentMessage = (event) => {
      if(event === "passwordError"){
-      setMessage({
+      setCurrentMessage({
         color: "red",
         text : "*Check your inputs."
       });
+    } else{
+      navigate('/forumPage')
     }
   };
 
@@ -89,7 +59,6 @@ export default function DeleteUser() {
   //Handles Email input
   const handleSetCurrentPassword = (event) => {
     setCurrentPassword(event.target.value);
-    console.log(currentPassword)
   };
   const resetCurrentPassword = () => {
     setCurrentPassword("");
@@ -104,10 +73,9 @@ export default function DeleteUser() {
     setConfirmPassword("");
   }
 
-  
-
   const onSubmit = () => {
-    console.log("THIS" + currentPassword)
+    console.log("THIS " + currentPassword)
+    console.log("THIS " + confirmPassword)
     
     if(userSession){
     //Post request to change Email
@@ -117,20 +85,21 @@ export default function DeleteUser() {
         withCredentials: true 
     })
     .then((res) => {
+      console.log(res.data)
         if (res.status === 200){
             if(res.data === 'passwordError'){
               showCurrentMessage('passwordError');
             } else {
               resetConfirmPasswordText();
               resetCurrentPassword();
-              showMessage('success');
               showCurrentMessage('success');
+              navigate("/register");
             }
         } 
         else{
           Promise.reject();
         }
-        navigate("/register");
+        
       })
       
     .catch((err) => alert("Something went wrong: " + err));
@@ -143,9 +112,12 @@ export default function DeleteUser() {
       <Button
         style={{ width: "100%" }}
         onMouseEnter={handleFillButton}
+        onMouseLeave={handleEmptyButton}
         variant={buttonColor}
         color="error"
         onClick={handleClickOpen}
+        TransitionComponent={Transition}
+        aria-describedby="alert-dialog-slide-description"
       >
         Delete Account
       </Button>
@@ -168,7 +140,7 @@ export default function DeleteUser() {
               variant="standard"
               onChange={handleSetCurrentPassword}
           />
-          <p style={{color: currentError.color}}>{currentError.text}</p>
+    
           <TextField
             autoFocus
             margin="dense"
@@ -180,7 +152,7 @@ export default function DeleteUser() {
             variant="standard"
             onChange={handleSetConfirmPassword}
           />
-          <p style={{color: error.color}}>{error.text}</p>
+          <p style={{color: currentError.color}}>{currentError.text}</p>
         </DialogContent>
         
         <DialogActions>

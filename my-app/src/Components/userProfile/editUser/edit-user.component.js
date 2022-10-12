@@ -23,7 +23,7 @@ export default function ControlledAccordions() {
   return (
     
     <div>
-    
+      {/****** Account Information ******/}
       <Accordion style={{height: '100%'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -52,6 +52,8 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+
+      {/****** General Settings ******/}
       <Accordion style={{height: '100%'}} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -64,13 +66,15 @@ export default function ControlledAccordions() {
           <Typography sx={{ color: 'text.secondary' }}>Change username, email, password.</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography align="right">
+          <Typography>
             <ChangeUsername />
             <ChangeEmail />
             <ChangePassword/>
           </Typography>
         </AccordionDetails>
       </Accordion>
+
+      {/****** Company Settings ******/}
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -90,26 +94,7 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Advanced settings
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Work in progress....
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+     {/****** Delete Account ******/}
       <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -130,21 +115,3 @@ export default function ControlledAccordions() {
     </div>
   );
 }
-
-// export EditUser = () => {
-    
-
-
-
-//     return(
-
-//         <ButtonGroup aria-label="large button group" size="large" orientation="vertical">
-//            <ChangeUsername />
-//            <ChangeEmail />
-//            <ChangePassword/>
-//         </ButtonGroup>
-        
-//     )
-// }
-
-// export default EditUser;

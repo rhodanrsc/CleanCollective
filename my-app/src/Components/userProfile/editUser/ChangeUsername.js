@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import getUser from "../../getUser";
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ChangeUsername() {
   let userSession = getUser();
@@ -18,8 +16,16 @@ export default function ChangeUsername() {
     color: "",
     text: ""
   }); 
-  
 
+  //For the button
+  const [buttonColor, setButton] = useState("outlined")
+  const handleFillButton = (event) => {
+    setButton("contained");
+  }
+
+  const handleEmptyButton = (event) => {
+    setButton("outlined");
+  }
 
   //Handles the Dialog box
   const handleClickOpen = () => {
@@ -62,11 +68,7 @@ export default function ChangeUsername() {
     setUsername("");
   }
 
-  
-
   const onSubmit = () => {
-    
-
     if(userSession){
     //Post request to change username
     axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
@@ -78,7 +80,7 @@ export default function ChangeUsername() {
             if(res.data === "emptyError"){
               showMessage('emptyError');
             }
-            //If the user exists. Backend will return false
+            //If the user exists. Backend will return existError string
             else if(res.data === "existError"){
               showMessage('existError');
             } else{
@@ -90,15 +92,16 @@ export default function ChangeUsername() {
         } 
       })
     .catch((err) => alert("Something went wrong: " + err));
-    
   };
 };
 
   return (
     <div>
       <Button
+        onMouseEnter={handleFillButton}
+        onMouseLeave={handleEmptyButton}
         style={{ width: "100%" }}
-        variant="outlined"
+        variant={buttonColor}
         color="success"
         onClick={handleClickOpen}
       >
@@ -108,6 +111,8 @@ export default function ChangeUsername() {
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
+        TransitionComponent={Transition}
+        aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>Change Username</DialogTitle>
 

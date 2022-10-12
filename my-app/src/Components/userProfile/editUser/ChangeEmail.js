@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import emailValidator from "email-validator";
 import getUser from "../../getUser";
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ChangeEmail() {
   let userSession = getUser(); 
@@ -20,8 +18,14 @@ export default function ChangeEmail() {
     color: "",
     text: ""
   });
-  
 
+  const [buttonColor, setButton] = useState("outlined")
+  const handleFillButton = (event) => {
+    setButton("contained");
+  }
+  const handleEmptyButton = (event) => {
+    setButton("outlined");
+  }
 
   //Handles the Dialog box
   const handleClickOpen = () => {
@@ -112,14 +116,15 @@ export default function ChangeEmail() {
       })
     .catch((err) => alert("Something went wrong: " + err));
     }
-    
   };
 
   return (
     <div>
       <Button
-        style={{ width: "100%" }}
-        variant="outlined"
+        onMouseEnter={handleFillButton}
+        onMouseLeave={handleEmptyButton}
+        style={{ width: "100%", marginBottom: '5px', marginTop: '5px' }}
+        variant={buttonColor}
         color="success"
         onClick={handleClickOpen}
       >
@@ -129,6 +134,8 @@ export default function ChangeEmail() {
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
+        TransitionComponent={Transition}
+        aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>Change Email</DialogTitle>
 

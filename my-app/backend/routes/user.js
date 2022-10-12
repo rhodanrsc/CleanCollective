@@ -98,15 +98,12 @@ router.route('/delete/:id').post((req, res) => {
   User.UserCollection.findById(req.params.id)
   .then(user => {
     let validCredentials = bcrypt.compareSync(currentPassword, user.password);
-    if(validCredentials){
-      if(currentPassword === confirmPassword){
-        
+    if(validCredentials && currentPassword === confirmPassword){
         User.UserCollection.findByIdAndDelete(req.params.id)
         .then(
           res.send("success")
         )
         .catch(err => res.status(400).json('Error: ' + err));
-      } 
     } else{
       res.send("passwordError")
     }
