@@ -32,7 +32,7 @@ const CreateCompany = () => {
       onSubmit={OnSubmit}
       enableReinitialize
     >
-      Sign Up
+      
     </CompanyForm>
 
   )

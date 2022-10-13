@@ -17,7 +17,7 @@ const UserLoginForm = (props) => {
 
   console.log(props);
   return (
-    <div className="company-creation-background">
+    <div className="user-login-background">
     <div className="border">
 
       <main>

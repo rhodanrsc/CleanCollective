@@ -11,93 +11,92 @@ const CreateCompany = (props) => {
       
 
         <main>
-        <div className="border">
+        <div className="border_two">
           <h2 className="first-header">Build Your Company's Profile</h2>
           <div className="company-creation-description">Providing information about your company that <br />
             will get you in front of the right people.</div>
 
           <h2 className="second-header">Viewable by all users</h2>
-
+          <br/>
+                
           <Formik {...props}>  
               <Form>
                 <FormGroup>
+                
                 {/* Company Name */}
                 <div className="form-group-create">
-                  <label htmlFor="companyNameInput">Name (required)
+                  <label htmlFor="companyNameInput">Name: (required)
                     <span style={{
                       color: '#FF0000',
                     }}
                     > *</span>
                   </label>
-                  <Field type="text" name="companyName" className="form-control" id="formControlInput1" placeholder="Add your organization's name"  required  />
+                  <Field type="text" id="companyName" name="companyName" className="form-control" placeholder="Organization"  required  />
 
-                </div>
-
+                <br/>
+                <br/>
                 {/* Company Type*/}
-                <div className="form-group-create-select">
-                  <label htmlFor="companyType">Company Type</label>
-                  <Field as="select" name="type" className="form-control" id="formControlSelect2" >
+                  <label htmlFor="companyType">Company Type:</label>
+                  <Field as="select" name="type" className="form-control" id="type" >
                     <option>Adoptor</option>
                     <option>Innovator</option>
                   </Field>
-                </div>
-
+                  <br/>
+                <br/>
                 {/* Company Logo*/}
                 
-                  <div className="form-group-create">
-                    <label htmlFor="formControlFile1">Company Logo</label>
-                    <Field type="file" name="file" className="form-control-file" id="formControlFile" />
-                  </div>
+                    <label htmlFor="formControlFile1">Company Logo:</label>
+                    <Field type="file" name="file" className="form-control-file" id="file" />
+                  
                 
-
+                    <br/>
+                <br/>
                 {/* Company Status*/}
-                <div className="form-group-create-select">
-                  <label htmlFor="companyType">Sector</label>
-                  <Field as="select" name="companyType" className="form-control" id="formControlSelect3" >
+                  <label htmlFor="companyType">Sector:</label>
+                  <Field as="select" name="companyType" className="form-control" id="status" >
                     <option value="oil-gas">Oil & Gas</option>
                     <option value="clean-energy">Clean Energy</option>
                   </Field>
-                </div>
-
+                
+                  <br/>
+                <br/>
                 {/* Company Stage*/}
-                <div className="form-group-create-select">
-                  <label htmlFor="companyStages">Development Stage</label>
-                  <Field as="select" name="stage" className="form-control" id="formControlSelect4" >
+                  <label htmlFor="companyStages">Development Stage:</label>
+                  <Field as="select" name="stage" className="form-control" id="stage" >
                     <option value="seed">Seed and Development</option>
                     <option value="startup">Startup</option>
                     <option value="growth">Growth and Establishment</option>
                     <option value="expansion">Expansion</option>
                     <option value="maturity">Maturity</option>
                   </Field>
-                </div>
-
+                
+                  <br/>
+                <br/>
                 {/* Company Employees*/}
-                <div className="form-group-create-select">
-                  <label htmlFor="numberOfEmployees">Number of Employees</label>
-                  <Field as="select" name="employees" className="form-control" id="exampleFormControlSelect5" >
+                  <label htmlFor="numberOfEmployees"># of Employees:</label>
+                  <Field as="select" name="employees" className="form-control" id="employees" >
                     <option value="zero-ten">0-10 Employees</option>
                     <option value="eleven-fifty">11-50 Employees</option>
                     <option value="fiftyOne-hundred">51-100 Employees</option>
                     <option value="hundredPlus">100+ Employees</option>
                   </Field>
-                </div>
 
+                  <br/>
+                <br/>
                 {/* Webiste URL*/}
-                <div className="form-group-create">
                   <label htmlFor="websiteURL">Website</label>
-                  <Field type="text" name="website" className="form-control" id="formControlInput6" placeholder="Website URL" />
-                </div>
-
-
+                  <Field type="text" name="website" className="form-control" id="website" placeholder="Website URL" />
+                
+                <br/>
                 {/* Disclaimer Check*/}
                 <div className="form-check">
-                  <Field className="form-check-input" name="check" type="checkbox"  value="" id="defaultCheck1" />
-                  
-                  <label className="disclaimer" htmlFor="defaultCheck1">
+                <label id="disclaimer">
+                  <Field className="form-check-input" name="check" type="checkbox"  value="" id="check" />
                     I verify that I am an authorized representative of this organization
                     and have the right to act on its behalf in the creation and management of this page.
                     The organization and I agree to the additional terms for Pages.
                   </label>
+                  </div>
 
                 </div>
 
