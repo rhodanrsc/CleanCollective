@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import logo from '../shared/images/CCLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
+import Logout from './logout/logout';
 const LandingPage = () => {
 //////////////////////////////////////////////////////////////
 // Pulling req.user and setting it to the state variable 'data'
@@ -17,6 +18,7 @@ axios({
   console.log(res.data);
 }).catch((err) => alert("Something went wrong: " + err));
 };
+
 //runs getUser once when the page loads to set state variable data = req.user. 
 useEffect(() => {
 getUser();
@@ -60,6 +62,7 @@ getUser();
                 <Link to={"/register"} className="nav-link getStarted">
                     <button className='landingButton'>Get Started</button>
                 </Link>
+                {data ? <Link to={"/login"} className="nav-link getStarted"><Logout></Logout></Link> : null}
             </div>
             <br/>
             <br/>
