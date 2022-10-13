@@ -9,12 +9,12 @@ background-repeat: no-repeat;
 background-size: 100%;
 background-position: fixed;
 position: absolute;
-top: 85px;
+top: 80px;
 right: 0px;
 bottom: 0px;
 left: 0px;
 width: 100%;
-height: 100%;
+height: 120%;
 }
 
 .user-creation-background{
@@ -23,12 +23,12 @@ height: 100%;
     background-size: 100%;
     background-position: fixed;
     position: absolute;
-    top: 85px;
+    top: 80px;
     right: 0px;
     bottom: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    height: 120%;
   }
 
 
@@ -42,7 +42,7 @@ main{
 }
 
 .border{
-  margin-top: 120px;
+  margin-top: 100px;
   width: 500px;
   padding: 10px;
   margin-right: auto;

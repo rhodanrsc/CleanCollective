@@ -61,6 +61,9 @@ getUser();
                     <button className='landingButton'>Get Started</button>
                 </Link>
             </div>
+            <br/>
+            <br/>
+            <br/>
             <div className='twoBoxes'>
                 <div className='box1'>
 

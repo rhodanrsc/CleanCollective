@@ -1,5 +1,6 @@
 // Import React
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Import Bootstrap
 import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
@@ -22,12 +23,42 @@ import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
 import CompanyCreation from "./Components/company/create-company-components";
 
+import { Desktop } from "./Components/desktop/desktop.component";
+import { Laptop } from "./Components/laptop/laptop.component";
+import { BigScreen } from "../src/Components/big-screen/big-screen.component";
+import { Mobile } from "../src/Components/mobile/mobile.component";
+import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.component";
+
 
 
 // App Component
 const App = () => {
+
+  const isMobileDevice = useMediaQuery({
+    query: "(min-device-width: 480px)",
+  });
+
+  const isTabletDevice = useMediaQuery({
+    query: "(min-device-width: 768px)",
+  });
+
+  const isLaptop = useMediaQuery({
+    query: "(min-device-width: 1024px)",
+  });
+
+  const isDesktop = useMediaQuery({
+    query: "(min-device-width: 1200px)",
+  });
+
+  const isBigScreen = useMediaQuery({
+    query: "(min-device-width: 1201px )",
+  });
+
   return (
+
+
     <Router>
+
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
@@ -37,6 +68,15 @@ const App = () => {
           <Row>
             <Col md={12}>
               <div className="wrapper">
+                <div className="App">
+                  <h1>React Responsive - a guide</h1>
+                  {isMobileDevice && <Mobile />}
+                  {isTabletDevice && <><TabletMobile />
+                  {isDesktop && <Desktop />}
+                  {isLaptop && <Laptop />}
+                  {isBigScreen && <BigScreen />}
+                  </>}
+                </div>
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-user" element={<CreateUser />} />
@@ -51,6 +91,8 @@ const App = () => {
         </Container>
       </div>
     </Router>
+
+
   );
 };
 
