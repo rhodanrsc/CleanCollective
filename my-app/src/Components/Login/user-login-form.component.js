@@ -24,13 +24,15 @@ const UserLoginComponent = () => {
     .then((res) => {
       if(res.status === 200){
         alert("Login Sucsess");
-        navigate("/forumPage"); // page you go to after login 
+        navigate("/"); // page you go to after login 
+        window.location.reload();
       }else{
         Promise.reject();
       }
       console.log(res);
     })
     .catch((err) => alert("Incorrect username or password"));
+
   };
 
   // Return student form
