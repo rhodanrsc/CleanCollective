@@ -15,6 +15,7 @@ const cookieParser = require("cookie-parser");
 //-----------------------------END OF IMPORTS-----------------------------
 
 //Middleware
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(
@@ -201,6 +202,13 @@ router.route('/updateOneField/:id').post((req, res) => {
       .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
     })
     .catch(err => res.status(400).json('Error: finding id' + err));
+});
+
+router.route('/logout').post((req, res, next)=>{
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    // res.redirect('/');
+  });
 });
 
 router.route('/getUser').get((req, res) => {
