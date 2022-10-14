@@ -34,6 +34,7 @@ const App = () => {
           <Row>
             <Col md={12}>
               <div className="wrapper">
+                
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-user" element={<CreateUser />} />

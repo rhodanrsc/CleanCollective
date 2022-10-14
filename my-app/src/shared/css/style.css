@@ -1,5 +1,9 @@
 body {
-    background-color: #fafafa;
+    background-color: #929292;
+}
+
+.wrapper {
+    margin-top: 80px;
 }
 
 /* NavBar */
@@ -20,7 +24,7 @@ body {
     width: 100%;
     height: 200px;
     width: auto;
-    margin: -60px 0;
+    margin: -60px 0 -60px 50px;
     display: inline;
 }
 
@@ -99,6 +103,7 @@ body {
 .bigBlock {
     display: block;
     margin: 0 auto;
+    padding: 0 auto;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     border: none;
@@ -112,7 +117,7 @@ body {
 .adoptor, .innovator {
     text-align: center;
     width: 50%;
-    padding: 50px;
+    padding: 0 50px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -140,7 +145,6 @@ body {
     float: left;
     z-index: 1;
 }
-
 
 .landingFont {
     color: white;
@@ -177,14 +181,15 @@ body {
 /* Side Panel */
 
 .panel {
-    margin: 3px;
-    padding: 5px;
+    margin: 80px 5px 0 0;
+    padding: 3em;
     float: left;
     display: block;
     height: 100%;
-    width: 310px;
+    width: fit-content;
     position: fixed;
     background-color: white;
+    z-index: 10;
 }
 
 .menu {
@@ -192,10 +197,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px 50px;
-    gap: 10px;
 }
 
 .menuButton {
-    text-decoration: none;
-    columns: red;
+    color: rgb(67, 182, 76);
 }

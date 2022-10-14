@@ -8,12 +8,13 @@ const Logout = () => {
           withCredentials: true,
           url: "http://localhost:5000/user/logout",
         }).then((res) => {
-
+          
         }).catch((err) => alert("Something went wrong: " + err));
-        };
+        window.location.reload();
+      };
   return (
     <div className="form-wrapper">
-        <button onClick={logout}>Logout</button>
+        <a onClick={logout}>Logout</a>
     </div>
   );
 };
