@@ -5,6 +5,7 @@ import emailValidator from "email-validator";
 import getUser from "../../getUser";
 import Slide from '@mui/material/Slide';
 
+//For adding slide up effect on dialog box.
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -19,6 +20,7 @@ export default function ChangeEmail() {
     text: ""
   });
 
+  //Handles filling/unfilling the buttons
   const [buttonColor, setButton] = useState("outlined")
   const handleFillButton = (event) => {
     setButton("contained");
@@ -27,7 +29,7 @@ export default function ChangeEmail() {
     setButton("outlined");
   }
 
-  //Handles the Dialog box
+  //Handles the opening/closing of Dialog box
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -38,7 +40,13 @@ export default function ChangeEmail() {
     resetPasswordText();
   };
 
-  //Handles Error messages
+  /*
+  Handles Error Message:
+  existError : Email already exists in the database.
+  passwordError : Password is incorrect.
+  regexError : Invalid email format.
+  success : If all validation passes.
+   */
   const showMessage = (event) => {
     if(event === "existError"){
       setMessage({
@@ -74,15 +82,13 @@ export default function ChangeEmail() {
     setEmail("");
   }
 
+  //Handle password input
   const handleSetPassword = (event) => {
     setPassword(event.target.value);
   }
-
   const resetPasswordText = () => {
     setPassword("");
   }
-
-  
 
   const onSubmit = () => {
 

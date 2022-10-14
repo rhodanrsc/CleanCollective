@@ -169,14 +169,11 @@ router.route('/updateOneField/:id').post((req, res) => {
             }
           } else{
             message = 'passwordError'
-            
           }
           /******** Change Password *******/
         } else if (updateType === "password"){
           const passwordRegex = /(?=.*[0-9])/;
             if(bcrypt.compareSync(currentPassword, user.password)){
-              console.log(newPassword);
-              console.log(confirmPassword)
               if(newPassword.length < 8){
                 message = 'shortPasswordError'
               } else if (!passwordRegex.test(newPassword)){
@@ -187,17 +184,14 @@ router.route('/updateOneField/:id').post((req, res) => {
               } else {
                 message = 'matchPasswordError'
               }
-
             } else{
               message = 'passwordError'
             }
         }
-        
+
         user.save()
         .then(() => res.send(message))
         .catch(err => res.status(400).json('Error: saving user' + err));
-        
-        
       })
       .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
     })

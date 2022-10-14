@@ -74,8 +74,6 @@ export default function DeleteUser() {
   }
 
   const onSubmit = () => {
-    console.log("THIS " + currentPassword)
-    console.log("THIS " + confirmPassword)
     
     if(userSession){
     //Post request to change Email
@@ -85,7 +83,6 @@ export default function DeleteUser() {
         withCredentials: true 
     })
     .then((res) => {
-      console.log(res.data)
         if (res.status === 200){
             if(res.data === 'passwordError'){
               showCurrentMessage('passwordError');
@@ -99,12 +96,9 @@ export default function DeleteUser() {
         else{
           Promise.reject();
         }
-        
       })
-      
     .catch((err) => alert("Something went wrong: " + err));
     }
-    
   };
 
   return (
@@ -116,7 +110,7 @@ export default function DeleteUser() {
         variant={buttonColor}
         color="error"
         onClick={handleClickOpen}
-        TransitionComponent={Transition}
+        
         aria-describedby="alert-dialog-slide-description"
       >
         Delete Account
@@ -125,6 +119,7 @@ export default function DeleteUser() {
         PaperProps={{ sx: { width: "35%" } }}
         open={open}
         onClose={handleClose}
+        TransitionComponent={Transition}
       >
         <DialogTitle>Delete Account</DialogTitle>
 

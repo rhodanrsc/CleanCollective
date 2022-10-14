@@ -4,6 +4,7 @@ import axios from "axios";
 import getUser from "../../getUser";
 import Slide from '@mui/material/Slide';
 
+//Handles slide up animation of dialog boxes
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -17,7 +18,7 @@ export default function ChangeUsername() {
     text: ""
   }); 
 
-  //For the button
+  //Handles filling/unfilling of buttons
   const [buttonColor, setButton] = useState("outlined")
   const handleFillButton = (event) => {
     setButton("contained");
@@ -27,7 +28,7 @@ export default function ChangeUsername() {
     setButton("outlined");
   }
 
-  //Handles the Dialog box
+  //Handles opening/closing of Dialog box
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -37,7 +38,12 @@ export default function ChangeUsername() {
     resetUsername();
   };
 
-  //Handles Error messages
+  /*
+  Handles Error Messages
+  emptyError : If the string/input is submitted empty.
+  existError : The username already exists in database.
+  success : If all validation passes.
+  */
   const showMessage = (event) => {
     if(event === "emptyError"){
       setMessage({

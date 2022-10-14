@@ -4,6 +4,7 @@ import axios from "axios";
 import getUser from "../../getUser";
 import Slide from '@mui/material/Slide';
 
+//Handles slide up animation of dialog boxes
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -18,18 +19,17 @@ export default function ChangeEmail() {
     color: "",
     text: ""
   }); 
-  
   const [buttonColor, setButton] = useState("outlined")
 
+  //Handles filling/unfilling of buttons
   const handleFillButton = (event) => {
     setButton("contained");
   }
-
   const handleEmptyButton = (event) => {
     setButton("outlined");
   }
 
-  //Handles the Dialog box
+  //Handles opening/closing of Dialog box
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -41,7 +41,14 @@ export default function ChangeEmail() {
     resetNewPasswordText();
   };
 
-  //Handles Error messages
+ /*
+ Handles Error Messages
+ passwordError : Invalid password.
+ shortPasswordError : Password is not at least 8 characters.
+ regexError : Password does not contain a number.
+ matchPasswordError : The new password and current password do not match. 
+ success : If all validation passes.
+ */
   const showMessage = (event) => {
     if(event === "passwordError"){
       setMessage({
@@ -82,7 +89,7 @@ export default function ChangeEmail() {
   const resetCurrentPassword = () => {
     setCurrentPassword("");
   }
-
+  
   const handleSetNewPassword = (event) => {
     setNewPassword(event.target.value);
   }
