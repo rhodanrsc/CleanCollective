@@ -19,8 +19,8 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component";
+import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
-
 // App Component
 const App = () => {
   return (
@@ -28,12 +28,13 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
+          <CustomSidePanel />
         </header>
-
         <Container>
           <Row>
             <Col md={12}>
               <div className="wrapper">
+                
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-user" element={<CreateUser />} />
