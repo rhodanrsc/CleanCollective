@@ -62,7 +62,6 @@ getUser();
                 <Link to={"/register"} className="nav-link getStarted">
                     <button className='landingButton'>Get Started</button>
                 </Link>
-                {data ? <Link to={"/login"} className="nav-link getStarted"><Logout></Logout></Link> : null}
             </div>
             <br/>
             <br/>

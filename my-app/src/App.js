@@ -30,6 +30,7 @@ import { Mobile } from "../src/Components/mobile/mobile.component";
 import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.component";
 
 
+import CustomSidePanel from "./Components/side/panel";
 
 // App Component
 const App = () => {
@@ -62,12 +63,13 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
+          <CustomSidePanel />
         </header>
-
         <Container>
           <Row>
             <Col md={12}>
               <div className="wrapper">
+                
                 <div className="App">
                   <h1>React Responsive - a guide</h1>
                   {isMobileDevice && <Mobile />}
