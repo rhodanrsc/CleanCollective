@@ -71,9 +71,7 @@ const UserLoginForm = (props) => {
         </Form>
       </Formik>
     </div>
-    </main>
-    </div>
-    </div>
+    
   );
 };
 
