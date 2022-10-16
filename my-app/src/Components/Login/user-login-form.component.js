@@ -1,8 +1,8 @@
 // Import Modules
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import UserLoginForm from "./user-login-form";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // LoginUser Component
 const UserLoginComponent = () => {
   const navigate = useNavigate();
@@ -46,6 +46,8 @@ const UserLoginComponent = () => {
     </UserLoginForm>
   );
 };
+
+
 
 // Export CreateStudent Component
 export default UserLoginComponent;
