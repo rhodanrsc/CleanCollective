@@ -3,8 +3,8 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 // Import Bootstrap
-import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
+import { Container, Row, Col } from "react-bootstrap";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 // Import Custom CSS
 import "./App.css";
@@ -12,7 +12,7 @@ import "./shared/css/style.css";
 import "./shared/css/createCompany.css";
 
 // Import from react-router-dom
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import other React Component
 import CreateUser from "./Components/registration/create-user.component";
@@ -31,7 +31,7 @@ import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.comp
 
 
 import CustomSidePanel from "./Components/side/panel";
-
+import EditUser from "./Components/userProfile/editUser/edit-user.component"
 // App Component
 const App = () => {
 
@@ -84,8 +84,11 @@ const App = () => {
                   <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                   <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/register/confirmEmail" element={<ConfirmEmail />} />
-                  <Route path="/companyCreation" element={<CompanyCreation />} />
+                  <Route
+                    path="/register/confirmEmail"
+                    element={<ConfirmEmail />}
+                  />
+                  <Route path="/editUser" element={<EditUser />} />
                 </Routes>
               </div>
             </Col>
