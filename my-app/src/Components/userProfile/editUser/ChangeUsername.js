@@ -91,6 +91,8 @@ export default function ChangeUsername() {
               showMessage('existError');
             } else{
               showMessage('sucess');
+              userSession.username = newUsername;
+              ReactSession.set("userSession", userSession);
             }
         } 
         else{

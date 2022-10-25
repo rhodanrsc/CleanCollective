@@ -129,6 +129,8 @@ export default function ChangeEmail() {
               resetConfirmPasswordText();
               resetCurrentPassword();
               showMessage('success');
+              userSession.password = newPassword
+              ReactSession.set("userSession", userSession)
             }
         } 
         else{
