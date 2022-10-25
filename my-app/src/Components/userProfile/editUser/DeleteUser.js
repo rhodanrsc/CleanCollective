@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
-import getUser from "../../getUser";
 import { useNavigate } from "react-router-dom";
 import Slide from '@mui/material/Slide';
+import { ReactSession }  from 'react-client-session';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function DeleteUser() {
-  let userSession = getUser();
+  let userSession = ReactSession.get("userSession")
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");

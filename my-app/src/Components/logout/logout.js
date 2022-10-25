@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { ReactSession }  from 'react-client-session';
 const Logout = () => {
     const logout = () => {
         axios({
@@ -11,6 +11,7 @@ const Logout = () => {
           
         }).catch((err) => alert("Something went wrong: " + err));
         window.location.reload();
+        sessionStorage.removeItem("__react_session__");
       };
   return (
     <div className="form-wrapper">
