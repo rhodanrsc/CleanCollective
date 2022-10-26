@@ -1,8 +1,9 @@
 // Import Modules
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserLoginForm from "./user-login-form";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ReactSession }  from 'react-client-session';
 // LoginUser Component
 const UserLoginComponent = () => {
   const navigate = useNavigate();
@@ -10,6 +11,10 @@ const UserLoginComponent = () => {
     login_email_field: "",
     login_password_field: "",
   });
+ 
+
+ 
+  
   // When user hits login button
   const onSubmit = (userObject) => {
     axios({
@@ -23,14 +28,18 @@ const UserLoginComponent = () => {
     })
     .then((res) => {
       if(res.status === 200){
-        alert("Login Sucsess");
-        navigate("/forumPage"); // page you go to after login 
+        alert("Login Success");
+        navigate("/"); // page you go to after login 
+        window.location.reload();
+        ReactSession.set("userSession", res.data)
+        
       }else{
         Promise.reject();
       }
       console.log(res);
     })
     .catch((err) => alert("Incorrect username or password"));
+
   };
 
   // Return student form
@@ -44,6 +53,8 @@ const UserLoginComponent = () => {
     </UserLoginForm>
   );
 };
+
+
 
 // Export CreateStudent Component
 export default UserLoginComponent;

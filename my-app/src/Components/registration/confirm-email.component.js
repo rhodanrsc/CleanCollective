@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
 const ConfirmEmail = props =>(
     <div className="card">
-        <h2>A verification link has been sent to your email</h2>
-        <p className="card-body">Please click the link that has just been sent to complete registration!</p>
+        <div className="container">
+            <h2 className="card-header">A verification link has been sent to your email</h2>
+            <p className="card-body">Please click the link that has just been sent to complete registration!</p>
+        </div>
     </div>
     
 )

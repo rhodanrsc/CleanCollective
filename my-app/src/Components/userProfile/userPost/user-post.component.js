@@ -4,7 +4,7 @@
 // Import Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import UserProfile from "./UserPostForm";
+import UserProfile from "../UserPostForm";
 
 // Create Post Component
 const CreateUserPost = () => {
@@ -16,6 +16,9 @@ const CreateUserPost = () => {
     postDislikes: ""
   });
 
+  function onSubmit(){
+
+  }
 
   // onSubmit handler
   const onLoad = (userPostObject) => {
@@ -26,7 +29,7 @@ const CreateUserPost = () => {
         if (res.status === 200) alert("User Post successfully displayed");
         else Promise.reject();
       })
-      .catch((err) => alert("Something went wrong: " + companyObject.companyName));
+      .catch((err) => alert("Something went wrong: "));
   };
 
   // Return student form
@@ -43,7 +46,3 @@ const CreateUserPost = () => {
 
 // Export CreateStudent Component
 export default CreateUserPost;
-
-
-
-

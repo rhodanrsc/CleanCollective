@@ -39,7 +39,6 @@ module.exports = function (passport) {
 
   //Triggered when pulling information from req.user
   passport.deserializeUser((id, cb) => {
-    console.log('config8');
     User.UserCollection.findOne({ _id: id }, (err, user) => {
         cb(err,user);
     });
