@@ -21,6 +21,9 @@ import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component";
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
+import { ReactSession } from 'react-client-session';
+
+ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
   return (

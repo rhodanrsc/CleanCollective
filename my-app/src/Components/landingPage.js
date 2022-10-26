@@ -3,27 +3,16 @@ import logo from '../shared/images/CCLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import Logout from './logout/logout';
+import { ReactSession }  from 'react-client-session';
+let userSession = ReactSession.get("userSession")
 const LandingPage = () => {
+
 //////////////////////////////////////////////////////////////
 // Pulling req.user and setting it to the state variable 'data'
 //////////////////////////////////////////////////////////////
-const [data, setData] = useState(null);
-const getUser = () => {
-axios({
-  method: "get",
-  withCredentials: true,
-  url: "http://localhost:5000/user/getUser",
-}).then((res) => {
-  setData(res.data);
-  console.log(res.data);
-}).catch((err) => alert("Something went wrong: " + err));
-};
 
-//runs getUser once when the page loads to set state variable data = req.user. 
-useEffect(() => {
-getUser();
-}, [""]);
 //////////////////////////////////////////////////////////////   
+let data = ReactSession.get("userSession");
 
     return(
         <div className='landingPage'>
