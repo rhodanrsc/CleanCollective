@@ -2,8 +2,9 @@
 const router = require('express').Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
+
 router.route("/").get((req, res) => {
-  usersPost
+  usersPost.UserPostCollection
     .find()
     .then((usersposts) => res.json(usersposts))
     .catch((err) => res.status(400).json("Error: " + err));
@@ -97,7 +98,7 @@ router.route('/addPost/:id').post((req,res) => {
     );
   });
 
-// Delete Student
+// Delete user post
 router.delete("/delete-user.post/:id", (req, res, next) => {
   usersPost.userPostSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
