@@ -3,7 +3,7 @@ const router = require('express').Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
 router.route("/").get((req, res) => {
-  usersPost
+  usersPost.UserPostCollection
     .find()
     .then((usersposts) => res.json(usersposts))
     .catch((err) => res.status(400).json("Error: " + err));
@@ -19,11 +19,16 @@ router.route('/addPost/:id').post((req,res) => {
         const thisPostBody = req.body.postBody;
         const thisPostLikes = req.body.postLikes;
         const thisPostDislikes = req.body.postDislikes;
+        const thisSector = req.body.sector;
+        const thisPostTitle = req.body.postTitle;
+        
         //Create a new Post Object
         const newPost = new usersPost.UserPostCollection({
             postUserName : thisPostUsername,
             postUserProfilePic : thisProfilePic,
             postBody : thisPostBody,
+            postTitle : thisPostTitle,
+            postSector : thisSector,
             postLikes : thisPostLikes,
             postDislikes : thisPostDislikes
         });
