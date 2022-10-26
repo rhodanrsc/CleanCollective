@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, InputLabel, MenuItem, FormControl, Select, Box, TextField, Button, FormGroup, Menu } from "@mui/material";
+import { Paper, InputLabel, MenuItem, FormControl, Select, Box, TextField, Button, FormGroup, Menu, Autocomplete } from "@mui/material";
 import axios from "axios";
 import { ReactSession }  from 'react-client-session';
 
@@ -26,10 +26,17 @@ export default function CreatePost () {
     }
 
     const loadCategories = () => {
+
+      let newList = []
       axios.get("http://localhost:5000/sector/")
       .then(response => {
         if (response.data.length > 0) {
-          setListOfCategories(response.data)
+          
+          response.data.map(function(category) {
+            newList.push(category.name);
+          })
+          setListOfCategories(newList);
+          console.log(listOfCategories)
         }
       })
       .catch((error) => {
@@ -73,7 +80,16 @@ export default function CreatePost () {
     <Box style={boxStyle} >
         <FormControl>
         <FormGroup>
-        <InputLabel>Category</InputLabel>
+        
+        <Autocomplete 
+        style={mystyle}
+        options={listOfCategories}
+        renderInput={(params) => <TextField {...params} label="Categories" />}
+        >
+
+        </Autocomplete>
+        
+        {/* <InputLabel>Category</InputLabel>
         <Select style={mystyle}
           
           
@@ -87,7 +103,7 @@ export default function CreatePost () {
           <MenuItem onClick={handleAddingTextField} value={selectTextField}>
             <TextField onChange={handleSelectTextField} style={{width: "50%"}} label="Add Category" variant="standard"></TextField>
           </MenuItem>
-        </Select>
+        </Select> */}
 
         <TextField onChange={handlePostTitle} style={mystyle} label="Title"></TextField>
 
