@@ -5,21 +5,27 @@ import axios from 'axios';
 export class PostPage extends Component {
 
 state = {
+    postUserName: '',
     postTitle: '',
     postBody: '',
     posts: []
 }
 
-//Get the User Post Data
+// Get the User Post Data when the component mounts (onload function)
 componentDidMount = () => {
     this.getAllUserPost();
 }
 
 getAllUserPost = () => {
-    axios.get('/userpost').then((response) => {
+  axios({
+    method: "GET", 
+    url: "http://localhost:5000/user.post.route/"})
+  .then((response) => {
     const data = response.data;
-    this.setState({posts:data});    
-    console.log('User post data pulled form DB');}).catch(() => {alert("Error pulling user post data");
+    this.setState({posts: data});
+    console.log("THis is a user post" + this.posts)
+    console.log('User post data pulled from DB');})
+  .catch(() => {alert("Error pulling user post data");
 });
 }
 
@@ -28,17 +34,22 @@ displayUserPost = (posts) => {
     //checks if there are no posts
     if(!posts.length) return null;
 
-return posts.map((post, index) => {
-    <div key={index}>
-    <h3>{posts.postTitle}</h3>
-    <p>{posts.postBody}</p>
-    </div>
+console.log(posts.postTitle);
+console.log(posts.postBody);
+
+    return posts.map((post, index) => {
+        <div key={index}>
+        <h3>{posts.postUserName}</h3>
+        <h3>{posts.postTitle}</h3>
+        <p>{posts.postBody}</p>
+        </div>
     });
 }
 
   render() {
     return (<div>
         <PostCard/>
+        Hello World
      <div className="userPost">{this.displayUserPost(this.state.posts)} </div>
      </div>
     )
