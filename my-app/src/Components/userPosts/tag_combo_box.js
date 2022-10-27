@@ -48,7 +48,7 @@ function TagComboBox() {
     options: listOfCategories ? listOfCategories : [],
     getOptionLabel: (option) => option,
   });
-  const pastelColorPallete = ["rgba(181, 234, 215, 0.6)", "rgba(149, 125, 173, 0.6)" , "rgba(104, 209, 197, 0.6)", "rgba(244, 179, 206, 0.6)", "rgba(249, 216, 206,0.6)", "rgba(117, 199, 234, 0.6)", "rgba(224, 187, 228, 0.6)", "#CEF2E1", "#FFFBD6", "#D7FDDF", "#D0D0FE"]
+  const pastelColorPallete = ["rgba(181, 234, 215, 0.6)", "rgba(224, 187, 228, 0.6)"  , "rgba(104, 209, 197, 0.6)", "rgba(244, 179, 206, 0.6)", "rgba(249, 216, 206,0.6)", "rgba(117, 199, 234, 0.6)", "rgba(149, 125, 173, 0.6)", "#CEF2E1", "#FFFBD6", "#D7FDDF", "#D0D0FE"]
   const thisPastel = (index) => {
     //NEED TO REFACTOR. THIS SUCKS
     return pastelColorPallete[index];

@@ -7,7 +7,6 @@ import {TagComboBox} from "./tag_combo_box";
 
 export default function CreatePost () {
     let userSession = ReactSession.get("userSession")
-    const [listOfSelectedTags, setListOfSelectedTags] = useState([]);
     const [selectTextField, setSelectTextField] = useState();
     const [postTitle, setPostTitle] = useState();
     const [postBody, setPostBody] = useState();
@@ -43,13 +42,12 @@ export default function CreatePost () {
       setPostBody(event.target.value);
     }
     let arrayOfTags = [];
+
     useEffect(() => {
       let listOfTags = document.getElementsByClassName("listOfTags")
-      
       for(let i = 0; i < listOfTags.length; i++){
         arrayOfTags.push(listOfTags[i].innerHTML);
       }
-      setListOfSelectedTags(arrayOfTags);
     })
 
     const onSubmit = () => {
