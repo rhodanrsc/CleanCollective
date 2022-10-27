@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import PostCard from './Post.Card';
 import axios from 'axios';
 
@@ -17,13 +17,16 @@ componentDidMount = () => {
 }
 
 getAllUserPost = () => {
+
   axios({
     method: "GET", 
     url: "http://localhost:5000/user.post.route/"})
   .then((response) => {
     const data = response.data;
     this.setState({posts: data});
-    console.log("THis is a user post" + this.posts)
+    // console.log("THis is a user post" + this.posts)
+    console.log(data);
+    console.log(this.state.posts);
     console.log('User post data pulled from DB');})
   .catch(() => {alert("Error pulling user post data");
 });
@@ -31,6 +34,7 @@ getAllUserPost = () => {
 
 // Map and display the users posts
 displayUserPost = (posts) => {
+
     //checks if there are no posts
     if(!posts.length) return null;
 
