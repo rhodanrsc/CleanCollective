@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { Paper, InputLabel, MenuItem, FormControl, Select, Box, TextField, Button, FormGroup, Menu, Autocomplete } from "@mui/material";
+import { Paper, FormControl, Box, TextField, Button, FormGroup} from "@mui/material";
 import axios from "axios";
 import { ReactSession }  from 'react-client-session';
+import {getValues, TagComboBox} from "./tag_combo_box";
+
 
 
 
 export default function CreatePost () {
     let userSession = ReactSession.get("userSession")
-    const [listOfCategories, setListOfCategories] = useState(); 
+    
     const [selectTextField, setSelectTextField] = useState();
     const [postTitle, setPostTitle] = useState();
     const [postBody, setPostBody] = useState();
 
     const mystyle = {
-        marginBottom : "20px",
+        marginBottom : "10px",
+        marginTop: "10px",
         width : "500px"
     }
 
@@ -25,25 +28,6 @@ export default function CreatePost () {
         
     }
 
-    const loadCategories = () => {
-
-      let newList = []
-      axios.get("http://localhost:5000/sector/")
-      .then(response => {
-        if (response.data.length > 0) {
-          
-          response.data.map(function(category) {
-            newList.push(category.name);
-          })
-          setListOfCategories(newList);
-          console.log(listOfCategories)
-        }
-      })
-      .catch((error) => {
-        console.log("Something went wrong with loading categories: " + error);
-      })
-      
-    }
 
     const handleSelectTextField = (event) => {
       setSelectTextField(event.target.value);
@@ -67,44 +51,22 @@ export default function CreatePost () {
       //     postSector : 
       //   })
       // }
+      console.log(TagComboBox)
     }
     
 
     return (
-    <Box onMouseEnter={loadCategories}
+    <Box 
     display="flex"
     justifyContent="center"
     alignItems="center"
     minHeight="20vh">
-    <Paper className="paper" style={{width : "70%"}} elevation={3} >
+    <Paper className="paper" style={{width : "80%"}} elevation={3} >
     <Box style={boxStyle} >
         <FormControl>
         <FormGroup>
-        
-        <Autocomplete 
-        style={mystyle}
-        options={listOfCategories}
-        renderInput={(params) => <TextField {...params} label="Categories" />}
-        >
-
-        </Autocomplete>
-        
-        {/* <InputLabel>Category</InputLabel>
-        <Select style={mystyle}
-          
-          
-          label="Category"
-          
-          
-        >
-          {listOfCategories ? listOfCategories.map(function(category){
-            return <MenuItem value={category.name}>{category.name}</MenuItem>
-          }) : null}
-          <MenuItem onClick={handleAddingTextField} value={selectTextField}>
-            <TextField onChange={handleSelectTextField} style={{width: "50%"}} label="Add Category" variant="standard"></TextField>
-          </MenuItem>
-        </Select> */}
-
+        <TagComboBox ></TagComboBox>
+       
         <TextField onChange={handlePostTitle} style={mystyle} label="Title"></TextField>
 
         <TextField 
@@ -115,7 +77,7 @@ export default function CreatePost () {
         style={mystyle} 
         label="Type your question/post"></TextField>
 
-        <Button type="submit" variant="contained" color="success">Publish</Button>
+        <Button style={{width : "18%", marginLeft : "82%"}} onClick={onSubmit}  type="submit" variant="contained" color="success">Publish</Button>
         </FormGroup>
       </FormControl> 
       </Box>
