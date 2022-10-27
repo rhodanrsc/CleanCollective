@@ -29,8 +29,11 @@ const ExpandMore = styled((props) => {
 
 //Get the User Post Data
 function getUserPost (){
-  console.log("like button clicked");
-  axios.get('/user.post.route').then(() => {console.log('User post data pulled form DB');}).catch(() => {alert("Error pulling user post data");
+  alert("get post button clicked");
+  axios({method: "GET", 
+  url: "http://localhost:5000/user.post.route/"})
+  .then(() => {console.log('User post data pulled form DB');})
+  .catch(() => {alert("Error pulling user post data");
 });
 }
 
@@ -46,7 +49,6 @@ export default function PostCard() {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
           </Avatar>
         }
         action={
