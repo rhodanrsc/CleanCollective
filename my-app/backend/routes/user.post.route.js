@@ -2,6 +2,8 @@
 const router = require('express').Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
+
+
 router.route("/").get((req, res) => {
   usersPost.UserPostCollection
     .find()
