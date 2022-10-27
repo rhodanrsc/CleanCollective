@@ -239,7 +239,7 @@ router.route("/login").post((req, res, next) => {
       if (err) throw err;
       if (!user) {
         console.log('login3');
-        res.status(400).json({ error: 'User does not exist' });
+        res.status(401).json({ error: 'User does not exist' });
         // res.send("User does not exist");
       } else {
         console.log('login4');
