@@ -15,15 +15,15 @@ router.route('/addPost/:id').post((req,res) => {
     User.UserCollection.findById(req.params.id)
     .then(user => {
         //If this user is found. Create a post
-        const thisPostUsername = user.username;
-        const thisProfilePic = req.body.postUserProfilePic;
+        const thisPostUsername = user.postUserName;
+        const thisPostTitle = req.body.postTitle;
         const thisPostBody = req.body.postBody;
         const thisPostLikes = req.body.postLikes;
         const thisPostDislikes = req.body.postDislikes;
         //Create a new Post Object
         const newPost = new usersPost.UserPostCollection({
             postUserName : thisPostUsername,
-            postUserProfilePic : thisProfilePic,
+            postTitle : thisPostTitle,
             postBody : thisPostBody,
             postLikes : thisPostLikes,
             postDislikes : thisPostDislikes
