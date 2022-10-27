@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper, FormControl, Box, TextField, Button, FormGroup} from "@mui/material";
 import axios from "axios";
 import { ReactSession }  from 'react-client-session';
-import {getValues, TagComboBox} from "./tag_combo_box";
-
-
+import {TagComboBox} from "./tag_combo_box";
 
 
 export default function CreatePost () {
     let userSession = ReactSession.get("userSession")
-    
+    const [listOfSelectedTags, setListOfSelectedTags] = useState([]);
     const [selectTextField, setSelectTextField] = useState();
     const [postTitle, setPostTitle] = useState();
     const [postBody, setPostBody] = useState();
@@ -44,15 +42,37 @@ export default function CreatePost () {
     const handlePostBody = (event) => {
       setPostBody(event.target.value);
     }
+    let arrayOfTags = [];
+    useEffect(() => {
+      let listOfTags = document.getElementsByClassName("listOfTags")
+      
+      for(let i = 0; i < listOfTags.length; i++){
+        arrayOfTags.push(listOfTags[i].innerHTML);
+      }
+      setListOfSelectedTags(arrayOfTags);
+    })
 
     const onSubmit = () => {
-      // if(postBody.length > 0){
-      //   axios.post("http://localhost:5000/user.post.route/addPost/" + userSession._id, {
-      //     postSector : 
-      //   })
-      // }
-      console.log(TagComboBox)
+      if(postBody.length > 0 && postTitle.length > 0){
+        axios.post("http://localhost:5000/user.post.route/addPost/" + userSession._id, {
+          sector : arrayOfTags,
+          postTitle : postTitle,
+          postBody : postBody
+        })
+        .then(() => {
+          alert("Post added!")
+        })
+        .catch((err) => {
+          console.log("Something went wrong: " + err )
+        })
+      }
+      console.log(userSession)
+
+      console.log(postTitle)
+      console.log(postBody)
+      console.log(Array.isArray(arrayOfTags))
     }
+   
     
 
     return (
@@ -65,7 +85,8 @@ export default function CreatePost () {
     <Box style={boxStyle} >
         <FormControl>
         <FormGroup>
-        <TagComboBox ></TagComboBox>
+
+        <TagComboBox></TagComboBox>
        
         <TextField onChange={handlePostTitle} style={mystyle} label="Title"></TextField>
 

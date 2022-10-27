@@ -73,8 +73,8 @@ function Tag(props) {
 };
   const { label, onDelete, ...other } = props;
   return (
-    <div {...other}>
-      <span >{label}</span>
+    <div style={{opacity : "0.4"}} {...other}>
+      <span className="listOfTags" >{label}</span>
       <CloseIcon iconstyle={styles.bigIcon} style={styles.big} onClick={onDelete} />
     </div>
     

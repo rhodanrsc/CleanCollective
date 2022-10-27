@@ -11,7 +11,7 @@ const userPostSchema = new Schema({
     type: String, //We still need to figure out how to use images within Mongo DB
   },
   postSector: {
-    type: String,
+    type: Array,
     required: false,
   },
   postTitle: {
