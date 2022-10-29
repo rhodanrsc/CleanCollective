@@ -1,8 +1,9 @@
 // Import Modules
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserLoginForm from "./user-login-form";
 import { useNavigate } from "react-router-dom";
+import { ReactSession }  from 'react-client-session';
 // LoginUser Component
 const UserLoginComponent = () => {
   const navigate = useNavigate();
@@ -10,8 +11,14 @@ const UserLoginComponent = () => {
     login_email_field: "",
     login_password_field: "",
   });
+
+  const [error, setError] = useState(null);
+
+ 
+  
   // When user hits login button
   const onSubmit = (userObject) => {
+    setError(false);
     axios({
       method: "POST",
       data: {
@@ -23,15 +30,17 @@ const UserLoginComponent = () => {
     })
     .then((res) => {
       if(res.status === 200){
-        alert("Login Sucsess");
+
         navigate("/"); // page you go to after login 
         window.location.reload();
+        ReactSession.set("userSession", res.data)
+        
       }else{
         Promise.reject();
       }
       console.log(res);
     })
-    .catch((err) => alert("Incorrect username or password"));
+    .catch((err) => {setError(true);});
 
   };
 
@@ -39,6 +48,7 @@ const UserLoginComponent = () => {
   return (
     <UserLoginForm
       initialValues={formValues}
+      error={error}
       onSubmit={onSubmit}
       enableReinitialize
     >

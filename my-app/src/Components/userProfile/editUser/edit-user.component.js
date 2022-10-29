@@ -5,15 +5,17 @@ import ChangeEmail from "./ChangeEmail";
 import DeleteUser from "./DeleteUser";
 import {Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableCell , TableRow} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import getUser from "../../getUser";
-
+import { ReactSession } from 'react-client-session';
 export default function ControlledAccordions() {
-  let userSession = getUser();
+  let userSession = ReactSession.get("userSession")
   const [expanded, setExpanded] = useState(false);
+ 
   
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  
 
   return (
     

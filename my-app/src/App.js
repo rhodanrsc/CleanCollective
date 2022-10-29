@@ -32,6 +32,9 @@ import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.comp
 
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
+import { ReactSession } from 'react-client-session';
+
+ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
 

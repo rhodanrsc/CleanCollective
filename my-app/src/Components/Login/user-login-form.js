@@ -61,6 +61,10 @@ const UserLoginForm = (props) => {
             <br/>
             <br/>
           </FormGroup>
+
+<div className="d-block invalid-feedback" component={"span"}>
+        {props.error? <p>Incorrect email or password</p> : ""}
+        </div>
           <Button
            className="logButton" variant="danger" size="lg" block="block" name="logButton"
             // onClick={""}
