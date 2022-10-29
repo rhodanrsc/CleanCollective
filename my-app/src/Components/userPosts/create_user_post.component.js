@@ -7,7 +7,6 @@ import {TagComboBox} from "./tag_combo_box";
 
 export default function CreatePost () {
     let userSession = ReactSession.get("userSession")
-    const [selectTextField, setSelectTextField] = useState();
     const [postTitle, setPostTitle] = useState();
     const [postBody, setPostBody] = useState();
 
@@ -23,15 +22,6 @@ export default function CreatePost () {
         justifyContent: "center",
         alignItems: "center",
         
-    }
-
-
-    const handleSelectTextField = (event) => {
-      setSelectTextField(event.target.value);
-    }
-
-    const handleAddingTextField = () => {
-      console.log(selectTextField)
     }
 
     const handlePostTitle = (event) => {
@@ -58,17 +48,12 @@ export default function CreatePost () {
           postBody : postBody
         })
         .then(() => {
-          alert("Post added!")
+          console.log("Post added")
         })
         .catch((err) => {
           console.log("Something went wrong: " + err )
         })
       }
-      console.log(userSession)
-
-      console.log(postTitle)
-      console.log(postBody)
-      console.log(Array.isArray(arrayOfTags))
     }
    
     

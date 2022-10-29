@@ -1,7 +1,7 @@
-
 const router = require('express').Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
+const Sector = require("../models/sector.model");
 
 
 router.route("/").get((req, res) => {
@@ -16,6 +16,7 @@ router.route('/addPost/:id').post((req,res) => {
     User.UserCollection.findById(req.params.id)
     .then(user => {
         //If this user is found. Create a post
+        
         const thisPostUsername = user.username;
         const thisProfilePic = req.body.postUserProfilePic;
         const thisPostBody = req.body.postBody;
@@ -23,7 +24,7 @@ router.route('/addPost/:id').post((req,res) => {
         const thisPostDislikes = req.body.postDislikes;
         const thisSector = req.body.sector;
         const thisPostTitle = req.body.postTitle;
-        
+
         //Create a new Post Object
         const newPost = new usersPost.UserPostCollection({
             postUserName : thisPostUsername,
