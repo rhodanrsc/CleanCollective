@@ -61,11 +61,10 @@ export default function PostCard(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          
-          
           {props.body}
         </Typography>
       </CardContent>
+
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon/>
@@ -74,6 +73,7 @@ export default function PostCard(props) {
           <ShareIcon />
         </IconButton>
         <button onClick={getUserPost}>Get user Post</button>
+        <div style={{padding: "10px"}}>{"~"+props.username}</div>
       </CardActions>
       
     </Card>
