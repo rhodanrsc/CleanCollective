@@ -37,7 +37,7 @@ function getUserPost (){
 });
 }
 
-export default function PostCard() {
+export default function PostCard(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -56,15 +56,14 @@ export default function PostCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={props.title}
         subheader="September 14, 2016"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          
+          {props.body}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
