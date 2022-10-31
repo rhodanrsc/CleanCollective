@@ -23,6 +23,8 @@ import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from 'react-client-session';
+//Main Form
+import PostPage from "./Components/Posts/main-post-page"
 
 ReactSession.setStoreType("sessionStorage");
 // App Component
@@ -50,6 +52,7 @@ const App = () => {
                   />
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
+                  <Route path="/forum" element={<PostPage/>} />
                 </Routes>
               </div>
             </Col>

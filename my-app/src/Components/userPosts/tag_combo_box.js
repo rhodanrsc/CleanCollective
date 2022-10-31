@@ -58,7 +58,14 @@ function TagComboBox() {
 
   const addTag = (event) =>{
     let currentInput = getInputProps().value;
-    if(currentInput !== "" && event.key === "Enter"){
+    let categoryExists = false;
+    listOfCategories.map(function(category){
+      if(currentInput === category){
+        categoryExists = true;
+      }
+    })
+
+    if(currentInput !== "" && event.key === "Enter" && categoryExists === false){
       axios.post("http://localhost:5000/sector/add/", {
          name : currentInput
       })

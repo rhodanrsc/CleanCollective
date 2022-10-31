@@ -6,12 +6,6 @@ const Schema = mongoose.Schema;
 const userPostSchema = new Schema({
   postUserName: {
     type: String,
-  },
-  postUserProfilePic: {
-    type: String, //We still need to figure out how to use images within Mongo DB
-  },
-  postSector: {
-    type: Array,
     required: false,
   },
   postTitle: {
@@ -30,6 +24,13 @@ const userPostSchema = new Schema({
   postDislikes: {
     type: Number,
     default: 0,
+    required: false,
+  },
+   postUserProfilePic: {
+    type: String, //We still need to figure out how to use images within Mongo DB
+  },
+  postSector: {
+    type: String,
     required: false,
   },
 },

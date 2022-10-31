@@ -2,10 +2,7 @@ const company = require('./company.model');
 const userPost = require("./users.post.model");
 const mongoose = require('mongoose');
 
-
 const Schema = mongoose.Schema;
-
-
 
 const userSchema = new Schema({
     username:{

@@ -3,7 +3,6 @@ const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
 const Sector = require("../models/sector.model");
 
-
 router.route("/").get((req, res) => {
   usersPost.UserPostCollection
     .find()
@@ -18,17 +17,17 @@ router.route('/addPost/:id').post((req,res) => {
         //If this user is found. Create a post
         
         const thisPostUsername = user.username;
-        const thisProfilePic = req.body.postUserProfilePic;
+        const thisPostTitle = req.body.postTitle;
         const thisPostBody = req.body.postBody;
         const thisPostLikes = req.body.postLikes;
         const thisPostDislikes = req.body.postDislikes;
         const thisSector = req.body.sector;
-        const thisPostTitle = req.body.postTitle;
+        
 
         //Create a new Post Object
         const newPost = new usersPost.UserPostCollection({
             postUserName : thisPostUsername,
-            postUserProfilePic : thisProfilePic,
+            postTitle : thisPostTitle,
             postBody : thisPostBody,
             postTitle : thisPostTitle,
             postSector : thisSector,
@@ -105,7 +104,7 @@ router.route('/addPost/:id').post((req,res) => {
     );
   });
 
-// Delete Student
+// Delete user post
 router.delete("/delete-user.post/:id", (req, res, next) => {
   usersPost.userPostSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
