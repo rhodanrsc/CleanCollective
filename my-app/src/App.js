@@ -33,6 +33,8 @@ import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.comp
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
 import { ReactSession } from 'react-client-session';
+//Main Form
+import PostPage from "./Components/Posts/main-post-page"
 
 ReactSession.setStoreType("sessionStorage");
 // App Component
@@ -92,6 +94,7 @@ const App = () => {
                     element={<ConfirmEmail />}
                   />
                   <Route path="/editUser" element={<EditUser />} />
+                  <Route path="/forum" element={<PostPage/>} />
                 </Routes>
               </div>
             </Col>
