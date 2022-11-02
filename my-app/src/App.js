@@ -22,6 +22,7 @@ import RegisterPage from "./Components/registration/create-user.component";
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
 import { ReactSession } from 'react-client-session';
+import ProfilePage from './Components/userProfile/public_profile_Page/display-user-information.component'
 //Main Form
 import PostPage from "./Components/Posts/main-post-page"
 
@@ -51,6 +52,7 @@ const App = () => {
                   />
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/forum" element={<PostPage/>} />
+                  <Route path="/profilepage" element={<ProfilePage/>} />
                 </Routes>
               </div>
             </Col>
