@@ -43,6 +43,7 @@ export class PostPage extends Component {
         username={post.postUserName}
         title={post.postTitle}
         body={post.postBody}
+        likes={post.postLikes}
           />
           </div>
       ))}

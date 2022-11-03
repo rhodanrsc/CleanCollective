@@ -44,6 +44,15 @@ router.route('/addPost/:id').post((req,res) => {
     })
 })
 
+router.route('/likePost/:id').post((req,res) => {
+
+
+  })
+
+
+
+
+
   //const companyName = req.body.postUserName;
   //Find the User object that has this name
   // User.User.find({ name: req.body.user })
