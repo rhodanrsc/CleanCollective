@@ -15,7 +15,7 @@ const Logout = () => {
       };
   return (
     <div className="form-wrapper">
-        <a onClick={logout}>Logout</a>
+        <span onClick={logout}>Logout</span>
     </div>
   );
 };
