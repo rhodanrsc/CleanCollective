@@ -7,7 +7,7 @@ const NonUserNavBar = () => { return (
     <div className="navBar">
         <div className="homeButton navLogo">
             <a href="/">
-                <img className="logo" src={logo}/>
+                <img className="logo" alt="" src={logo}/>
             </a>
         </div>
         <div className="navbuttons">
