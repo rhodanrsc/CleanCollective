@@ -7,9 +7,11 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from '@mui/material/Typography';
 
-//side menu 
-import CustomizedMenus from "./user_description_menu.component";
+//side panel 
 import BackgroundLetterAvatars from "./right_panel/user_profile_image_default.component";
+
+//middle panel
+import DescriptionBox from "./middle_panel/information_edit_box.component";
 //there l be a side link for settings
 
 //import react session
@@ -41,31 +43,9 @@ export default function ProfilePage() {
             <BackgroundLetterAvatars></BackgroundLetterAvatars>{name}
           </Typography>
           <span />
-            <CustomizedMenus></CustomizedMenus>
+            <DescriptionBox></DescriptionBox>
 
-          <Box
-            component="form"
-            sx={{ "& .MuiTextField-root": { m: 1, width: "40ch" } }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-multiline-flexible"
-              label="About"
-              multiline
-              maxRows={20}
-              value={value}
-              onChange={handleChange}
-            />
-          </Box>
-          <Box
-            component="form"
-            sx={{ "& .MuiTextField-root": { m: 1, width: "40ch" } }}
-            noValidate
-            autoComplete="off"
-          >
-            
-          </Box>
+          
         </Grid>
         <Grid xs></Grid>
       </Grid>

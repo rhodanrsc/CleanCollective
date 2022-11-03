@@ -36,7 +36,6 @@ function stringAvatar(name) {
   };
 }
 
-
 export default function BackgroundLetterAvatars() {
   let data = ReactSession.get("userSession");
   let profilename = data.username;
