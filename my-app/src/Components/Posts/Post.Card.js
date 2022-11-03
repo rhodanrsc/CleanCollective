@@ -31,10 +31,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+let id = '';
+
 //Get the User Post Data
 function getUserPost() {
   alert("get post button clicked");
-  axios({ method: "GET", url: "http://localhost:5000/user.post.route/" })
+  axios({ method: "GET", url: "http://localhost:5000/getUserPost/" + id})
     .then(() => {
       console.log("User post data pulled form DB");
     })
@@ -43,9 +45,7 @@ function getUserPost() {
     });
 }
 
-function like() {
 
-}
 
 export default function PostCard(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -54,6 +54,10 @@ export default function PostCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  function like(e) {
+    id = e.currentTarget.id;
+  }
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -72,6 +76,7 @@ export default function PostCard(props) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
+          <div>{props.id}</div>
         </Typography>
       </CardContent>
 
@@ -79,6 +84,7 @@ export default function PostCard(props) {
         <div className="d-flex fd-column">
 
           <ToggleButton
+            id= {props.id}
             value="check"
             size="small"
             color="success"
@@ -89,6 +95,7 @@ export default function PostCard(props) {
               setSelectedDislike(!selectedDislike);
               }
             }}
+            onClick={like}
           >
             <ArrowDropUpIcon/>
 
