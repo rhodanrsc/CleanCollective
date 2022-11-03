@@ -4,7 +4,7 @@ const Sector = require('../models/sector.model');
 
 router.route('/').get((req, res) => {
     Sector.SectorCollection.find()
-    .then(sectors => res.json(sectors))
+    .then(sectors => res.send(sectors))
     .catch(err => res.status(400).json('Error: Could not fetch Sectors - ' + err));
 });
 

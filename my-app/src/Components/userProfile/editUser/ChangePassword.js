@@ -9,7 +9,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ChangeEmail() {
+export default function ChangePassword() {
   let userSession = ReactSession.get("userSession")
   const [open, setOpen] = useState(false);
   const [newPassword, setNewPassword] = useState("");
