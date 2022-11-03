@@ -1,20 +1,25 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
+import { ReactSession } from 'react-client-session';
 
-const isLoggedIn =  false;
 
-const NavBar = () => { 
+export default function NavBar ()  { 
     
-    if (isLoggedIn) {
-        return <UserNavBar />;
-    } else {
-        return <NonUserNavBar />;
-    }
+    let userSession = ReactSession.get("userSession")
+
+    return (
+        <div>
+            {userSession ? <UserNavBar/> : <NonUserNavBar />}
+        </div>
+        
+    )
+
+ 
+
 };
 
-export default NavBar;
 
 // Not fully implemented yet.
 // Need to figure out how to know if someone is logged in
