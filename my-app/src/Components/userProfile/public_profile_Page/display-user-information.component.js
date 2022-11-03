@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 //side menu 
 import CustomizedMenus from "./user_description_menu.component";
+import BackgroundLetterAvatars from "./right_panel/user_profile_image_default.component";
 //there l be a side link for settings
 
 //import react session
@@ -37,7 +38,7 @@ export default function ProfilePage() {
       <Grid container spacing={3}>
         <Grid xs={10}>
         <Typography variant="h2" gutterBottom>
-            {name}
+            <BackgroundLetterAvatars></BackgroundLetterAvatars>{name}
           </Typography>
           <span />
             <CustomizedMenus></CustomizedMenus>
