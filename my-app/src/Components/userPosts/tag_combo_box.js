@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
-import CheckIcon from '@mui/icons-material/Check';
-import axios from "axios"
-import {Listbox, Root, Label, InputWrapper, StyledTag} from "./tag_combo_style";
-
+import React, { useEffect, useState } from "react";
+import { useAutocomplete } from "@mui/base/AutocompleteUnstyled";
+import CheckIcon from "@mui/icons-material/Check";
+import axios from "axios";
+import {
+  Listbox,
+  Root,
+  Label,
+  InputWrapper,
+  StyledTag,
+} from "./tag_combo_style";
 
 function TagComboBox() {
-  const [listOfCategories, setListOfCategories] = useState(); 
+  const [listOfCategories, setListOfCategories] = useState();
 
-   useEffect(() => {
-     let newList = []
-      axios.get("http://localhost:5000/sector/")
-      .then(response => {
+  useEffect(() => {
+    let newList = [];
+    axios
+      .get("http://localhost:5000/tag/")
+      .then((response) => {
         if (response.data.length > 0) {
-          
-          response.data.map(function(category) {
-            newList.push(category.name);
-            
-          })
+          response.data.map(function (category) {
+            newList.push(category.tagsName);
+          });
           setListOfCategories(newList);
         }
       })
-      .catch((error) => {
-        
-      })
-  }, [listOfCategories]
-  )
-
-
-     
+      .catch((error) => {});
+  }, [listOfCategories]);
 
   const {
     getRootProps,
@@ -42,47 +40,69 @@ function TagComboBox() {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'customized-hook-demo',
-    freeSolo : true,
+    id: "customized-hook-demo",
+    freeSolo: true,
     multiple: true,
     options: listOfCategories ? listOfCategories : [],
     getOptionLabel: (option) => option,
-    isOptionEqualToValue : (option, value) => option.id !== value.id
-  })
+    isOptionEqualToValue: (option, value) => option.id !== value.id,
+  });
   //Colors for the tags
-  const pastelColorPallete = ["rgba(181, 234, 215, 0.6)", "rgba(224, 187, 228, 0.6)"  , "rgba(104, 209, 197, 0.6)", "rgba(244, 179, 206, 0.6)", "rgba(249, 216, 206,0.6)", "rgba(117, 199, 234, 0.6)", "rgba(149, 125, 173, 0.6)", "#CEF2E1", "#FFFBD6", "#D7FDDF", "#D0D0FE"]
+  const pastelColorPallete = [
+    "rgba(181, 234, 215, 0.6)",
+    "rgba(224, 187, 228, 0.6)",
+    "rgba(104, 209, 197, 0.6)",
+    "rgba(244, 179, 206, 0.6)",
+    "rgba(249, 216, 206,0.6)",
+    "rgba(117, 199, 234, 0.6)",
+    "rgba(149, 125, 173, 0.6)",
+    "#CEF2E1",
+    "#FFFBD6",
+    "#D7FDDF",
+    "#D0D0FE",
+  ];
   const thisPastel = (index) => {
     //NEED TO REFACTOR. THIS SUCKS
     return pastelColorPallete[index];
-  }
+  };
 
-  const addTag = (event) =>{
+  const addTag = (event) => {
     let currentInput = getInputProps().value;
     let categoryExists = false;
-    listOfCategories.map(function(category){
-      if(currentInput === category){
+    listOfCategories.map(function (category) {
+      if (currentInput === category) {
         categoryExists = true;
       }
-    })
+    });
 
-    if(currentInput !== "" && event.key === "Enter" && categoryExists === false){
-      axios.post("http://localhost:5000/sector/add/", {
-         name : currentInput
-      })
-      
+    if (
+      currentInput !== "" &&
+      event.key === "Enter" &&
+      categoryExists === false
+    ) {
+      axios.post("http://localhost:5000/tag/add/", {
+        name: currentInput,
+      });
     }
-  }
-
- 
-  
+  };
 
   return (
-    <Root >
+    <Root>
       <div {...getRootProps()}>
-        <Label  style={{marginTop: "5px"}}  {...getInputLabelProps()}>Category Tags</Label>
-        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+        <Label style={{ marginTop: "5px" }} {...getInputLabelProps()}>
+          Category Tags
+        </Label>
+        <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
           {value.map((option, index) => (
-            <StyledTag  style={{backgroundColor : thisPastel(index), borderRadius : "25px", paddingBottom : "2px"}} label={option} {...getTagProps({ index })} />
+            <StyledTag
+              style={{
+                backgroundColor: thisPastel(index),
+                borderRadius: "25px",
+                paddingBottom: "2px",
+              }}
+              label={option}
+              {...getTagProps({ index })}
+            />
           ))}
 
           <input onKeyDown={addTag} {...getInputProps()}></input>
@@ -99,7 +119,7 @@ function TagComboBox() {
         </Listbox>
       ) : null}
     </Root>
-  )
+  );
 }
 
-export {TagComboBox}
+export { TagComboBox };
