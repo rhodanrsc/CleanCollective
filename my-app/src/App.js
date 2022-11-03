@@ -32,6 +32,7 @@ import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.comp
 
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component"
+import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from 'react-client-session';
 //Main Form
 import PostPage from "./Components/Posts/main-post-page"
@@ -68,7 +69,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          <CustomSidePanel />
+          {/* <CustomSidePanel /> */}
         </header>
         <Container>
           <Row>
@@ -94,6 +95,7 @@ const App = () => {
                     element={<ConfirmEmail />}
                   />
                   <Route path="/editUser" element={<EditUser />} />
+                  <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage/>} />
                 </Routes>
               </div>

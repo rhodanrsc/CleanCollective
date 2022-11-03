@@ -8,11 +8,13 @@ const app = express();
 //Our Port
 const port = process.env.PORT || 5000;
 
-app.use(cors({
-  //This is part of the user session info storage
-  origin: "http://localhost:3000", // <-- location of the react app we are connecting to
-  credentials: true
-}));
+app.use(
+  cors({
+    //This is part of the user session info storage
+    origin: "http://localhost:3000", // <-- location of the react app we are connecting to
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
@@ -29,6 +31,7 @@ const developmentStageRouter = require("./routes/development.stage");
 const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
+const tagRouter = require("./routes/tags");
 
 
 //Use the Routers
@@ -37,8 +40,8 @@ app.use("/sector", sectorRouter);
 app.use("/development.stage", developmentStageRouter);
 app.use("/user.post.route", userPostRouter);
 app.use("/user", userRouter);
+app.use("/tag", tagRouter);
 app.use("/", mailRouter);
-
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
