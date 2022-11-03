@@ -14,7 +14,7 @@ export default function DescriptionBox() {
   //grabbing user session data
   let data = ReactSession.get("userSession");
 
-  const [value, setValue] = useState("Controlled");
+  const [value, setValue] = useState(""); // ADD USER SESSION FOR ABOUT 
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -34,6 +34,7 @@ export default function DescriptionBox() {
           maxRows={20}
           value={value}
           onChange={handleChange}
+          disabled
         />
       </Box>
       <Box
