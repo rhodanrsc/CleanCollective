@@ -2,14 +2,14 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
-
+import SidePanel from "../side/panel"
 
 
 const NavBar = () => { 
 
     const [data, setData] = useState(null);
-    const getUser = () => {
-    axios({
+    const getUser = async () => {
+    await axios({
     method: "get",
     withCredentials: true,
     url: "http://localhost:5000/user/getUser",
@@ -25,7 +25,7 @@ const NavBar = () => {
     }, [""]);
 
     if (data) {
-        return <UserNavBar/>;
+        return <SidePanel />;
     } else {
         return <NonUserNavBar />;
     }

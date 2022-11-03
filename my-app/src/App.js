@@ -28,7 +28,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          <CustomSidePanel />
+          {/* <CustomSidePanel /> */}
         </header>
         <Container>
           <Row>
