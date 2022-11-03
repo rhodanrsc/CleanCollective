@@ -2,14 +2,15 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
-import SidePanel from "../side/panel"
+import { ReactSession } from 'react-client-session';
+
 
 
 const NavBar = () => { 
 
     const [data, setData] = useState(null);
-    const getUser = async () => {
-    await axios({
+    const getUser = () => {
+    axios({
     method: "get",
     withCredentials: true,
     url: "http://localhost:5000/user/getUser",
@@ -25,14 +26,13 @@ const NavBar = () => {
     }, [""]);
 
     if (data) {
-        return <SidePanel />;
+        return <UserNavBar/>;
     } else {
         return <NonUserNavBar />;
     }
 
 };
 
-export default NavBar;
 
 // Not fully implemented yet.
 // Need to figure out how to know if someone is logged in

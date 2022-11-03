@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle,} from "@mui/material";
 import axios from "axios";
-import getUser from "../../getUser";
 import Slide from '@mui/material/Slide';
+import { ReactSession }  from 'react-client-session';
 
 //Handles slide up animation of dialog boxes
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -10,7 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ChangeEmail() {
-  let userSession = getUser();
+  let userSession = ReactSession.get("userSession")
   const [open, setOpen] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -129,6 +129,8 @@ export default function ChangeEmail() {
               resetConfirmPasswordText();
               resetCurrentPassword();
               showMessage('success');
+              userSession.password = newPassword
+              ReactSession.set("userSession", userSession)
             }
         } 
         else{

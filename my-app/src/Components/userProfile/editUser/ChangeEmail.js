@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import emailValidator from "email-validator";
-import getUser from "../../getUser";
 import Slide from '@mui/material/Slide';
-
+import { ReactSession }  from 'react-client-session';
 //For adding slide up effect on dialog box.
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function ChangeEmail() {
-  let userSession = getUser(); 
+  let userSession = ReactSession.get("userSession")
   const [open, setOpen] = useState(false);
   const [newEmail, setEmail] = useState("");
   const [currentPassword, setPassword] = useState("");
@@ -114,6 +113,8 @@ export default function ChangeEmail() {
             } else {
               resetPasswordText();
               showMessage('success');
+              userSession.email = newEmail
+              ReactSession.set("userSession", userSession)
             }
         } 
         else{
