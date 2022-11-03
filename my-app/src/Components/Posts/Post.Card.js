@@ -43,11 +43,15 @@ function getUserPost() {
     });
 }
 
-function like() {
 
-}
 
 export default function PostCard(props) {
+  function like() {
+    axios.post("http://localhost:5000/user.post.route/likePost/" + props.id, {
+  
+  })
+  }
+
   const [expanded, setExpanded] = React.useState(false);
   const [selectedLike, setSelectedLike] = React.useState(false);
   const [selectedDislike, setSelectedDislike] = React.useState(false);
@@ -72,6 +76,7 @@ export default function PostCard(props) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
+          <p>{props.id}</p>
         </Typography>
       </CardContent>
 
@@ -84,6 +89,7 @@ export default function PostCard(props) {
             color="success"
             selected={selectedLike}
             onChange={() => {
+              like();
               setSelectedLike(!selectedLike);
               if(selectedDislike){
               setSelectedDislike(!selectedDislike);
@@ -105,3 +111,4 @@ export default function PostCard(props) {
     </Card>
   );
 }
+

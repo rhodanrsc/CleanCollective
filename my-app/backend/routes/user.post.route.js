@@ -59,10 +59,18 @@ router
     });
   })
 
-router.route('/likePost/:id').post((req,res) => {
-
-
-  })
+  router.route('/likePost/:id').post((req,res) => {
+    usersPost.UserPostCollection.findOneAndUpdate(
+      {
+        id: req.params.id,
+      },
+      {
+        $inc :{
+          postLikes:1,
+        }
+      }
+      )
+    })
 
 
 
