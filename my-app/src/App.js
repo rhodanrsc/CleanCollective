@@ -76,15 +76,14 @@ const App = () => {
             <Col md={12}>
               <div className="wrapper">
                 
-                <div className="App">
-                  <h1>React Responsive - a guide</h1>
+                {/* <div className="App">
                   {isMobileDevice && <Mobile />}
                   {isTabletDevice && <><TabletMobile />
                   {isDesktop && <Desktop />}
                   {isLaptop && <Laptop />}
                   {isBigScreen && <BigScreen />}
                   </>}
-                </div>
+                </div> */}
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-user" element={<CreateUser />} />
