@@ -7,7 +7,7 @@ import createCompanyCSS from "../../shared/css/createCompany.css";
 
 const CreateCompany = (props) => {
   const [listOfCategories, setListOfCategories] = useState();
-  const [listOfDevStages, setListOfDevStages] = useState();
+  const [listOfTRLStages, setListOfTRLStages] = useState();
   //Constantly updating the sector list
   useEffect(() => {
     let newList = [];
@@ -28,17 +28,17 @@ const CreateCompany = (props) => {
   useEffect(() => {
     let newList = [];
     axios
-      .get("http://localhost:5000/sector/")
+      .get("http://localhost:5000/trl/")
       .then((response) => {
         if (response.data.length > 0) {
           response.data.map(function (category) {
-            newList.push(category.name);
+            newList.push(category);
           });
-          setListOfDevStages(newList);
+          setListOfTRLStages(newList);
         }
       })
       .catch((error) => {});
-  }, [listOfCategories]);
+  }, [listOfTRLStages]);
  
   
   return (
@@ -132,11 +132,11 @@ const CreateCompany = (props) => {
                     className="form-control"
                     id="formControlSelect4"
                   >
-                    <option value="seed">Seed and Development</option>
-                    <option value="startup">Startup</option>
-                    <option value="growth">Growth and Establishment</option>
-                    <option value="expansion">Expansion</option>
-                    <option value="maturity">Maturity</option>
+                  {listOfTRLStages ? listOfTRLStages.map(function(stage) {
+                    return(
+                      <option value={stage}>{stage.stageName}</option>
+                    )
+                  }) : null}
                   </Field>
                 </div>
 
