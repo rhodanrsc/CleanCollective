@@ -44,13 +44,15 @@ function getUserPost() {
 }
 
 
+function like() {
+  axios.post("http://localhost:5000/user.post.route/likePost/" , {
+
+})
+}
+
 
 export default function PostCard(props) {
-  function like() {
-    axios.post("http://localhost:5000/user.post.route/likePost/" + props.id, {
-  
-  })
-  }
+
 
   const [expanded, setExpanded] = React.useState(false);
   const [selectedLike, setSelectedLike] = React.useState(false);
