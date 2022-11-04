@@ -3,6 +3,7 @@ import axios from "axios";
 import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
 import { ReactSession } from 'react-client-session';
+import SidePanel from '../side/panel'
 
 
 export default function NavBar ()  { 
@@ -11,7 +12,7 @@ export default function NavBar ()  {
 
     return (
         <div>
-            {userSession ? <UserNavBar/> : <NonUserNavBar />}
+            {userSession ? <SidePanel/> : <NonUserNavBar />}
         </div>
         
     )
