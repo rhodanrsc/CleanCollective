@@ -67,12 +67,20 @@ router
     .catch((err) => res.status(400).json("Error: " + err));
   })
 
-  router.route('/likePost/:id').post((req,res) => {
-    
+  router.route('/likePost/:id/:userId').post((req,res) => {
     usersPost.UserPostCollection.findById(req.params.id)
     .then((userspost) => {
+
+      User.UserCollection.findById(req.params.userId)
+      .then((User) => {
+        User.likedPosts.push(req.params.id);
+        User.save()
+      }) 
+      
+
       userspost.postLikes+=1;
       userspost.save()
+      
       .then(() => res.send("Saved!"))
       .catch(err => res.status(400).json('Error: saving user' + err));
     }).catch(err => res.status(400).json('Error: saving user' + err));
