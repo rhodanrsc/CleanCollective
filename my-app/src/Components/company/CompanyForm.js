@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import createCompanyCSS from "../../shared/css/createCompany.css";
 // import { companyNameInput } from "./create-company-validation";
 
 const CreateCompany = (props) => {
+  const [listOfCategories, setListOfCategories] = useState();
+  const [listOfDevStages, setListOfDevStages] = useState();
+  //Constantly updating the sector list
+  useEffect(() => {
+    let newList = [];
+    axios
+      .get("http://localhost:5000/sector/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          response.data.map(function (category) {
+            newList.push(category.name);
+          });
+          setListOfCategories(newList);
+        }
+      })
+      .catch((error) => {});
+  }, [listOfCategories]);
+
+  //Constantly updating the development stage list
+  useEffect(() => {
+    let newList = [];
+    axios
+      .get("http://localhost:5000/sector/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          response.data.map(function (category) {
+            newList.push(category.name);
+          });
+          setListOfDevStages(newList);
+        }
+      })
+      .catch((error) => {});
+  }, [listOfCategories]);
+ 
+  
   return (
     <body className="company-creation-background">
       <main>
@@ -69,7 +105,7 @@ const CreateCompany = (props) => {
                   />
                 </div>
 
-                {/* Company Status*/}
+                {/* Company Sector*/}
                 <div className="form-group-create-select">
                   <label htmlFor="companyType">Sector</label>
                   <Field
@@ -78,8 +114,12 @@ const CreateCompany = (props) => {
                     className="form-control"
                     id="formControlSelect3"
                   >
-                    <option value="oil-gas">Oil & Gas</option>
-                    <option value="clean-energy">Clean Energy</option>
+                    {listOfCategories ? listOfCategories.map(function(sector) {
+                      return(
+                        <option value={sector}>{sector}</option>
+                      )
+                    }) : null}
+                 
                   </Field>
                 </div>
 

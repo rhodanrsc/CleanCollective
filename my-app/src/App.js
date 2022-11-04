@@ -23,7 +23,7 @@ import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
-import CreateCompany from "./Components/company/CompanyForm";
+import CreateCompany from "./Components/company/company-creation-component";
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
 

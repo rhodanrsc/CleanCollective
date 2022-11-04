@@ -27,7 +27,7 @@ connection.once("open", () => {
 //Routers
 const companyRouter = require("./routes/company");
 const sectorRouter = require("./routes/sector");
-const developmentStageRouter = require("./routes/development.stage");
+const trlRouter = require("./routes/trl");
 const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
@@ -37,7 +37,7 @@ const tagRouter = require("./routes/tags");
 //Use the Routers
 app.use("/company", companyRouter);
 app.use("/sector", sectorRouter);
-app.use("/development.stage", developmentStageRouter);
+app.use("/trl", trlRouter);
 app.use("/user.post.route", userPostRouter);
 app.use("/user", userRouter);
 app.use("/tag", tagRouter);

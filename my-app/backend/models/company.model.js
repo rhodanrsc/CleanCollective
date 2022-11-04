@@ -1,5 +1,5 @@
 const sector = require("./sector.model");
-const DevelopmentStage = require("./development.stages.model");
+const trl = require("./trl.model");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -21,8 +21,8 @@ const companySchema = new Schema({
     type: String,
     required: false,
   },
-  developmentStage:{
-    type: DevelopmentStage.developmentStageSchema,
+  trl:{
+    type: trl.trlSchema,
     required: true,
   },
   employees:{
