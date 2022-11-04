@@ -87,6 +87,7 @@ const App = () => {
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
+                  <Route path="/CreateCompany" element={<CompanyCreation />} />
                 </Routes>
               </div>
             </Col>
