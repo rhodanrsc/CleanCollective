@@ -31,11 +31,11 @@ import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.comp
 
 
 import CustomSidePanel from "./Components/side/panel";
-import EditUser from "./Components/userProfile/editUser/edit-user.component"
+import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
-import { ReactSession } from 'react-client-session';
+import { ReactSession } from "react-client-session";
 //Main Form
-import PostPage from "./Components/Posts/main-post-page"
+import PostPage from "./Components/Posts/main-post-page";
 
 ReactSession.setStoreType("sessionStorage");
 // App Component
@@ -69,21 +69,12 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          {/* <CustomSidePanel /> */}
+          <CustomSidePanel />
         </header>
         <Container>
           <Row>
             <Col md={12}>
               <div className="wrapper">
-                
-                {/* <div className="App">
-                  {isMobileDevice && <Mobile />}
-                  {isTabletDevice && <><TabletMobile />
-                  {isDesktop && <Desktop />}
-                  {isLaptop && <Laptop />}
-                  {isBigScreen && <BigScreen />}
-                  </>}
-                </div> */}
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
                   <Route path="/create-user" element={<CreateUser />} />
@@ -95,7 +86,7 @@ const App = () => {
                   />
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
-                  <Route path="/forum" element={<PostPage/>} />
+                  <Route path="/forum" element={<PostPage />} />
                 </Routes>
               </div>
             </Col>

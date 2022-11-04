@@ -59,6 +59,25 @@ router
     });
   })
 
+
+  router.route('/likePost/:id').post((req,res) => {
+    usersPost.UserPostCollection.findOneAndUpdate(
+      {
+        id: req.params.id,
+      },
+      {
+        $inc :{
+          postLikes:1,
+        }
+      }
+      )
+    })
+
+
+
+
+
+
   //const companyName = req.body.postUserName;
   //Find the User object that has this name
   // User.User.find({ name: req.body.user })
