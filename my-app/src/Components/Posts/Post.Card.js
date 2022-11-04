@@ -121,7 +121,7 @@ export default function PostCard(props) {
 
           </ToggleButton>
           <Typography>{props.likes}</Typography>
-//test commit
+
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
