@@ -61,19 +61,21 @@ router
 
 
   router.route("/getPost/:id").get((req,res) => {
+    
     usersPost.UserPostCollection.findById(req.params.id)
     .then((usersposts) => res.json(usersposts))
     .catch((err) => res.status(400).json("Error: " + err));
   })
 
   router.route('/likePost/:id').post((req,res) => {
+    
     usersPost.UserPostCollection.findById(req.params.id)
     .then((userspost) => {
       userspost.postLikes+=1;
       userspost.save()
       .then(() => res.send("Saved!"))
       .catch(err => res.status(400).json('Error: saving user' + err));
-    })
+    }).catch(err => res.status(400).json('Error: saving user' + err));
     
     })
 

@@ -40,10 +40,12 @@ function getUserPost() {
 
 
 
-function like() {
-  axios.post("http://localhost:5000/user.post.route/likePost/" , {
+function like(e) {
+  
+  id = e.currentTarget.id;
+  // console.log(userSession._id);
 
-})
+  axios.post("http://localhost:5000/user.post.route/likePost/"+id)
 }
 
 
@@ -58,9 +60,7 @@ export default function PostCard(props) {
     setExpanded(!expanded);
   };
 
-  function like(e) {
-    id = e.currentTarget.id;
-  }
+
 // test push 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -79,8 +79,8 @@ export default function PostCard(props) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
-
-          <div>{props.id}</div>
+<br/>
+          {props.id}
 
         </Typography>
       </CardContent>
