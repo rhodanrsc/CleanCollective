@@ -59,6 +59,7 @@ router
     });
   })
 
+
   router.route('/likePost/:id').post((req,res) => {
     usersPost.UserPostCollection.findOneAndUpdate(
       {
@@ -71,6 +72,7 @@ router
       }
       )
     })
+
 
 
 
