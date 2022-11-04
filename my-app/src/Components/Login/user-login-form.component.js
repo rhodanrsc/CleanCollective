@@ -28,8 +28,9 @@ const UserLoginComponent = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          alert("Login Success");
-          navigate("/forumPage"); // page you go to after login
+          navigate("/"); // page you go to after login
+          window.location.reload();
+          ReactSession.set("userSession", res.data);
         } else {
           Promise.reject();
         }
@@ -47,7 +48,9 @@ const UserLoginComponent = () => {
       error={error}
       onSubmit={onSubmit}
       enableReinitialize
-    ></UserLoginForm>
+    >
+      Login
+    </UserLoginForm>
   );
 };
 

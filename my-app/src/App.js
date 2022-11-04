@@ -23,6 +23,7 @@ import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
+import CreateCompany from "./Components/company/CompanyForm";
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
 
@@ -34,7 +35,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          {/* <CustomSidePanel /> */}
+          <CustomSidePanel />
         </header>
         <Container>
           <Row>
@@ -52,6 +53,7 @@ const App = () => {
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
+                  <Route path="/createCompany" element={<CreateCompany />} />
                 </Routes>
               </div>
             </Col>
