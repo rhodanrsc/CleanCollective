@@ -35,7 +35,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          <CustomSidePanel />
+          
         </header>
         <Container>
           <Row>

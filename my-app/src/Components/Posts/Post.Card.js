@@ -36,15 +36,6 @@ let id = '';
 //Get the User Post Data
 function getUserPost() {
   alert("get post button clicked");
-
-  axios({ method: "GET", url: "http://localhost:5000/getUserPost/" + id})
-
-    .then(() => {
-      console.log("User post data pulled form DB");
-    })
-    .catch(() => {
-      alert("Error pulling user post data");
-    });
 }
 
 
@@ -98,16 +89,12 @@ export default function PostCard(props) {
         <div className="d-flex fd-column">
 
           <ToggleButton
-
             id= {props.id}
-
             value="check"
             size="small"
             color="success"
             selected={selectedLike}
             onChange={() => {
-
-
               setSelectedLike(!selectedLike);
               if(selectedDislike){
               setSelectedDislike(!selectedDislike);
