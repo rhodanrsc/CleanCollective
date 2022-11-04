@@ -38,13 +38,18 @@ export class PostPage extends Component {
     return (
       <div>
           {this.state.posts.reverse().map((post) => (
-        <div className="user-posts">   
+         
         <PostCard
+        id={post._id}
         username={post.postUserName}
         title={post.postTitle}
         body={post.postBody}
+        likes={post.postLikes}
+
+        key={post._id}
+
           />
-          </div>
+          
       ))}
       </div>
     );
