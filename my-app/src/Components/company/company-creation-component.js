@@ -3,6 +3,7 @@ import axios from "axios";
 import CompanyForm from "./CompanyForm";
 import { useNavigate } from "react-router-dom";
 
+
 const CreateUser = () => {
   const navigate = useNavigate();
   const [formValues] = useState({
@@ -18,6 +19,12 @@ const CreateUser = () => {
 
   const OnSubmit = (companyObject) =>{
     console.log(companyObject.companyName)
+    console.log(companyObject.type)
+    console.log(companyObject.companyType)
+    console.log(companyObject.stage)
+    console.log(companyObject.employees)
+    console.log(companyObject.check)
+
   }
 
 

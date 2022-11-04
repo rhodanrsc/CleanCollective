@@ -5,11 +5,10 @@ const Schema = mongoose.Schema;
 const trlSchema = new Schema({
   stageName: {
     type: String,
-    required: false,
   },
   description: {
     type : String,
-  }
+  },
 },
 {
   timestamps: true

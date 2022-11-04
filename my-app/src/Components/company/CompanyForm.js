@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import createCompanyCSS from "../../shared/css/createCompany.css";
+import InfoIcon from '@mui/icons-material/Info';
+
 // import { companyNameInput } from "./create-company-validation";
 
 const CreateCompany = (props) => {
+  
   const [listOfCategories, setListOfCategories] = useState();
   const [listOfTRLStages, setListOfTRLStages] = useState();
+  const [checkValue, setCheckValue] = useState("");
   //Constantly updating the sector list
   useEffect(() => {
     let newList = [];
@@ -16,7 +19,7 @@ const CreateCompany = (props) => {
       .then((response) => {
         if (response.data.length > 0) {
           response.data.map(function (category) {
-            newList.push(category.name);
+            newList.push(category);
           });
           setListOfCategories(newList);
         }
@@ -39,6 +42,15 @@ const CreateCompany = (props) => {
       })
       .catch((error) => {});
   }, [listOfTRLStages]);
+
+  //Handle Checkbox
+  const handleCheckValue = (event) => {
+     if(checkValue === "checked"){
+      setCheckValue("");
+     } else {
+      setCheckValue("checked")
+     }
+  }
  
   
   return (
@@ -116,7 +128,7 @@ const CreateCompany = (props) => {
                   >
                     {listOfCategories ? listOfCategories.map(function(sector) {
                       return(
-                        <option value={sector}>{sector}</option>
+                        <option key={sector._id} value={sector.name}>{sector.name}</option>
                       )
                     }) : null}
                  
@@ -125,7 +137,7 @@ const CreateCompany = (props) => {
 
                 {/* Company Stage*/}
                 <div className="form-group-create-select">
-                  <label htmlFor="companyStages">Development Stage</label>
+                  <label htmlFor="companyStages">Technology Readiness Level</label>
                   <Field
                     as="select"
                     name="stage"
@@ -134,7 +146,7 @@ const CreateCompany = (props) => {
                   >
                   {listOfTRLStages ? listOfTRLStages.map(function(stage) {
                     return(
-                      <option value={stage}>{stage.stageName}</option>
+                      <option key={stage._id} value={stage.stageName}>{stage.stageName} </option>
                     )
                   }) : null}
                   </Field>
@@ -174,8 +186,10 @@ const CreateCompany = (props) => {
                     className="form-check-input"
                     name="check"
                     type="checkbox"
-                    value=""
+                    value={checkValue}
                     id="defaultCheck1"
+                    onClick={handleCheckValue}
+                    checked={checkValue}
                   />
 
                   <label className="disclaimer" htmlFor="defaultCheck1">
