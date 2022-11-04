@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserLoginForm from "./user-login-form";
 import { useNavigate } from "react-router-dom";
-import { ReactSession }  from 'react-client-session';
+import { ReactSession } from "react-client-session";
 // LoginUser Component
 const UserLoginComponent = () => {
   const navigate = useNavigate();
@@ -14,8 +14,6 @@ const UserLoginComponent = () => {
 
   const [error, setError] = useState(null);
 
- 
-  
   // When user hits login button
   const onSubmit = (userObject) => {
     setError(false);
@@ -28,20 +26,18 @@ const UserLoginComponent = () => {
       withCredentials: true,
       url: "http://localhost:5000/user/login",
     })
-    .then((res) => {
-      if(res.status === 200){
-
-        navigate("/"); // page you go to after login 
-        window.location.reload();
-        ReactSession.set("userSession", res.data)
-        
-      }else{
-        Promise.reject();
-      }
-      console.log(res);
-    })
-    .catch((err) => {setError(true);});
-
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Login Success");
+          navigate("/forumPage"); // page you go to after login
+        } else {
+          Promise.reject();
+        }
+        console.log(res);
+      })
+      .catch((err) => {
+        setError(true);
+      });
   };
 
   // Return student form
@@ -51,13 +47,9 @@ const UserLoginComponent = () => {
       error={error}
       onSubmit={onSubmit}
       enableReinitialize
-    >
-      Login
-    </UserLoginForm>
+    ></UserLoginForm>
   );
 };
-
-
 
 // Export CreateStudent Component
 export default UserLoginComponent;
