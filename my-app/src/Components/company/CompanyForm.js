@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
+import createCompanyCSS from "../../shared/css/createCompany.css";
 // import { companyNameInput } from "./create-company-validation";
 
 const CreateCompany = (props) => {
