@@ -9,7 +9,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 // Import Custom CSS
 import "./App.css";
 import "./shared/css/style.css";
-import "./shared/css/createCompany.css";
+// import "./shared/css/createCompany.css";
 
 // Import from react-router-dom
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -69,6 +69,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
+          
         </header>
         <Container>
           <Row>
