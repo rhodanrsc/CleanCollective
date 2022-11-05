@@ -54,6 +54,14 @@ body {
     margin-right: 30px;
 }
 
+.loginButton:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
+
+
 /* Landing Page */
 
 .buttonGreenSmall{
