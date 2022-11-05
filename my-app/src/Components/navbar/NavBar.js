@@ -4,7 +4,6 @@ import UserNavBar from "./userNavBar.component";
 import NonUserNavBar from "./NonUserNavBar.component";
 import SidePanel from '../side/panel';
 import { ReactSession } from 'react-client-session';
-import SidePanel from '../side/panel'
 
 
 export default function NavBar ()  { 
