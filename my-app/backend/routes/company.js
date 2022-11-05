@@ -4,7 +4,7 @@ const Sector = require("../models/sector.model");
 const trl = require("../models/trl.model");
 
 router.route("/").get((req, res) => {
-  Company.find()
+  Company.CompanyCollection.find()
     .then((companies) => res.json(companies))
     .catch((err) => res.status(400).json("Error: " + err));
 });

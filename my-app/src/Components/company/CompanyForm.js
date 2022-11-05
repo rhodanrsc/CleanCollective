@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import InfoIcon from '@mui/icons-material/Info';
-
-// import { companyNameInput } from "./create-company-validation";
+import {checkCompany} from "./companyCreationValidation"
 
 const CreateCompany = (props) => {
   
@@ -51,6 +49,8 @@ const CreateCompany = (props) => {
       setCheckValue("checked")
      }
   }
+  
+
  
   
   return (
@@ -65,7 +65,11 @@ const CreateCompany = (props) => {
 
           <h2 className="second-header">Viewable by all users</h2>
 
-          <Formik {...props}>
+          <Formik 
+              {...props} 
+              validateOnChange={false}
+              validateOnBlur={false}>
+              {({ errors, touched, isValidating, values }) => (
             <Form>
               <FormGroup>
                 {/* Company Name */}
@@ -87,13 +91,15 @@ const CreateCompany = (props) => {
                     className="form-control"
                     id="formControlInput1"
                     placeholder="Add your organization's name"
-                    required
+                    validate={checkCompany}
                   />
+                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
                 </div>
 
                 {/* Company Type*/}
                 <div className="form-group-create-select">
-                  <label htmlFor="companyType">Company Type</label>
+                  <label htmlFor="companyType">Company Type  </label>
+                  
                   <Field
                     as="select"
                     name="type"
@@ -216,6 +222,7 @@ const CreateCompany = (props) => {
                 {props.children}
               </Button>
             </Form>
+              )}
           </Formik>
         </div>
       </main>
