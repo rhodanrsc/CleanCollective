@@ -27,90 +27,51 @@ const UserForm = (props) => {
             <br />
             <br />
 
-            <div className="form-wrapper">
-              <Formik
-                {...props}
-                validateOnChange={false}
-                validateOnBlur={false}
-              >
-                {({ errors, touched, isValidating, values }) => (
-                  <Form>
-                    <FormGroup>
-                      {/* Username */}
-
-                      <div className="form-group-register">
-                        <label htmlFor="usernameID">Username:</label>
-                        <Field
-                          id="usernameID"
-                          name="username"
-                          type="text"
-                          className="form-control"
-                          validate={checkUsername}
-                        />
-                        {<div style={{ color: "red" }}>{errors.username}</div>}
-                        <br />
-
-                        {/* Email */}
-                        <label htmlFor="emailID">Email:</label>
-                        <Field
-                          id="emailID"
-                          name="email"
-                          type="text"
-                          className="form-control"
-                          validate={checkEmail}
-                        />
-                        {<div style={{ color: "red" }}>{errors.email}</div>}
-                        <br />
-
-                        {/* Password */}
-                        <label htmlFor="passwordID">Password:</label>
-                        <Field
-                          id="passwordID"
-                          name="password"
-                          type="text"
-                          className="form-control"
-                          validate={checkPassword}
-                        />
-                        {<div style={{ color: "red" }}>{errors.password}</div>}
-                        <br />
-
-                        {/*Confirm password */}
-                        <label htmlFor="confirmPasswordID">
-                          Confirm Password:
-                        </label>
-                        <Field
-                          id="confirmPasswordID"
-                          name="confirmPassword"
-                          type="text"
-                          className="form-control"
-                          validate={(value) =>
-                            checkConfirmPassword(values.password, value)
-                          }
-                        />
-                        {
-                          <div style={{ color: "red" }}>
-                            {errors.confirmPassword}
-                          </div>
-                        }
-                      </div>
-                      <br />
-                    </FormGroup>
-                    <Button
-                      className="registerButton"
-                      variant="success"
-                      size="lg"
-                      block="block"
-                      type="submit"
-                    >
-                      {props.children}
-                    </Button>
-                  </Form>
-                )}
-              </Formik>
+    <div className="form-wrapper">
+      <Formik {...props} validateOnChange={false} validateOnBlur={false} >
+      {({ errors, touched, isValidating,values }) => (
+        <Form>
+          <FormGroup>
+            {/* Username */}
+            
+            <div className="form-group-register">
+            <label htmlFor="usernameID">Username:</label>
+            <Field id="usernameID" name="username" type="text" className="form-control" validate={checkUsername} />
+            {<div style={{color: "red"}}>{errors.username}</div>}
+            <br/>
+            
+            {/* Email */}
+            <label htmlFor="emailID">Email:</label>
+            <Field id="emailID" name="email" type="text" className="form-control" validate={checkEmail} />
+            {<div style={{color: "red"}}>{errors.email}</div>}
+            <br/>
+           
+            {/* Password */}
+            <label htmlFor="passwordID">Password</label>
+            <Field id="passwordID" name="password" type="password" className="form-control" validate={checkPassword} />
+            {<div style={{color: "red"}}>{errors.password}</div>}
+            <br/>
+          
+            {/*Confirm password */}
+            <label htmlFor="confirmPasswordID">Confirm Password</label>
+            <Field id="confirmPasswordID" name="confirmPassword" type="password" className="form-control" validate={value =>
+              checkConfirmPassword(values.password, value)
+            }/>
+            {<div style={{color: "red"}}>{errors.confirmPassword}</div>}
+            
             </div>
-          </main>
-        </div>
-      </div>
+            <br/>
+          </FormGroup>
+          <Button className="registerButton" variant="success" size="lg" block="block" type="submit">
+            {props.children}
+          </Button>
+        </Form>
+      )}
+      </Formik>
+    </div>
+    </main>
+    </div>
+    </div>
     </body>
   );
 };

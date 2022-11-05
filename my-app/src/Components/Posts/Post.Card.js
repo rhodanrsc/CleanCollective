@@ -18,7 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
-let userSession = ReactSession.get("userSession");
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,18 +38,29 @@ function getUserPost() {
   alert("get post button clicked");
 }
 
+let userSession = ReactSession.get("userSession");
 
-
-function like() {
-  axios.post("http://localhost:5000/user.post.route/likePost/" , {
-
-})
+function like(e) {
+  
+  id = e.currentTarget.id;
+  console.log(userSession._id)
+// tea
+  axios.post("http://localhost:5000/user.post.route/likePost/" + id)
 }
-
 
 export default function PostCard(props) {
 
+  let userSession = ReactSession.get("userSession");
 
+  function like(e) {
+    id = e.currentTarget.id;
+    console.log(id)
+    const userId = userSession._id
+    console.log(userId)
+
+  // tea
+    axios.post("http://localhost:5000/user.post.route/likePost/" + id + '/' + userId)
+  }
 
   const [expanded, setExpanded] = React.useState(false);
   const [selectedLike, setSelectedLike] = React.useState(false);
@@ -58,10 +69,8 @@ export default function PostCard(props) {
     setExpanded(!expanded);
   };
 
-  function like(e) {
-    id = e.currentTarget.id;
-  }
 
+// test push 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -79,8 +88,8 @@ export default function PostCard(props) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
-
-          <div>{props.id}</div>
+<br/>
+          {props.id}
 
         </Typography>
       </CardContent>

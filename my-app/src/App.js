@@ -1,5 +1,6 @@
 // Import React
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Import Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
@@ -18,7 +19,16 @@ import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
-import RegisterPage from "./Components/registration/create-user.component";
+import RegisterPage from "./Components/registration/create-user.component"
+import CompanyCreation from "./Components/company/create-company-components";
+
+import { Desktop } from "./Components/desktop/desktop.component";
+import { Laptop } from "./Components/laptop/laptop.component";
+import { BigScreen } from "../src/Components/big-screen/big-screen.component";
+import { Mobile } from "../src/Components/mobile/mobile.component";
+import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.component";
+
+
 import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
@@ -30,8 +40,32 @@ import PostPage from "./Components/Posts/main-post-page";
 ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
+
+  const isMobileDevice = useMediaQuery({
+    query: "(min-device-width: 480px)",
+  });
+
+  const isTabletDevice = useMediaQuery({
+    query: "(min-device-width: 768px)",
+  });
+
+  const isLaptop = useMediaQuery({
+    query: "(min-device-width: 1024px)",
+  });
+
+  const isDesktop = useMediaQuery({
+    query: "(min-device-width: 1200px)",
+  });
+
+  const isBigScreen = useMediaQuery({
+    query: "(min-device-width: 1201px )",
+  });
+
   return (
+
+
     <Router>
+
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
@@ -53,7 +87,7 @@ const App = () => {
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
-                  <Route path="/createCompany" element={<CreateCompany />} />
+                  <Route path="/CreateCompany" element={<CompanyCreation />} />
                 </Routes>
               </div>
             </Col>
@@ -61,6 +95,8 @@ const App = () => {
         </Container>
       </div>
     </Router>
+
+
   );
 };
 

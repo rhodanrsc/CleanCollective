@@ -26,19 +26,20 @@ const UserLoginComponent = () => {
       withCredentials: true,
       url: "http://localhost:5000/user/login",
     })
-      .then((res) => {
-        if (res.status === 200) {
-          navigate("/"); // page you go to after login
-          window.location.reload();
-          ReactSession.set("userSession", res.data);
-        } else {
-          Promise.reject();
-        }
-        console.log(res);
-      })
-      .catch((err) => {
-        setError(true);
-      });
+    .then((res) => {
+      if(res.status === 200){
+
+        navigate("/"); // page you go to after login 
+        window.location.reload();
+        ReactSession.set("userSession", res.data)
+        
+      }else{
+        Promise.reject();
+      }
+      console.log(res);
+    })
+    .catch((err) => {setError(true);});
+
   };
 
   // Return student form

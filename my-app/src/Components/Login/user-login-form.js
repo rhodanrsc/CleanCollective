@@ -11,8 +11,17 @@ const UserLoginForm = (props) => {
 
   console.log(props);
   return (
-    <div className="form-group">
-      <h2 className="first-header">Welcome Back!</h2>
+    <div className="user-login-background">
+    <div className="border">
+
+      <main>
+        <h2 className="first-header">We've Missed You!</h2>
+        <br/>
+        <div contentEditable="true" className="company-creation-description">More than 150 questions are waiting <br/>for your wise suggestions!</div>
+    <br/>
+    <br/>
+            <br/>
+    <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>

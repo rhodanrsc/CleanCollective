@@ -54,6 +54,14 @@ body {
     margin-right: 30px;
 }
 
+.loginButton:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
+
+
 /* Landing Page */
 
 .buttonGreenSmall{
@@ -69,6 +77,13 @@ body {
     margin-right: 8px;
 }
 
+.buttonGreenSmall:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
+
 .buttonGreenBig {
     display: inline-block;
     padding: 12px 20px;
@@ -83,6 +98,13 @@ body {
 
     text-align: center;
 }
+
+.buttonGreenBig:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
 
 .bigLogo {
     display: block;
@@ -170,6 +192,13 @@ body {
     color: white;
     border: none;
 }
+
+.getStarted .landingButton:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
 
 .getStarted {
     display: block;
