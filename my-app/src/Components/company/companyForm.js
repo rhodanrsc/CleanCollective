@@ -3,46 +3,12 @@ import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import {checkCompany} from "./companyCreationValidation"
-import countryList from "country-list"
-import provinceList from "provinces"
-
 
 const CreateCompany = (props) => {
-  let sda;
+  
   const [listOfCategories, setListOfCategories] = useState();
   const [listOfTRLStages, setListOfTRLStages] = useState();
   const [checkValue, setCheckValue] = useState("");
-  const [countryInput, setCountryValue] = useState("");
-
-  //Creating list of yearFounded array
-  const createYears = () => {
-    let listOfYears =[];
-    for (let i = 1800; i <= 2022; i++){
-      listOfYears.push(i);
-    }
-    return listOfYears
-  }
-
-  //Creating list of Provinces
-  const createProvinceList = (typeCountry) => {
-    let provinceArray = [];
-    let stateArray = []
-
-    provinceList.map(function(country){
-      if(country.country === "US") {
-        stateArray.push(country.name)
-      } else if (country.country === "CA"){
-        provinceArray.push(country.name)
-      }
-    })
-    if(typeCountry === "Canada"){
-      return provinceArray;
-    } else {
-      return stateArray;
-    }
-
-  }
-
   //Constantly updating the sector list
   useEffect(() => {
     let newList = [];
@@ -82,13 +48,6 @@ const CreateCompany = (props) => {
      } else {
       setCheckValue("checked")
      }
-     console.log(countryInput)
-  }
-
-  const handleSetCountry = () => {
-    let currentCountryChoice = document.getElementById("formControlSelect6").value
-    
-    setCountryValue(currentCountryChoice) 
   }
   
 
@@ -208,32 +167,12 @@ const CreateCompany = (props) => {
                     className="form-control"
                     id="exampleFormControlSelect5"
                   >
-                    <option key="0" value="zero-ten">0-10 Employees</option>
-                    <option key="11" value="eleven-fifty">11-50 Employees</option>
-                    <option key="51" value="fiftyOne-hundred">51-100 Employees</option>
-                    <option key="100" value="hundredPlus">100+ Employees</option>
+                    <option value="zero-ten">0-10 Employees</option>
+                    <option value="eleven-fifty">11-50 Employees</option>
+                    <option value="fiftyOne-hundred">51-100 Employees</option>
+                    <option value="hundredPlus">100+ Employees</option>
                   </Field>
                 </div>
-                
-                {/* Year Found */}
-                <div className="form-group-create-select">
-                  <label >Year Founded</label>
-                  <Field
-                    as="select"
-                    name="yearFounded"
-                    className="form-control"
-                    id="formControlSelect4"
-                  >
-
-                  {createYears().map(function(year) {
-                    return(
-                      <option key={year} value={year}>{year}</option>
-                    )
-                  })}
-                  
-                  </Field>
-                </div>
-                
 
                 {/* Webiste URL*/}
                 <div className="form-group-create">
@@ -246,97 +185,6 @@ const CreateCompany = (props) => {
                     placeholder="Website URL"
                   />
                 </div>
-
-                {/* Address */}
-                <div className="form-group-create">
-                  <label>
-                    Address
-                  </label>
-                  <Field
-                    type="text"
-                    name="address"
-                    className="form-control"
-                    id="formControlInput1"
-                    placeholder="Address"
-                    validate={checkCompany}
-                  />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
-                </div>
-
-                {/* City */}
-                 <div className="form-group-create">
-                  <label>
-                    City
-                  </label>
-                  <Field
-                    type="text"
-                    name="city"
-                    className="form-control"
-                    id="formControlInput1"
-                    placeholder="City"
-                    validate={checkCompany}
-                  />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
-                </div>
-                {/* ZIP */}
-                <div className="form-group-create">
-                  <label>
-                    ZIP
-                  </label>
-                  <Field
-                    type="text"
-                    name="ZIP"
-                    className="form-control"
-                    id="formControlInput1"
-                    placeholder="ZIP"
-                    validate={checkCompany}
-                  />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
-                </div>
-                {/* Country */}
-                
-
-                <div className="form-group-create-select">
-                  <label>Country</label>
-                  <Field
-                    as="select"
-                    name="country"
-                    className="form-control"
-                    id="formControlSelect6"
-                    onChange={handleSetCountry}
-                    value={countryInput}
-                  >
-                  
-                  {countryList.getNames().map(function(country){
-                    return(
-                      <option key={country} value={country}>{country}</option>
-                    )
-                  })}
-                  </Field>
-                </div>
-
-                
-                
-
-                {/* State/Province */}
-                <div className="form-group-create-select">
-                  <label>Province/State</label>
-                  <Field
-                    as="select"
-                    name="province"
-                    className="form-control"
-                    id="formControlSelect4"
-                  >
-                  <option key="N/A" value="N/A">N/A</option>
-                  {createProvinceList(countryInput).map(function(province){
-                    return(
-                      <option key={province} value={province}>{province}</option>
-                    )
-                  })}
-                  </Field>
-                </div>
-                
-                
 
                 {/* Disclaimer Check*/}
                 <div className="form-check">
@@ -372,7 +220,6 @@ const CreateCompany = (props) => {
               >
                 <span>Create Company Page</span>
                 {props.children}
-                
               </Button>
             </Form>
               )}
