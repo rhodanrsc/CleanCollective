@@ -208,10 +208,10 @@ const CreateCompany = (props) => {
                     className="form-control"
                     id="exampleFormControlSelect5"
                   >
-                    <option key="0" value="zero-ten">0-10 Employees</option>
-                    <option key="11" value="eleven-fifty">11-50 Employees</option>
-                    <option key="51" value="fiftyOne-hundred">51-100 Employees</option>
-                    <option key="100" value="hundredPlus">100+ Employees</option>
+                    <option key="0" value="0,10">0-10 Employees</option>
+                    <option key="11" value="11,50">11-50 Employees</option>
+                    <option key="51" value="51,100">51-100 Employees</option>
+                    <option key="100" value="100">100+ Employees</option>
                   </Field>
                 </div>
                 
@@ -222,7 +222,7 @@ const CreateCompany = (props) => {
                     as="select"
                     name="yearFounded"
                     className="form-control"
-                    id="formControlSelect4"
+                    id="formControlSelect6"
                   >
 
                   {createYears().map(function(year) {
@@ -296,15 +296,15 @@ const CreateCompany = (props) => {
                 {/* Country */}
                 
 
+                
+
                 <div className="form-group-create-select">
                   <label>Country</label>
                   <Field
                     as="select"
                     name="country"
                     className="form-control"
-                    id="formControlSelect6"
-                    onChange={handleSetCountry}
-                    value={countryInput}
+                    id="formControlSelect7"
                   >
                   
                   {countryList.getNames().map(function(country){

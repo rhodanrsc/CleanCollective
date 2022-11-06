@@ -9,19 +9,20 @@ const CreateUser = () => {
   const navigate = useNavigate();
   const [formValues] = useState({
     companyName: "",
-    type: "",
+    type: "Adopter",
     file: "",
-    companyType: "",
-    trl: "",
-    employees: "",
+    companyType: "Oil",
+    trl: "Level 1: Basic principles of concept are observed and reported",
+    employees: "0,10",
     website: "",
     check: false,
     address : "",
     city : "",
-    zip : "",
+    ZIP : "",
     city : "",
-    province : "",
+    province : "N/A",
     yearFounded : 2022,
+    country : "Canada"
 
   });
 
