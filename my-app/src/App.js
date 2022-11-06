@@ -53,6 +53,7 @@ const App = () => {
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/forum" element={<PostPage/>} />
                   <Route path="/profilepage" element={<ProfilePage/>} />
+                  
                 </Routes>
               </div>
             </Col>
