@@ -8,7 +8,7 @@ import provinceList from "provinces"
 
 
 const CreateCompany = (props) => {
-  let sda
+  let sda;
   const [listOfCategories, setListOfCategories] = useState();
   const [listOfTRLStages, setListOfTRLStages] = useState();
   const [checkValue, setCheckValue] = useState("");
