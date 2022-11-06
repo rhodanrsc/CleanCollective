@@ -1,6 +1,7 @@
 const sector = require("./sector.model");
 const trl = require("./trl.model");
 const mongoose = require("mongoose");
+const { stringify } = require("querystring");
 
 const Schema = mongoose.Schema;
 
@@ -25,8 +26,11 @@ const companySchema = new Schema({
     type: trl.trlSchema,
     required: true,
   },
-  employees:{
-    type: String,
+  rangeOfEmployees:{
+    type : {
+      minNumOfEmployees : Number,
+      maxNumOfEmployees : Number
+    },
     required: false,
   },
   website:{
@@ -37,6 +41,15 @@ const companySchema = new Schema({
     type: Boolean,
     default: false, 
     required: false,
+  },
+  location: {
+    type: {
+      address : String,
+      city : String,
+      province : String,
+      country : String,
+      zip : String
+    }
   }
   
 },

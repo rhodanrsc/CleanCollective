@@ -9,6 +9,9 @@ const UserLoginForm = (props) => {
     // password: Yup.string().required("Required"),
   });
 
+
+
+
   console.log(props);
   return (
     <div className="user-login-background">
@@ -25,6 +28,7 @@ const UserLoginForm = (props) => {
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
+          <div className="form-group-login">
             <label htmlFor="login_email_feild">Email: </label>
             <Field
               id="email"
@@ -37,6 +41,10 @@ const UserLoginForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            <br/>
+            <br/>
+            </div>
+            <div className="form-group-login">
             <label htmlFor="login_password_feild">Password: </label>
             <Field
               id="password"
@@ -49,24 +57,22 @@ const UserLoginForm = (props) => {
               className="d-block invalid-feedback"
               component={"span"}
             />
+            </div>
+            <br/>
+            <br/>
           </FormGroup>
 
-          <div className="d-block invalid-feedback" component={"span"}>
-            {props.error ? <p>Incorrect email or password</p> : ""}
-          </div>
+<div className="d-block invalid-feedback" component={"span"}>
+        {props.error? <p>Incorrect email or password</p> : ""}
+        </div>
           <Button
-            variant="danger"
-            size="lg"
-            block="block"
+           className="logButton" variant="danger" size="lg" block="block" name="logButton"
             // onClick={""}
-            type="submit"
-          >
-            {props.children}
-          </Button>
+            type="submit"><span>Login</span>{props.children}</Button>
 
           <div className="login_links">
             <p>
-              <Link to={"/create-user"}>register now</Link>
+              <Link to={"/create-user"}>Register Now</Link>
             </p>
             <p>
               <Link to={""}>Forgot Password?</Link>
@@ -74,6 +80,9 @@ const UserLoginForm = (props) => {
           </div>
         </Form>
       </Formik>
+    </div>
+    </main>
+    </div>
     </div>
   );
 };

@@ -29,10 +29,10 @@ function checkCompany(companyName){
     if(!companyName){
         error = '*Required';
     } else{
-        console.log(listOfCompanies)
+        
         listOfCompanies[0].forEach(function (company) {
         //If even one matches. Return false
-        console.log(company.companyName)
+        
         if(company.companyName === companyName){
             error = "*Company already exist.";   
         }

@@ -1,6 +1,5 @@
 // Import React
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 
 // Import Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
@@ -22,18 +21,9 @@ import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
 import CompanyCreation from "./Components/company/create-company-components";
 
-import { Desktop } from "./Components/desktop/desktop.component";
-import { Laptop } from "./Components/laptop/laptop.component";
-import { BigScreen } from "../src/Components/big-screen/big-screen.component";
-import { Mobile } from "../src/Components/mobile/mobile.component";
-import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.component";
-
-
-import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
-import CreateCompany from "./Components/company/company-creation-component";
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
 
@@ -41,25 +31,6 @@ ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
 
-  const isMobileDevice = useMediaQuery({
-    query: "(min-device-width: 480px)",
-  });
-
-  const isTabletDevice = useMediaQuery({
-    query: "(min-device-width: 768px)",
-  });
-
-  const isLaptop = useMediaQuery({
-    query: "(min-device-width: 1024px)",
-  });
-
-  const isDesktop = useMediaQuery({
-    query: "(min-device-width: 1200px)",
-  });
-
-  const isBigScreen = useMediaQuery({
-    query: "(min-device-width: 1201px )",
-  });
 
   return (
 

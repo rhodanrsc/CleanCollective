@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import CompanyForm from "./CompanyForm";
 import { useNavigate } from "react-router-dom";
+import companyCSS from "../../shared/css/createCompany.css"
 
 
 const CreateUser = () => {
@@ -11,19 +12,22 @@ const CreateUser = () => {
     type: "",
     file: "",
     companyType: "",
-    stage: "",
+    trl: "",
     employees: "",
     website: "",
-    check: false
+    check: false,
+    address : "",
+    city : "",
+    zip : "",
+    city : "",
+    province : "",
+    yearFounded : 2022,
+
   });
 
   const OnSubmit = (companyObject) =>{
-    console.log(companyObject.companyName)
-    console.log(companyObject.type)
-    console.log(companyObject.companyType)
-    console.log(companyObject.stage)
-    console.log(companyObject.employees)
-    console.log(companyObject.check)
+    console.log(companyObject)
+    console.log(companyObject.country)
 
   }
 
