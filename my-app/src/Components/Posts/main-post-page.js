@@ -37,14 +37,19 @@ export class PostPage extends Component {
     console.log(this.state.posts);
     return (
       <div>
-          {this.state.posts.map((post) => (
-        <div className="user-posts">   
+          {this.state.posts.reverse().map((post) => (
+         
         <PostCard
+        id={post._id}
         username={post.postUserName}
         title={post.postTitle}
         body={post.postBody}
+        likes={post.postLikes}
+
+        key={post._id}
+
           />
-          </div>
+          
       ))}
       </div>
     );

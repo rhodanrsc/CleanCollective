@@ -86,7 +86,9 @@ export default function ControlledAccordions() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>Company </Typography>
+          <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
+            Company
+          </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             Change your company information.
           </Typography>

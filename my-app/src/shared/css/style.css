@@ -1,5 +1,11 @@
+.wrapper {
+    display: flexbox;
+    width: 60%;
+    margin: 0 auto;
+}
+
 body {
-    background-color: #rgb(175, 171, 171) ;
+    background-color: rgb(175, 171, 171);
 }
 
 .wrapper {
@@ -21,11 +27,11 @@ body {
 }
 
 .logo {
-    width: 100%;
-    height: 200px;
+    height: 40px;
     width: auto;
-    margin: -60px 0 -60px 50px;
+    margin: 0.5em 1em ;
     display: inline;
+    float: left;
 }
 
 .navbuttons {
@@ -33,13 +39,6 @@ body {
     position: relative;
     float: right;
     margin: 20px 0;
-}
-
-.navLogo {
-    width: fit-content;
-    margin: 0;
-    display: inline;
-    float: left;
 }
 
 .loginButton{
@@ -88,8 +87,8 @@ body {
 .bigLogo {
     display: block;
     width: auto;
-    height: 555px;
-    margin: -150px auto;
+    height: 150px;
+    margin: 5px auto;
 
 }
 
