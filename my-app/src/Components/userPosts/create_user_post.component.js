@@ -14,6 +14,7 @@ import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { TagComboBox } from "./tag_combo_box";
 import { useNavigate } from "react-router-dom";
+import { padding } from "@mui/system";
 
 export default function CreatePost() {
   let userSession = ReactSession.get("userSession");
@@ -28,6 +29,7 @@ export default function CreatePost() {
   };
 
   const boxStyle = {
+    marginTop: "15px",
     marginBottom: "20px",
     display: "flex",
     justifyContent: "center",
@@ -75,20 +77,24 @@ export default function CreatePost() {
   };
 
   return (
+    <body className="user-question">
     <div>
       <Paper
         elevation={0}
         style={{
-          marginBottom: "6%",
-          marginLeft: "10%",
+          marginTop: "2%",
+          marginBottom: "1%",
+          marginLeft: "27.5%",
           color: "#808080",
           fontSize: "30px",
+          width: "14%",
+          padding: "0 10px 0 10px"
         }}
       >
         New Question
       </Paper>
       <Box display="flex" justifyContent="center" minHeight="20vh">
-        <Paper className="paper" style={{ width: "80%" }} elevation={5}>
+        <Paper className="paper" style={{ width: "45%", background: "rgba(255,255,255,.80)"}} elevation={5}>
           <Box style={boxStyle}>
             <FormControl>
               <FormGroup>
@@ -96,7 +102,7 @@ export default function CreatePost() {
 
                 <TextField
                   onChange={handlePostTitle}
-                  style={mystyle}
+                  style={{mystyle, background:"white", marginTop:"2%"}}
                   label="Title"
                 ></TextField>
 
@@ -104,10 +110,10 @@ export default function CreatePost() {
                   onChange={handlePostBody}
                   multiline
                   rows={10}
-                  style={mystyle}
+                  style={{mystyle, background:"white", marginTop:"3%"}}
                   label="Type your question/post"
                 ></TextField>
-
+<br/>
                 <Grid container spacing={32}>
                   <Grid item>
                     <Button
@@ -142,5 +148,6 @@ export default function CreatePost() {
         </Paper>
       </Box>
     </div>
+    </body>
   );
 }

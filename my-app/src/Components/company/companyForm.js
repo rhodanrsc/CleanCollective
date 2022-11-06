@@ -7,7 +7,7 @@ import { FormGroup, Button } from "react-bootstrap";
 const CreateCompany = (props) => {
 
   return (
-    <body className="company-creation-background">
+    <div className="company-creation-background">
       
 
         <main>
@@ -117,7 +117,7 @@ const CreateCompany = (props) => {
         </main>
       
 
-    </body>
+    </div>
   );
 };
 export default CreateCompany;
