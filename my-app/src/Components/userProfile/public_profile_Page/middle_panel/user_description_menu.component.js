@@ -21,6 +21,11 @@ export default function LongMenu() {
     setAnchorEl(null);
   };
 
+  const handleEditClick = () => {
+    let aboutInput = document.getElementById("aboutTextBox")
+    aboutInput.removeAttribute("disabled")
+  }
+
   return (
     <div>
       <IconButton

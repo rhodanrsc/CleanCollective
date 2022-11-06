@@ -40,6 +40,7 @@ export default function BackgroundLetterAvatarsSmall() {
   let data = ReactSession.get("userSession");
   let profilename = data.username;
 
+//RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE 
   return (
     <Stack direction="row" spacing={2}>
       <Avatar {...stringAvatar({profilename})} />

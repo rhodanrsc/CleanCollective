@@ -29,7 +29,7 @@ export default function ProfilePage() {
     let data = ReactSession.get("userSession");
     let name = data.username;
 
-  const [value, setValue] = React.useState("Controlled");
+  const [value, setValue] = React.useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
