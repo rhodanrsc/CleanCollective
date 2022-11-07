@@ -95,9 +95,11 @@ const CreateCompany = (props) => {
  
   
   return (
-    <body className="company-creation-background">
-      <main>
-        <div className="border">
+    <div className="company-creation-background">
+      
+
+        <main>
+        <div className="border_two">
           <h2 className="first-header">Build Your Company's Profile</h2>
           <div className="company-creation-description">
             Providing information about your company that <br />
@@ -377,9 +379,11 @@ const CreateCompany = (props) => {
             </Form>
               )}
           </Formik>
-        </div>
-      </main>
-    </body>
+          </div>
+        </main>
+      
+
+    </div>
   );
 };
 export default CreateCompany;

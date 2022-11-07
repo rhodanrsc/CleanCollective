@@ -1,3 +1,4 @@
+
 .wrapper {
     display: flexbox;
     width: 60%;
@@ -87,7 +88,7 @@ body {
 .buttonGreenBig {
     display: inline-block;
     padding: 12px 20px;
-    margin: 0 auto;
+    margin: 15px;
 
     width: 200px;
     height: 86px;
@@ -133,6 +134,8 @@ body {
 
 .adoptor {
     float: left;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .adoptor, .innovator {
@@ -151,6 +154,8 @@ body {
 
 .innovator {
     float: right;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .landingPageButtons {

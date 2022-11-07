@@ -24,11 +24,13 @@ let data = ReactSession.get("userSession");
             {data?<h2>createdAt: {data.createdAt} </h2>: null}
                 <img className='bigLogo' src={logo}/>
                 <h3>Join Clean Collective</h3>
+                <br/>
+                <br/>
                 <p>Get more features and privileges by joining the most helpful community</p>
             </div>
             <div className='landingPageButtons'>
                 <p>Explore features of our knowledge and matching software</p>
-                
+                <br/>
                 <Link to={"/forum"} className="nav-link">
                     <button type='submit' className='buttonGreenBig landingFont'>Questions & Answers</button>
                 </Link>
