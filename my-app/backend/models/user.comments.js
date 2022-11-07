@@ -17,11 +17,6 @@ const userCommentSchema = new Schema(
       type: String,
       required: false,
     },
-    commentCreated: { //store date and time of creation
-      type: String,
-      default: 0,
-      required: false,
-    },
   },
   {
     timestamps: true,
