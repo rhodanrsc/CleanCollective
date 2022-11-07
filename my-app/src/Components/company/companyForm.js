@@ -85,11 +85,10 @@ const CreateCompany = (props) => {
      console.log(countryInput)
   }
 
-  const handleSetCountry = () => {
-    let currentCountryChoice = document.getElementById("formControlSelect6").value
-    
-    setCountryValue(currentCountryChoice) 
-  }
+useEffect(() => {
+  let currentCountry = document.getElementById("formControlSelect7").value
+  setCountryValue(currentCountry)
+})
   
 
  
