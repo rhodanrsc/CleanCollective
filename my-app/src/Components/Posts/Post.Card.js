@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import Hamburger from "./Hamburger";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -95,9 +96,7 @@ export default function PostCard(props) {
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <Hamburger/>
         }
         title={props.title}
         subheader="September 14, 2016"
