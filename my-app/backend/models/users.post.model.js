@@ -1,6 +1,5 @@
 const sector = require("./sector.model");
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const userPostSchema = new Schema(
@@ -34,6 +33,10 @@ const userPostSchema = new Schema(
       type: [String],
       required: false,
     },
+    userLikes: {
+      type: [String],
+      required: false
+    }
   },
   {
     timestamps: true,
