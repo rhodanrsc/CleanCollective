@@ -39,5 +39,51 @@ function checkCompany(companyName){
     return error;
 }
 
+function checkWebsite(url){
+    let error;
+    var r = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
+    
+    if(!r.test(url)){
+        error = "*Incorrect URL format. Please check input."
+    }
+    return error;
+}
 
-export {checkCompany}
+function checkIfEmpty(input){
+    let error;
+    if(!input){
+        error = "*Required"
+    }
+    return error;
+}
+
+const checkZIP = (country, zip) => {
+    let error;
+    console.log(country)
+    var postalCodeRegex = new RegExp(/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+    );
+    var zipCodeRegex = new RegExp(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
+    if(country === "Canada"){
+        if (!postalCodeRegex.test(zip)){
+            error = "*Invalid postal code format."
+        }
+    } else {
+        if(!zipCodeRegex.test(zip)){
+            error = "*Invalid zip code format."
+        }
+    }
+    return error;
+}
+
+function checkDisclaimer(check){
+    let error;
+    if(!check){
+        error = "*Terms not agreed."
+    }
+    return error;
+}
+
+
+
+
+export {checkCompany, checkWebsite, checkIfEmpty, checkZIP, checkDisclaimer}

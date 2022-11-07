@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import {checkCompany} from "./companyCreationValidation"
+import {checkCompany, checkWebsite, checkIfEmpty, checkZIP, checkDisclaimer} from "./companyCreationValidation"
 import countryList from "country-list"
 import provinceList from "provinces"
 
@@ -117,15 +117,7 @@ useEffect(() => {
                 {/* Company Name */}
                 <div className="form-group-create">
                   <label htmlFor="companyNameInput">
-                    Name (required)
-                    <span
-                      style={{
-                        color: "#FF0000",
-                      }}
-                    >
-                      {" "}
-                      *
-                    </span>
+                    Name
                   </label>
                   <Field
                     type="text"
@@ -245,7 +237,9 @@ useEffect(() => {
                     className="form-control"
                     id="formControlInput6"
                     placeholder="Website URL"
+                    validate={checkWebsite}
                   />
+                  {<div style={{ color: "red" }}>{errors.website}</div>}
                 </div>
 
                 {/* Address */}
@@ -259,9 +253,9 @@ useEffect(() => {
                     className="form-control"
                     id="formControlInput1"
                     placeholder="Address"
-                    validate={checkCompany}
+                    validate={checkIfEmpty}
                   />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
+                  {<div style={{ color: "red" }}>{errors.address}</div>}
                 </div>
 
                 {/* City */}
@@ -275,9 +269,9 @@ useEffect(() => {
                     className="form-control"
                     id="formControlInput1"
                     placeholder="City"
-                    validate={checkCompany}
+                    validate={checkIfEmpty}
                   />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
+                  {<div style={{ color: "red" }}>{errors.city}</div>}
                 </div>
                 {/* ZIP */}
                 <div className="form-group-create">
@@ -290,9 +284,11 @@ useEffect(() => {
                     className="form-control"
                     id="formControlInput1"
                     placeholder="ZIP"
-                    validate={checkCompany}
+                    validate={value =>
+              checkZIP(values.country, value)
+            }
                   />
-                  {<div style={{ color: "red" }}>{errors.companyName}</div>}
+                  {<div style={{ color: "red" }}>{errors.ZIP}</div>}
                 </div>
                 {/* Country */}
                 
@@ -349,7 +345,9 @@ useEffect(() => {
                     id="defaultCheck1"
                     onClick={handleCheckValue}
                     checked={checkValue}
+                    validate={checkDisclaimer}
                   />
+                  {<div style={{ color: "red" }}>{errors.check}</div>}
 
                   <label className="disclaimer" htmlFor="defaultCheck1">
                     I verify that I am an authorized representative of this
