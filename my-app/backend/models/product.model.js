@@ -3,7 +3,7 @@ const company = require("./company.model")
 
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
+const productSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -14,7 +14,10 @@ const productSchema = new Schema({
         type : String
     },
     owner : {
-        type : [company.companySchema]
+        type : {
+            ownerID : String,
+            ownerName : String
+        }
     },
     tags : {
         type : [String]

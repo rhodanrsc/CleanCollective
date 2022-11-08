@@ -1,6 +1,7 @@
 const sector = require("./sector.model");
 const trl = require("./trl.model");
 const product = require("./product.model")
+const user = require("./user.model")
 const mongoose = require("mongoose");
 
 
@@ -13,7 +14,7 @@ const companySchema = new Schema({
   },
   sector: {
     type: sector.sectorSchema,
-    required: true,
+ 
   },
   file: {
     type: String,
@@ -25,7 +26,7 @@ const companySchema = new Schema({
   },
   trl:{
     type: trl.trlSchema,
-    required: true,
+    
   },
   rangeOfEmployees:{
     type : {
@@ -54,6 +55,12 @@ const companySchema = new Schema({
   },
   products : {
     type : [product.productSchema]
+  },
+  members : {
+    type : [{
+      memberName : String,
+      memberID : String
+    }]
   }
   
 },

@@ -76,8 +76,8 @@ function Tag(props) {
     <div style={{ opacity: "0.4" }} {...other}>
       <span className="listOfTags">{label}</span>
       <CloseIcon
-        iconstyle={styles.bigIcon}
-        style={styles.big}
+        iconstyle={window.location.pathname === "/createPost" ? styles.bigIcon : null}
+        style={window.location.pathname === "/createPost" ? styles.big : null}
         onClick={onDelete}
       />
     </div>
@@ -172,4 +172,4 @@ const Listbox = styled("ul")(
 `
 );
 
-export { Listbox, Root, Label, InputWrapper, Tag, StyledTag };
+export { Listbox, Root, Label, InputWrapper, StyledTag };

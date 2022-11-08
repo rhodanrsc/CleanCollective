@@ -39,6 +39,11 @@ function checkCompany(companyName){
     return error;
 }
 
+
+/*
+Validates
+1. checks if URL format is valid
+*/
 function checkWebsite(url){
     let error;
     var r = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
@@ -49,6 +54,10 @@ function checkWebsite(url){
     return error;
 }
 
+/*
+Validates
+1. not empty
+*/
 function checkIfEmpty(input){
     let error;
     if(!input){
@@ -57,6 +66,11 @@ function checkIfEmpty(input){
     return error;
 }
 
+/*
+Validates
+1. Checks which country is currently picked
+2. checks format of postal or zip code depending on country
+*/
 const checkZIP = (country, zip) => {
     let error;
     console.log(country)
@@ -75,6 +89,10 @@ const checkZIP = (country, zip) => {
     return error;
 }
 
+/*
+Validates
+1. If checked is true
+*/
 function checkDisclaimer(check){
     let error;
     if(!check){

@@ -5,16 +5,18 @@ import { TagComboBox }  from "../userPosts/tag_combo_box"
 import { useNavigate } from "react-router-dom";
 import companyCSS from "../../shared/css/createCompany.css"
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogText , DialogTitle} from "@mui/material";
-
+import { ReactSession } from "react-client-session";
 
 const CreateUser = () => {
+  let userSession = ReactSession.get("userSession");
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [newCompanyName, setNewCompanyName] = useState()
+  
   //Values for Product Form
   const [productName, setProductName] = useState()
   const [productDescription, setProductDescription] = useState()
   const [companyID, setCompanyID] = useState();
+  const [open, setOpen] = useState(false);
+  const [newCompanyName, setNewCompanyName] = useState()
 
   //Values for Company Form
   const [formValues] = useState({
@@ -32,9 +34,9 @@ const CreateUser = () => {
     province : "N/A",
     yearFounded : 2022,
     country : "Canada"
-
   });
 
+  //Holds the value of selected tags.
   let arrayOfTags = [];
   useEffect(() => {
     let listOfTags = document.getElementsByClassName("listOfTags");
@@ -55,20 +57,15 @@ const CreateUser = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
+  //Creates product
   const handleCreateProduct = () => {
-    console.log(productName)
-    console.log(productDescription)
-    console.log(arrayOfTags)
-    console.log(typeof companyID)
-    axios.post("http://localhost:5000/product/add/", {
+    axios.post("http://localhost:5000/product/add/" + companyID, {
       name : productName,
       description : productDescription,
-      owner : companyID,
       tags : arrayOfTags
     })
     .then((res) => {
@@ -77,14 +74,14 @@ const CreateUser = () => {
     .catch((err) => alert("Something went wrong: " + err));
   }
 
+  //Creates Company
   const OnSubmit = (companyObject) =>{
-    
+
     const [employeeMinString, employeeMaxString] = companyObject.employees.split(",")
     const employeeMinNum = Number(employeeMinString)
     const employeeMaxNum = Number(employeeMaxString)
 
-    
-    axios.post("http://localhost:5000/company/add", {
+    axios.post("http://localhost:5000/company/add/" + userSession._id, {
       companyName : companyObject.companyName,
       file : companyObject.file,
       companyType : companyObject.type,
@@ -106,10 +103,7 @@ const CreateUser = () => {
         setOpen(true)       
     })
     .catch((err) => alert("Something went wrong: " + err));
-
-    
   }
-
 
   return(
     <div>
@@ -127,8 +121,11 @@ const CreateUser = () => {
             We found that associating a <strong>product/service</strong> with your company increases frequency of visits and showings in searches!
           </DialogContentText>
           <DialogTitle>Build Your Product/Service</DialogTitle>
+
+          {/*Product Tags*/}
           <TagComboBox></TagComboBox>
-        
+
+          {/*Product Name*/}
           <TextField
             autoFocus
             margin="dense"
@@ -140,6 +137,8 @@ const CreateUser = () => {
             value={productName}
             onChange={handleSetProductName}
           />
+
+          {/*Product Description*/}
           <TextField
             autoFocus
             margin="dense"
@@ -161,9 +160,7 @@ const CreateUser = () => {
         </DialogActions>
       </Dialog>
     </div>
-
   )
-
 }
 
 export default CreateUser;
