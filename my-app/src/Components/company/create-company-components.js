@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CompanyForm from "./CompanyForm";
+import CompanyForm from "./companyForm";
 import { TagComboBox }  from "../userPosts/tag_combo_box"
 import { useNavigate } from "react-router-dom";
 import companyCSS from "../../shared/css/createCompany.css"
@@ -14,6 +14,7 @@ const CreateUser = () => {
   //Values for Product Form
   const [productName, setProductName] = useState()
   const [productDescription, setProductDescription] = useState()
+  const [companyID, setCompanyID] = useState();
 
   //Values for Company Form
   const [formValues] = useState({
@@ -63,6 +64,17 @@ const CreateUser = () => {
     console.log(productName)
     console.log(productDescription)
     console.log(arrayOfTags)
+    console.log(typeof companyID)
+    axios.post("http://localhost:5000/product/add/", {
+      name : productName,
+      description : productDescription,
+      owner : companyID,
+      tags : arrayOfTags
+    })
+    .then((res) => {
+        alert("Product added!")    
+    })
+    .catch((err) => alert("Something went wrong: " + err));
   }
 
   const OnSubmit = (companyObject) =>{
@@ -89,15 +101,13 @@ const CreateUser = () => {
       trl : companyObject.stage
     })
     .then((res) => {
-      if (res.status === 200){
+        setCompanyID(res.data._id)
         setNewCompanyName(companyObject.companyName)
-        setOpen(true)
-      } else{
-        alert("Failed to create company")
-      }
+        setOpen(true)       
     })
     .catch((err) => alert("Something went wrong: " + err));
 
+    
   }
 
 

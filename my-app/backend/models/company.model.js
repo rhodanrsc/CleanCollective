@@ -1,7 +1,8 @@
 const sector = require("./sector.model");
 const trl = require("./trl.model");
+const product = require("./product.model")
 const mongoose = require("mongoose");
-const { stringify } = require("querystring");
+
 
 const Schema = mongoose.Schema;
 
@@ -50,6 +51,9 @@ const companySchema = new Schema({
       country : String,
       zip : String
     }
+  },
+  products : {
+    type : [product.productSchema]
   }
   
 },

@@ -60,7 +60,7 @@ router.route("/add").post((req, res) => {
 
           newCompany
             .save()
-            .then(() => res.json("Company added!" + foundSector))
+            .then(() => res.json(newCompany))
             .catch((err) => res.status(400).json("Error: " + err));
 
         })

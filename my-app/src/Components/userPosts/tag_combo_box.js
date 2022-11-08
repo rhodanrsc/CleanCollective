@@ -27,6 +27,7 @@ function TagComboBox() {
       })
       .catch((error) => {});
   }, [listOfCategories]);
+  
 
   const {
     getRootProps,
