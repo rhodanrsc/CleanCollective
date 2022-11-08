@@ -28,6 +28,9 @@ const userSchema = new Schema({
     },
     posts :{
         type: [userPost.userPostSchema]
+    },
+    likedPosts :{
+        type: [String]
     }
    
 },
