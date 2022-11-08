@@ -61,23 +61,63 @@ router
 
 
   router.route("/getPost/:id").get((req,res) => {
+    
     usersPost.UserPostCollection.findById(req.params.id)
     .then((usersposts) => res.json(usersposts))
     .catch((err) => res.status(400).json("Error: " + err));
   })
 
-  router.route('/likePost/:id').post((req,res) => {
+
+
+  router.route('/likePost/:id/:userId').post((req,res) => {
     usersPost.UserPostCollection.findById(req.params.id)
+
     .then((userspost) => {
+      //prevents something from being liked twice. 
+if(userspost.userLikes.includes(req.params.userId)){
+  return;
+}
+
       userspost.postLikes+=1;
+      userspost.userLikes.push(req.params.userId);
       userspost.save()
       .then(() => res.send("Saved!"))
-      .catch(err => res.status(400).json('Error: saving user' + err));
-    })
-    
+      .catch(err => res.status(400).json('Error: saving post' + err));
+
+    }).catch(err => res.status(400).json('Error: saving user' + err));
+
+    User.UserCollection.findById(req.params.userId)
+    .then((User) => {
+      User.likedPosts.push(req.params.id);
+      User.save()
+    }) 
     })
 
-
+    router.route('/unlikePost/:id/:userId').post((req,res) => {
+      usersPost.UserPostCollection.findById(req.params.id)
+  
+      .then((userspost) => {
+        //prevents something from being unliked twice. 
+  if(!userspost.userLikes.includes(req.params.userId)){
+    return;
+  }
+  
+        userspost.postLikes-=1;
+        //removes userId from the post array
+        userspost.userLikes.pull(req.params.userId);
+        userspost.save()
+        .then(() => res.send("Saved!"))
+        .catch(err => res.status(400).json('Error: saving post' + err));
+  
+      }).catch(err => res.status(400).json('Error: saving user' + err));
+  
+      User.UserCollection.findById(req.params.userId)
+      .then((User) => {
+        //removes postId from the user array
+        User.likedPosts.pull(req.params.id);
+        User.save()
+      }) 
+      })
 
 
 
