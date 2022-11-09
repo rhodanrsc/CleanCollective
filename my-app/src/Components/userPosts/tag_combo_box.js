@@ -25,9 +25,9 @@ function TagComboBox() {
           setListOfCategories(newList);
         }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }, [listOfCategories]);
-  
+
 
   const {
     getRootProps,
@@ -46,7 +46,7 @@ function TagComboBox() {
     multiple: true,
     options: listOfCategories ? listOfCategories : [],
     getOptionLabel: (option) => option,
-    isOptionEqualToValue: (option, value) => option.id !== value.id,
+
   });
   //Colors for the tags
   const pastelColorPallete = [

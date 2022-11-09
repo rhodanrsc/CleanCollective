@@ -40,7 +40,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          
+
         </header>
         <Container>
           <Row>

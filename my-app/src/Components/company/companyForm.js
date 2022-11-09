@@ -2,15 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import {
-  checkCompany,
-  checkWebsite,
-  checkIfEmpty,
-  checkZIP,
-  checkDisclaimer,
-} from "./companyCreationValidation";
+import { checkCompany, checkWebsite, checkIfEmpty, checkZIP, checkDisclaimer } from "./companyCreationValidation";
 import countryList from "country-list";
-import provinceList from "provinces";
+import { createYears, createProvinceList } from "./company.form.functions"
+import InfoIcon from '@mui/icons-material/Info';
+import { Popover, Typography } from '@mui/material/';
 
 const CreateCompany = (props) => {
   const [listOfCategories, setListOfCategories] = useState();
@@ -18,36 +14,41 @@ const CreateCompany = (props) => {
   const [checkValue, setCheckValue] = useState("");
   const [countryInput, setCountryValue] = useState("");
 
-  //Creating list of yearFounded array
-  const createYears = () => {
-    let listOfYears = [];
-    for (let i = 1800; i <= 2022; i++) {
-      listOfYears.push(i);
-    }
-    return listOfYears;
+  //Handle Company Type Info Popover
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleCompanyTypeInfo = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+  const handleClose = () => {
+    setTimeout(() => {
+      setAnchorEl(null);
+    },
+      3000);
   };
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
-  //Creating list of Provinces
-  const createProvinceList = (typeCountry) => {
-    let provinceArray = [];
-    let stateArray = [];
+  //Handle TRL Info Popover
+  const [trlAnchorEl, setTRLAnchorEl] = useState(null);
+  const [trlInput, setTRlInput] = useState();
 
-    //Filters through countries
-    provinceList.map(function (country) {
-      if (country.country === "US") {
-        stateArray.push(country.name);
-      } else if (country.country === "CA") {
-        provinceArray.push(country.name);
-      }
-    });
+  useEffect(() => {
+    let currentTRL = document.getElementById("formControlSelect4").value;
+    setTRlInput(currentTRL);
+  });
 
-    //Return state/province array depending on current value of country
-    if (typeCountry === "Canada") {
-      return provinceArray;
-    } else {
-      return stateArray;
-    }
+
+  const handleTRLInfo = (event) => {
+    setTRLAnchorEl(event.currentTarget);
+  }
+  const handleTRLClose = () => {
+    setTimeout(() => {
+      setTRLAnchorEl(null);
+    },
+      3000);
   };
+  const trlOpen = Boolean(trlAnchorEl);
+  const trlID = open ? 'simple-popover' : undefined;
 
   //Constantly updating the sector list
   useEffect(() => {
@@ -62,7 +63,7 @@ const CreateCompany = (props) => {
           setListOfCategories(newList);
         }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }, [listOfCategories]);
 
   //Constantly updating the development stage list
@@ -78,7 +79,7 @@ const CreateCompany = (props) => {
           setListOfTRLStages(newList);
         }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }, [listOfTRLStages]);
 
   //Constantly changes the countryInput for changing the state/province select box
@@ -130,6 +131,31 @@ const CreateCompany = (props) => {
                   {/* Company Type*/}
                   <div className="form-group-create-select">
                     <label htmlFor="companyType">Company Type </label>
+                    <InfoIcon onMouseEnter={handleCompanyTypeInfo} onMouseLeave={handleClose}></InfoIcon>
+
+                    <Popover
+                      id={id}
+                      open={open}
+                      anchorEl={anchorEl}
+                      onClose={handleClose}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                      }}
+                    >
+                      <Typography>
+                        Adopter : Companies seeking to adopt, invest into and/or support new techonologies or ideas.
+                      </Typography>
+                      <Typography>
+                        Innovator : Companies leading the charge in innovation. Seeking investment, adoption, and/or support in their mission
+                      </Typography>
+
+                    </Popover>
+
 
                     <Field
                       as="select"
@@ -137,8 +163,8 @@ const CreateCompany = (props) => {
                       className="form-control"
                       id="formControlSelect2"
                     >
-                      <option>Adoptor</option>
-                      <option>Innovator</option>
+                      <option value={"Adopter"}>Adoptor</option>
+                      <option value={"Inovator"}>Innovator</option>
                     </Field>
                   </div>
 
@@ -165,12 +191,12 @@ const CreateCompany = (props) => {
                     >
                       {listOfCategories
                         ? listOfCategories.map(function (sector) {
-                            return (
-                              <option key={sector._id} value={sector.name}>
-                                {sector.name}
-                              </option>
-                            );
-                          })
+                          return (
+                            <option key={sector._id} value={sector.name}>
+                              {sector.name}
+                            </option>
+                          );
+                        })
                         : null}
                     </Field>
                   </div>
@@ -180,6 +206,21 @@ const CreateCompany = (props) => {
                     <label htmlFor="companyStages">
                       Technology Readiness Level
                     </label>
+                    <InfoIcon onMouseEnter={handleTRLInfo} onMouseLeave={handleTRLClose}></InfoIcon>
+                    <Popover
+                      id={trlID}
+                      open={trlOpen}
+                      anchorEl={trlAnchorEl}
+                      onClose={handleTRLClose}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                      }}
+                    >TRL INFOOO</Popover>
                     <Field
                       as="select"
                       name="stage"
@@ -188,12 +229,12 @@ const CreateCompany = (props) => {
                     >
                       {listOfTRLStages
                         ? listOfTRLStages.map(function (stage) {
-                            return (
-                              <option key={stage._id} value={stage.stageName}>
-                                {stage.stageName}{" "}
-                              </option>
-                            );
-                          })
+                          return (
+                            <option key={stage._id} value={stage.stageName}>
+                              {stage.stageName}{" "}
+                            </option>
+                          );
+                        })
                         : null}
                     </Field>
                   </div>
