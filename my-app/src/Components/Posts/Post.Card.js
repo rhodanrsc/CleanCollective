@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
+import { Component, useEffect, useState } from "react";
 
 
 const ExpandMore = styled((props) => {
@@ -36,38 +37,54 @@ let id = '';
 //Get the User Post Data
 function getUserPost() {
   alert("get post button clicked");
-}
 
-let userSession = ReactSession.get("userSession");
-
-function like(e) {
-  
-  id = e.currentTarget.id;
-  console.log(userSession._id)
-// tea
-  axios.post("http://localhost:5000/user.post.route/likePost/" + id)
 }
 
 export default function PostCard(props) {
 
   let userSession = ReactSession.get("userSession");
-
   function like(e) {
     id = e.currentTarget.id;
-    console.log(id)
     const userId = userSession._id
-    console.log(userId)
-
-  // tea
     axios.post("http://localhost:5000/user.post.route/likePost/" + id + '/' + userId)
   }
+
+  function unlike(e) {
+    id = e.currentTarget.id;
+    const userId = userSession._id
+    axios.post("http://localhost:5000/user.post.route/unlikePost/" + id + '/' + userId)
+  }
+
+
 
   const [expanded, setExpanded] = React.useState(false);
   const [selectedLike, setSelectedLike] = React.useState(false);
   const [selectedDislike, setSelectedDislike] = React.useState(false);
+  const [likes, setLikes] = React.useState(props.likes);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  //checks whether a post has been liked by the current user. Runs immediately when component mounts.
+  function checkLike(){
+    if(userSession){
+      let userId = userSession._id;
+      axios.get("http://localhost:5000/user/getUserLikedPosts/"+userId)
+      .then((res) => {
+        let likedPosts = res.data;
+        if (likedPosts.includes(props.id)){
+          setSelectedLike(true);
+        }
+      })
+    }
+  }
+
+ // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
+
+  useEffect(() => {
+  checkLike();
+  },[])
+
 
 
 // test push 
@@ -104,19 +121,22 @@ export default function PostCard(props) {
             color="success"
             selected={selectedLike}
             onChange={() => {
+              //changes the 'liked' state of the toggle button
               setSelectedLike(!selectedLike);
-              if(selectedDislike){
-              setSelectedDislike(!selectedDislike);
+              //Cosmetically (front-end only) increments the like and decrements the unlike
+              if (!selectedLike){
+              setLikes(likes+1);
+              }else{
+                setLikes(likes-1);
               }
             }}
-
-            onClick={like}
-
+            //determines whether to like or unlike based on the state.
+            onClick={selectedLike? unlike : like}
           >
-            <ArrowDropUpIcon/>
-
+            <ArrowDropUpIcon />
           </ToggleButton>
-          <Typography>{props.likes}</Typography>
+          <Typography>{likes}</Typography>
+
 
         </div>
         <IconButton aria-label="share">
