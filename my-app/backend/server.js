@@ -30,7 +30,7 @@ const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
 const tagRouter = require("./routes/tags");
-const commentRouter = require("./routes/comments");
+const commentRouter = require("./routes/user.comments.route");
 
 //Anytime someone goes to /exercises
 //it will load everything from the exercisesRouter
