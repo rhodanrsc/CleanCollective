@@ -208,6 +208,12 @@ router.route('/getUser').get((req, res) => {
   (res.send(req.user));
 });
 
+router.route('/getUserLikedPosts/:userId').get((req, res) => {
+  User.UserCollection.findById(req.params.userId)
+  .then(user => res.json(user.likedPosts))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
 //Find user by ID
 router.route('/:id').get((req, res) => {
   User.UserCollection.findById(req.params.id)
