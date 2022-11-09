@@ -23,7 +23,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setAnchorEl(null);
     },
-      3000);
+      2000);
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -31,10 +31,19 @@ const CreateCompany = (props) => {
   //Handle TRL Info Popover
   const [trlAnchorEl, setTRLAnchorEl] = useState(null);
   const [trlInput, setTRlInput] = useState();
+  const [trlDescription, setTRLDescription] = useState();
 
   useEffect(() => {
     let currentTRL = document.getElementById("formControlSelect4").value;
     setTRlInput(currentTRL);
+    if (listOfTRLStages) {
+      listOfTRLStages.map(function (stage) {
+        if (currentTRL === stage.stageName) {
+          setTRLDescription(stage.description)
+        }
+      })
+    }
+
   });
 
 
@@ -45,7 +54,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setTRLAnchorEl(null);
     },
-      3000);
+      2000);
   };
   const trlOpen = Boolean(trlAnchorEl);
   const trlID = open ? 'simple-popover' : undefined;
@@ -220,7 +229,7 @@ const CreateCompany = (props) => {
                         vertical: 'top',
                         horizontal: 'left',
                       }}
-                    >TRL INFOOO</Popover>
+                    >{trlDescription}</Popover>
                     <Field
                       as="select"
                       name="stage"
