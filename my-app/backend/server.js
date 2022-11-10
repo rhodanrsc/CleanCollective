@@ -30,6 +30,7 @@ const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
 const tagRouter = require("./routes/tags");
+const commentRouter = require("./routes/comments");
 
 //Anytime someone goes to /exercises
 //it will load everything from the exercisesRouter
@@ -38,6 +39,7 @@ app.use("/sector", sectorRouter);
 app.use("/user.post.route", userPostRouter);
 app.use("/user", userRouter);
 app.use("/tag", tagRouter);
+app.use("/comment", commentRouter);
 app.use("/", mailRouter);
 
 app.listen(port, () => {
