@@ -19,7 +19,7 @@ import { Component, useEffect, useState } from "react";
 import Comment from "../Comments/Comment";
 // Testing Comments
 import PComment from "../Comments/PComment";
-
+import PCommentForm from "../Comments/PCommentForm";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -144,7 +144,7 @@ export default function PostCard(props) {
         <button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</button>
         <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
-      {isCommentToggle && <PComment currentUserId = {props.userId}/>}
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
     </Card>
   );
 }
