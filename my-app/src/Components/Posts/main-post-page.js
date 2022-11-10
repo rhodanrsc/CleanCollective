@@ -41,13 +41,11 @@ export class PostPage extends Component {
          
         <PostCard
         id={post._id}
-        username={post.postUserName}
+        username={post.postUsername}
         title={post.postTitle}
         body={post.postBody}
         likes={post.postLikes}
-
         key={post._id}
-
           />
           
       ))}

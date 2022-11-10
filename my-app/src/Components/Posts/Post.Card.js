@@ -15,6 +15,10 @@ import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { Component, useEffect, useState } from "react";
+// Comments coponents
+import Comment from "../Comments/Comment";
+// Testing Comments
+import PComment from "../Comments/PComment";
 
 
 const ExpandMore = styled((props) => {
@@ -31,8 +35,12 @@ const ExpandMore = styled((props) => {
 let id = '';
 
 //Get the User Post Data
-function getUserPost() {
+function getCommentBox() {
   alert("get post button clicked");
+
+}
+
+const renderCommentBox = (props) => {
 
 }
 
@@ -44,7 +52,6 @@ export default function PostCard(props) {
     const userId = userSession._id
     axios.post("http://localhost:5000/user.post.route/likePost/" + id + '/' + userId)
   }
-
   function unlike(e) {
     id = e.currentTarget.id;
     const userId = userSession._id
@@ -61,6 +68,8 @@ export default function PostCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  // Comments functions
+  const [isCommentToggle, setCommentToggle] = React.useState(false);
 
   //checks whether a post has been liked by the current user. Runs immediately when component mounts.
   function checkLike(){
@@ -77,13 +86,9 @@ export default function PostCard(props) {
   }
 
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
-
   useEffect(() => {
   checkLike();
   },[])
-
-
-
 // test push 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -136,9 +141,10 @@ export default function PostCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <button onClick={getUserPost}>Get user Post</button>
+        <button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</button>
         <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
+      {isCommentToggle && <PComment currentUserId = {props.userId}/>}
     </Card>
   );
 }
