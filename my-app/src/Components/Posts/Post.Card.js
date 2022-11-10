@@ -21,6 +21,8 @@ import { ReactSession } from "react-client-session";
 import { Component, useEffect, useState } from "react";
 // Comments coponents
 import Comment from "../Comments/Comment";
+// Testing Comments
+import PComment from "../Comments/PComment";
 
 
 const ExpandMore = styled((props) => {
@@ -145,7 +147,7 @@ export default function PostCard(props) {
         <button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</button>
         <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
-      {isCommentToggle && <div>I am a Comment</div>}
+      {isCommentToggle && <PComment currentUserId = {props.userId}/>}
     </Card>
   );
 }
