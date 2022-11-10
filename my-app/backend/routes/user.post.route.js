@@ -67,8 +67,6 @@ router
     .catch((err) => res.status(400).json("Error: " + err));
   })
 
-
-
   router.route('/likePost/:id/:userId').post((req,res) => {
     usersPost.UserPostCollection.findById(req.params.id)
 
@@ -119,8 +117,12 @@ if(userspost.userLikes.includes(req.params.userId)){
       }) 
       })
 
-
-
+  router.route('/searchPost/:title').get((req, res) => {
+    usersPost.UserPostCollection.findOne({postTitle: req.params.title})
+    .then((usersPost) => {
+      res.send(usersPost);
+    })
+  })
 
   //const companyName = req.body.postUserName;
   //Find the User object that has this name
@@ -186,7 +188,7 @@ router.delete("/delete-user.post/:id", (req, res, next) => {
         msg: data,
       });
     }
-  });
+  }).catch();
 });
 
 module.exports = router;
