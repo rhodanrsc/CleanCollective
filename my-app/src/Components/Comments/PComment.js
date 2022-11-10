@@ -13,9 +13,9 @@ function getPostComments(){
       axios.get("http://localhost:5000/comment/"+userId)
       .then((res) => {
         let likedPosts = res.data;
-        if (likedPosts.includes(props.id)){
-          setSelectedLike(true);
-        }
+        //if (likedPosts.includes(props.id)){
+         // setSelectedLike(true);
+        //}
     })
    }
   }

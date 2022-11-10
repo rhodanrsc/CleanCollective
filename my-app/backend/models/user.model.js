@@ -31,6 +31,9 @@ const userSchema = new Schema({
     },
     likedPosts :{
         type: [String]
+    },
+    savedPosts :{
+        type: [String]
     }
    
 },
