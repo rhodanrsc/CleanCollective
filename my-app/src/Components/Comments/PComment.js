@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {ReactSession} from "react-client-session";
 import axios from 'axios';
 
-const PComment = ({currentUserId}) => {
+const PComment = (props) => {
 let userSession = ReactSession.get("userSession");
 
 const[backendComments, setBackendComments] = useState ([]);
@@ -20,12 +20,12 @@ function getPostComments(){
    }
   }
 
-useEffect (() => {
-getPostComments();
-}, [])
+// useEffect (() => {
+// getPostComments();
+// }, [])
 
   return (
-    <div>PComments</div>
+    <div>{props.body}</div>
   );
 };
 export default PComment;
