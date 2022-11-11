@@ -1,5 +1,5 @@
 import { ReactSession } from "react-client-session";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //material ui imports
 import Box from "@mui/material/Box";
@@ -12,24 +12,25 @@ import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
-//side menu
-import CustomizedMenus from "./user_description_menu.component";
+
 
 //profile pic
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
 import Edit from "@mui/icons-material/Edit";
+import axios from "axios";
 
 //EDIT AND SAVE BUTTONS FOR ABOUT PAGE
-const handleEditClick = () => {
-  let aboutInput = document.getElementById("aboutTextBox");
-  aboutInput.removeAttribute("disabled");
+// const handleEditClick = () => {
+//   let aboutInput = document.getElementById("aboutTextBox");
+//   aboutInput.removeAttribute("disabled");
   
-};
+// };
 
 
 export default function DescriptionBox() {
   let data = ReactSession.get("userSession");
 
+  const [aboutContent, setAboutContent] = useState()
   const [editMode, setEditMode] = useState(false);
   const handleEditMode = () => {
     let aboutInput = document.getElementById("aboutTextBox");
@@ -40,10 +41,22 @@ export default function DescriptionBox() {
   const handleSaveClick = () => {
     let aboutInput = document.getElementById("aboutTextBox");
     aboutInput.setAttribute("disabled", true);
-    setEditMode(false)
+    setEditMode(false);
 
-  };
-
+    if(data){
+      
+      axios.post("http://localhost:5000/user/updateOneField/" + data._id, {
+          updateType : "about",
+          about : aboutContent
+      })
+      .then((res) => {
+          alert("worked")
+          console.log(data.about);
+    })
+    .catch((err) => alert("Something went wrong: " + err));
+    };
+  }
+      
   return (
     <div>
       <Paper>
@@ -69,7 +82,7 @@ export default function DescriptionBox() {
             label="About"
             multiline
             maxRows={20}
-            value={data.about}
+            value={data ? data.about : null}
             disabled
           />
         
@@ -91,7 +104,7 @@ export default function DescriptionBox() {
         ></Box>
 
         <Typography variant="email_display" component="div">
-          Email: {data.email}
+          Email: {data ? data.email : null}
         </Typography>
       </Paper>
     </div>

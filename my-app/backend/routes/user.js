@@ -132,7 +132,9 @@ router.route('/updateOneField/:id').post((req, res) => {
       const currentPassword = req.body.currentPassword;
       const newPassword = req.body.newPassword;
       const confirmPassword = req.body.confirmPassword;
-      
+      const aboutContent = req.body.about; //for user profile page 
+
+
       User.UserCollection.find()
       .then(function(users){
         let existField = false;
@@ -187,6 +189,9 @@ router.route('/updateOneField/:id').post((req, res) => {
             } else{
               message = 'passwordError'
             }
+        } else if (updateType === "about"){
+          user.about = aboutContent;
+
         }
 
         user.save()

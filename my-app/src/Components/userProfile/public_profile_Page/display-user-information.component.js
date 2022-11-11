@@ -12,16 +12,6 @@ import BackgroundLetterAvatars from "./right_panel/user_profile_image_default.co
 
 //middle panel
 import DescriptionBox from "./middle_panel/information_edit_box.component";
-//there l be a side link for settings
-
-//import react session
-//then let user session == react session chnage password page.
-
-//to find inspect application -> session storage then localhost thing to see session
-
-//post card - can grab users post
-
-
 
 export default function ProfilePage() {
 
@@ -39,15 +29,18 @@ export default function ProfilePage() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
         <Grid xs={10}>
-        <Typography variant="h2" gutterBottom>
-            <BackgroundLetterAvatars></BackgroundLetterAvatars>{name}
-          </Typography>
+
           <span />
             <DescriptionBox></DescriptionBox>
+            
 
           
         </Grid>
-        <Grid xs></Grid>
+        <Grid xs>
+        <Typography variant="h2" gutterBottom>
+            <BackgroundLetterAvatars></BackgroundLetterAvatars>{name}
+          </Typography>
+        </Grid>
       </Grid>
     </Box>
 
