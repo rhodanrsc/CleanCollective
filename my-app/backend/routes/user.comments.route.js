@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Comment = require('../models/user.comments');
-const Post = require ('../models/users.post.model');
+const usersPost = require ('../models/users.post.model');
 
 
 // returns a list of comments for the current user 
@@ -13,17 +13,17 @@ router.route('/').get((req, res) =>{
 // gets a comment by the post id 
   router.route("/getComment/:id").get((req,res) => {
     
-    Comment.UserCommentCollection.findById(req.params.id)
+    Comment.UserCommentCollection.find({commentPostId : req.params.id})
     .then((comments) => res.json(comments))
     .catch((err) => res.status(400).json("Error: " + err));
   })
 
 // adds a new comment
 router.route("/addComment/:id").post((req, res) => {
-  Post.UserPostCollection.findById(req.params.id).then((post) => {
+  usersPost.UserPostCollection.findById(req.params.id).then(() => {
   const comment_username = req.body.commentUsername;
   const comment_user_Id = req.body.commentUserId; 
-  const comment_postId = post._id;
+  const comment_postId = req.params.id;
   const comment_body = req.body.commentBody;
   const comment_ParentId = req.body.commentParentId;
 
