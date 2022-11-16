@@ -30,7 +30,7 @@ import axios from "axios";
 export default function DescriptionBox() {
   let data = ReactSession.get("userSession");
 
-  const [aboutContent, setAboutContent] = useState()
+  const [aboutContent, setAboutContent] = useState(data.about)
   const [editMode, setEditMode] = useState(false);
   const handleEditMode = () => {
     let aboutInput = document.getElementById("aboutTextBox");
@@ -38,12 +38,15 @@ export default function DescriptionBox() {
     setEditMode(true)
   }
 
+
+
   const handleSaveClick = () => {
+  
     let aboutInput = document.getElementById("aboutTextBox");
     aboutInput.setAttribute("disabled", true);
     setEditMode(false);
 
-    if(data){
+    
       
       axios.post("http://localhost:5000/user/updateOneField/" + data._id, {
           updateType : "about",
@@ -51,10 +54,16 @@ export default function DescriptionBox() {
       })
       .then((res) => {
           alert("worked")
-          console.log(data.about);
+          console.log(aboutContent)
+          data.about = aboutContent;
+          ReactSession.set("userSession", data)
     })
     .catch((err) => alert("Something went wrong: " + err));
-    };
+    
+  }
+
+  const handleAboutChange = (event) => {
+     setAboutContent(event.target.value)
   }
       
   return (
@@ -79,11 +88,11 @@ export default function DescriptionBox() {
         >
           <TextField
             id="aboutTextBox"
-            label="About"
             multiline
             maxRows={20}
-            value={data ? data.about : null}
+            value={aboutContent}
             disabled
+            onChange={handleAboutChange}
           />
         
         {editMode === true ?  <IconButton
