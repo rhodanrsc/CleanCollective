@@ -23,7 +23,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setAnchorEl(null);
     },
-      2000);
+      1500);
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -55,7 +55,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setTRLAnchorEl(null);
     },
-      2000);
+      1500);
   };
   const trlOpen = Boolean(trlAnchorEl);
   const trlID = open ? 'simple-popover' : undefined;

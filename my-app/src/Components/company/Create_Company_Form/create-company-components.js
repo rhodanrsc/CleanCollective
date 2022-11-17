@@ -17,6 +17,19 @@ const CreateUser = () => {
   const [companyID, setCompanyID] = useState();
   const [open, setOpen] = useState(false);
   const [newCompanyName, setNewCompanyName] = useState()
+  const [error, setMessage] = useState({
+    color: "",
+    text: ""
+  });
+
+  const showMessage = (event) => {
+    if (event === "existError") {
+      setMessage({
+        color: "red",
+        text: "*Product name already in use."
+      })
+    }
+  }
 
   //Values for Company Form
   const [formValues] = useState({
@@ -69,7 +82,11 @@ const CreateUser = () => {
       tags: arrayOfTags
     })
       .then((res) => {
-        alert("Product added!")
+        let message = res.data;
+        if (message === "existError") {
+          showMessage(message)
+        }
+
       })
       .catch((err) => alert("Something went wrong: " + err));
   }
@@ -137,6 +154,7 @@ const CreateUser = () => {
             value={productName}
             onChange={handleSetProductName}
           />
+          <span style={{ color: error.color }}>{error.text}</span>
 
           {/*Product Description*/}
           <TextField

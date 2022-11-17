@@ -27,28 +27,47 @@ router.route("/add/:id").post((req, res) => {
         ownerName: company.companyName,
       };
 
-      const new_product = new Product.ProductCollection({
-        name: name,
-        description: description,
-        image: image,
-        owner: owner,
-        tags: tags,
-      });
 
-      new_product
-        .save()
-        .then(function () {
-          company.products.push(new_product);
-          company
-            .save()
-            .then(() => res.json("Product added to company"))
-            .catch((err) =>
-              res
-                .status(400)
-                .json("Error: Could not add product to company - " + err)
-            );
+      Product.ProductCollection.find()
+        .then(function (products) {
+          let existProduct = false;
+          let message = "sucess";
+          products.forEach(function (product) {
+            if (name === product.name) {
+              existProduct = true;
+              message = "existError"
+            }
+          });
+
+          if (existProduct === false) {
+            const new_product = new Product.ProductCollection({
+              name: name,
+              description: description,
+              image: image,
+              owner: owner,
+              tags: tags,
+            });
+
+            new_product
+              .save()
+              .then(function () {
+                company.products.push(new_product);
+                company
+                  .save()
+                  .then(() => res.send(message))
+                  .catch((err) =>
+                    res
+                      .status(400)
+                      .json("Error: Could not add product to company - " + err)
+                  );
+              })
+              .catch((err) => res.json(err));
+          } else {
+            res.send(message)
+          }
+
+
         })
-        .catch((err) => res.json(err));
     })
     .catch((err) => res.status(400).json("Error: company not found " + err));
 });
