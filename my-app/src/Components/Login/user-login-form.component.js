@@ -31,7 +31,7 @@ const UserLoginComponent = () => {
     .then((res) => {
       if(res.status === 200){
 
-        navigate("/"); // page you go to after login 
+        navigate("/forum"); // page you go to after login 
         window.location.reload();
         ReactSession.set("userSession", res.data)
         
