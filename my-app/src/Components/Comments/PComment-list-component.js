@@ -28,22 +28,23 @@ const PCommentList = (props) => {
         alert("Error pulling user post data");
       });
   };
-
+// Triggers these functions when 'comments' state changes and when componentMounts. 
   useEffect(() => {
     getAllUserPost();
-    },[])
+    },[comments])
 
   
      return (
     <div>
 
-       {comments.map((comment) => (
+       {  comments.map((comment) => (
       <PComment
       username={comment.commentUserName}
       body={comment.commentBody}
       key={comment._id}
         />
-    ))}
+    ))  }
+
     </div>
   );
 };
