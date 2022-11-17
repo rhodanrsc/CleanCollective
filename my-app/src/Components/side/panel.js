@@ -44,7 +44,7 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: 'auto', marginTop: '10px' }}>
           <List>
             {['Questions'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>{navigate('/'+text);}}>
+              <ListItem key={text} disablePadding onClick={()=>{navigate('/forum'+text);}}>
                 <ListItemButton>
                   <ListItemIcon>
                     {index === 0 ? <QuestionsIcon /> : null}
