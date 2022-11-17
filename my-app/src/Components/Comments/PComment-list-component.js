@@ -10,9 +10,9 @@ const PCommentList = (props) => {
   const [comments, setComments] = React.useState([]);
 
 
-
+ let postId = props.postId;
     
-  let postId = '636c752794c3df3f01acd710';
+  // let postId = '636c752794c3df3f01acd710';
  function getAllUserPost(){
     axios({
       method: "GET",
@@ -37,9 +37,6 @@ const PCommentList = (props) => {
     getAllUserPost();
     },[])
 
-
-
-//
   
      return (
     <div>
@@ -51,7 +48,6 @@ const PCommentList = (props) => {
       key={comment._id}
         />
     ))}
-    <h3>RENDERED PCOMMENTLIST </h3>
     </div>
   );
 };

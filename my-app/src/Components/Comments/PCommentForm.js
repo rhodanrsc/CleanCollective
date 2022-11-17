@@ -1,40 +1,48 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
 import PCommentList from "./PComment-list-component";
+import axios from "axios";
+import { ReactSession } from 'react-client-session';
 
 
 const PCommentForm = (props,handleCancel) => {
+  let userSession = ReactSession.get("userSession");
+  const [commentTitle, setCommentTitle] = useState();
+  const [text, setText] = useState("");
+  const isTextareaDisabled = text.length === 0;
 
   function handleSubmit (){
     console.log("handle submit function");
-    console.log(props.postId);
-      // axios
-      //   .post(
-      //     "http://localhost:5000/user.comment.route/addComment/" + userPost._id,
-      //     {
-      
-      //     })
-      //     .then(() => {
-      //     console.log("Post added");
-      //     navigate("/forum");
-      //   })
-      //   .catch((err) => {
-      //     console.log("Something went wrong: " + err);
-      //   });
+      axios
+        .post(
+          "http://localhost:5000/comment/addComment/" + props.postId,
+          {
+            commentUsername : userSession.username,
+            commentUserId: userSession._id,
+            commentPostId: props.postId,
+            commentBody: text
+            
+          })
+          .then(() => {
+          console.log("Post added");
+        })
+        .catch((err) => {
+          console.log("Something went wrong: " + err);
+        });
     }
 
     function testClick(){
       console.log("handle submit function");
       console.log(props.postId);
+      console.log(userSession.username);
+      console.log(userSession._id);
     }
   
  function handleCancel(){
-     //setActiveComment(null);
+    //  setActiveComment(null);
     }
 
-  const [commentTitle, setCommentTitle] = useState();
-  const [text, setText] = useState("");
-  const isTextareaDisabled = text.length === 0;
+
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit();
@@ -47,7 +55,7 @@ const PCommentForm = (props,handleCancel) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button className="comment-form-button" disabled={isTextareaDisabled}>
+      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
         Submit
       </Button>
       <Button onClick={testClick}>TEST </Button>
