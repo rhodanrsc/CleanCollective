@@ -7,7 +7,7 @@ import { ReactSession } from 'react-client-session';
 
 const PCommentForm = (props,handleCancel) => {
   let userSession = ReactSession.get("userSession");
-  const [commentTitle, setCommentTitle] = useState();
+
   const [text, setText] = useState("");
   const isTextareaDisabled = text.length === 0;
 
@@ -21,7 +21,6 @@ const PCommentForm = (props,handleCancel) => {
             commentUserId: userSession._id,
             commentPostId: props.postId,
             commentBody: text
-            
           })
           .then(() => {
           console.log("Post added");
@@ -66,7 +65,7 @@ const PCommentForm = (props,handleCancel) => {
         >
           Cancel
         </Button>
-        <PCommentList postId={props.postId}/>
+        <PCommentList postId={props.postId} />
     </form>
   );
 };

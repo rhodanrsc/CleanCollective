@@ -4,15 +4,11 @@ import axios from 'axios';
 
 const PCommentList = (props) => {
 
-  const [commentUserName] = React.useState("");
-  const [commentTitle] = React.useState("");
-  const [commentBody] = React.useState("");
   const [comments, setComments] = React.useState([]);
-
 
  let postId = props.postId;
     
-  // let postId = '636c752794c3df3f01acd710';
+
  function getAllUserPost(){
     axios({
       method: "GET",
