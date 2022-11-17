@@ -19,7 +19,6 @@ import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component";
-import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
