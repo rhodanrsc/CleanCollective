@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CompanyForm from "./companyForm";
-import { TagComboBox }  from "../userPosts/tag_combo_box"
+import { TagComboBox } from "../../userPosts/tag_combo_box"
 import { useNavigate } from "react-router-dom";
-import companyCSS from "../../shared/css/createCompany.css"
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogText , DialogTitle} from "@mui/material";
+import companyCSS from "../../../shared/css/createCompany.css"
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { ReactSession } from "react-client-session";
 
 const CreateUser = () => {
   let userSession = ReactSession.get("userSession");
   const navigate = useNavigate();
-  
+
   //Values for Product Form
   const [productName, setProductName] = useState()
   const [productDescription, setProductDescription] = useState()
@@ -28,12 +28,12 @@ const CreateUser = () => {
     employees: "0,10",
     website: "",
     check: false,
-    address : "",
-    city : "",
-    ZIP : "",
-    province : "N/A",
-    yearFounded : 2022,
-    country : "Canada"
+    address: "",
+    city: "",
+    ZIP: "",
+    province: "N/A",
+    yearFounded: 2022,
+    country: "Canada"
   });
 
   //Holds the value of selected tags.
@@ -64,57 +64,57 @@ const CreateUser = () => {
   //Creates product
   const handleCreateProduct = () => {
     axios.post("http://localhost:5000/product/add/" + companyID, {
-      name : productName,
-      description : productDescription,
-      tags : arrayOfTags
+      name: productName,
+      description: productDescription,
+      tags: arrayOfTags
     })
-    .then((res) => {
-        alert("Product added!")    
-    })
-    .catch((err) => alert("Something went wrong: " + err));
+      .then((res) => {
+        alert("Product added!")
+      })
+      .catch((err) => alert("Something went wrong: " + err));
   }
 
   //Creates Company
-  const OnSubmit = (companyObject) =>{
+  const OnSubmit = (companyObject) => {
 
     const [employeeMinString, employeeMaxString] = companyObject.employees.split(",")
     const employeeMinNum = Number(employeeMinString)
     const employeeMaxNum = Number(employeeMaxString)
 
     axios.post("http://localhost:5000/company/add/" + userSession._id, {
-      companyName : companyObject.companyName,
-      file : companyObject.file,
-      companyType : companyObject.type,
-      employeeMin : employeeMinNum,
-      employeeMax : employeeMaxNum,
-      website : companyObject.website,
-      check : companyObject.check,
-      address : companyObject.address,
-      city : companyObject.city,
-      province : companyObject.province,
-      country : companyObject.country,
-      zip : companyObject.ZIP,
-      sector : companyObject.companyType,
-      trl : companyObject.stage
+      companyName: companyObject.companyName,
+      file: companyObject.file,
+      companyType: companyObject.type,
+      employeeMin: employeeMinNum,
+      employeeMax: employeeMaxNum,
+      website: companyObject.website,
+      check: companyObject.check,
+      address: companyObject.address,
+      city: companyObject.city,
+      province: companyObject.province,
+      country: companyObject.country,
+      zip: companyObject.ZIP,
+      sector: companyObject.companyType,
+      trl: companyObject.stage
     })
-    .then((res) => {
+      .then((res) => {
         setCompanyID(res.data._id)
         setNewCompanyName(companyObject.companyName)
-        setOpen(true)       
-    })
-    .catch((err) => alert("Something went wrong: " + err));
+        setOpen(true)
+      })
+      .catch((err) => alert("Something went wrong: " + err));
   }
 
-  return(
+  return (
     <div>
-    <CompanyForm
-      initialValues={formValues}
-      onSubmit={OnSubmit}
-      enableReinitialize
-    >
-      Sign Up
-    </CompanyForm>
-    <Dialog open={open} onClose={handleClose}>
+      <CompanyForm
+        initialValues={formValues}
+        onSubmit={OnSubmit}
+        enableReinitialize
+      >
+        Sign Up
+      </CompanyForm>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Congratulations! {newCompanyName} is now in business!</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -152,7 +152,7 @@ const CreateUser = () => {
             value={productDescription}
             onChange={handleSetProductDescription}
           />
-          
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>I'm lazy</Button>

@@ -33,6 +33,7 @@ const CreateCompany = (props) => {
   const [trlInput, setTRlInput] = useState();
   const [trlDescription, setTRLDescription] = useState();
 
+  //Handle updating the popover for TRL
   useEffect(() => {
     let currentTRL = document.getElementById("formControlSelect4").value;
     setTRlInput(currentTRL);
@@ -229,7 +230,10 @@ const CreateCompany = (props) => {
                         vertical: 'top',
                         horizontal: 'left',
                       }}
-                    >{trlDescription}</Popover>
+                    >
+                      {trlInput}
+                      <br></br>
+                      {trlDescription}</Popover>
                     <Field
                       as="select"
                       name="stage"
