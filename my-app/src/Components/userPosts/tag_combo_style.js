@@ -7,9 +7,8 @@ import { autocompleteClasses } from "@mui/material/Autocomplete";
 
 const Root = styled("div")(
   ({ theme }) => `
-  color: ${
-    theme.palette.mode === "dark" ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,.85)"
-  };
+  color: ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,.85)"
+    };
   font-size: 14px;
 `
 );
@@ -41,10 +40,9 @@ const InputWrapper = styled("div")(
 
   & input {
     background-color: ${theme.palette.mode === "dark" ? "#141414" : "#fff"};
-    color: ${
-      theme.palette.mode === "dark"
-        ? "rgba(255,255,255,0.65)"
-        : "rgba(0,0,0,.85)"
+    color: ${theme.palette.mode === "dark"
+      ? "rgba(255,255,255,0.65)"
+      : "rgba(0,0,0,.85)"
     };
     height: 30px;
     box-sizing: border-box;
@@ -60,24 +58,24 @@ const InputWrapper = styled("div")(
 );
 
 function Tag(props) {
-  const styles = {
-    bigIcon: {
-      width: 30,
-      height: 30,
-    },
-    big: {
-      width: 45,
-      height: 45,
-      padding: 16,
-    },
-  };
+  // const styles = {
+  //   bigIcon: {
+  //     width: 30,
+  //     height: 30,
+  //   },
+  //   big: {
+  //     width: 45,
+  //     height: 45,
+  //     padding: 16,
+  //   },
+  // };
   const { label, onDelete, ...other } = props;
   return (
     <div style={{ opacity: "0.4" }} {...other}>
       <span className="listOfTags">{label}</span>
       <CloseIcon
-        iconstyle={styles.bigIcon}
-        style={styles.big}
+        // iconstyle={window.location.pathname === "/createPost" ? styles.bigIcon : null}
+        // style={window.location.pathname === "/createPost" ? styles.big : null}
         onClick={onDelete}
       />
     </div>
@@ -96,9 +94,8 @@ const StyledTag = styled(Tag)(
   height: 24px;
   margin: 2px;
   line-height: 22px;
-  background-color: ${
-    theme.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "#fafafa"
-  };
+  background-color: ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "#fafafa"
+    };
   border: 1px solid ${theme.palette.mode === "dark" ? "#303030" : "#e8e8e8"};
   border-radius: 2px;
   box-sizing: content-box;
@@ -172,4 +169,4 @@ const Listbox = styled("ul")(
 `
 );
 
-export { Listbox, Root, Label, InputWrapper, Tag, StyledTag };
+export { Listbox, Root, Label, InputWrapper, StyledTag };

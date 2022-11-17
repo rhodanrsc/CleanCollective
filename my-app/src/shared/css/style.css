@@ -1,3 +1,4 @@
+
 .wrapper {
     display: flexbox;
     width: 60%;
@@ -54,6 +55,14 @@ body {
     margin-right: 30px;
 }
 
+.loginButton:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
+
+
 /* Landing Page */
 
 .buttonGreenSmall{
@@ -69,10 +78,17 @@ body {
     margin-right: 8px;
 }
 
+.buttonGreenSmall:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
+
 .buttonGreenBig {
     display: inline-block;
     padding: 12px 20px;
-    margin: 0 auto;
+    margin: 15px;
 
     width: 200px;
     height: 86px;
@@ -83,6 +99,13 @@ body {
 
     text-align: center;
 }
+
+.buttonGreenBig:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
 
 .bigLogo {
     display: block;
@@ -111,6 +134,8 @@ body {
 
 .adoptor {
     float: left;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .adoptor, .innovator {
@@ -129,6 +154,8 @@ body {
 
 .innovator {
     float: right;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .landingPageButtons {
@@ -170,6 +197,13 @@ body {
     color: white;
     border: none;
 }
+
+.getStarted .landingButton:active {
+    background-color: 309A47;
+    box-shadow: 0 2px gray;
+    transform: translateY(4px);
+    border-radius: 0.25em;
+  }
 
 .getStarted {
     display: block;
