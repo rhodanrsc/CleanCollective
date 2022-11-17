@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { ReactSession }  from 'react-client-session';
 const Logout = () => {
     const logout = () => {
         axios({

@@ -1,5 +1,9 @@
 const sector = require("./sector.model");
+const trl = require("./trl.model");
+const product = require("./product.model")
+const user = require("./user.model")
 const mongoose = require("mongoose");
+
 
 const Schema = mongoose.Schema;
 
@@ -10,8 +14,55 @@ const companySchema = new Schema({
   },
   sector: {
     type: sector.sectorSchema,
+ 
+  },
+  file: {
+    type: String,
     required: false,
   },
+  companyType:{
+    type: String,
+    required: false,
+  },
+  trl:{
+    type: trl.trlSchema,
+    
+  },
+  rangeOfEmployees:{
+    type : {
+      minNumOfEmployees : Number,
+      maxNumOfEmployees : Number
+    },
+    required: false,
+  },
+  website:{
+    type: String,
+    required: false,
+  },
+  check:{
+    type: Boolean,
+    default: false, 
+    required: false,
+  },
+  location: {
+    type: {
+      address : String,
+      city : String,
+      province : String,
+      country : String,
+      zip : String
+    }
+  },
+  products : {
+    type : [product.productSchema]
+  },
+  members : {
+    type : [{
+      memberName : String,
+      memberID : String
+    }]
+  }
+  
 },
 {
   timestamps: true

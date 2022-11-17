@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import PostCard from "./Post.Card";
 import axios from "axios";
+import SearchBar from "./SearchBar"
 
 export class PostPage extends Component {
   state = {
@@ -33,10 +34,9 @@ export class PostPage extends Component {
 
 
   render() {
-    console.log("render method");
-    console.log(this.state.posts);
     return (
       <div>
+        <SearchBar />
           {this.state.posts.reverse().map((post) => (
          
         <PostCard
@@ -45,11 +45,9 @@ export class PostPage extends Component {
         title={post.postTitle}
         body={post.postBody}
         likes={post.postLikes}
-
         key={post._id}
-
           />
-          
+    
       ))}
       </div>
     );
