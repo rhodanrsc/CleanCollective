@@ -4,13 +4,6 @@ import axios from 'axios';
 
 const PCommentList = (props) => {
 
-  // const state = {
-  //   commentUserName: "",
-  //   commentTitle: "",
-  //   commentBody: "",
-  //   comments: []
-  // };
-  
   const [commentUserName] = React.useState("");
   const [commentTitle] = React.useState("");
   const [commentBody] = React.useState("");
@@ -27,12 +20,13 @@ const PCommentList = (props) => {
     })
       .then((response) => {
         const data =response.data;
+       let tempComments=[];
         for(let i = 0; i < data.length ; i++) {
-          comments.push(data[i])
+          tempComments.push(data[i])
         }
-        console.log(response.data);
-        console.log(comments);
-        console.log("User post data pulled from DB");
+
+        setComments(tempComments);
+
       })
       .catch((err) => {
         alert("Error pulling user post data");
@@ -41,11 +35,14 @@ const PCommentList = (props) => {
 
   useEffect(() => {
     getAllUserPost();
-    },[comments])
+    },[])
+
+
+
+//
   
      return (
     <div>
-      <h3>RENDERED PCOMMENTLIST </h3>
 
        {comments.map((comment) => (
       <PComment
@@ -54,6 +51,7 @@ const PCommentList = (props) => {
       key={comment._id}
         />
     ))}
+    <h3>RENDERED PCOMMENTLIST </h3>
     </div>
   );
 };
