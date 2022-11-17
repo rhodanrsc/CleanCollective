@@ -18,8 +18,8 @@ export default function ControlledAccordions() {
   
 
   return (
-    
-    <div>
+    <body className="edit-user">
+    <div edit-user-box>
       {/****** Account Information ******/}
       <Accordion style={{height: '100%'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
@@ -120,5 +120,6 @@ export default function ControlledAccordions() {
         </AccordionDetails>
       </Accordion>
     </div>
+    </body>
   );
 }
