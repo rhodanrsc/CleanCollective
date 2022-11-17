@@ -2,7 +2,6 @@ const router = require('express').Router();
 const cors = require("cors");
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
-
 const UserPost = require('../models/users.post.model');
 const { Router } = require('express');
 const bcrypt = require("bcryptjs");
@@ -32,7 +31,7 @@ require("../passportConfig")(passport);
 //-----------------------------END OF MIDDLEWARE-----------------------------
 
 //Returns list of Users
-router.route('/').get((req, res) =>{
+router.route('/').get((req, res) => {
     User.UserCollection.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
@@ -209,11 +208,7 @@ router.route('/getUser').get((req, res) => {
   (res.send(req.user));
 });
 
-router.route('/getUserLikedPosts/:userId').get((req, res) => {
-  User.UserCollection.findById(req.params.userId)
-  .then(user => res.json(user.likedPosts))
-  .catch(err => res.status(400).json('Error: ' + err));
-});
+
 
 //Find user by ID
 router.route('/:id').get((req, res) => {
@@ -221,6 +216,7 @@ router.route('/:id').get((req, res) => {
     .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 
 //Find user by username
 router.route('/findUserName').post((req, res) => {

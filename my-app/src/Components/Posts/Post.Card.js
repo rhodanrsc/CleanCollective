@@ -2,20 +2,16 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Hamburger from "./HamburgerButton/Hamburger";
 import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { Component, useEffect, useState } from "react";
@@ -56,10 +52,11 @@ export default function PostCard(props) {
   }
 
 
-
+  
   const [expanded, setExpanded] = React.useState(false);
   const [selectedLike, setSelectedLike] = React.useState(false);
   const [selectedDislike, setSelectedDislike] = React.useState(false);
+  //For Front-end rendering
   const [likes, setLikes] = React.useState(props.likes);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -69,7 +66,7 @@ export default function PostCard(props) {
   function checkLike(){
     if(userSession){
       let userId = userSession._id;
-      axios.get("http://localhost:5000/user/getUserLikedPosts/"+userId)
+      axios.get("http://localhost:5000/user.post.route/getUserLikedPosts/"+userId)
       .then((res) => {
         let likedPosts = res.data;
         if (likedPosts.includes(props.id)){
@@ -95,10 +92,7 @@ export default function PostCard(props) {
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+          (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
         title={props.title}
         subheader="September 14, 2016"
       />

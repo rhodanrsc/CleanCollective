@@ -100,7 +100,7 @@ function checkUsername(username){
     //Check if email exists
     let error;
     if(!username){
-        error = '*';
+        error = '*Required';
     } else{
         listOfUsers[0].forEach(function (user) {
         //If even one matches. Return false

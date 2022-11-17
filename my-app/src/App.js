@@ -18,7 +18,9 @@ import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
-import RegisterPage from "./Components/registration/create-user.component";
+import RegisterPage from "./Components/registration/create-user.component"
+import CompanyCreation from "./Components/company/Create_Company_Form/create-company-components";
+
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
@@ -28,12 +30,17 @@ import PostPage from "./Components/Posts/main-post-page";
 ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
+
+
   return (
+
+
     <Router>
+
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          
+
         </header>
         <Container>
           <Row>
@@ -51,6 +58,7 @@ const App = () => {
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
+                  <Route path="/CreateCompany" element={<CompanyCreation />} />
                 </Routes>
               </div>
             </Col>
@@ -58,6 +66,8 @@ const App = () => {
         </Container>
       </div>
     </Router>
+
+
   );
 };
 
