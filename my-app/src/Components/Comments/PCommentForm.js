@@ -38,7 +38,7 @@ const PCommentForm = (props,handleCancel) => {
     }
   
  function handleCancel(){
-    //  setActiveComment(null);
+  props.setCommentToggle(!props.isCommentToggle)
     }
 
 

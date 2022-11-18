@@ -86,7 +86,9 @@ export default function PostCard(props) {
       })
     }
   }
-
+  var options = {  year: 'numeric', month: 'short', day: 'numeric' };
+  const createdAt =new Date(props.createdAt);
+  let date= createdAt.toLocaleDateString("en-US", options);
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
   checkLike();
@@ -103,9 +105,8 @@ export default function PostCard(props) {
         }
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
-          title=<h6><b>{props.title}</b></h6>
-        subheader="September 14, 2016"
-        style={{ padding: "20px" }}
+        title={props.title}
+        subheader={date}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -118,7 +119,7 @@ export default function PostCard(props) {
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        
           <ToggleButton
             id= {props.id}
             value="check"
@@ -149,12 +150,10 @@ export default function PostCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Button onClick={() => setCommentToggle(!isCommentToggle)} style= {{paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px", paddingBottom:"5px", borderRadius:"0.2em", backgroundColor: "#1682FD", color:"white", border:"none"}}>Comment</Button>
-
+        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} />
-      }
-      
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
     <br/>
     </div>
