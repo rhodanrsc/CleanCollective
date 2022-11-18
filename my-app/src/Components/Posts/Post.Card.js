@@ -96,7 +96,7 @@ export default function PostCard(props) {
 // test push 
   return (
     <div>
-    <Card sx={{ maxWidth: "95%", marginLeft:"15px" }}>
+    <Card sx={{ maxWidth: "95%", marginLeft:"15px", paddingLeft:"18px", paddingBottom:"15px" }}>
               
       <CardHeader
       

@@ -52,7 +52,7 @@ const PCommentForm = (props,handleCancel) => {
       <TextField label="Comments" id="fullWidth" 
         className="comment-form-textarea"
         value={text}
-        style= {{width:"730px", paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px",marginBottom:"10px", borderRadius:"0.2em", border:"none"}}
+        style= {{width:"730px", paddingLeft:"5px", paddingRight:"30px", paddingTop:"5px",marginBottom:"10px", borderRadius:"0.2em", border:"none"}}
         onChange={(e) => setText(e.target.value)}
       />
       <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled} style = {{marginLeft:"550px"}}>

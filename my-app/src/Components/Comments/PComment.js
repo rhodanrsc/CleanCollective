@@ -56,10 +56,10 @@ const createdAt =new Date(props.createdAt);
     
     <div>
       <div style={{ padding: 14 }} className="App">
-      <Paper style={{ padding: "20px 10px" }}>
+      <Paper style={{ padding: "20px 10px", marginLeft:"-10px", marginRight:"10px" }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-            <Avatar alt="user profile pic"  />
+            <Avatar  style={{backgroundColor:"#1682FD"}}alt="user profile pic"  />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
             <h7 style={{ margin: 0, textAlign: "left" }}>{props.username}</h7>

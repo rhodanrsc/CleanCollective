@@ -36,7 +36,7 @@ const PCommentList = (props) => {
   
      return (
     <div>
-<h6 style={{marginLeft:"20px", marginTop:"10px"}}><u>Comments</u></h6>
+<h6 style={{marginLeft:"10px", marginTop:"10px"}}><u>Comments</u></h6>
        {  comments.map((comment) => (
       <PComment
       username=<b>{comment.commentUsername}</b>
