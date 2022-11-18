@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Box, Grid, Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography, Button, ButtonGroup, Divider } from "@mui/material"
+import { Box, Grid, Card, CardHeader, CardContent, Avatar, IconButton, Typography, Button, ButtonGroup } from "@mui/material"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HomeTab from "./tabs/homeTab";
 import AboutTab from "./tabs/aboutTab";
@@ -59,17 +59,13 @@ export default function TopCard() {
                     companySize={company ? company.rangeOfEmployees.minNumOfEmployees + " - " + company.rangeOfEmployees.maxNumOfEmployees + " Employees" : null}
                     owner={company ? company.members[0].memberName : null}
                     website={company ? company.website : null}
+                    location={company ? companyLocation : null}
                 />;
             default:
                 return null;
         }
     }
 
-
-    const myStyle = {
-        width: "100%",
-        height: "30%"
-    }
     return (
         <Box>
             <Grid>

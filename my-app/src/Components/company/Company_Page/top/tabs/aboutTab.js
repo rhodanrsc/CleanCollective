@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Typography, Divider } from "@mui/material"
 
 
@@ -45,6 +44,16 @@ export default function AboutTab(props) {
             </Typography>
             <Typography variant="body2" color="text.secondary">
                 <a href={props.website}>{props.website}</a>
+
+            </Typography>
+
+            <Divider sx={{ height: "20px" }} variant="middle" />
+
+            <Typography variant="body1" color="text.primary">
+                Location
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                {props.location}
 
             </Typography>
         </div>
