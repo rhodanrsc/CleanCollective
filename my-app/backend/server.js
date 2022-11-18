@@ -32,6 +32,7 @@ const userPostRouter = require("./routes/user.post.route");
 const userRouter = require("./routes/user");
 const mailRouter = require("./routes/mail");
 const tagRouter = require("./routes/tags");
+const commentRouter = require("./routes/user.comments.route");
 const productRouter = require("./routes/product")
 
 
@@ -43,6 +44,7 @@ app.use("/trl", trlRouter);
 app.use("/user.post.route", userPostRouter);
 app.use("/user", userRouter);
 app.use("/tag", tagRouter);
+app.use("/comment", commentRouter);
 app.use("/", mailRouter);
 
 app.listen(port, () => {
