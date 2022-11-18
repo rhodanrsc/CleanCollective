@@ -105,7 +105,7 @@ export default function PostCard(props) {
         }
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
-        title={props.title}
+          title=<h6><b>{props.title}</b></h6>
         subheader={date}
       />
       <CardContent>
@@ -141,17 +141,18 @@ export default function PostCard(props) {
 
           >
 
-            <ThumbUpIcon style= {{backgroundColor: "", color:"", border:"none"}}/>
-          <Typography style = {{paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
+            <ThumbUpIcon style= {{paddingLeft:"6px",backgroundColor: "", color:"", border:"none"}}/>
+          <Typography style = {{marginLeft:"3px", paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
           
           </ToggleButton>
-
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        
+        <div style={{ padding: "10px", marginLeft:"385px" }}>{"~" + props.username}</div>
+
       </CardActions>
       {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
