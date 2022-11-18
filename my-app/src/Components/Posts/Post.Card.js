@@ -86,7 +86,7 @@ export default function PostCard(props) {
       })
     }
   }
-
+  const createdAt =new Date(props.createdAt);
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
   checkLike();
@@ -104,7 +104,7 @@ export default function PostCard(props) {
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
         title={props.title}
-        subheader="September 14, 2016"
+        subheader={"September 14, 2016"}
       />
       
       <CardContent>
@@ -150,7 +150,7 @@ export default function PostCard(props) {
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
 
       </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
     <br/>
     </div>
