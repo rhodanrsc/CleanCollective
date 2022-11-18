@@ -152,7 +152,8 @@ export default function PostCard(props) {
         <Button onClick={() => setCommentToggle(!isCommentToggle)} style= {{paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px", paddingBottom:"5px", borderRadius:"0.2em", backgroundColor: "#1682FD", color:"white", border:"none"}}>Comment</Button>
 
       </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} />}
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} />
+      }
       
     </Card>
     <br/>
