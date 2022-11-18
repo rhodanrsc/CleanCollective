@@ -10,12 +10,18 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Hamburger from "./HamburgerButton/Hamburger";
 import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { Component, useEffect, useState } from "react";
-
+import { Button } from "@mui/material";
+// Comments coponents
+import Comment from "../Comments/Comment";
+// Testing Comments
+import PComment from "../Comments/PComment";
+import PCommentForm from "../Comments/PCommentForm";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -31,8 +37,12 @@ const ExpandMore = styled((props) => {
 let id = '';
 
 //Get the User Post Data
-function getUserPost() {
+function getCommentBox() {
   alert("get post button clicked");
+
+}
+
+const renderCommentBox = (props) => {
 
 }
 
@@ -44,7 +54,6 @@ export default function PostCard(props) {
     const userId = userSession._id
     axios.post("http://localhost:5000/user.post.route/likePost/" + id + '/' + userId)
   }
-
   function unlike(e) {
     id = e.currentTarget.id;
     const userId = userSession._id
@@ -61,6 +70,8 @@ export default function PostCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  // Comments functions
+  const [isCommentToggle, setCommentToggle] = React.useState(false);
 
   //checks whether a post has been liked by the current user. Runs immediately when component mounts.
   function checkLike(){
@@ -77,17 +88,16 @@ export default function PostCard(props) {
   }
 
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
-
   useEffect(() => {
   checkLike();
   },[])
-
-
-
 // test push 
   return (
+    <div>
     <Card sx={{ maxWidth: "100%" }}>
+              
       <CardHeader
+      
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
         }
@@ -96,18 +106,19 @@ export default function PostCard(props) {
         title={props.title}
         subheader="September 14, 2016"
       />
+      
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
 <br/>
-          {props.id}
+          
 
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-
+        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
           <ToggleButton
             id= {props.id}
             value="check"
@@ -127,19 +138,22 @@ export default function PostCard(props) {
             //determines whether to like or unlike based on the state.
             onClick={selectedLike? unlike : like}
           >
-            <ArrowDropUpIcon />
+            <ThumbUpIcon />
           </ToggleButton>
-          <Typography>{likes}</Typography>
+          <Typography style={{ padding: "10px" }}>{likes}</Typography>
 
 
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <button onClick={getUserPost}>Get user Post</button>
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+
       </CardActions>
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
     </Card>
+    <br/>
+    </div>
   );
 }
 
