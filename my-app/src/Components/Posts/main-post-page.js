@@ -84,6 +84,7 @@ export class PostPage extends Component {
         title={post.postTitle}
         body={post.postBody}
         likes={post.postLikes}
+        createdAt={post.createdAt}
         key={post._id}
           />
       
@@ -93,5 +94,5 @@ export class PostPage extends Component {
     );
   }
 }
-
 export default PostPage;
+
