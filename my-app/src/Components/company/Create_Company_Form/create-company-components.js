@@ -129,7 +129,7 @@ const CreateUser = () => {
         onSubmit={OnSubmit}
         enableReinitialize
       >
-        Sign Up
+   
       </CompanyForm>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Congratulations! {newCompanyName} is now in business!</DialogTitle>
