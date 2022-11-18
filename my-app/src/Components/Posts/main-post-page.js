@@ -94,5 +94,5 @@ export class PostPage extends Component {
     );
   }
 }
-
 export default PostPage;
+
