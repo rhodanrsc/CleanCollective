@@ -75,10 +75,8 @@ export class PostPage extends Component {
         likes={post.postLikes}
         key={post._id}
           />
-    
-      )) : this.state.posts.reverse().map((post) => (
-         
-        <PostCard
+          )): this.state.posts.reverse().map((post) => (
+            <PostCard
         id={post._id}
         username={post.postUserName}
         title={post.postTitle}
@@ -95,4 +93,3 @@ export class PostPage extends Component {
   }
 }
 export default PostPage;
-

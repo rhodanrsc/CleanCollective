@@ -63,19 +63,18 @@ export default function PostCard(props) {
 // test push 
   return (
     <div>
-    <Card sx={{ maxWidth: "100%" }}>
+    <Card sx={{ maxWidth: "95%", marginLeft:"15px" }}>
               
       <CardHeader
       
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
+          <Avatar sx={{ bgcolor: "#309A47" }} aria-label="recipe"></Avatar>
         }
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
-        title={props.title}
+          title=<h6><b>{props.title}</b></h6>
         subheader={date}
       />
-      
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
@@ -106,18 +105,21 @@ export default function PostCard(props) {
             }}
             //determines whether to like or unlike based on the state.
             onClick={selectedLike? unlike : like}
+
           >
-            <ThumbUpIcon />
+
+            <ThumbUpIcon style= {{paddingLeft:"6px",backgroundColor: "", color:"", border:"none"}}/>
+          <Typography style = {{marginLeft:"3px", paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
+          
           </ToggleButton>
-          <Typography style={{ padding: "10px" }}>{likes}</Typography>
-
-
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        
+        <div style={{ padding: "10px", marginLeft:"385px" }}>{"~" + props.username}</div>
+
       </CardActions>
       {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>

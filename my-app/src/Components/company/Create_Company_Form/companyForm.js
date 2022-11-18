@@ -119,28 +119,38 @@ const CreateCompany = (props) => {
           </div>
 
           <h2 className="second-header">Viewable by all users</h2>
-
+          <br/>
           <Formik {...props} validateOnChange={false} validateOnBlur={false}>
             {({ errors, touched, isValidating, values }) => (
               <Form>
                 <FormGroup>
                   {/* Company Name */}
-                  <div className="form-group-create">
-                    <label htmlFor="companyNameInput">Name</label>
+                  <div className="companyName1">
+                    <label htmlFor="companyNameInput">Name:</label>
                     <Field
                       type="text"
                       name="companyName"
                       className="form-control"
-                      id="formControlInput1"
+                      id="companyName"
                       placeholder="Add your organization's name"
                       validate={checkCompany}
                     />
                     {<div style={{ color: "red" }}>{errors.companyName}</div>}
                   </div>
-
+                  <br/>
                   {/* Company Type*/}
-                  <div className="form-group-create-select">
-                    <label htmlFor="companyType">Company Type </label>
+                  <div className="type1">
+                    <label htmlFor="companyType">Company Type:</label>
+            
+                    <Field
+                      as="select"
+                      name="type"
+                      className="form-control"
+                      id="type"
+                    >
+                      <option value={"Adopter"}>Adoptor</option>
+                      <option value={"Inovator"}>Innovator</option>
+                    </Field>
                     <InfoIcon onMouseEnter={handleCompanyTypeInfo} onMouseLeave={handleClose}></InfoIcon>
 
                     <Popover
@@ -165,39 +175,28 @@ const CreateCompany = (props) => {
                       </Typography>
 
                     </Popover>
-
-
-                    <Field
-                      as="select"
-                      name="type"
-                      className="form-control"
-                      id="formControlSelect2"
-                    >
-                      <option value={"Adopter"}>Adoptor</option>
-                      <option value={"Inovator"}>Innovator</option>
-                    </Field>
                   </div>
 
                   {/* Company Logo*/}
-
-                  <div className="form-group-create">
-                    <label htmlFor="formControlFile1">Company Logo</label>
+                  <br/>
+                  <div className="file">
+                    <label htmlFor="formControlFile1">Company Logo:</label>
                     <Field
                       type="file"
                       name="file"
                       className="form-control-file"
-                      id="formControlFile"
+                      id="file"
                     />
                   </div>
-
+                  <br/>
                   {/* Company Sector*/}
-                  <div className="form-group-create-select">
-                    <label htmlFor="companyType">Sector</label>
+                  <div className="sector">
+                    <label htmlFor="companyType">Sector:</label>
                     <Field
                       as="select"
                       name="companyType"
                       className="form-control"
-                      id="formControlSelect3"
+                      id="sector"
                     >
                       {listOfCategories
                         ? listOfCategories.map(function (sector) {
@@ -210,12 +209,29 @@ const CreateCompany = (props) => {
                         : null}
                     </Field>
                   </div>
-
+                  <br/>
                   {/* Company Stage*/}
-                  <div className="form-group-create-select">
-                    <label htmlFor="companyStages">
-                      Technology Readiness Level
+                  <div className="level">
+                    <label htmlFor="companyStages" className="level">
+                      Technology Readiness Level:
                     </label>
+                    
+                    <Field
+                      as="select"
+                      name="stage"
+                      className="form-control"
+                      id="level"
+                    >
+                      {listOfTRLStages
+                        ? listOfTRLStages.map(function (stage) {
+                          return (
+                            <option key={stage._id} value={stage.stageName}>
+                              {stage.stageName}{" "}
+                            </option>
+                          );
+                        })
+                        : null}
+                    </Field>
                     <InfoIcon onMouseEnter={handleTRLInfo} onMouseLeave={handleTRLClose}></InfoIcon>
                     <Popover
                       id={trlID}
@@ -234,34 +250,18 @@ const CreateCompany = (props) => {
                       {trlInput}
                       <br></br>
                       {trlDescription}</Popover>
-                    <Field
-                      as="select"
-                      name="stage"
-                      className="form-control"
-                      id="formControlSelect4"
-                    >
-                      {listOfTRLStages
-                        ? listOfTRLStages.map(function (stage) {
-                          return (
-                            <option key={stage._id} value={stage.stageName}>
-                              {stage.stageName}{" "}
-                            </option>
-                          );
-                        })
-                        : null}
-                    </Field>
                   </div>
-
+                  <br/>
                   {/* Company Employees*/}
-                  <div className="form-group-create-select">
+                  <div className="employees">
                     <label htmlFor="numberOfEmployees">
-                      Number of Employees
+                      Number of Employees:
                     </label>
                     <Field
                       as="select"
                       name="employees"
                       className="form-control"
-                      id="exampleFormControlSelect5"
+                      id="employees"
                     >
                       <option key="0" value="0,10">
                         0-10 Employees
@@ -277,15 +277,15 @@ const CreateCompany = (props) => {
                       </option>
                     </Field>
                   </div>
-
+                  <br/>
                   {/* Year Found */}
-                  <div className="form-group-create-select">
-                    <label>Year Founded</label>
+                  <div className="year">
+                    <label>Year Founded:</label>
                     <Field
                       as="select"
                       name="yearFounded"
                       className="form-control"
-                      id="formControlSelect6"
+                      id="year"
                     >
                       {createYears().map(function (year) {
                         return (
@@ -296,65 +296,67 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-
+                  <br/>
                   {/* Webiste URL*/}
-                  <div className="form-group-create">
-                    <label htmlFor="websiteURL">Website</label>
+                  <div className="website">
+                    <label htmlFor="websiteURL">Website:</label>
                     <Field
                       type="text"
                       name="website"
                       className="form-control"
-                      id="formControlInput6"
+                      id="website"
                       placeholder="Website URL"
                       validate={checkWebsite}
                     />
                     {<div style={{ color: "red" }}>{errors.website}</div>}
                   </div>
-
+                  <br/>
                   {/* Address */}
-                  <div className="form-group-create">
-                    <label>Address</label>
+                  <div className="address">
+                    <label>Address:</label>
                     <Field
                       type="text"
                       name="address"
                       className="form-control"
-                      id="formControlInput1"
+                      id="address"
                       placeholder="Address"
                       validate={checkIfEmpty}
                     />
                     {<div style={{ color: "red" }}>{errors.address}</div>}
                   </div>
-
+                  <br/>
                   {/* City */}
-                  <div className="form-group-create">
-                    <label>City</label>
+                  <div className="city">
+                    <label>City:</label>
                     <Field
                       type="text"
                       name="city"
                       className="form-control"
-                      id="formControlInput1"
+                      id="city"
                       placeholder="City"
                       validate={checkIfEmpty}
                     />
                     {<div style={{ color: "red" }}>{errors.city}</div>}
                   </div>
+                  <br/>
                   {/* ZIP */}
-                  <div className="form-group-create">
-                    <label>ZIP</label>
+                  <div className="zip1">
+                    <label>ZIP:</label>
                     <Field
                       type="text"
                       name="ZIP"
                       className="form-control"
-                      id="formControlInput1"
+                      id="zip"
                       placeholder="ZIP"
                       validate={(value) => checkZIP(values.country, value)}
                     />
                     {<div style={{ color: "red" }}>{errors.ZIP}</div>}
                   </div>
+                  <br/>
                   {/* Country */}
 
-                  <div className="form-group-create-select">
-                    <label>Country</label>
+                  <div className="country">
+                    <label>Country:</label>
                     <Field
                       as="select"
                       name="country"
@@ -370,10 +372,10 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-
+                  <br/>
                   {/* State/Province */}
-                  <div className="form-group-create-select">
-                    <label>Province/State</label>
+                  <div className="province-state">
+                    <label name="province">Province/State:</label>
                     <Field
                       as="select"
                       name="province"
@@ -394,7 +396,7 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-
+                  <br/>
                   {/* Disclaimer Check*/}
                   <div className="form-check">
                     <Field
@@ -429,7 +431,7 @@ const CreateCompany = (props) => {
                   type="submit"
                   name="createButton"
                 >
-                  <span>Create Company Page</span>
+                  <span>Create Company Profile</span>
                   {props.children}
                 </Button>
               </Form>
