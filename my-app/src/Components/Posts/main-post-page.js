@@ -48,6 +48,7 @@ export class PostPage extends Component {
         key={post._id}
           />
     
+        
       ))}
       </div>
     );

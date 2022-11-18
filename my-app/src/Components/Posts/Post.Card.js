@@ -10,11 +10,13 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Hamburger from "./HamburgerButton/Hamburger";
 import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { Component, useEffect, useState } from "react";
+import { Button } from "@mui/material";
 // Comments coponents
 import Comment from "../Comments/Comment";
 // Testing Comments
@@ -91,8 +93,11 @@ export default function PostCard(props) {
   },[])
 // test push 
   return (
+    <div>
     <Card sx={{ maxWidth: "100%" }}>
+              
       <CardHeader
+      
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
         }
@@ -101,18 +106,19 @@ export default function PostCard(props) {
         title={props.title}
         subheader="September 14, 2016"
       />
+      
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
 <br/>
-          {props.id}
+          
 
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-
+        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
           <ToggleButton
             id= {props.id}
             value="check"
@@ -132,20 +138,22 @@ export default function PostCard(props) {
             //determines whether to like or unlike based on the state.
             onClick={selectedLike? unlike : like}
           >
-            <ArrowDropUpIcon />
+            <ThumbUpIcon />
           </ToggleButton>
-          <Typography>{likes}</Typography>
+          <Typography style={{ padding: "10px" }}>{likes}</Typography>
 
 
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</button>
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+
       </CardActions>
       {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
     </Card>
+    <br/>
+    </div>
   );
 }
 

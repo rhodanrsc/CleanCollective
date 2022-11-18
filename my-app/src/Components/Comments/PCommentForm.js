@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import PCommentList from "./PComment-list-component";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
@@ -49,7 +49,7 @@ const PCommentForm = (props,handleCancel) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <textarea
+      <TextField label="Comment box" id="fullWidth" 
         className="comment-form-textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -57,7 +57,6 @@ const PCommentForm = (props,handleCancel) => {
       <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
         Submit
       </Button>
-      <Button onClick={testClick}>TEST </Button>
         <Button
           type="button"
           className="comment-form-button comment-form-cancel-button"
