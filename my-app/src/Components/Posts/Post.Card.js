@@ -86,7 +86,9 @@ export default function PostCard(props) {
       })
     }
   }
+  var options = {  year: 'numeric', month: 'short', day: 'numeric' };
   const createdAt =new Date(props.createdAt);
+  let date= createdAt.toLocaleDateString("en-US", options);
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
   checkLike();
@@ -104,7 +106,7 @@ export default function PostCard(props) {
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
         title={props.title}
-        subheader={"September 14, 2016"}
+        subheader={date}
       />
       
       <CardContent>

@@ -84,6 +84,7 @@ export class PostPage extends Component {
         title={post.postTitle}
         body={post.postBody}
         likes={post.postLikes}
+        createdAt={post.createdAt}
         key={post._id}
           />
       
