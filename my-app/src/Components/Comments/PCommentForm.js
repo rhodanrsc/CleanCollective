@@ -5,7 +5,7 @@ import axios from "axios";
 import { ReactSession } from 'react-client-session';
 
 
-const PCommentForm = (props,handleCancel) => {
+const PCommentForm = (props) => {
   let userSession = ReactSession.get("userSession");
 
   const [text, setText] = useState("");
@@ -29,16 +29,9 @@ const PCommentForm = (props,handleCancel) => {
           console.log("Something went wrong: " + err);
         });
     }
-
-    function testClick(){
-      console.log("handle submit function");
-      console.log(props.postId);
-      console.log(userSession.username);
-      console.log(userSession._id);
-    }
   
  function handleCancel(){
-    //  setActiveComment(null);
+  props.setCommentToggle(!props.isCommentToggle)
     }
 
 
@@ -49,13 +42,14 @@ const PCommentForm = (props,handleCancel) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <TextField label="Comment box" id="fullWidth" 
+      <TextField label="Comments" id="fullWidth" 
         className="comment-form-textarea"
         value={text}
+        style= {{width:"730px", paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px",marginBottom:"10px", borderRadius:"0.2em", border:"none"}}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
-        Submit
+      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled} style = {{marginLeft:"550px"}}>
+        Enter
       </Button>
         <Button
           type="button"

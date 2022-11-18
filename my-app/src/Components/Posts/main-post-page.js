@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import PostCard from "./Post.Card";
 import axios from "axios";
 import SearchBar from "./SearchBar"
 import { ReactSession }  from 'react-client-session';
-import { Button } from '@mui/material';
+
 
 
 export class PostPage extends Component {
@@ -75,15 +75,14 @@ export class PostPage extends Component {
         likes={post.postLikes}
         key={post._id}
           />
-    
-      )) : this.state.posts.reverse().map((post) => (
-         
-        <PostCard
+          )): this.state.posts.reverse().map((post) => (
+            <PostCard
         id={post._id}
         username={post.postUserName}
         title={post.postTitle}
         body={post.postBody}
         likes={post.postLikes}
+        createdAt={post.createdAt}
         key={post._id}
           />
       
@@ -94,4 +93,3 @@ export class PostPage extends Component {
   }
 }
 export default PostPage;
-
