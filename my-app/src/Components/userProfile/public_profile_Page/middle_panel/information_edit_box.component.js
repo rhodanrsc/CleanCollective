@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { TagComboBox } from "../../../userPosts/tag_combo_box";
 
 
 
@@ -79,6 +80,7 @@ export default function DescriptionBox() {
         </IconButton>
 
         <BackgroundLetterAvatarsSmall />
+        <TagComboBox></TagComboBox>
 
         <Box
           component="form"
