@@ -120,7 +120,7 @@ export default function PostCard(props) {
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        
           <ToggleButton
             id= {props.id}
             value="check"
@@ -150,7 +150,7 @@ export default function PostCard(props) {
           <ShareIcon />
         </IconButton>
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
-
+        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
       {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
