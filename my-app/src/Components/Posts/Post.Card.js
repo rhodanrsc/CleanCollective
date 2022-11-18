@@ -86,7 +86,9 @@ export default function PostCard(props) {
       })
     }
   }
-
+  var options = {  year: 'numeric', month: 'short', day: 'numeric' };
+  const createdAt =new Date(props.createdAt);
+  let date= createdAt.toLocaleDateString("en-US", options);
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
   checkLike();
@@ -104,7 +106,7 @@ export default function PostCard(props) {
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
         title={props.title}
-        subheader="September 14, 2016"
+        subheader={date}
       />
       
       <CardContent>
@@ -118,7 +120,7 @@ export default function PostCard(props) {
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        
           <ToggleButton
             id= {props.id}
             value="check"
@@ -148,9 +150,9 @@ export default function PostCard(props) {
           <ShareIcon />
         </IconButton>
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
-
+        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
       </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
     <br/>
     </div>

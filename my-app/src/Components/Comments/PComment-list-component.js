@@ -36,11 +36,12 @@ const PCommentList = (props) => {
   
      return (
     <div>
-
+<h5>Comments</h5>
        {  comments.map((comment) => (
       <PComment
-      username={comment.commentUserName}
+      username={comment.commentUsername}
       body={comment.commentBody}
+      createdAt={comment.createdAt}
       key={comment._id}
         />
     ))  }
