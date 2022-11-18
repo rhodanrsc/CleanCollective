@@ -5,6 +5,7 @@ import { Box, Grid, Card, CardHeader, CardContent, Avatar, IconButton, Typograph
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HomeTab from "./tabs/homeTab";
 import AboutTab from "./tabs/aboutTab";
+import MembersTab from "./tabs/membersTab";
 
 
 export default function TopCard() {
@@ -61,6 +62,10 @@ export default function TopCard() {
                     website={company ? company.website : null}
                     location={company ? companyLocation : null}
                 />;
+            case "membersButton":
+                return <MembersTab
+                    members={company ? company.members : null}
+                />
             default:
                 return null;
         }

@@ -59,7 +59,9 @@ const companySchema = new Schema({
   members: {
     type: [{
       memberName: String,
-      memberID: String
+      memberID: String,
+      dateJoined: Date,
+      role: String
     }]
   },
   yearFounded: {
