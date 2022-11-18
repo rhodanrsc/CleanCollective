@@ -7,6 +7,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import {ReactSession} from 'react-client-session'
 import { Button } from '@mui/material';
 
+let searched = '';
+
 export default function FreeSolo() {
 
 React.useEffect(() => {
@@ -15,7 +17,7 @@ React.useEffect(() => {
 
 const [posts, setPosts] = React.useState([]);
 
-
+const [searchInput, setSearchInput] = React.useState('')
 
 let getPosts = () => {
     axios({
@@ -25,28 +27,24 @@ let getPosts = () => {
       .then((response) => {
         const data = response.data;
         setPosts([ ...data ]);
-        console.log(data)
-        
-        // data.map((post) => {
-        //     postTitles.push(post.postTitle);
-        // });
-
       })
       .catch((err) => {
         alert("Error pulling user post data");
       });
-    //   console.log(postTitles)
   };
 
-let searched = '';
 const search = (e) => {
   searched= e.target.value;
-  console.log(searched);
+  ReactSession.set('searchedValue', searched);
+  console.log(searchInput)
 }
 
-const searchPosts = () => {
-
-}
+const handleSearchClick = (e) => {
+  let searchBar = document.getElementById('free-solo-demo').value
+  console.log(searchBar);
+  setSearchInput(searchBar);
+  ReactSession.set('searchedValue', searchInput);
+} 
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
@@ -58,10 +56,11 @@ const searchPosts = () => {
         options={posts.map((option) => option.postTitle)}
         renderInput={(params) => (
           <TextField
+            className='searchBar'
             {...params}
             label="Search by title"
-            // onChange={search}
-            onClick={search}
+            onKeyUp={search}
+            // onClick={search}
             InputProps={{
               ...params.InputProps,
               type: 'search',
@@ -70,7 +69,7 @@ const searchPosts = () => {
           
         )}
       />
-      <Button onClick={searchPosts}>Search</Button>
+      <Button onClick={handleSearchClick} value={searchInput}>Search</Button>
     </Stack>
   );
 
