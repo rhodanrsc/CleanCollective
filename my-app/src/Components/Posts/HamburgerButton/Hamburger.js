@@ -1,19 +1,13 @@
 import * as React from "react";
 import { useEffect } from "react";
 import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import FlagIcon from "@mui/icons-material/Flag";
 import DeleteAlertDialog from "./DeleteAlertDialog";
 import { ReactSession } from "react-client-session";
 import axios from "axios";
-import ShareIcon from "@mui/icons-material/Share";
-import Button from "@mui/material/Button";
-import { unstable_useEventCallback } from "@mui/utils";
 import ReportAlertDialog from "./ReportAlertDialog";
 
 export default function Hamburger(props) {
@@ -90,7 +84,7 @@ export default function Hamburger(props) {
   useEffect(() => {
     checkSaved();
     checkOwned();
-  }, []);
+  });
 
   return (
     <div>
