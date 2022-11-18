@@ -49,13 +49,14 @@ const PCommentForm = (props,handleCancel) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <TextField label="Comment box" id="fullWidth" 
+      <TextField label="Comments" id="fullWidth" 
         className="comment-form-textarea"
         value={text}
+        style= {{paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px",marginBottom:"10px", borderRadius:"0.2em", border:"none"}}
         onChange={(e) => setText(e.target.value)}
       />
       <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
-        Submit
+        Enter
       </Button>
         <Button
           type="button"

@@ -94,19 +94,19 @@ export default function PostCard(props) {
 // test push 
   return (
     <div>
-    <Card sx={{ maxWidth: "100%" }}>
+    <Card sx={{ maxWidth: "95%", marginLeft:"15px" }}>
               
       <CardHeader
       
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
+          <Avatar sx={{ bgcolor: "#309A47" }} aria-label="recipe"></Avatar>
         }
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
-        title={props.title}
+          title=<h6><b>{props.title}</b></h6>
         subheader="September 14, 2016"
+        style={{ padding: "20px" }}
       />
-      
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
@@ -137,20 +137,23 @@ export default function PostCard(props) {
             }}
             //determines whether to like or unlike based on the state.
             onClick={selectedLike? unlike : like}
-          >
-            <ThumbUpIcon />
-          </ToggleButton>
-          <Typography style={{ padding: "10px" }}>{likes}</Typography>
 
+          >
+
+            <ThumbUpIcon style= {{backgroundColor: "", color:"", border:"none"}}/>
+          <Typography style = {{paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
+          
+          </ToggleButton>
 
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+        <Button onClick={() => setCommentToggle(!isCommentToggle)} style= {{paddingLeft:"20px", paddingRight:"20px", paddingTop:"5px", paddingBottom:"5px", borderRadius:"0.2em", backgroundColor: "#1682FD", color:"white", border:"none"}}>Comment</Button>
 
       </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id}/>}
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} />}
+      
     </Card>
     <br/>
     </div>
