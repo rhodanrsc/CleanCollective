@@ -1,6 +1,5 @@
 // Import React
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 
 // Import Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
@@ -9,7 +8,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 // Import Custom CSS
 import "./App.css";
 import "./shared/css/style.css";
-import "./shared/css/createCompany.css";
 
 // Import from react-router-dom
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -18,19 +16,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
-import LandingPage from "./Components/landingPage"
+import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
-import CompanyCreation from "./Components/company/create-company-components";
+import CompanyCreation from "./Components/company/Create_Company_Form/create-company-components";
 
-import { Desktop } from "./Components/desktop/desktop.component";
-import { Laptop } from "./Components/laptop/laptop.component";
-import { BigScreen } from "../src/Components/big-screen/big-screen.component";
-import { Mobile } from "../src/Components/mobile/mobile.component";
-import { TabletMobile } from "../src/Components/tablet-mobile/tablet-mobile.component";
-
-
-import CustomSidePanel from "./Components/side/panel";
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
@@ -41,25 +31,6 @@ ReactSession.setStoreType("sessionStorage");
 // App Component
 const App = () => {
 
-  const isMobileDevice = useMediaQuery({
-    query: "(min-device-width: 480px)",
-  });
-
-  const isTabletDevice = useMediaQuery({
-    query: "(min-device-width: 768px)",
-  });
-
-  const isLaptop = useMediaQuery({
-    query: "(min-device-width: 1024px)",
-  });
-
-  const isDesktop = useMediaQuery({
-    query: "(min-device-width: 1200px)",
-  });
-
-  const isBigScreen = useMediaQuery({
-    query: "(min-device-width: 1201px )",
-  });
 
   return (
 
@@ -69,7 +40,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <CustomNavBar />
-          
+
         </header>
         <Container>
           <Row>

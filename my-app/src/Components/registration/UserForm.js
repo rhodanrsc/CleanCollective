@@ -1,24 +1,31 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import {checkPassword, checkEmail, checkUsername, checkConfirmPassword} from "./registrationValidation";
+import {
+  checkPassword,
+  checkEmail,
+  checkUsername,
+  checkConfirmPassword,
+} from "./registrationValidation";
 // import '../../images/user-registration.jpg'
 
 const UserForm = (props) => {
-
   return (
     <body>
-    <div className="user-creation-background">
-    <div className="border">
-
-      <main>
-        <h2 className="first-header">Join Clean Collective</h2>
-        <br/>
-        <div contentEditable="true" className="company-creation-description">Get more features and priviliges by <br/>joining to the most helpful community</div>
-    <br/>
-    <br/>
-
-
+      <div className="user-creation-background">
+        <div className="border">
+          <main>
+            <h2 className="first-header">Join Clean Collective</h2>
+            <br />
+            <div
+              contentEditable="true"
+              className="company-creation-description"
+            >
+              Get more features and priviliges by <br />
+              joining to the most helpful community
+            </div>
+            <br />
+            <br />
 
     <div className="form-wrapper">
       <Formik {...props} validateOnChange={false} validateOnBlur={false} >

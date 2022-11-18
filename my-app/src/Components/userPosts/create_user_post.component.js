@@ -46,9 +46,13 @@ export default function CreatePost() {
   let arrayOfTags = [];
 
   useEffect(() => {
+    arrayOfTags = [];
     let listOfTags = document.getElementsByClassName("listOfTags");
     for (let i = 0; i < listOfTags.length; i++) {
+      
       arrayOfTags.push(listOfTags[i].innerHTML);
+      console.log(arrayOfTags)
+      
     }
   });
 

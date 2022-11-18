@@ -5,7 +5,6 @@ import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -45,7 +44,7 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: 'auto', marginTop: '10px' }}>
           <List>
             {['Questions'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>{navigate('/'+text);}}>
+              <ListItem key={text} disablePadding onClick={()=>{navigate('/forum'+text);}}>
                 <ListItemButton>
                   <ListItemIcon>
                     {index === 0 ? <QuestionsIcon /> : null}

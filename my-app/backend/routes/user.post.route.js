@@ -156,6 +156,13 @@ router
     });
   })
 
+  router.route('/searchPost/:title').get((req, res) => {
+    usersPost.UserPostCollection.findOne({postTitle: req.params.title})
+    .then((usersPost) => {
+      res.send(usersPost);
+    })
+  })
+
   //const companyName = req.body.postUserName;
   //Find the User object that has this name
   // User.User.find({ name: req.body.user })
