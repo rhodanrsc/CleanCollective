@@ -20,6 +20,8 @@ export default function HomeTab(props) {
 
     return (
         <div>
+
+            {/*About Section*/}
             <Typography variant="body1" color="text.primary">
                 About
             </Typography>
@@ -29,6 +31,7 @@ export default function HomeTab(props) {
 
             <Divider sx={{ height: "20px" }} variant="middle" />
 
+            {/*Interest Section*/}
             <Typography variant="body1" color="text.primary">
                 Interest
             </Typography>

@@ -4,7 +4,6 @@ import { Typography, Card, CardHeader, CardContent, Avatar, Chip } from "@mui/ma
 
 export default function ProductTab(props) {
 
-
     const pastelColorPallete = [
         "rgba(181, 234, 215, 0.6)",
         "rgba(224, 187, 228, 0.6)",

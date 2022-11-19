@@ -10,19 +10,21 @@ export default function MembersTab(props) {
     const [rows, setRows] = useState([]);
     const [currentSearchValue, setCurrentSearchValue] = useState("")
 
+    //Handles the onChange for search bar
     const handleSearchValue = (event) => {
         setCurrentSearchValue(event.target.value)
     }
 
+    //Handle pages and rows
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
-
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
 
+    //Creating a member object
     function createData(key, name, role, joined) {
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
@@ -36,14 +38,12 @@ export default function MembersTab(props) {
         return { key, name, role, joined };
     }
 
-
-
-
-
+    //Constantly updates the members of the company
     useEffect(() => {
         let listOfMembers = props.members
         let newRowsList = []
 
+        // eslint-disable-next-line array-callback-return
         listOfMembers.map((member) => {
             if (currentSearchValue === "") {
                 newRowsList.push(createData(member._id, member.memberName, member.role, member.dateJoined))
@@ -52,12 +52,10 @@ export default function MembersTab(props) {
                     newRowsList.push(createData(member._id, member.memberName, member.role, member.dateJoined))
                 }
             }
-
         })
         setRows(newRowsList)
 
-    }, [currentSearchValue])
-
+    }, [currentSearchValue, props.members])
 
     const columns = [
         { id: 'name', label: 'Name', minWidth: 170 },
@@ -66,19 +64,15 @@ export default function MembersTab(props) {
 
     ];
 
-    const testButton = (event) => {
-        console.log(typeof props.members[0].memberName)
-    }
-
     return (
+
         <Card elevation={2}>
             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                {/*Search Bar*/}
                 <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                 <TextField onChange={handleSearchValue} value={currentSearchValue} id="memberSearchInput" label="Member" variant="standard" />
             </Box>
             <Divider sx={{ height: "10px" }} variant="middle" />
-
-            {/* <Button onClick={testButton}>test</Button> */}
 
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>

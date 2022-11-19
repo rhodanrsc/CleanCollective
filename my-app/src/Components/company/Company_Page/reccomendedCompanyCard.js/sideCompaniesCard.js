@@ -12,9 +12,9 @@ export default function SideCompaniesCard() {
     const [chipState1, setChipState1] = useState("outlined")
     const [chipState2, setChipState2] = useState("outlined")
 
+    //Handles the filling of view Profile buttons
     const handleChipFill = (event) => {
         let hoveredChip = event.target.id
-
 
         if (hoveredChip === "chip0") {
             setChipState0("contained")
@@ -24,7 +24,7 @@ export default function SideCompaniesCard() {
             setChipState2("contained")
         }
     }
-
+    //Handles the unfilling of view profile buttons
     const handleChipUnFill = (event) => {
         let hoveredChip = event.target.id
         if (hoveredChip === "chip0") {
@@ -36,6 +36,7 @@ export default function SideCompaniesCard() {
         }
     }
 
+    //Checks which chip number is currently being hovered
     const checkChipNumber = (index) => {
         if (index === 0) {
             return chipState0
@@ -46,13 +47,12 @@ export default function SideCompaniesCard() {
         }
     }
 
+    //Handles the navigation function of clicking view profile
     const handleChipClick = (event, thisCompanyName) => {
         navigate('/companyPage/' + thisCompanyName);
     }
 
-
-
-
+    //Constantly grabbing the companies
     useEffect(() => {
         let listOfCompanies = []
         axios.get("http://localhost:5000/company/")
@@ -71,7 +71,6 @@ export default function SideCompaniesCard() {
 
             })
             .catch((error) => console.log("Error with getting companie: " + error))
-
     })
 
 
@@ -97,6 +96,7 @@ export default function SideCompaniesCard() {
 
                                 />
 
+                                {/*View profile Button Section*/}
                                 <Chip
                                     key={company.companyName + "" + index}
 

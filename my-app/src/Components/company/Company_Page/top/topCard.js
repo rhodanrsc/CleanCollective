@@ -17,7 +17,7 @@ export default function TopCard() {
     const [companyTypeInfo, setCompanyTypeInfo] = useState()
     const [currentButton, setCurrentButton] = useState("homeButton")
 
-
+    //Constantly grabs the current company depending on URL
     useEffect(() => {
         axios.get("http://localhost:5000/company/getCompany/" + params.companyName)
             .then((response) => {
@@ -31,11 +31,13 @@ export default function TopCard() {
 
     }, [params.companyName])
 
+    //Constantly ensuring the current clicked button is green
     useEffect(() => {
         let domCurrentButton = document.getElementById(currentButton)
         domCurrentButton.style.color = "green";
     }, [currentButton])
 
+    //Handles changing the new click buttton to green can changing the previous back to black
     const changeCurrentButton = (event) => {
         let domCurrentButton = document.getElementById(currentButton)
         domCurrentButton.style.color = "black";
@@ -43,11 +45,7 @@ export default function TopCard() {
         setCurrentButton(buttonClicked)
     }
 
-    const showCompany = (event) => {
-        console.log(company)
-
-    }
-
+    //Handles which tab to open depending on which button is current clicked
     const renderTab = (button) => {
         switch (button) {
             case "homeButton":
@@ -80,7 +78,7 @@ export default function TopCard() {
     return (
         <Box>
             <Grid>
-                {/* <Button onClick={showCompany}>test</Button> */}
+                {/*Avatar and Heading Info Section*/}
                 <Card elevation={5}>
                     <CardHeader
                         avatar={
@@ -97,8 +95,7 @@ export default function TopCard() {
                         subheader={company ? companyLocation : null}
                     />
 
-
-
+                    {/*Statement and companyType Section*/}
                     <CardContent>
                         <Typography variant="body1" color="text.primary">
                             {company ? company.companyInformation.statement : null}
@@ -108,6 +105,7 @@ export default function TopCard() {
                         </Typography>
                     </CardContent>
 
+                    {/*Button Section*/}
                     <ButtonGroup variant="string" >
                         <Button onClick={changeCurrentButton} id="homeButton">Home</Button>
                         <Button onClick={changeCurrentButton} id="aboutButton">About</Button>
@@ -116,7 +114,7 @@ export default function TopCard() {
                     </ButtonGroup>
 
 
-
+                    {/*Dependency Tab Section*/}
                     <CardContent>
                         {renderTab(currentButton)}
                     </CardContent>
