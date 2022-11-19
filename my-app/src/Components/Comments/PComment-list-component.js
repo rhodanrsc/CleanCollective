@@ -7,8 +7,7 @@ const PCommentList = (props) => {
   const [comments, setComments] = React.useState([]);
 
  let postId = props.postId;
-    
-
+  
  function getAllUserPost(){
     axios({
       method: "GET",
@@ -32,8 +31,7 @@ const PCommentList = (props) => {
   useEffect(() => {
     getAllUserPost();
     },[comments])
-
-  
+    
      return (
     <div>
 <h6 style={{marginLeft:"10px", marginTop:"10px"}}><u>Comments</u></h6>

@@ -66,8 +66,7 @@ router.route("/getPost/:id").get((req, res) => {
 router.route('/getUserPosts/:id').get((req, res) => {
   User.UserCollection.findById(req.params.id)
     .then(user =>{ 
-      console.log(user.posts);
-      //retrieve only the ids of the posts of the current user.
+       //retrieve only the ids of the posts of the current user.
       let posts = user.posts.map((post) => (post.id));
       res.json(posts)
     })
@@ -232,7 +231,7 @@ router.route("/delete-user.post/:id/:userId").post((req, res, next) => {
     .then(user => { 
       //Remove from the user's posts arroy
       user.posts.pull({'_id' : req.params.id})
-      console.log(user.posts);
+      //console.log(user.posts);
       user.save();
     })
 

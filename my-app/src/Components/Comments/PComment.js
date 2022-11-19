@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import {ReactSession} from "react-client-session";
-import axios from 'axios';
 import { Paper, Grid, Avatar } from '@mui/material';
 
 const PComment = (props) => {
-let userSession = ReactSession.get("userSession");
-
-const[backendComments, setBackendComments] = useState ([]);
-
-function getPostComments(){
-   if(userSession){
-      let userId = userSession._id;
-      axios.get("http://localhost:5000/comment/"+userId)
-      .then((res) => {
-        let likedPosts = res.data;
-        //if (likedPosts.includes(props.id)){
-         // setSelectedLike(true);
-        //}
-    })
-   }
-  }
 
   function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
-  
     var interval = seconds / 31536000;
   
     if (interval > 1) {

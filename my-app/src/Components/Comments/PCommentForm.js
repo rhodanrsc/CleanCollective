@@ -5,7 +5,7 @@ import axios from "axios";
 import { ReactSession } from 'react-client-session';
 
 
-const PCommentForm = (props,handleCancel) => {
+const PCommentForm = (props) => {
   let userSession = ReactSession.get("userSession");
 
   const [text, setText] = useState("");
@@ -28,13 +28,6 @@ const PCommentForm = (props,handleCancel) => {
         .catch((err) => {
           console.log("Something went wrong: " + err);
         });
-    }
-
-    function testClick(){
-      console.log("handle submit function");
-      console.log(props.postId);
-      console.log(userSession.username);
-      console.log(userSession._id);
     }
   
  function handleCancel(){

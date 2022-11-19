@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import PostCard from "./Post.Card";
 import axios from "axios";
 import SearchBar from "./SearchBar"
 import { ReactSession }  from 'react-client-session';
-import { Button } from '@mui/material';
+
 
 
 export class PostPage extends Component {
