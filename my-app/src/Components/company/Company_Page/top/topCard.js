@@ -6,6 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HomeTab from "./tabs/homeTab";
 import AboutTab from "./tabs/aboutTab";
 import MembersTab from "./tabs/membersTab";
+import ProductTab from "./tabs/productTab";
 
 
 export default function TopCard() {
@@ -52,6 +53,7 @@ export default function TopCard() {
             case "homeButton":
                 return <HomeTab
                     companyAbout={company ? company.companyInformation.about : null}
+                    interest={company ? company.companyInformation.interest : null}
                 />;
             case "aboutButton":
                 return <AboutTab
@@ -66,6 +68,10 @@ export default function TopCard() {
                 return <MembersTab
                     members={company ? company.members : null}
                 />
+            case "productsButton":
+                return <ProductTab
+                    products={company ? company.products : null}
+                />
             default:
                 return null;
         }
@@ -75,7 +81,7 @@ export default function TopCard() {
         <Box>
             <Grid>
                 <Button onClick={showCompany}>test</Button>
-                <Card >
+                <Card elevation={5}>
                     <CardHeader
                         avatar={
                             <Avatar variant="square" sx={{ bgcolor: "red" }} >
@@ -105,7 +111,6 @@ export default function TopCard() {
                     <ButtonGroup variant="string" >
                         <Button onClick={changeCurrentButton} id="homeButton">Home</Button>
                         <Button onClick={changeCurrentButton} id="aboutButton">About</Button>
-                        <Button onClick={changeCurrentButton} id="interestButton">Interest</Button>
                         <Button onClick={changeCurrentButton} id="membersButton">Members</Button>
                         <Button onClick={changeCurrentButton} id="productsButton">Products</Button>
                     </ButtonGroup>

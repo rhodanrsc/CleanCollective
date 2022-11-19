@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, TextField, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Divider, Button } from "@mui/material"
+import { Box, TextField, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Divider } from "@mui/material"
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 
@@ -76,6 +76,7 @@ export default function MembersTab(props) {
                 <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                 <TextField onChange={handleSearchValue} value={currentSearchValue} id="memberSearchInput" label="Member" variant="standard" />
             </Box>
+            <Divider sx={{ height: "10px" }} variant="middle" />
 
             {/* <Button onClick={testButton}>test</Button> */}
 
@@ -83,7 +84,7 @@ export default function MembersTab(props) {
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
-                            <TableRow>
+                            <TableRow key="columnKey">
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}
@@ -100,7 +101,7 @@ export default function MembersTab(props) {
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.key}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                                             {columns.map((column) => {
                                                 const value = row[column.id];
                                                 return (
