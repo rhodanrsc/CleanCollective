@@ -34,6 +34,7 @@ const mailRouter = require("./routes/mail");
 const tagRouter = require("./routes/tags");
 const commentRouter = require("./routes/user.comments.route");
 const productRouter = require("./routes/product")
+const companyPostRouter = require("./routes/company.post.route")
 
 
 //Use the Routers
@@ -42,6 +43,7 @@ app.use("/company", companyRouter);
 app.use("/sector", sectorRouter);
 app.use("/trl", trlRouter);
 app.use("/user.post.route", userPostRouter);
+app.use("/company.post.route", companyPostRouter);
 app.use("/user", userRouter);
 app.use("/tag", tagRouter);
 app.use("/comment", commentRouter);

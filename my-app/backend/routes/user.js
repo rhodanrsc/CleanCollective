@@ -32,7 +32,7 @@ require("../passportConfig")(passport);
 
 //Returns list of Users
 router.route('/').get((req, res) => {
-    User.UserCollection.find()
+  User.UserCollection.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
 
@@ -40,51 +40,51 @@ router.route('/').get((req, res) => {
 
 //Creates a new User
 router.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10); //HASHING and SALTING
-    const password = hashedPassword;
-    const email = req.body.email;
-    //Creates an empty array
-    const associatedCompanies = [];
-    const posts = [];
-    //Still need comfirm accounts and post
+  const username = req.body.username;
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10); //HASHING and SALTING
+  const password = hashedPassword;
+  const email = req.body.email;
+  //Creates an empty array
+  const associatedCompanies = [];
+  const posts = [];
+  //Still need comfirm accounts and post
 
-    const newUser = new User.UserCollection({
-        username : username,
-        password : password,
-        email : email,
-        associatedCompanies  : associatedCompanies,
-        posts  : posts
-    });
+  const newUser = new User.UserCollection({
+    username: username,
+    password: password,
+    email: email,
+    associatedCompanies: associatedCompanies,
+    posts: posts
+  });
 
-    newUser.save()
+  newUser.save()
     .then(() => res.json('User Added!'))
     .catch(err => res.status(400).json('Error: failed to save company - ' + err));
 
 });
 
 //Adds a company to a User Array via id
-router.route('/addCompany/:id').post((req,res) => {
-    //Find the user
-    User.UserCollection.findById(req.params.id)
+router.route('/addCompany/:id').post((req, res) => {
+  //Find the user
+  User.UserCollection.findById(req.params.id)
     .then(user => {
-        //If this user is found. Find the company
-        Company.CompanyCollection.findOne({companyName: req.body.companyName})
-        
+      //If this user is found. Find the company
+      Company.CompanyCollection.findOne({ companyName: req.body.companyName })
+
         .then(function (foundCompany) {
-            //If company is found. add it
-            if(foundCompany != null){
-             //Add the company to the User Company Array
+          //If company is found. add it
+          if (foundCompany != null) {
+            //Add the company to the User Company Array
             user.associatedCompanies.push(foundCompany);
             //Save company
             user.save()
-            .then(() => res.json('Company added to user: '+ user.username))
-            .catch(err =>res.status(400).json('Error: with adding company to user ' +err));
+              .then(() => res.json('Company added to user: ' + user.username))
+              .catch(err => res.status(400).json('Error: with adding company to user ' + err));
             //If not, just print out for
-            } else{
-                console.log("Company does not exist");
-                res.json("Company does not exist");
-            }
+          } else {
+            console.log("Company does not exist");
+            res.json("Company does not exist");
+          }
         })
         .catch((err) => res.status(400).json("Error: user not found " + err));
     })
@@ -96,20 +96,20 @@ router.route('/delete/:id').post((req, res) => {
   const currentPassword = req.body.currentPassword;
   const confirmPassword = req.body.confirmPassword;
   User.UserCollection.findById(req.params.id)
-  .then(user => {
-    let validCredentials = bcrypt.compareSync(currentPassword, user.password);
-    if(validCredentials && currentPassword === confirmPassword){
+    .then(user => {
+      let validCredentials = bcrypt.compareSync(currentPassword, user.password);
+      if (validCredentials && currentPassword === confirmPassword) {
         User.UserCollection.findByIdAndDelete(req.params.id)
-        .then(
-          res.send("success")
-        )
-        .catch(err => res.status(400).json('Error: ' + err));
-    } else{
-      res.send("passwordError")
-    }
-      
-  })
-  
+          .then(
+            res.send("success")
+          )
+          .catch(err => res.status(400).json('Error: ' + err));
+      } else {
+        res.send("passwordError")
+      }
+
+    })
+
 })
 
 /*
@@ -131,74 +131,74 @@ router.route('/updateOneField/:id').post((req, res) => {
       const currentPassword = req.body.currentPassword;
       const newPassword = req.body.newPassword;
       const confirmPassword = req.body.confirmPassword;
-      
+
       User.UserCollection.find()
-      .then(function(users){
-        let existField = false;
-        let message = 'success';
-        /******** Change Username *******/
-        if(updateType === "username"){
-          //Find a username that exists
-          users.forEach(function(user){
-            if(newUsername === user.username){
-              existField = true;
-            }
-          });
-          //Save or send false if field exist
-          if(!newUsername){
-            message = "emptyError";
-          } else if(existField === true){
-            message = "existError";
-          } else{
-            user.username = newUsername;
-          }
-        /******** Change Email *******/
-        } else if (updateType === "email"){
-          //Check if password is correct
-          if(bcrypt.compareSync(currentPassword, user.password)){
-            users.forEach(function(user){
-            if(newEmail === user.email){
-              existField = true;
-            }
+        .then(function (users) {
+          let existField = false;
+          let message = 'success';
+          /******** Change Username *******/
+          if (updateType === "username") {
+            //Find a username that exists
+            users.forEach(function (user) {
+              if (newUsername === user.username) {
+                existField = true;
+              }
             });
-            if(existField === true){
-              message = 'existError'
-            } else{
-              user.email = newEmail;
+            //Save or send false if field exist
+            if (!newUsername) {
+              message = "emptyError";
+            } else if (existField === true) {
+              message = "existError";
+            } else {
+              user.username = newUsername;
             }
-          } else{
-            message = 'passwordError'
-          }
-          /******** Change Password *******/
-        } else if (updateType === "password"){
-          const passwordRegex = /(?=.*[0-9])/;
-            if(bcrypt.compareSync(currentPassword, user.password)){
-              if(newPassword.length < 8){
+            /******** Change Email *******/
+          } else if (updateType === "email") {
+            //Check if password is correct
+            if (bcrypt.compareSync(currentPassword, user.password)) {
+              users.forEach(function (user) {
+                if (newEmail === user.email) {
+                  existField = true;
+                }
+              });
+              if (existField === true) {
+                message = 'existError'
+              } else {
+                user.email = newEmail;
+              }
+            } else {
+              message = 'passwordError'
+            }
+            /******** Change Password *******/
+          } else if (updateType === "password") {
+            const passwordRegex = /(?=.*[0-9])/;
+            if (bcrypt.compareSync(currentPassword, user.password)) {
+              if (newPassword.length < 8) {
                 message = 'shortPasswordError'
-              } else if (!passwordRegex.test(newPassword)){
+              } else if (!passwordRegex.test(newPassword)) {
                 message = 'regexError'
-              } else if (newPassword === confirmPassword){
+              } else if (newPassword === confirmPassword) {
                 const hashedPassword = bcrypt.hashSync(newPassword, 10);
                 user.password = hashedPassword;
               } else {
                 message = 'matchPasswordError'
               }
-            } else{
+            } else {
               message = 'passwordError'
             }
-        }
+          }
 
-        user.save()
-        .then(() => res.send(message))
-        .catch(err => res.status(400).json('Error: saving user' + err));
-      })
-      .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
+          user.save()
+            .then(() => res.send(message))
+            .catch(err => res.status(400).json('Error: saving user' + err));
+        })
+        .catch(err => res.status(400).json('Error: Couldnt return list of Users - ' + err));
     })
     .catch(err => res.status(400).json('Error: finding id' + err));
 });
 
-router.route('/logout').post((req, res, next)=>{
-  req.logout(function(err) {
+router.route('/logout').post((req, res, next) => {
+  req.logout(function (err) {
     if (err) { return next(err); }
     // res.redirect('/');
   });
@@ -220,40 +220,40 @@ router.route('/:id').get((req, res) => {
 
 //Find user by username
 router.route('/findUserName').post((req, res) => {
-  User.UserCollection.findOne({username : req.body.username})
-    .then(function(user){
-        //If User exits return true
-        //Else return false
-        if(user != null){
-            res.send(true)
-        } else {
-            res.send(false);
-        }
-        
-    }) 
+  User.UserCollection.findOne({ username: req.body.username })
+    .then(function (user) {
+      //If User exits return true
+      //Else return false
+      if (user != null) {
+        res.send(true)
+      } else {
+        res.send(false);
+      }
+
+    })
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route("/login").post((req, res, next) => {
-    console.log('login1');
-    passport.authenticate("local", (err, user, info) => {
-      console.log('login2');
-      if (err) throw err;
-      if (!user) {
-        console.log('login3');
-        res.status(401).json({ error: 'User does not exist' });
-        // res.send("User does not exist");
-      } else {
-        console.log('login4');
-        req.login(user, (err) => {
-          console.log('login5');
-          if (err) throw err;
-          // res.send("Successfully Authenticated");
-          res.send(req.user);
-          console.log(req.user);
-        });
-      }
-    })(req, res, next);
+  console.log('login1');
+  passport.authenticate("local", (err, user, info) => {
+    console.log('login2');
+    if (err) throw err;
+    if (!user) {
+      console.log('login3');
+      res.status(401).json({ error: 'User does not exist' });
+      // res.send("User does not exist");
+    } else {
+      console.log('login4');
+      req.login(user, (err) => {
+        console.log('login5');
+        if (err) throw err;
+        // res.send("Successfully Authenticated");
+        res.send(req.user);
+        console.log(req.user);
+      });
+    }
+  })(req, res, next);
 });
 
 
