@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Divider, Card, CardHeader, CardContent, Avatar, Chip } from "@mui/material"
+import { Typography, Card, CardHeader, CardContent, Avatar, Chip } from "@mui/material"
 
 
 export default function ProductTab(props) {
@@ -19,13 +19,12 @@ export default function ProductTab(props) {
         "#D0D0FE",
     ];
 
-    console.log(props.products[0].name)
     return (
         <div>
-            <Typography variant="body1" color="text.primary">
+            <Typography component={'span'} variant="body1" color="text.primary">
                 {props.products ? props.products.map((product) => {
                     return (
-                        <Card elevation={6} style={{ height: "1%", marginBottom: "5 px", marginBottom: "8px" }}>
+                        <Card key={product.name} elevation={6} style={{ height: "1%", marginBottom: "10px" }}>
                             <CardHeader
                                 avatar={
                                     <Avatar variant="square" size="small" sx={{ backgroundColor: "blue", width: 35, height: 35 }}>
@@ -41,7 +40,7 @@ export default function ProductTab(props) {
                             />
                             <CardContent>
 
-                                <Typography variant="body2" color="text.primary">
+                                <Typography component={'span'} variant="body2" color="text.primary">
                                     {product.description}
                                 </Typography>
                             </CardContent>

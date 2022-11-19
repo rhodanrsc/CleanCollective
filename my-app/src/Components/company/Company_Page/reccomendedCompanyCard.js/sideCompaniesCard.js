@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Grid, Card, CardHeader, CardContent, Avatar, IconButton, Typography, Button, ButtonGroup, Chip } from "@mui/material"
+import { Box, Card, CardHeader, CardContent, Avatar, Chip } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +8,6 @@ export default function SideCompaniesCard() {
     const navigate = useNavigate();
     const params = useParams()
     const [companies, setCompanies] = useState([])
-    let chipState;
     const [chipState0, setChipState0] = useState("outlined")
     const [chipState1, setChipState1] = useState("outlined")
     const [chipState2, setChipState2] = useState("outlined")
@@ -59,6 +58,7 @@ export default function SideCompaniesCard() {
         axios.get("http://localhost:5000/company/")
             .then((response) => {
                 let allCompanies = response.data;
+                // eslint-disable-next-line array-callback-return
                 allCompanies.map((company, index) => {
                     if (company.companyName === params.companyName) {
                         allCompanies.splice(index, 1)
@@ -72,7 +72,7 @@ export default function SideCompaniesCard() {
             })
             .catch((error) => console.log("Error with getting companie: " + error))
 
-    }, [companies])
+    })
 
 
     return (
