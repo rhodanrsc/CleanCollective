@@ -4,6 +4,7 @@ import { Box, Grid } from "@mui/material"
 
 //Cards
 import TopCard from "./top/topCard";
+import SideCompaniesCard from "./reccomendedCompanyCard.js/sideCompaniesCard";
 
 
 
@@ -15,12 +16,12 @@ export default function CompanyPage() {
     }
     return (
         <Box style={myStyle}>
-            <Grid container spacing={2}>
+            <Grid container spacing={6}>
                 <Grid item xs={6} md={8}>
                     <TopCard />
                 </Grid>
                 <Grid item xs={6} md={4}>
-                    <TopCard />
+                    <SideCompaniesCard />
                 </Grid>
 
             </Grid>

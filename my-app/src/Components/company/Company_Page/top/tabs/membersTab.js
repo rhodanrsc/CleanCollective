@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, TextField, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Divider } from "@mui/material"
+import { Box, TextField, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Divider, Card } from "@mui/material"
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 
@@ -71,7 +71,7 @@ export default function MembersTab(props) {
     }
 
     return (
-        <div>
+        <Card elevation={2}>
             <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                 <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                 <TextField onChange={handleSearchValue} value={currentSearchValue} id="memberSearchInput" label="Member" variant="standard" />
@@ -129,6 +129,6 @@ export default function MembersTab(props) {
                 />
             </Paper>
 
-        </div>
+        </Card>
     )
 }

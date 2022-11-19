@@ -80,7 +80,7 @@ export default function TopCard() {
     return (
         <Box>
             <Grid>
-                <Button onClick={showCompany}>test</Button>
+                {/* <Button onClick={showCompany}>test</Button> */}
                 <Card elevation={5}>
                     <CardHeader
                         avatar={
