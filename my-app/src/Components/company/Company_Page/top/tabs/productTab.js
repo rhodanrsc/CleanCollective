@@ -25,7 +25,7 @@ export default function ProductTab(props) {
             <Typography variant="body1" color="text.primary">
                 {props.products ? props.products.map((product) => {
                     return (
-                        <Card elevation={6} style={{ height: "1%", marginBottom: "5 px" }}>
+                        <Card elevation={6} style={{ height: "1%", marginBottom: "5 px", marginBottom: "8px" }}>
                             <CardHeader
                                 avatar={
                                     <Avatar variant="square" size="small" sx={{ backgroundColor: "blue", width: 35, height: 35 }}>
