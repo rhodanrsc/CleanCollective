@@ -1,135 +1,130 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import Hamburger from "./HamburgerButton/Hamburger";
 import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
-let userSession = ReactSession.get("userSession");
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import {  useEffect } from "react";
+import { Button } from "@mui/material";
+// Comments coponents
+import PCommentForm from "../Comments/PCommentForm";
 
 let id = '';
 
-//Get the User Post Data
-function getUserPost() {
-  alert("get post button clicked");
-
-  axios({ method: "GET", url: "http://localhost:5000/getUserPost/" + id})
-
-    .then(() => {
-      console.log("User post data pulled form DB");
-    })
-    .catch(() => {
-      alert("Error pulling user post data");
-    });
-}
-
-
-
-function like() {
-  axios.post("http://localhost:5000/user.post.route/likePost/" , {
-
-})
-}
-
-
 export default function PostCard(props) {
 
-
-
-  const [expanded, setExpanded] = React.useState(false);
-  const [selectedLike, setSelectedLike] = React.useState(false);
-  const [selectedDislike, setSelectedDislike] = React.useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  let userSession = ReactSession.get("userSession");
   function like(e) {
     id = e.currentTarget.id;
+    const userId = userSession._id
+    axios.post("http://localhost:5000/user.post.route/likePost/" + id + '/' + userId)
+  }
+  function unlike(e) {
+    id = e.currentTarget.id;
+    const userId = userSession._id
+    axios.post("http://localhost:5000/user.post.route/unlikePost/" + id + '/' + userId)
   }
 
+  const [selectedLike, setSelectedLike] = React.useState(false);
+  //For Front-end rendering
+  const [likes, setLikes] = React.useState(props.likes);
+  // Comments functions
+  const [isCommentToggle, setCommentToggle] = React.useState(false);
+
+  //checks whether a post has been liked by the current user. Runs immediately when component mounts.
+  function checkLike(){
+    if(userSession){
+      let userId = userSession._id;
+      axios.get("http://localhost:5000/user.post.route/getUserLikedPosts/"+userId)
+      .then((res) => {
+        let likedPosts = res.data;
+        if (likedPosts.includes(props.id)){
+          setSelectedLike(true);
+        }
+      })
+    }
+  }
+  var options = {  year: 'numeric', month: 'short', day: 'numeric' };
+  const createdAt =new Date(props.createdAt);
+  let date= createdAt.toLocaleDateString("en-US", options);
+ // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
+  useEffect(() => {
+  checkLike();
+  },[])
+// test push 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <div>
+    <Card sx={{ maxWidth: "95%", marginLeft:"15px" }}>
+              
       <CardHeader
+      
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
+          <Avatar sx={{ bgcolor: "#309A47" }} aria-label="recipe"></Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={props.title}
-        subheader="September 14, 2016"
+          (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
+          title=<h6><b>{props.title}</b></h6>
+        subheader={date}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.body}
-
-          <div>{props.id}</div>
+<br/>
+          
 
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing>
         <div className="d-flex fd-column">
-
+        
           <ToggleButton
-
             id= {props.id}
-
             value="check"
             size="small"
             color="success"
             selected={selectedLike}
             onChange={() => {
-
-
+              //changes the 'liked' state of the toggle button
               setSelectedLike(!selectedLike);
-              if(selectedDislike){
-              setSelectedDislike(!selectedDislike);
+              //Cosmetically (front-end only) increments the like and decrements the unlike
+              if (!selectedLike){
+              setLikes(likes+1);
+              }else{
+                setLikes(likes-1);
               }
             }}
-
-            onClick={like}
+            //determines whether to like or unlike based on the state.
+            onClick={selectedLike? unlike : like}
 
           >
-            <ArrowDropUpIcon/>
 
+            <ThumbUpIcon style= {{paddingLeft:"6px",backgroundColor: "", color:"", border:"none"}}/>
+          <Typography style = {{marginLeft:"3px", paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
+          
           </ToggleButton>
-          <Typography>{props.likes}</Typography>
-
         </div>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <button onClick={getUserPost}>Get user Post</button>
-        <div style={{ padding: "10px" }}>{"~" + props.username}</div>
+        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+        
+        <div style={{ padding: "10px", marginLeft:"385px" }}>{"~" + props.username}</div>
+
       </CardActions>
+      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
     </Card>
+    <br/>
+    </div>
   );
 }
 
