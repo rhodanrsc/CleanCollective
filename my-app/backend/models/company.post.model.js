@@ -35,6 +35,12 @@ const companyPostSchema = new Schema(
         companyLikes: {
             type: [String],
             required: false
+        },
+        accessLevel: {
+            type: Boolean
+        },
+        anonymous: {
+            type: Boolean
         }
     },
     {

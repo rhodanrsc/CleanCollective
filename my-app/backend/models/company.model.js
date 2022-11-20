@@ -1,7 +1,7 @@
 const sector = require("./sector.model");
 const trl = require("./trl.model");
 const product = require("./product.model")
-const user = require("./user.model")
+const companyPost = require("./company.post.model")
 const mongoose = require("mongoose");
 
 
@@ -80,6 +80,15 @@ const companySchema = new Schema({
   verified: {
     type: Boolean,
     default: false
+  },
+  posts: {
+    type: [companyPost.companyPostSchema]
+  },
+  likedPosts: {
+    type: [String]
+  },
+  savedPosts: {
+    type: [String]
   }
 
 
