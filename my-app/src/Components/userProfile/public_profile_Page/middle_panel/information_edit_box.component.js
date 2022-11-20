@@ -80,6 +80,14 @@ export default function DescriptionBox() {
         </IconButton>
 
         <BackgroundLetterAvatarsSmall />
+
+        <Typography variant="email_display" component="div">
+          Personal Information: <br></br>
+          Email: {data ? data.email : null}
+
+        </Typography>
+
+
         <TagComboBox></TagComboBox>
 
         <Box
@@ -88,6 +96,9 @@ export default function DescriptionBox() {
           noValidate
           autoComplete="off"
         >
+          <Typography>
+            About
+          </Typography>
           <TextField
             id="aboutTextBox"
             multiline
@@ -107,6 +118,7 @@ export default function DescriptionBox() {
           </IconButton> : null}
 
         </Box>
+
         <Box
           component="form"
           sx={{ "& .MuiTextField-root": { m: 1, width: "40ch" } }}
@@ -114,9 +126,8 @@ export default function DescriptionBox() {
           autoComplete="off"
         ></Box>
 
-        <Typography variant="email_display" component="div">
-          Email: {data ? data.email : null}
-        </Typography>
+
+
       </Paper>
     </div>
   );
