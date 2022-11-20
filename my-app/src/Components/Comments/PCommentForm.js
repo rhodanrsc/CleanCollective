@@ -45,10 +45,11 @@ const PCommentForm = (props) => {
       <TextField label="Comments" id="fullWidth" 
         className="comment-form-textarea"
         value={text}
-        style= {{width:"730px", paddingLeft:"5px", paddingRight:"30px", paddingTop:"5px",marginBottom:"10px", borderRadius:"0.2em", border:"none"}}
+        style= {{width:"550px", maxWidth: "100%", flex: 1, flexWrap: 'wrap', wordWrap:"break-word", wordBreak:"break-word", overflowX: "hidden", overflowWrap:"anywhere", marginLeft:"65px", paddingLeft:"20px", paddingRight:"0px", paddingTop:"5px",marginBottom:"10px", marginTop: "10px", borderRadius:"0.2em", border:"none"}}
         onChange={(e) => setText(e.target.value)}
+        cols={60}
       />
-      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled} style = {{marginLeft:"550px"}}>
+      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled} style = {{marginLeft:"480px"}}>
         Enter
       </Button>
         <Button
