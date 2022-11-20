@@ -27,6 +27,7 @@ import { ReactSession } from "react-client-session";
 import ProfilePage from './Components/userProfile/public_profile_Page/display-user-information.component'
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
+import CompanyPage from "./Components/company/Company_Page/company_page.component"
 
 ReactSession.setStoreType("sessionStorage");
 // App Component
@@ -63,7 +64,9 @@ const App = () => {
                   <Route path="/profilepage" element={<ProfilePage/>} />
                   
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
+                  <Route path="/companyPage/:companyName" element={<CompanyPage />} />
                 </Routes>
+
               </div>
             </Col>
           </Row>

@@ -58,17 +58,6 @@ const InputWrapper = styled("div")(
 );
 
 function Tag(props) {
-  // const styles = {
-  //   bigIcon: {
-  //     width: 30,
-  //     height: 30,
-  //   },
-  //   big: {
-  //     width: 45,
-  //     height: 45,
-  //     padding: 16,
-  //   },
-  // };
   const { label, onDelete, ...other } = props;
   return (
     <div style={{ opacity: "0.4" }} {...other}>
