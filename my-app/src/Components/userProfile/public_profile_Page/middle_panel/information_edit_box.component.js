@@ -2,21 +2,17 @@ import { ReactSession } from "react-client-session";
 import React, { useEffect, useState } from "react";
 
 //material ui imports
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Unstable_Grid2";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import { TagComboBox } from "../../../userPosts/tag_combo_box";
-import { Chip } from "@mui/material"
+import { Chip } from "@mui/material";
 //profile pic
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
 import Edit from "@mui/icons-material/Edit";
 import axios from "axios";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Box, TextField, Grid, Typography } from "@mui/material";
 
 //EDIT AND SAVE BUTTONS FOR ABOUT PAGE
 // const handleEditClick = () => {
@@ -79,8 +75,8 @@ export default function DescriptionBox() {
         <Grid>
           <Card elevation={5}>
             <BackgroundLetterAvatarsSmall />
-           
-            <CardContent>
+
+            {/* <CardContent>
               <IconButton
                 color="primary"
                 aria-label="edit"
@@ -89,10 +85,7 @@ export default function DescriptionBox() {
               >
                 <EditIcon />
               </IconButton>
-            </CardContent>
-
-            
-            
+            </CardContent> */}
 
             <CardContent>
               <Box
@@ -101,8 +94,13 @@ export default function DescriptionBox() {
                 noValidate
                 autoComplete="off"
               >
-                <Typography variant="h6" color="text.primary">About</Typography>
-                <TextField
+                <Typography variant="h6" color="text.primary">
+                  About
+                </Typography>
+                <Typography variant="body1">
+                  Test paragraph!
+                </Typography>
+                {/* <TextField
                   id="aboutTextBox"
                   multiline
                   ThemeProvider
@@ -121,22 +119,31 @@ export default function DescriptionBox() {
                   >
                     <SaveAltTwoToneIcon />
                   </IconButton>
-                ) : null}
+                ) : null} */}
               </Box>
             </CardContent>
 
             {/* For tag display */}
             <CardContent>
               <Typography variant="h6">Interests</Typography>
-            <Typography variant="body2" color="text.secondary">
-                {data.tags ? data.tags.map((tag, index) => {
-                    return (
-                        <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
-                    )
-
-                }) : null}
-
-            </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {data.tags
+                  ? data.tags.map((tag, index) => {
+                      return (
+                        <Chip
+                          component={"span"}
+                          key={tag}
+                          style={{
+                            backgroundColor: pastelColorPallete[index],
+                            marginRight: "5px",
+                          }}
+                          variant="outlined"
+                          label={tag}
+                        />
+                      );
+                    })
+                  : null}
+              </Typography>
             </CardContent>
 
             <Box

@@ -7,6 +7,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
+import UserProfileHamburger from "./UserProfileHamburger";
+
 function stringToColor(string) {
   let hash = 0;
   let i;
@@ -70,9 +72,7 @@ export default function BackgroundLetterAvatarsSmall() {
           title={profilename ? profilename : ""}
           subheader={email ? email : ""}
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon options='Edit'/>
-            </IconButton>
+            <UserProfileHamburger />
           }
         />
       </Card>
