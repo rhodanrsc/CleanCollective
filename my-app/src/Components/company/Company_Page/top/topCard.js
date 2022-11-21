@@ -89,7 +89,7 @@ export default function TopCard() {
                             </Avatar>
                         }
                         action={
-                            <Hamburger id={company ? company.members[0].memberID : null} />}
+                            <Hamburger id={company ? company.members[0].memberID : ""} />}
                         title={company ? company.companyName : null}
                         subheader={company ? companyLocation : null}
                     />

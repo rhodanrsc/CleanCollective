@@ -41,6 +41,9 @@ const companyPostSchema = new Schema(
         },
         anonymous: {
             type: Boolean
+        },
+        userType: {
+            type: String
         }
     },
     {

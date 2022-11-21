@@ -4,7 +4,7 @@ import { Box, Card, CardHeader, CardContent, Avatar, Chip } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-export default function SideCompaniesCard() {
+export default function SideCompaniesCard(props) {
     const navigate = useNavigate();
     const params = useParams()
     const [companies, setCompanies] = useState([])
@@ -78,7 +78,7 @@ export default function SideCompaniesCard() {
         <Box>
             <Card elevation={5}>
                 <CardHeader
-                    title="Related Companies"
+                    title={props.title}
                 />
                 <CardContent>
                     {companies.map((company, index) => {

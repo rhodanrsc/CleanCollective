@@ -90,7 +90,7 @@ function TagComboBox() {
   return (
     <Root>
       <div {...getRootProps()}>
-        <Label style={{ marginTop: "5px" }} {...getInputLabelProps()}>
+        <Label  {...getInputLabelProps()}>
           Category Tags
         </Label>
         <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>

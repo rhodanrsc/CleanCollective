@@ -19,6 +19,9 @@ router.route("/addPost/:id").post((req, res) => {
         const thisPostLikes = req.body.postLikes;
         const thisPostDislikes = req.body.postDislikes;
         const thisSector = req.body.sector;
+        const accessLevel = req.body.accessLevel;
+        const anonymous = req.body.anonymous;
+        const userType = req.body.userType;
 
         //Create a new Post Object
         const newPost = new companyPost.CompanyPostCollection({
@@ -28,6 +31,9 @@ router.route("/addPost/:id").post((req, res) => {
             postSector: thisSector,
             postLikes: thisPostLikes,
             postDislikes: thisPostDislikes,
+            accessLevel: accessLevel,
+            anonymous: anonymous,
+            userType: userType
         });
 
         //Saves to main post collection

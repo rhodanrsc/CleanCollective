@@ -40,7 +40,7 @@ export default function CompanyPage() {
                         <TopCard />
                     </Grid>
                     <Grid item xs={6} md={4}>
-                        <SideCompaniesCard />
+                        <SideCompaniesCard title="Related Companies" />
                     </Grid>
 
                     <Grid item xs={6} md={8}>

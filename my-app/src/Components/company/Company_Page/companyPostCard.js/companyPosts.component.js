@@ -18,9 +18,9 @@ export default function CompanyPost() {
                 let thisCompany = response.data
                 if (response !== null && userSession) {
                     if (thisCompany.members[0].memberID === userSession._id) {
-                        setCompanyPosts(response.data.posts)
+                        setCompanyPosts(response.data.posts.reverse())
                     } else {
-                        response.data.posts.map((post) => {
+                        response.data.posts.reverse().map((post) => {
                             if (post.accessLevel === true && post.anonymous === false) {
 
                                 onlyPublicPosts.push(post)
