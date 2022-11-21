@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const company = require("./company.model")
 
 const Schema = mongoose.Schema;
 
@@ -7,26 +6,26 @@ const productSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    description : {
+    description: {
         type: String
     },
-    image : {
-        type : String
+    image: {
+        type: String
     },
-    owner : {
-        type : {
-            ownerID : String,
-            ownerName : String
+    owner: {
+        type: {
+            ownerID: String,
+            ownerName: String
         }
     },
-    tags : {
-        type : [String]
+    tags: {
+        type: [String]
     }
 
 }, {
-    timestamps : true
+    timestamps: true
 });
 
 const ProductCollection = mongoose.model("Product", productSchema);
 
-module.exports = {ProductCollection, productSchema};
+module.exports = { ProductCollection, productSchema };
