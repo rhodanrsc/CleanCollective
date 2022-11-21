@@ -75,6 +75,7 @@ export default function ProfilePage() {
                     body={post.postBody}
                     likes={post.postLikes}
                     createdAt={post.createdAt}
+                    postLikes={post.postLikes}
                     key={post._id}
                   />
                 );

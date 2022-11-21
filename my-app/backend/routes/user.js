@@ -47,6 +47,7 @@ router.route('/add').post((req, res) => {
     //Creates an empty array
     const associatedCompanies = [];
     const posts = [];
+    const tags = req.body.tags;
     //Still need comfirm accounts and post
 
     const newUser = new User.UserCollection({
@@ -54,7 +55,8 @@ router.route('/add').post((req, res) => {
         password : password,
         email : email,
         associatedCompanies  : associatedCompanies,
-        posts  : posts
+        posts  : posts,
+        tags : tags
     });
 
     newUser.save()

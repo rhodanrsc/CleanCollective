@@ -11,7 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import { TagComboBox } from "../../../userPosts/tag_combo_box";
-
+import { Chip } from "@mui/material"
 //profile pic
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
 import Edit from "@mui/icons-material/Edit";
@@ -24,6 +24,20 @@ import { Card, CardContent } from "@mui/material";
 //   aboutInput.removeAttribute("disabled");
 
 // };
+
+const pastelColorPallete = [
+  "rgba(181, 234, 215, 0.6)",
+  "rgba(224, 187, 228, 0.6)",
+  "rgba(104, 209, 197, 0.6)",
+  "rgba(244, 179, 206, 0.6)",
+  "rgba(249, 216, 206,0.6)",
+  "rgba(117, 199, 234, 0.6)",
+  "rgba(149, 125, 173, 0.6)",
+  "#CEF2E1",
+  "#FFFBD6",
+  "#D7FDDF",
+  "#D0D0FE",
+];
 
 export default function DescriptionBox() {
   let data = ReactSession.get("userSession");
@@ -76,7 +90,9 @@ export default function DescriptionBox() {
                 <EditIcon />
               </IconButton>
             </CardContent>
-            {/* <TagComboBox></TagComboBox> */}
+
+            
+            
 
             <CardContent>
               <Box
@@ -107,6 +123,20 @@ export default function DescriptionBox() {
                   </IconButton>
                 ) : null}
               </Box>
+            </CardContent>
+
+            {/* For tag display */}
+            <CardContent>
+              <Typography variant="h6">Interests</Typography>
+            <Typography variant="body2" color="text.secondary">
+                {data.tags ? data.tags.map((tag, index) => {
+                    return (
+                        <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
+                    )
+
+                }) : null}
+
+            </Typography>
             </CardContent>
 
             <Box

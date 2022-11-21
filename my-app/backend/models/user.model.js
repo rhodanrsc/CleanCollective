@@ -37,12 +37,16 @@ const userSchema = new Schema({
     },
     savedPosts :{
         type: [String]
+    },
+    tags :{
+        type: [String]
     }
    
 },
 {
     timestamps: true
 }
+
 );
 
 
