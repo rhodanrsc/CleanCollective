@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Box, Grid, Card, CardHeader, CardContent, Avatar, IconButton, Typography, Button, ButtonGroup } from "@mui/material"
+import Hamburger from "../companyHamburger/Hamburger"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HomeTab from "./tabs/homeTab";
 import AboutTab from "./tabs/aboutTab";
@@ -45,6 +46,7 @@ export default function TopCard() {
         setCurrentButton(buttonClicked)
     }
 
+
     //Handles which tab to open depending on which button is current clicked
     const renderTab = (button) => {
         switch (button) {
@@ -87,10 +89,7 @@ export default function TopCard() {
                             </Avatar>
                         }
                         action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
+                            <Hamburger id={company ? company.members[0].memberID : ""} />}
                         title={company ? company.companyName : null}
                         subheader={company ? companyLocation : null}
                     />

@@ -6,6 +6,7 @@ import DeleteUser from "./DeleteUser";
 import { Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableCell, TableRow } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ReactSession } from 'react-client-session';
+import CompanySettings from "./companySettings/companySettings.component";
 export default function ControlledAccordions() {
   let userSession = ReactSession.get("userSession")
   const [expanded, setExpanded] = useState(false);
@@ -19,7 +20,7 @@ export default function ControlledAccordions() {
 
   return (
     <body className="edit-user">
-      <div edit-user-box>
+      <div>
         {/****** Account Information ******/}
         <Accordion style={{ height: '100%' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
           <AccordionSummary
@@ -30,7 +31,7 @@ export default function ControlledAccordions() {
             <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
               Account Information
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>View username, email, and associated companies.</Typography>
+            <Typography component={'span'} sx={{ color: 'text.secondary' }}>View username, email, and associated companies.</Typography>
           </AccordionSummary>
           <AccordionDetails>
 
@@ -68,7 +69,7 @@ export default function ControlledAccordions() {
             <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
               General settings
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>Change username, email, and password.</Typography>
+            <Typography component={'span'} sx={{ color: 'text.secondary' }}>Change username, email, and password.</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography component={'span'}>
@@ -87,18 +88,14 @@ export default function ControlledAccordions() {
             id="panel2bh-header"
           >
             <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
-              Company
+              Company Information
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
+            <Typography component={'span'} sx={{ color: 'text.secondary' }}>
               Change your company information.
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Typography component={'span'}>
-              Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-              varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-              laoreet.
-            </Typography>
+          <AccordionDetails >
+            <CompanySettings />
           </AccordionDetails>
         </Accordion>
         {/****** Delete Account ******/}
