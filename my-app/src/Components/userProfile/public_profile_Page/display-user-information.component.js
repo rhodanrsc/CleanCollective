@@ -64,12 +64,8 @@ export default function ProfilePage() {
         <Grid item xs={6} md={4}>
           <SideCompaniesCard title="Recommended Companies" />
         </Grid>
-
-
-      </Grid>
-
-     
-          {thisUserPosts
+        <Grid item xs={6} md={8}>
+        {thisUserPosts
             ? thisUserPosts.reverse().map(function (post) {
                 return (
                   <PostCard
@@ -78,11 +74,18 @@ export default function ProfilePage() {
                     title={post.postTitle}
                     body={post.postBody}
                     likes={post.postLikes}
+                    createdAt={post.createdAt}
                     key={post._id}
                   />
                 );
               })
             : null}
+        </Grid>
+
+      </Grid>
+
+     
+        
     </Box>
   );
 }
