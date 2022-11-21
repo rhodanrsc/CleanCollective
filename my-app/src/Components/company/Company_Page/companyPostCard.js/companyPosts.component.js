@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Card, CardHeader, CardContent, Button } from "@mui/material"
+import { Box, Card, CardHeader, CardContent } from "@mui/material"
 import { useParams } from "react-router-dom";
 import PostCard from "../../../Posts/Post.Card"
 import { ReactSession } from "react-client-session";
@@ -17,12 +17,15 @@ export default function CompanyPost() {
             .then((response) => {
                 let thisCompany = response.data
                 if (response !== null && userSession) {
+                    //If the current user is the owner
+                    //Show all posts
                     if (thisCompany.members[0].memberID === userSession._id) {
                         setCompanyPosts(response.data.posts.reverse())
                     } else {
+                        //If not then only show public post that are non-anonymous
+                        // eslint-disable-next-line array-callback-return
                         response.data.posts.reverse().map((post) => {
                             if (post.accessLevel === true && post.anonymous === false) {
-
                                 onlyPublicPosts.push(post)
                             }
                         })
@@ -35,9 +38,7 @@ export default function CompanyPost() {
 
     }, [params.companyName, userSession])
 
-    const testButton = (event) => {
-        console.log(companyPosts)
-    }
+
     return (
         <Box>
             <Card elevation={5}>

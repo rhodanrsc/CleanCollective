@@ -5,7 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import DeleteAlertDialog from "../companyHamburger/EditButton";
 import { ReactSession } from "react-client-session";
-import axios from "axios";
+
 import ReportAlertDialog from "../../../Posts/HamburgerButton/ReportAlertDialog";
 
 export default function CompanyHamburger(props) {
