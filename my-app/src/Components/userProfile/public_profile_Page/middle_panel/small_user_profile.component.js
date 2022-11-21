@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import { ReactSession } from "react-client-session";
 import { Card, CardHeader, Grid, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 function stringToColor(string) {
   let hash = 0;
@@ -37,10 +39,27 @@ function stringAvatar(name) {
   };
 }
 
+//for edit menu
+const options = ["Edit"];
+const ITEM_HEIGHT = 10;
+
+
+
+
 export default function BackgroundLetterAvatarsSmall() {
   let data = ReactSession.get("userSession");
   let profilename = data.username;
   let email = data.email;
+
+  //for edit menu 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   //RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE
   return (
@@ -52,11 +71,12 @@ export default function BackgroundLetterAvatarsSmall() {
           subheader={email ? email : ""}
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <MoreVertIcon options='Edit'/>
             </IconButton>
           }
         />
       </Card>
     </Grid>
+
   );
 }
