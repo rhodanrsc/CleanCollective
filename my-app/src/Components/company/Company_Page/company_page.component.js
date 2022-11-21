@@ -29,13 +29,13 @@ export default function CompanyPage() {
 
     const myStyle = {
         width: "120%",
-        height: "100%"
+
     }
 
     return (
         <Box style={myStyle}>
-            <Grid container direction={'column'} spacing={1}>
-                <Grid container direction={'row'} spacing={2}>
+            <Grid container style={{ gap: 1 }}>
+                <Grid container spacing={3}>
                     <Grid item xs={6} md={8}>
                         <TopCard />
                     </Grid>
@@ -43,6 +43,10 @@ export default function CompanyPage() {
                         <SideCompaniesCard title="Related Companies" />
                     </Grid>
 
+
+                </Grid>
+
+                <Grid container spacing={2}>
                     <Grid item xs={6} md={8}>
                         <CreateCompanyPost />
                     </Grid>
@@ -50,9 +54,6 @@ export default function CompanyPage() {
                         <CompanyPost />
                     </Grid>
                 </Grid>
-
-
-
             </Grid>
         </Box>
 

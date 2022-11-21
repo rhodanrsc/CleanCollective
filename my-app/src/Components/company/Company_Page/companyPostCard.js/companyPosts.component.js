@@ -53,6 +53,7 @@ export default function CompanyPost() {
                         return (
                             <PostCard
                                 id={post.id}
+                                username={post.postCompanyName}
                                 title={post.postTitle}
                                 body={post.postBody}
                                 likes={post.postLikes}

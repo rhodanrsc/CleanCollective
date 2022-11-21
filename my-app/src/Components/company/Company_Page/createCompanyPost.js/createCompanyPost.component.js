@@ -53,12 +53,6 @@ export default function CreateCompanyPost() {
     }, [params.companyName])
 
     const onSubmit = (event) => {
-        console.log(postTitle)
-        console.log(postBody)
-        console.log(arrayOfTags)
-        console.log(accessSwitch)
-        console.log(anonSwitch)
-        console.log(company)
         if (company) {
             axios.post("http://localhost:5000/company.post.route/addPost/" + company._id,
                 {
@@ -72,6 +66,7 @@ export default function CreateCompanyPost() {
             )
                 .then(() => {
                     console.log("Post added");
+                    window.location.reload();
                 })
                 .catch((err) => {
                     console.log("Something went wrong: " + err);
@@ -102,7 +97,8 @@ export default function CreateCompanyPost() {
                                 label="Title"
                                 style={{ width: "84%" }}
                                 multiline
-                                placeholder="Write something"
+                                placeholder="Post Title"
+                                value={postTitle}
                             />
                         </Grid>
                         <Grid item xs={6} md={1}></Grid>
@@ -110,6 +106,7 @@ export default function CreateCompanyPost() {
                             <TextField
                                 onChange={handlePostBody}
                                 label="Type your question/post"
+                                value={postBody}
                                 style={{ width: "84%" }}
                                 multiline
                                 rows={5}
