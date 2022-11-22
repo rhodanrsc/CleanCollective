@@ -3,7 +3,7 @@ import ChangeUsername from "./ChangeUsername";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 import DeleteUser from "./DeleteUser";
-import { Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableCell, TableRow } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableCell, TableRow, Chip } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ReactSession } from 'react-client-session';
 import CompanySettings from "./companySettings/companySettings.component";
@@ -16,7 +16,19 @@ export default function ControlledAccordions() {
     setExpanded(isExpanded ? panel : false);
   };
 
-
+  const pastelColorPallete = [
+    "rgba(181, 234, 215, 0.6)",
+    "rgba(224, 187, 228, 0.6)",
+    "rgba(104, 209, 197, 0.6)",
+    "rgba(244, 179, 206, 0.6)",
+    "rgba(249, 216, 206,0.6)",
+    "rgba(117, 199, 234, 0.6)",
+    "rgba(149, 125, 173, 0.6)",
+    "#CEF2E1",
+    "#FFFBD6",
+    "#D7FDDF",
+    "#D0D0FE",
+  ];
 
   return (
     <body className="edit-user">
@@ -42,17 +54,48 @@ export default function ControlledAccordions() {
                     <TableCell>Username: </TableCell>
                     <TableCell>{userSession ? userSession.username : null}</TableCell>
                   </TableRow>
+
                   <TableRow>
                     <TableCell>Email: </TableCell>
                     <TableCell>{userSession ? userSession.email : null}</TableCell>
                   </TableRow>
+
+                  <TableRow>
+                    <TableCell>About</TableCell>
+                    <TableCell>{userSession ? userSession.about : null}</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell>Interests</TableCell>
+                    <TableCell>
+                    {userSession.tags
+                  ? userSession.tags.map((tag, index) => {
+                      return (
+                        <Chip
+                          component={"span"}
+                          key={tag}
+                          style={{
+                            backgroundColor: pastelColorPallete[index],
+                            marginRight: "5px",display : "inline"
+                          }}
+                          variant="outlined"
+                          label={tag}
+                        />
+                      );
+                    })
+                  : null}
+                    </TableCell>
+                  </TableRow>
+
                   <TableRow >
                     <TableCell>Associated Companies: </TableCell>
-                    {userSession ?
+                    {userSession.associatedCompanies ?
                       userSession.associatedCompanies.map(function (company) {
                         return <TableCell key={company._id}>{company.companyName}</TableCell>
                       }) : null}
                   </TableRow>
+
+              
                 </tbody>
               </Table>
             </Typography>

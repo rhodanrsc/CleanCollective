@@ -13,7 +13,7 @@ import SideCompaniesCard from "../../company/Company_Page/reccomendedCompanyCard
 //middle panel
 import DescriptionBox from "./middle_panel/information_edit_box.component";
 import axios from "axios";
-import { CardHeader } from "@mui/material";
+import { Card, CardHeader, CardContent } from "@mui/material";
 import PostCard from "../../Posts/Post.Card";
 
 export default function ProfilePage() {
@@ -51,20 +51,21 @@ export default function ProfilePage() {
   };
   return (
     <Box style={myStyle}>
-      <Grid container spacing={6}>
+      <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
           <DescriptionBox></DescriptionBox>
-          
-
-          
-
-          
-
         </Grid>
+
         <Grid item xs={6} md={4}>
           <SideCompaniesCard title="Recommended Companies" />
         </Grid>
+        
         <Grid item xs={6} md={8}>
+          <Card>
+            <CardHeader
+            title="Posts"
+            />
+          <CardContent>
         {thisUserPosts
             ? thisUserPosts.reverse().map(function (post) {
                 return (
@@ -81,12 +82,11 @@ export default function ProfilePage() {
                 );
               })
             : null}
+            </CardContent>
+            </Card>
         </Grid>
 
       </Grid>
-
-     
-        
     </Box>
   );
 }

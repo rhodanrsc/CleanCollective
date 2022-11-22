@@ -7,7 +7,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import UserProfileHamburger from "./UserProfileHamburger";
+import CompanyHamburger from "../../../company/Company_Page/companyHamburger/Hamburger";
 
 function stringToColor(string) {
   let hash = 0;
@@ -72,7 +72,7 @@ export default function BackgroundLetterAvatarsSmall() {
           title={profilename ? profilename : ""}
           subheader={email ? email : ""}
           action={
-            <UserProfileHamburger />
+           <CompanyHamburger id={data ? data._id : ""}/>
           }
         />
       </Card>

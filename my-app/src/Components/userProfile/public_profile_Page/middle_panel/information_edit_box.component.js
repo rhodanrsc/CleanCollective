@@ -35,7 +35,28 @@ const pastelColorPallete = [
   "#D0D0FE",
 ];
 
+
+
 export default function DescriptionBox() {
+//for grabbing associated companies 
+const [company, setCompany] = useState();
+
+
+
+useEffect(() => {
+    if(data.associatedCompanies.length > 0){
+        axios.get("http://localhost:5000/company/getCompany/" + data.associatedCompanies[0].companyName)
+        .then((response) => {
+            setCompany(response.data)
+        })
+        .catch((error) => console.log("Error with getting company: " + error))
+    }
+  })
+
+
+
+
+
   let data = ReactSession.get("userSession");
 
   const [aboutContent, setAboutContent] = useState(data.about);
@@ -73,6 +94,7 @@ export default function DescriptionBox() {
     <div>
       <Box>
         <Grid>
+          <Grid item xs={6} md={8}>
           <Card elevation={5}>
             <BackgroundLetterAvatarsSmall />
 
@@ -123,9 +145,22 @@ export default function DescriptionBox() {
               </Box>
             </CardContent>
 
+            <CardContent>
+              <Typography variant="h6" color="text.primary">Associated Companies</Typography>
+              <Typography variant="body1" value= {data ? data.companyName : ""}></Typography>
+              
+            </CardContent>
+
+            <CardContent>
+              <Typography variant="h6" color="text.primary">Social Links</Typography>
+              <Typography variant="body1">Nothing to show at this time.</Typography>
+              
+            </CardContent>
+
+
             {/* For tag display */}
             <CardContent>
-              <Typography variant="h6">Interests</Typography>
+              <Typography variant="h6" color="text.primary" >Interests</Typography>
               <Typography variant="body2" color="text.secondary">
                 {data.tags
                   ? data.tags.map((tag, index) => {
@@ -154,6 +189,7 @@ export default function DescriptionBox() {
             ></Box>
           </Card>
           <Card></Card>
+          </Grid>
         </Grid>
       </Box>
     </div>
