@@ -16,12 +16,12 @@ const Root = styled("div")(
 const Label = styled("label")`
   padding: 0 0 4px;
   line-height: 1.5;
-  display: block;
+  display: inline-block;
 `;
 
 const InputWrapper = styled("div")(
   ({ theme }) => `
-  width: 500px;
+  width: 447px;
   border: 1px solid ${theme.palette.mode === "dark" ? "#434343" : "#d9d9d9"};
   background-color: ${theme.palette.mode === "dark" ? "#141414" : "#fff"};
   border-radius: 4px;
@@ -58,17 +58,6 @@ const InputWrapper = styled("div")(
 );
 
 function Tag(props) {
-  // const styles = {
-  //   bigIcon: {
-  //     width: 30,
-  //     height: 30,
-  //   },
-  //   big: {
-  //     width: 45,
-  //     height: 45,
-  //     padding: 16,
-  //   },
-  // };
   const { label, onDelete, ...other } = props;
   return (
     <div style={{ opacity: "0.4" }} {...other}>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
-const Sector = require("../models/sector.model");
+
 
 router.route("/").get((req, res) => {
   usersPost.UserPostCollection.find()
@@ -65,8 +65,8 @@ router.route("/getPost/:id").get((req, res) => {
 
 router.route('/getUserPosts/:id').get((req, res) => {
   User.UserCollection.findById(req.params.id)
-    .then(user =>{ 
-       //retrieve only the ids of the posts of the current user.
+    .then(user => {
+      //retrieve only the ids of the posts of the current user.
       let posts = user.posts.map((post) => (post.id));
       res.json(posts)
     })
@@ -75,14 +75,14 @@ router.route('/getUserPosts/:id').get((req, res) => {
 
 router.route('/getUserLikedPosts/:userId').get((req, res) => {
   User.UserCollection.findById(req.params.userId)
-  .then(user => res.json(user.likedPosts))
-  .catch(err => res.status(400).json('Error: ' + err));
+    .then(user => res.json(user.likedPosts))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/getUserSavedPosts/:userId').get((req, res) => {
   User.UserCollection.findById(req.params.userId)
-  .then(user => res.json(user.savedPosts))
-  .catch(err => res.status(400).json('Error: ' + err));
+    .then(user => res.json(user.savedPosts))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route("/likePost/:id/:userId").post((req, res) => {
@@ -101,14 +101,14 @@ router.route("/likePost/:id/:userId").post((req, res) => {
         .then(() => res.send("Saved!"))
         .catch((err) => res.status(400).json("Error: saving post" + err));
 
-          User.UserCollection.findById(req.params.userId).then((User) => {
-    User.likedPosts.push(req.params.id);
-    User.save();
-    })
-    .catch((err) => res.status(400).json("Error: saving user" + err));
+      User.UserCollection.findById(req.params.userId).then((User) => {
+        User.likedPosts.push(req.params.id);
+        User.save();
+      })
+        .catch((err) => res.status(400).json("Error: saving user" + err));
 
 
-  });
+    });
 });
 
 router.route("/unlikePost/:id/:userId").post((req, res) => {
@@ -155,12 +155,12 @@ router
     });
   })
 
-  router.route('/searchPost/:title').get((req, res) => {
-    usersPost.UserPostCollection.findOne({postTitle: req.params.title})
+router.route('/searchPost/:title').get((req, res) => {
+  usersPost.UserPostCollection.findOne({ postTitle: req.params.title })
     .then((usersPost) => {
       res.send(usersPost);
     })
-  })
+})
 
   //const companyName = req.body.postUserName;
   //Find the User object that has this name
@@ -227,18 +227,18 @@ router.route("/delete-user.post/:id/:userId").post((req, res, next) => {
     } else {
 
 
-    User.UserCollection.findById(req.params.userId)
-    .then(user => { 
-      //Remove from the user's posts arroy
-      user.posts.pull({'_id' : req.params.id})
-      //console.log(user.posts);
-      user.save();
-    })
+      User.UserCollection.findById(req.params.userId)
+        .then(user => {
+          //Remove from the user's posts arroy
+          user.posts.pull({ '_id': req.params.id })
+          //console.log(user.posts);
+          user.save();
+        })
 
-    res.status(200).json({
-      msg: data,
-    });
-  }
+      res.status(200).json({
+        msg: data,
+      });
+    }
 
   });
 

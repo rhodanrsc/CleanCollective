@@ -10,6 +10,12 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/getCompany/:companyName").get((req, res) => {
+  Company.CompanyCollection.findOne({ companyName: req.params.companyName })
+    .then((company) => res.json(company))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 /*
 Saves a new company
 adds company to user's list of associated companies
@@ -33,6 +39,13 @@ router.route("/add/:id").post((req, res) => {
     zip: req.body.zip,
   };
   const yearFounded = req.body.yearFounded;
+  const companyInformation = {
+    statement: req.body.statement,
+    about: req.body.about,
+    interest: req.body.interest,
+    tags: req.body.tags,
+  };
+
 
   let thisSector;
 
@@ -73,6 +86,8 @@ router.route("/add/:id").post((req, res) => {
               check: check,
               location: location,
               members: memberList,
+              yearFounded: yearFounded,
+              companyInformation: companyInformation
             });
 
             //Save newCompany to the users list of associated companies
