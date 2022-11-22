@@ -15,8 +15,8 @@ import logo from '../../shared/images/CCLogo.png';
 import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
-const pages = ['Questions', 'Liked Posts', 'Your Questions', 'Your Answers'];
-const settings = ['Profile', 'Account', 'Options'];
+const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions'];
+const settings = ['Profile', 'Account', 'Settings'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -63,7 +63,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={()=>{navigate('/');}} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={()=>{navigate('/forum');}} className='logo' /></Button>
           </Typography>
             
 
@@ -122,7 +122,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={()=>{navigate('/');}} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={()=>{navigate('/forum');}} className='logo' /></Button>
           </Typography>
 
         {/* displays the nav buttons */}
@@ -195,7 +195,7 @@ const ResponsiveAppBar = () => {
                   key={setting} 
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/');
+                    navigate('/companyProfile');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
@@ -213,7 +213,7 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
 
-              {/* options */}
+              {/* settings */}
               {settings.slice(2,3).map((setting) => (
                 <MenuItem 
                   key={setting} 

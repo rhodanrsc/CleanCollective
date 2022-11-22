@@ -84,7 +84,7 @@ export default function Hamburger(props) {
   useEffect(() => {
     checkSaved();
     checkOwned();
-  });
+  }, []);
 
   return (
     <div>
