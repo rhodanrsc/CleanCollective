@@ -55,7 +55,7 @@ export default function PostPage() {
       <Grid item xs={6} md={12}>
         <Grid container direction={"row"} spacing={2}>
           <Grid item xs={6} md={6.5}>
-            <SearchBar />
+            <SearchBar page="forum" />
           </Grid>
           <Grid item xs={6} md={3}>
             <Button
