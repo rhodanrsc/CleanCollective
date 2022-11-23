@@ -35,7 +35,7 @@ const createdAt =new Date(props.createdAt);
   return (
     
     <div>
-      <div style={{ padding: 2 }} className="App">
+      <div style={{ padding: 1 }} className="App">
       <Paper style={{ padding: "10px 10px"}}
               >
         <Grid container wrap="nowrap" spacing={2}>
