@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PostCard from "./SavedPost.Card";
 import axios from "axios";
 import SearchBar from "../SearchBar";
+import { Grid } from "@mui/material";
 import { ReactSession } from "react-client-session";
 
 export class PostPage extends Component {
@@ -42,8 +43,12 @@ export class PostPage extends Component {
 
   render() {
     return (
-      <div>
+      <Grid container direction={"column"} spacing={2}>
+
+      <Grid item xs={6} md={8}>
         <SearchBar />
+      </Grid>
+      <Grid item xs={6} md={8}>
         {this.state.searched
           ? this.state.search
               .reverse()
@@ -70,7 +75,8 @@ export class PostPage extends Component {
                   key={post._id}
                 />
               ))}
-      </div>
+      </Grid>
+    </Grid>
     );
   }
 }

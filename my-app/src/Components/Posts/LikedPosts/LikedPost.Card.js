@@ -62,7 +62,7 @@ export default function PostCard(props) {
 // test push 
   return (
     <div>
-    <Card sx={{ maxWidth: "95%", marginLeft:"15px" }}>
+    <Card sx={{ maxWidth: "100%", marginLeft:"15px" }}>
               
       <CardHeader
       
@@ -72,9 +72,11 @@ export default function PostCard(props) {
         action={
           (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
           title=<h6><b>{props.title}</b></h6>
-        subheader={date}
+        subheader=<div>{props.username}<br/>{date}</div>
       />
+      
       <CardContent>
+      
         <Typography variant="body2" color="text.secondary">
           {props.body}
 <br/>
@@ -117,7 +119,7 @@ export default function PostCard(props) {
         </IconButton>
         <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
         
-        <div style={{ padding: "10px", marginLeft:"385px" }}>{"~" + props.username}</div>
+        
 
       </CardActions>
       {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
