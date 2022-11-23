@@ -15,8 +15,8 @@ import logo from '../../shared/images/CCLogo.png';
 import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
-const pages = ['Questions', 'Liked Posts', 'Your Questions', 'Your Answers'];
-const settings = ['Profile', 'Account', 'Options'];
+const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
+const settings = ['Profile', 'Account', 'Settings'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -63,7 +63,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={() => { navigate('/'); }} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={()=>{navigate('/forum');}} className='logo' /></Button>
           </Typography>
 
 
@@ -100,7 +100,12 @@ const ResponsiveAppBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => {
                   handleCloseNavMenu();
-                  navigate('/' + page.replace(' ', ''));
+                  if (page === 'Questions') {
+                    navigate('/forum');
+                  } else {
+                    navigate('/' + page.replace(' ', ''));
+                  }
+                  
                 }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -122,7 +127,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={() => { navigate('/'); }} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={()=>{navigate('/forum');}} className='logo' /></Button>
           </Typography>
 
           {/* displays the nav buttons */}
@@ -195,7 +200,7 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/');
+                    navigate('/companyProfile');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
@@ -213,10 +218,10 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
 
-              {/* options */}
-              {settings.slice(2, 3).map((setting) => (
-                <MenuItem
-                  key={setting}
+              {/* settings */}
+              {settings.slice(2,3).map((setting) => (
+                <MenuItem 
+                  key={setting} 
                   onClick={() => {
                     handleCloseNavMenu();
                     navigate('/editUser');

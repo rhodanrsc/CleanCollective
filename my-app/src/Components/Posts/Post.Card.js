@@ -75,11 +75,10 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{date}</div>
+              <div>{props.username}<br/>{date}</div>
               {props.userType === "company" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
-
             </div>
           }
         />
@@ -126,7 +125,7 @@ export default function PostCard(props) {
           </IconButton>
           <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
 
-          <div style={{ padding: "10px", marginLeft: "385px" }}>{"~" + props.username}</div>
+          
 
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
