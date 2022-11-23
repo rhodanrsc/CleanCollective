@@ -33,7 +33,7 @@ export default function ReportAlertDialog(props) {
 
   return (
     <div>
-      <IconButton variant="outlined" onClick={handleClickOpen}>
+      <IconButton variant="outlined" onClick={handleClickOpen} size='small'>
       <Flag/>Report
       </IconButton>
       <Dialog

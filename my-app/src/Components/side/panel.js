@@ -13,8 +13,10 @@ import ListItemText from '@mui/material/ListItemText';
 import CustomNavBar from '../navbar/userNavBar.component';
 import QuestionsIcon from '@mui/icons-material/FormatListBulleted';
 import HeartIcon from '@mui/icons-material/FavoriteBorder';
-import AnswerIcon from '@mui/icons-material/CommentOutlined';
+import Matching from '@mui/icons-material/PeopleOutlined';
+import Saved from '@mui/icons-material/BookmarksOutlined';
 import AskIcon from '@mui/icons-material/ChatOutlined';
+import About from '@mui/icons-material/InfoOutlined';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -44,7 +46,7 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: 'auto', marginTop: '10px' }}>
           <List>
             {['Questions'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>{navigate('/forum'+text);}}>
+              <ListItem key={text} disablePadding onClick={()=>{navigate('/forum');}}>
                 <ListItemButton>
                   <ListItemIcon>
                     {index === 0 ? <QuestionsIcon /> : null}
@@ -57,13 +59,15 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['Liked Posts', 'Your Questions', 'Your Answers'].map((text, index) => (
+            {['Liked Posts', 'Saved Posts' , 'Your Questions','Matching Companies', 'About Us'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={()=>{navigate('/'+ text.replace(' ', ''));}}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Liked Posts' ? <HeartIcon /> : 
-                    text === 'Your Questions' ? <AskIcon /> : 
-                    text === 'Your Answers' ? <AnswerIcon /> : null}
+                    text === 'Your Questions' ? <AskIcon /> :
+                    text === 'Saved Posts' ? <Saved /> :
+                    text === 'Matching Companies' ? <Matching /> : 
+                    text === 'About Us' ? <About /> : null}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>

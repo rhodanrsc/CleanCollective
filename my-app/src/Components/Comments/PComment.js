@@ -35,18 +35,19 @@ const createdAt =new Date(props.createdAt);
   return (
     
     <div>
-      <div style={{ padding: 14 }} className="App">
-      <Paper style={{ padding: "20px 10px", marginLeft:"-10px", marginRight:"10px" }}>
+      <div style={{ padding: 1 }} className="App">
+      <Paper style={{ padding: "10px 10px"}}
+              >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar  style={{backgroundColor:"#1682FD"}}alt="user profile pic"  />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
-            <h6 style={{ margin: 0, textAlign: "left" }}>{props.username}</h6>
-            <p style={{ textAlign: "left" }}>
+            <h6 style={{ margin: 0, textAlign: "left", fontSize:'small'}}>{props.username}</h6>
+            <p style={{ fontSize:'small',textAlign: "left"}}>
             {props.body}
             </p>
-            <p style={{ textAlign: "left", color: "gray" }}>
+            <p style={{ textAlign: "left", color: "gray" ,fontSize:'small'}}>
               {timeSince(createdAt)} ago 
               
             </p>

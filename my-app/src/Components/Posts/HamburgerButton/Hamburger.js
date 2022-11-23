@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteAlertDialog from "./DeleteAlertDialog";
+import EditIcon from '@mui/icons-material/Edit';
 import { ReactSession } from "react-client-session";
 import axios from "axios";
 import ReportAlertDialog from "./ReportAlertDialog";
@@ -84,7 +85,7 @@ export default function Hamburger(props) {
   useEffect(() => {
     checkSaved();
     checkOwned();
-  },[]);
+  }, []);
 
   return (
     <div>
@@ -111,6 +112,7 @@ export default function Hamburger(props) {
               save();
               setSaved(!saved);
             }}
+            size='small'
           >
             {!saved ? (
               <div>
@@ -128,12 +130,24 @@ export default function Hamburger(props) {
 
         {owned ? (
           <div>
+            <IconButton size='small'>
+              <div>
+            <EditIcon/>
+            Edit
+            </div>
+            </IconButton>
+          </div>
+        ) : null}
+
+        {owned ? (
+          <div>
             <DeleteAlertDialog
               id={props.id}
               title={props.postTitle}
             ></DeleteAlertDialog>
           </div>
         ) : null}
+        
         <ReportAlertDialog />
       </Popover>
     </div>

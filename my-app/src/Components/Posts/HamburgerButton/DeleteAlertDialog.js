@@ -39,7 +39,7 @@ export default function DeleteAlertDialog(props) {
 
   return (
     <div>
-      <IconButton variant="outlined" onClick={handleClickOpen}>
+      <IconButton size='small' variant="outlined" onClick={handleClickOpen}>
       <DeleteOutlineIcon/>Delete
       </IconButton>
       <Dialog
