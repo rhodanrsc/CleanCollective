@@ -86,7 +86,6 @@ router.route('/getUserLikedPostsPage/:userId').get((req, res) => {
       if(err){
       console.log(err);
       }else{
-        console.log(liked);
         res.json(liked);
       }
     })
@@ -110,7 +109,6 @@ router.route('/getUserLikedPostsPage/:userId').get((req, res) => {
         if(err){
         console.log(err);
         }else{
-          console.log(saved);
           res.json(saved);
         }
       })
