@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Box, Grid, Card, CardHeader, CardContent, Avatar, TextField, Switch, FormControlLabel, Button, FormGroup } from "@mui/material"
+import { Box, Grid, Card, CardContent, Avatar, TextField, Switch, FormControlLabel, Button } from "@mui/material"
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SendIcon from "@mui/icons-material/Send";
 import { TagComboBox } from "../../../userPosts/tag_combo_box";
