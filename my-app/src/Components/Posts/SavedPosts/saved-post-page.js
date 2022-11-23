@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PostCard from "./LikedPost.Card";
+import PostCard from "./SavedPost.Card";
 import axios from "axios";
 import SearchBar from "../SearchBar";
 import { ReactSession } from "react-client-session";
@@ -14,25 +14,26 @@ export class PostPage extends Component {
     searched: "",
     likes: [],
     likedPosts: [],
+    savedPosts: []
   };
 
   componentDidMount = () => {
-    this.getLikedPosts();
+    this.getSavedPosts();
   };
 
 
-  getLikedPosts = () => {
+  getSavedPosts = () => {
     var data = [];
     const userSession = ReactSession.get("userSession");
     let userId = userSession._id;
     axios({
       method: "GET",
-      url: "http://localhost:5000/user.post.route/getUserLikedPostsPage/" + userId,
+      url: "http://localhost:5000/user.post.route/getUserSavedPostsPage/" + userId,
     })
       .then((response) => {
         data = response.data;
         console.log(data);
-        this.setState({ likedPosts: data });
+        this.setState({ savedPosts: data });
       })
       .catch((err) => {
         alert("Error pulling user post data");
@@ -56,7 +57,7 @@ export class PostPage extends Component {
                   key={post._id}
                 />
               ))
-          : this.state.likedPosts
+          : this.state.savedPosts
               .reverse()
               .map((post) => (
                 <PostCard

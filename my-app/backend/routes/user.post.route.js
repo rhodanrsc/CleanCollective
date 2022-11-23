@@ -74,13 +74,15 @@ router.route('/getUserPosts/:id').get((req, res) => {
 });
 
 
-router.route('/getUserLikedPosts/:userId').get((req, res) => {
+
+
+router.route('/getUserLikedPostsPage/:userId').get((req, res) => {
 
   User.UserCollection.findById(req.params.userId)
   .then(user => {
     //find user by id
       //map liked posts
-      usersPost.UserPostCollection.find({'id': {$in: user.likedPosts}}, function (err,liked){
+      usersPost.UserPostCollection.find({'_id': {$in: user.likedPosts}}, function (err,liked){
       if(err){
       console.log(err);
       }else{
@@ -91,8 +93,29 @@ router.route('/getUserLikedPosts/:userId').get((req, res) => {
   }).catch(err => res.status(400).json('Error: ' + err));
   })
   
+  router.route('/getUserLikedPosts/:userId').get((req, res) => {
+    User.UserCollection.findById(req.params.userId)
+    .then(user => res.json(user.likedPosts))
+    .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
 
+  router.route('/getUserSavedPostsPage/:userId').get((req, res) => {
 
+    User.UserCollection.findById(req.params.userId)
+    .then(user => {
+      //find user by id
+        //map liked posts
+        usersPost.UserPostCollection.find({'_id': {$in: user.savedPosts}}, function (err,saved){
+        if(err){
+        console.log(err);
+        }else{
+          console.log(saved);
+          res.json(saved);
+        }
+      })
+    }).catch(err => res.status(400).json('Error: ' + err));
+    })
 
 router.route('/getUserSavedPosts/:userId').get((req, res) => {
   User.UserCollection.findById(req.params.userId)

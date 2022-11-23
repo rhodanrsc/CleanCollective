@@ -20,7 +20,8 @@ import LandingPage from "./Components/landingPage";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
 import CompanyCreation from "./Components/company/Create_Company_Form/create-company-components";
-
+import LikedPosts from "./Components/Posts/LikedPosts/liked-post-page"
+import SavedPosts from "./Components/Posts/SavedPosts/saved-post-page"
 import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
@@ -57,10 +58,13 @@ const App = () => {
                     element={<ConfirmEmail />}
                   />
                   <Route path="/editUser" element={<EditUser />} />
+                  <Route path="/LikedPosts" element={<LikedPosts />} />
+                  <Route path="/SavedPosts" element={<SavedPosts />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
+                  
                 </Routes>
 
               </div>
