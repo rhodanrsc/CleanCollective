@@ -22,7 +22,7 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
-  
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -47,8 +47,8 @@ const ResponsiveAppBar = () => {
     <AppBar position="static" style={bgColor}>
       <Container maxWidth="100%">
         <Toolbar disableGutters>
-        
-        <Typography
+
+          <Typography
             variant="h6"
             noWrap
             component="a"
@@ -63,11 +63,11 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={()=>{navigate('/');}} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={() => { navigate('/'); }} className='logo' /></Button>
           </Typography>
-            
 
-        {/* hamburger menu for mobile */}
+
+          {/* hamburger menu for mobile */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -98,16 +98,16 @@ const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={()=>{
+                <MenuItem key={page} onClick={() => {
                   handleCloseNavMenu();
-                  navigate('/'+page.replace(' ', ''));
-                  }}>
+                  navigate('/' + page.replace(' ', ''));
+                }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          
+
           {/* logo */}
           <Typography
             noWrap
@@ -122,10 +122,10 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Button><img src={logo} alt='' onClick={()=>{navigate('/');}} className='logo' /></Button>
+            <Button><img src={logo} alt='' onClick={() => { navigate('/'); }} className='logo' /></Button>
           </Typography>
 
-        {/* displays the nav buttons */}
+          {/* displays the nav buttons */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {/* {pages.slice(0,1).map((page) => (
               <Button
@@ -164,8 +164,8 @@ const ResponsiveAppBar = () => {
               </Button>
             ))} */}
           </Box>
-        
-        {/* profile drop down */}
+
+          {/* profile drop down */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -188,11 +188,11 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-            {/* options of drop down */}
+              {/* options of drop down */}
               {/* profile */}
-              {settings.slice(0,1).map((setting) => (
-                <MenuItem 
-                  key={setting} 
+              {settings.slice(0, 1).map((setting) => (
+                <MenuItem
+                  key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
                     navigate('/');
@@ -202,9 +202,9 @@ const ResponsiveAppBar = () => {
               ))}
 
               {/* account */}
-              {settings.slice(1,2).map((setting) => (
-                <MenuItem 
-                  key={setting} 
+              {settings.slice(1, 2).map((setting) => (
+                <MenuItem
+                  key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
                     navigate('/');
@@ -214,9 +214,9 @@ const ResponsiveAppBar = () => {
               ))}
 
               {/* options */}
-              {settings.slice(2,3).map((setting) => (
-                <MenuItem 
-                  key={setting} 
+              {settings.slice(2, 3).map((setting) => (
+                <MenuItem
+                  key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
                     navigate('/editUser');
@@ -225,9 +225,9 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
 
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Logout />
-                </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Logout />
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
