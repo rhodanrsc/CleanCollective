@@ -1,59 +1,101 @@
-import React, { Component } from 'react'
-import PostCard from './Post.Card';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import PostCard from "./Post.Card";
+import SideCompaniesCard from "../company/Company_Page/reccomendedCompanyCard.js/sideCompaniesCard"
+import axios from "axios";
+import SearchBar from "./SearchBar"
+import { Grid, Button } from "@mui/material"
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+export default function PostPage() {
+  const params = useParams()
+  const navigate = useNavigate()
+  const [posts, setPosts] = useState()
+  const [searchValue, setSearchValue] = useState()
 
-export class PostPage extends Component {
+  useEffect(() => {
+    setSearchValue(params.searchValue)
+  }, [params.searchValue])
 
-state = {
-    postUserName: '',
-    postTitle: '',
-    postBody: '',
-    posts: []
-}
+  useEffect(() => {
+    let listOfSearchedPosts = []
+    axios.get("http://localhost:5000/user.post.route/")
+      .then((response) => {
+        const data = response.data;
+        if (searchValue) {
+          // eslint-disable-next-line array-callback-return
+          data.map((post) => {
+            if (post.postTitle.toLowerCase().match(searchValue.toLowerCase())) {
 
-// Get the User Post Data when the component mounts (onload function)
-componentDidMount = () => {
-    this.getAllUserPost();
-}
+              listOfSearchedPosts.push(post);
+            }
+          })
+          setPosts(listOfSearchedPosts.reverse())
+        } else {
+          setPosts(data.reverse())
 
-getAllUserPost = () => {
-  axios({
-    method: "GET", 
-    url: "http://localhost:5000/user.post.route/"})
-  .then((response) => {
-    const data = response.data;
-    this.setState({posts: data});
-    console.log("THis is a user post" + this.posts)
-    console.log('User post data pulled from DB');})
-  .catch(() => {alert("Error pulling user post data");
-});
-}
+        }
+      })
+      .catch((error) => {
+        console.log("Error fetching posts: " + error)
+      })
 
-// Map and display the users posts
-displayUserPost = (posts) => {
-    //checks if there are no posts
-    if(!posts.length) return null;
 
-console.log(posts.postTitle);
-console.log(posts.postBody);
+  }, [params.searchValue, searchValue])
 
-    return posts.map((post, index) => {
-        <div key={index}>
-        <h3>{posts.postUserName}</h3>
-        <h3>{posts.postTitle}</h3>
-        <p>{posts.postBody}</p>
-        </div>
-    });
-}
-
-  render() {
-    return (<div>
-        <PostCard/>
-        Hello World
-     <div className="userPost">{this.displayUserPost(this.state.posts)} </div>
-     </div>
-    )
+  const handleCreatePostClick = (event) => {
+    navigate("/createPost")
   }
-}
 
-export default PostPage;
+  return (
+
+    <Grid style={{ marginTop: "2%", width: "140%" }} container direction={"row"} spacing={5}>
+
+      {/*Search and Create Grid */}
+      <Grid item xs={6} md={12}>
+        <Grid container direction={"row"} spacing={2}>
+          <Grid item xs={6} md={6.5}>
+            <SearchBar />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Button
+              onClick={handleCreatePostClick}
+              style={{ width: "150px", height: "45px", marginTop: "3px" }}
+              startIcon={<AddCircleOutlineIcon />}
+              variant={"contained"}
+              color="success"
+            >Create Post</Button>
+          </Grid>
+        </Grid>
+      </Grid>
+
+
+      <Grid item xs={6} md={12}>
+        <Grid container direction={"row"} spacing={2}>
+          <Grid item xs={6} md={9}>
+            {posts ? posts.map((post) => (
+              <PostCard
+                id={post._id}
+                username={post.postUserName}
+                title={post.postTitle}
+                body={post.postBody}
+                likes={post.postLikes}
+                createdAt={post.createdAt}
+                key={post._id}
+              />
+            )) : ""}
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <SideCompaniesCard
+              title="Companies of Interest"
+            />
+          </Grid>
+        </Grid>
+
+      </Grid>
+
+
+    </Grid>
+  );
+
+}

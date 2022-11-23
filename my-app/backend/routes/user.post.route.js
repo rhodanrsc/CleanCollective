@@ -1,88 +1,208 @@
-
-const router = require('express').Router();
+const router = require("express").Router();
 const usersPost = require("../models/users.post.model");
 const User = require("../models/user.model");
-
+const Sector = require("../models/sector.model");
 
 router.route("/").get((req, res) => {
-  usersPost.UserPostCollection
-    .find()
+  usersPost.UserPostCollection.find()
     .then((usersposts) => res.json(usersposts))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/addPost/:id').post((req,res) => {
-    //Find the user
-    User.UserCollection.findById(req.params.id)
-    .then(user => {
-        //If this user is found. Create a post
-        const thisPostUsername = user.postUserName;
-        const thisPostTitle = req.body.postTitle;
-        const thisPostBody = req.body.postBody;
-        const thisPostLikes = req.body.postLikes;
-        const thisPostDislikes = req.body.postDislikes;
-        //Create a new Post Object
-        const newPost = new usersPost.UserPostCollection({
-            postUserName : thisPostUsername,
-            postTitle : thisPostTitle,
-            postBody : thisPostBody,
-            postLikes : thisPostLikes,
-            postDislikes : thisPostDislikes
-        });
-        
-        //Saves to main post collection
-        newPost.save()
-        .then(function(){
-            //Adds to thisUsers Array of Posts
-            user.posts.push(newPost);
-            //Update users new Array
-            user.save()
-            .then(() => res.json('Post added to ' + user.username + " post array"))
-            .catch(err => res.status(400).json('Error: Could not add post to post array  - ' + err));
-        })
-        .catch(err => res.status(400).json('Error: Could not add posts to Post Collection - ' + err));
-        
-    })
-})
+router.route("/addPost/:id").post((req, res) => {
+  //Find the user
+  User.UserCollection.findById(req.params.id).then((user) => {
+    //If this user is found. Create a post
 
-  //const companyName = req.body.postUserName;
-  //Find the User object that has this name
-  // User.User.find({ name: req.body.user })
-  // .then(function (user) {
-  //   //if returned, assign  that object to thisUser
-  //   console.log("User Found: " + user);
-  //   const newUserPost = new Company({
-  //     companyName: companyName,
-  //     //Make this part of the company
-  //     user: user[0],
-  //   });
-  //   newUserPost
-  //     .save()
-  //     .then(() => res.json("User post added!" + user))
-  //     .catch((err) => res.status(400).json("Error: " + err));
-  // })
-  // .catch((err) => res.status(400).json("Error: " + err));
-// });
-//
-// Old methods copy pasted from Students.
-//They will need to be updated to use Atlas clusters.
-// UPDATE student
-// router
-//   .route("/update-user.post/:id")
-//   // Get Single Student
-//   .get((req, res) => {
-//     usersPost.userPostSchema.findById(req.params.id, (error, data) => {
-//       if (error) {
-//         return next(error);
-//       } else {
-//         res.json(data);
-//       }
-//     });
-//   })
+    const thisPostUsername = user.username;
+    const thisPostTitle = req.body.postTitle;
+    const thisPostBody = req.body.postBody;
+    const thisPostLikes = req.body.postLikes;
+    const thisPostDislikes = req.body.postDislikes;
+    const thisSector = req.body.sector;
+
+    //Create a new Post Object
+    const newPost = new usersPost.UserPostCollection({
+      postUserName: thisPostUsername,
+      postTitle: thisPostTitle,
+      postBody: thisPostBody,
+      postSector: thisSector,
+      postLikes: thisPostLikes,
+      postDislikes: thisPostDislikes,
+    });
+
+    //Saves to main post collection
+    newPost
+      .save()
+      .then(function () {
+        //Adds to thisUsers Array of Posts
+        user.posts.push(newPost);
+        //Update users new Array
+        user
+          .save()
+          .then(() =>
+            res.json("Post added to " + user.username + " post array")
+          )
+          .catch((err) =>
+            res
+              .status(400)
+              .json("Error: Could not add post to post array  - " + err)
+          );
+      })
+      .catch((err) =>
+        res
+          .status(400)
+          .json("Error: Could not add posts to Post Collection - " + err)
+      );
+  });
+});
+
+router.route("/getPost/:id").get((req, res) => {
+  usersPost.UserPostCollection.findById(req.params.id)
+    .then((usersposts) => res.json(usersposts))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route('/getUserPosts/:id').get((req, res) => {
+  User.UserCollection.findById(req.params.id)
+    .then(user =>{ 
+       //retrieve only the ids of the posts of the current user.
+      let posts = user.posts.map((post) => (post.id));
+      res.json(posts)
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+
+router.route('/getUserLikedPostsPage/:userId').get((req, res) => {
+
+  User.UserCollection.findById(req.params.userId)
+  .then(user => {
+    //find user by id
+      //map liked posts
+      usersPost.UserPostCollection.find({'_id': {$in: user.likedPosts}}, function (err,liked){
+      if(err){
+      console.log(err);
+      }else{
+        console.log(liked);
+        res.json(liked);
+      }
+    })
+  }).catch(err => res.status(400).json('Error: ' + err));
+  })
+  
+  router.route('/getUserLikedPosts/:userId').get((req, res) => {
+    User.UserCollection.findById(req.params.userId)
+    .then(user => res.json(user.likedPosts))
+    .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
+
+  router.route('/getUserSavedPostsPage/:userId').get((req, res) => {
+
+    User.UserCollection.findById(req.params.userId)
+    .then(user => {
+      //find user by id
+        //map liked posts
+        usersPost.UserPostCollection.find({'_id': {$in: user.savedPosts}}, function (err,saved){
+        if(err){
+        console.log(err);
+        }else{
+          console.log(saved);
+          res.json(saved);
+        }
+      })
+    }).catch(err => res.status(400).json('Error: ' + err));
+    })
+
+router.route('/getUserSavedPosts/:userId').get((req, res) => {
+  User.UserCollection.findById(req.params.userId)
+  .then(user => res.json(user.savedPosts))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route("/likePost/:id/:userId").post((req, res) => {
+  usersPost.UserPostCollection.findById(req.params.id)
+
+    .then((userspost) => {
+      //prevents something from being liked twice.
+      if (userspost.userLikes.includes(req.params.userId)) {
+        return;
+      }
+
+      userspost.postLikes += 1;
+      userspost.userLikes.push(req.params.userId);
+      userspost
+        .save()
+        .then(() => res.send("Saved!"))
+        .catch((err) => res.status(400).json("Error: saving post" + err));
+
+          User.UserCollection.findById(req.params.userId).then((User) => {
+    User.likedPosts.push(req.params.id);
+    User.save();
+    })
+    .catch((err) => res.status(400).json("Error: saving user" + err));
+
+
+  });
+});
+
+router.route("/unlikePost/:id/:userId").post((req, res) => {
+  usersPost.UserPostCollection.findById(req.params.id)
+
+    .then((userspost) => {
+      //prevents something from being unliked twice.
+      if (!userspost.userLikes.includes(req.params.userId)) {
+        return;
+      }
+
+      userspost.postLikes -= 1;
+      //removes userId from the post array
+      userspost.userLikes.pull(req.params.userId);
+      userspost
+        .save()
+        .then(() => res.send("Saved!"))
+        .catch((err) => res.status(400).json("Error: saving post" + err));
+    })
+    .catch((err) => res.status(400).json("Error: saving user" + err));
+
+  User.UserCollection.findById(req.params.userId).then((User) => {
+    //removes postId from the user array
+    User.likedPosts.pull(req.params.id);
+    User.save();
+  });
+});
+
+router
+  .route("/savePost/:id/:userId")
+  .post((req, res) => {
+    usersPost.UserPostCollection.findById(req.params.id);
+
+    User.UserCollection.findById(req.params.userId).then((User) => {
+      if (User.savedPosts.includes(req.params.id)) {
+        //removes postId from the user's savedPosts array
+        User.savedPosts.pull(req.params.id);
+        User.save();
+      } else {
+        //adds postId from the user's savedPosts array
+        User.savedPosts.push(req.params.id);
+        User.save();
+      }
+    });
+  })
+
+  router.route('/searchPost/:title').get((req, res) => {
+    usersPost.UserPostCollection.findOne({postTitle: req.params.title})
+    .then((usersPost) => {
+      res.send(usersPost);
+    })
+  })
 
   // Update Student Data
   .put((req, res, next) => {
-    usersPost.userPostSchema.findByIdAndUpdate(
+    usersPost.UserPostCollection.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
@@ -100,16 +220,31 @@ router.route('/addPost/:id').post((req,res) => {
   });
 
 // Delete user post
-router.delete("/delete-user.post/:id", (req, res, next) => {
-  usersPost.userPostSchema.findByIdAndRemove(req.params.id, (error, data) => {
+
+router.route("/delete-user.post/:id/:userId").post((req, res, next) => {
+  //delete the post document. 
+  usersPost.UserPostCollection.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
-      res.status(200).json({
-        msg: data,
-      });
-    }
+
+    User.UserCollection.findById(req.params.userId)
+    .then(user => { 
+      //Remove from the user's posts arroy
+      user.posts.pull({'_id' : req.params.id})
+      //console.log(user.posts);
+      user.save();
+    })
+
+    res.status(200).json({
+      msg: data,
+    });
+  }
+
   });
+
+
+
 });
 
 module.exports = router;

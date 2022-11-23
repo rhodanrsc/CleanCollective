@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-import UserNavBar from "./userNavBar.component";
+import React  from "react";
 import NonUserNavBar from "./NonUserNavBar.component";
+import SidePanel from '../side/panel';
 import { ReactSession } from 'react-client-session';
 
 
@@ -11,7 +10,7 @@ export default function NavBar ()  {
 
     return (
         <div>
-            {userSession ? <UserNavBar/> : <NonUserNavBar />}
+            {userSession ? <SidePanel/> : <NonUserNavBar />}
         </div>
         
     )
