@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteAlertDialog from "./DeleteAlertDialog";
+import EditIcon from '@mui/icons-material/Edit';
 import { ReactSession } from "react-client-session";
 import axios from "axios";
 import ReportAlertDialog from "./ReportAlertDialog";
@@ -49,42 +50,44 @@ export default function Hamburger(props) {
     }
   }
 
-  function checkSaved() {
-    if (userSession) {
-      let userId = userSession._id;
-      axios
-        .get(
-          "http://localhost:5000/user.post.route/getUserSavedPosts/" + userId
-        )
-        .then((res) => {
-          let savedPosts = res.data;
-          if (savedPosts.includes(props.id)) {
-            setSaved(true);
-          }
-        });
-    }
-  }
 
-  function checkOwned() {
-    if (userSession) {
-      let userId = userSession._id;
-      axios
-        .get("http://localhost:5000/user.post.route/getUserPosts/" + userId)
-        .then((res) => {
-          let posts = res.data;
-          if (posts.includes(props.id)) {
-            setOwned(true);
-          }
-        });
-    }
-  }
+
 
   // Run a useEffect to compare the post id, and see if has been 'saved' by the current user through the userSession.
 
   useEffect(() => {
+    function checkSaved() {
+      if (userSession) {
+        let userId = userSession._id;
+        axios
+          .get(
+            "http://localhost:5000/user.post.route/getUserSavedPosts/" + userId
+          )
+          .then((res) => {
+            let savedPosts = res.data;
+            if (savedPosts.includes(props.id)) {
+              setSaved(true);
+            }
+          });
+      }
+    }
     checkSaved();
+
+    function checkOwned() {
+      if (userSession) {
+        let userId = userSession._id;
+        axios
+          .get("http://localhost:5000/user.post.route/getUserPosts/" + userId)
+          .then((res) => {
+            let posts = res.data;
+            if (posts.includes(props.id)) {
+              setOwned(true);
+            }
+          });
+      }
+    }
     checkOwned();
-  },[]);
+  }, [props.id,userSession]);
 
   return (
     <div>
@@ -111,6 +114,7 @@ export default function Hamburger(props) {
               save();
               setSaved(!saved);
             }}
+            size='small'
           >
             {!saved ? (
               <div>
@@ -128,12 +132,24 @@ export default function Hamburger(props) {
 
         {owned ? (
           <div>
+            <IconButton size='small'>
+              <div>
+            <EditIcon/>
+            Edit
+            </div>
+            </IconButton>
+          </div>
+        ) : null}
+
+        {owned ? (
+          <div>
             <DeleteAlertDialog
               id={props.id}
               title={props.postTitle}
             ></DeleteAlertDialog>
           </div>
         ) : null}
+        
         <ReportAlertDialog />
       </Popover>
     </div>

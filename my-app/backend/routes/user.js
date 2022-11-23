@@ -222,7 +222,7 @@ router.route('/updateOneField/:id').post((req, res) => {
 router.route('/logout').post((req, res, next) => {
   req.logout(function (err) {
     if (err) { return next(err); }
-    // res.redirect('/');
+    // res.navigate('/');
   });
 });
 
@@ -257,18 +257,13 @@ router.route('/findUserName').post((req, res) => {
 });
 
 router.route("/login").post((req, res, next) => {
-  console.log('login1');
   passport.authenticate("local", (err, user, info) => {
-    console.log('login2');
     if (err) throw err;
     if (!user) {
-      console.log('login3');
       res.status(401).json({ error: 'User does not exist' });
       // res.send("User does not exist");
     } else {
-      console.log('login4');
       req.login(user, (err) => {
-        console.log('login5');
         if (err) throw err;
         // res.send("Successfully Authenticated");
         res.send(req.user);
