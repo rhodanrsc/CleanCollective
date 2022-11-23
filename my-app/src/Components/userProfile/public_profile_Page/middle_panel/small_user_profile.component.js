@@ -65,7 +65,7 @@ export default function BackgroundLetterAvatarsSmall() {
 
   //RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE
   return (
-    <Grid direction="row" spacing={2}>
+    <Grid container direction="row" spacing={2}>
       <Card>
         <CardHeader
           avatar={<Avatar {...stringAvatar({ profilename })} />}

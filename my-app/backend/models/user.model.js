@@ -40,7 +40,21 @@ const userSchema = new Schema({
     },
     tags :{
         type: [String]
-    }
+    },
+    job : {
+        type: [String]
+    },
+    education : {
+        type : [{
+            institution : {type: String, default : ""},
+            dateStarted : {type: Date, default: ""},
+            dateEnded: {type: Date, default: ""},
+            program: {type: String, default : ""},
+            educationLevel: {type: String, default : ""},
+        }],
+        
+
+    },
    
 },
 {

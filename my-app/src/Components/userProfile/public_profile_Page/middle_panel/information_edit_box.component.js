@@ -2,11 +2,11 @@ import { ReactSession } from "react-client-session";
 import React, { useEffect, useState } from "react";
 
 //material ui imports
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import { TagComboBox } from "../../../userPosts/tag_combo_box";
+// import IconButton from "@mui/material/IconButton";
+// import EditIcon from "@mui/icons-material/Edit";
+// import SaveAltTwoToneIcon from "@mui/icons-material/SaveAltTwoTone";
+// import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+// import { TagComboBox } from "../../../userPosts/tag_combo_box";
 import { Chip } from "@mui/material";
 //profile pic
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
@@ -153,6 +153,18 @@ useEffect(() => {
 
             <CardContent>
               <Typography variant="h6" color="text.primary">Social Links</Typography>
+              <Typography variant="body1">Nothing to show at this time.</Typography>
+              
+            </CardContent>
+
+            <CardContent>
+              <Typography variant="h6" color="text.primary">Current Professional Role</Typography>
+              <Typography variant="body1">Nothing to show at this time.</Typography>
+              
+            </CardContent>
+
+            <CardContent>
+              <Typography variant="h6" color="text.primary">Education</Typography>
               <Typography variant="body1">Nothing to show at this time.</Typography>
               
             </CardContent>

@@ -48,6 +48,18 @@ router.route('/add').post((req, res) => {
     const associatedCompanies = [];
     const posts = [];
     const tags = req.body.tags;
+    const jobList = [];
+    const job = req.body.job;
+    jobList.push(job)
+    const edu = [];
+    const thisEdu = {
+      institution: req.body.institution,
+      dateStarted: req.body.dateStarted,
+      dateEnded: req.body.dateEnded,
+      program: req.body.program,
+      educationLevel: req.body.educationLevel,
+    }
+    edu.push(thisEdu);
     //Still need comfirm accounts and post
 
     const newUser = new User.UserCollection({
@@ -56,7 +68,10 @@ router.route('/add').post((req, res) => {
         email : email,
         associatedCompanies  : associatedCompanies,
         posts  : posts,
-        tags : tags
+        tags : tags,
+        job : jobList,
+        education : edu,
+
     });
 
   newUser.save()

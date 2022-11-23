@@ -59,9 +59,11 @@ export default function ProfilePage() {
         <Grid item xs={6} md={4}>
           <SideCompaniesCard title="Recommended Companies" />
         </Grid>
+
         
+
         <Grid item xs={6} md={8}>
-          <Card>
+          <Card elevation={5}>
             <CardHeader
             title="Posts"
             />
