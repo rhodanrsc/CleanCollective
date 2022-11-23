@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import PostCard from "./LikedPost.Card";
 import axios from "axios";

@@ -58,7 +58,7 @@ export default function PostCard(props) {
  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
   checkLike();
-  })
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 // test push 
   return (
     <div>

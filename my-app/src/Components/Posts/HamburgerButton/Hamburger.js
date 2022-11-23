@@ -50,42 +50,44 @@ export default function Hamburger(props) {
     }
   }
 
-  function checkSaved() {
-    if (userSession) {
-      let userId = userSession._id;
-      axios
-        .get(
-          "http://localhost:5000/user.post.route/getUserSavedPosts/" + userId
-        )
-        .then((res) => {
-          let savedPosts = res.data;
-          if (savedPosts.includes(props.id)) {
-            setSaved(true);
-          }
-        });
-    }
-  }
 
-  function checkOwned() {
-    if (userSession) {
-      let userId = userSession._id;
-      axios
-        .get("http://localhost:5000/user.post.route/getUserPosts/" + userId)
-        .then((res) => {
-          let posts = res.data;
-          if (posts.includes(props.id)) {
-            setOwned(true);
-          }
-        });
-    }
-  }
+
 
   // Run a useEffect to compare the post id, and see if has been 'saved' by the current user through the userSession.
 
   useEffect(() => {
+    function checkSaved() {
+      if (userSession) {
+        let userId = userSession._id;
+        axios
+          .get(
+            "http://localhost:5000/user.post.route/getUserSavedPosts/" + userId
+          )
+          .then((res) => {
+            let savedPosts = res.data;
+            if (savedPosts.includes(props.id)) {
+              setSaved(true);
+            }
+          });
+      }
+    }
     checkSaved();
+
+    function checkOwned() {
+      if (userSession) {
+        let userId = userSession._id;
+        axios
+          .get("http://localhost:5000/user.post.route/getUserPosts/" + userId)
+          .then((res) => {
+            let posts = res.data;
+            if (posts.includes(props.id)) {
+              setOwned(true);
+            }
+          });
+      }
+    }
     checkOwned();
-  }, []);
+  }, [props.id,userSession]);
 
   return (
     <div>
