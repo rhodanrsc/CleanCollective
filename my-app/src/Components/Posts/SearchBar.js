@@ -27,7 +27,7 @@ export default function FreeSolo() {
   return (
     <Card
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "60%", marginLeft: "15px" }}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "93%", marginLeft: "15px" }}
       elevation={5}
     >
 
