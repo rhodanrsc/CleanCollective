@@ -1,76 +1,49 @@
-import * as React  from 'react';
-import {useState, useEffect} from 'react';
-import axios from 'axios';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import {ReactSession} from 'react-client-session'
-import { Button } from '@mui/material';
-
-let searched = '';
+import React, { useState } from 'react';
+import { Card, IconButton, InputBase, Divider } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 export default function FreeSolo() {
+  const navigate = useNavigate()
+  const [searchInput, setSearchValue] = useState("");
 
-React.useEffect(() => {
-    getPosts();
-},[])
+  const handleSearchInput = (event) => {
+    setSearchValue(event.target.value)
+  }
 
-const [posts, setPosts] = React.useState([]);
+  const handleSearch = (event) => {
+    const keyPress = event.key
 
-const [searchInput, setSearchInput] = React.useState('')
+    if (event.type === "click") {
+      navigate("/forum/" + searchInput)
+    } else if (event.type === "keydown") {
+      if (keyPress === "Enter") {
+        navigate("/forum/" + searchInput)
 
-let getPosts = () => {
-    axios({
-      method: "GET",
-      url: "http://localhost:5000/user.post.route/",
-    })
-      .then((response) => {
-        const data = response.data;
-        setPosts([ ...data ]);
-      })
-      .catch((err) => {
-        alert("Error pulling user post data");
-      });
-  };
-
-const search = (e) => {
-  searched= e.target.value;
-  ReactSession.set('searchedValue', searched);
-  console.log(searchInput)
-}
-
-const handleSearchClick = (e) => {
-  let searchBar = document.getElementById('free-solo-demo').value
-  console.log(searchBar);
-  setSearchInput(searchBar);
-  ReactSession.set('searchedValue', searchInput);
-} 
+      }
+    }
+  }
 
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
-      <Autocomplete
-        freeSolo
-        id="free-solo-demo"
-        sx={{width:'100%'}}
-        disableClearable
-        options={posts.map((option) => option.postTitle)}
-        renderInput={(params) => (
-          <TextField
-            className='searchBar'
-            {...params}
-            label="Search by title"
-            onKeyUp={search}
-            // onClick={search}
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
-            }}
-          />
-          
-        )}
+    <Card
+      component="form"
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "60%", marginLeft: "15px" }}
+      elevation={5}
+    >
+
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Search"
+        value={searchInput}
+        onChange={handleSearchInput}
+        onKeyDown={handleSearch}
       />
-      <Button onClick={handleSearchClick} value={searchInput}>Search</Button>
-    </Stack>
+      <IconButton tabIndex={0} onClick={handleSearch} type="button" sx={{ p: '10px' }} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+
+    </Card>
   );
 
 }

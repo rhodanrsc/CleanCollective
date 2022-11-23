@@ -42,7 +42,7 @@ const createdAt =new Date(props.createdAt);
             <Avatar alt="user profile pic"  />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
-            <h7 style={{ margin: 0, textAlign: "left" }}>{props.username}</h7>
+            <h6 style={{ margin: 0, textAlign: "left" }}>{props.username}</h6>
             <p style={{ textAlign: "left" }}>
             {props.body}
             </p>
