@@ -1,95 +1,67 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PostCard from "./Post.Card";
 import axios from "axios";
 import SearchBar from "./SearchBar"
-import { ReactSession }  from 'react-client-session';
+import { Grid } from "@mui/material"
 
+export default function PostPage() {
+  const params = useParams()
 
+  const [posts, setPosts] = useState()
+  const [searchValue, setSearchValue] = useState()
 
-export class PostPage extends Component {
-  state = {
-    postUserName: "",
-    postTitle: "",
-    postBody: "",
-    posts: [],
-    search: [],
-    searched: ''
-  };
+  useEffect(() => {
+    setSearchValue(params.searchValue)
+  }, [params.searchValue])
 
-  getSearched = () => {
-      // const post = axios.get('http://localhost:5000/user.post.route/searchPost/' + searched.postTitle);
-
-      if (this.state.posts) {
-      this.state.posts.map((post) => {
-        if (post.postTitle === this.state.searched) {
-          this.state.search.push(post);
-        }
-      })
-    }
-  }
-
-  // Get the User Post Data when the component mounts (onload function)
-  componentDidMount = () => {
-      this.getAllUserPost();
-      this.getSearched();
-    // this.displayUserPost();
-  };
-
-  componentDidUpdate = () => {
-    this.state.search = [];
-    this.getAllUserPost();
-    this.state.searched = ReactSession.get('searchedValue')
-    this.getSearched();
-    
-  }
-
-  
-
-  getAllUserPost = () => {
-    axios({
-      method: "GET",
-      url: "http://localhost:5000/user.post.route/",
-    })
+  useEffect(() => {
+    let listOfSearchedPosts = []
+    axios.get("http://localhost:5000/user.post.route/")
       .then((response) => {
         const data = response.data;
-        this.setState({ posts: data });
-        // console.log("User post data pulled from DB");
+        if (searchValue) {
+          // eslint-disable-next-line array-callback-return
+          data.map((post) => {
+            if (post.postTitle.toLowerCase().match(searchValue.toLowerCase())) {
+
+              listOfSearchedPosts.push(post);
+            }
+          })
+          setPosts(listOfSearchedPosts.reverse())
+        } else {
+          setPosts(data.reverse())
+
+        }
       })
-      .catch((err) => {
-        alert("Error pulling user post data");
-      });
-  };
+      .catch((error) => {
+        console.log("Error fetching posts: " + error)
+      })
 
 
-  render() {
-    return (
-      <div>
+  }, [params.searchValue, searchValue])
+
+
+  return (
+    <Grid container direction={"column"} spacing={2}>
+
+      <Grid item xs={6} md={8}>
         <SearchBar />
-          { this.state.searched ? this.state.search.reverse().map((post) => (
-         
-        <PostCard
-        id={post._id}
-        username={post.postUserName}
-        title={post.postTitle}
-        body={post.postBody}
-        likes={post.postLikes}
-        key={post._id}
+      </Grid>
+      <Grid item xs={6} md={8}>
+        {posts ? posts.map((post) => (
+          <PostCard
+            id={post._id}
+            username={post.postUserName}
+            title={post.postTitle}
+            body={post.postBody}
+            likes={post.postLikes}
+            createdAt={post.createdAt}
+            key={post._id}
           />
-          )): this.state.posts.reverse().map((post) => (
-            <PostCard
-        id={post._id}
-        username={post.postUserName}
-        title={post.postTitle}
-        body={post.postBody}
-        likes={post.postLikes}
-        createdAt={post.createdAt}
-        key={post._id}
-          />
-      
-      ))}
+        )) : ""}
+      </Grid>
+    </Grid>
+  );
 
-      </div>
-    );
-  }
 }
-export default PostPage;

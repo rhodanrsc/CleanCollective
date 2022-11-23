@@ -62,6 +62,7 @@ const App = () => {
                   <Route path="/SavedPosts" element={<SavedPosts />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
+                  <Route path="/forum/:searchValue" element={<PostPage />} />
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
                   

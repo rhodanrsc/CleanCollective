@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const NonUserNavBar = () => { return (
     <div className="navBar">
         <div className="homeButton navLogo">
-            <a href="/">
+            <a href="/" className="logo">
                 <img className="logo" alt="" src={logo}/>
             </a>
         </div>
