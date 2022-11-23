@@ -50,7 +50,7 @@ const UserLoginComponent = () => {
       onSubmit={onSubmit}
       enableReinitialize
     >
-      Login
+      
     </UserLoginForm>
   );
 };

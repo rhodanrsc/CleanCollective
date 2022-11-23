@@ -92,9 +92,11 @@ export default function CreatePost() {
           color: "#808080",
           fontSize: "30px",
           width: "14%",
-          padding: "0 10px 0 10px"
+          padding: "0 10px 0 10px",
+          background:"none"
         }}
       >
+      
         New Question
       </Paper>
       <Box display="flex" justifyContent="center" minHeight="20vh">
