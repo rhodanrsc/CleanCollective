@@ -3,8 +3,6 @@ import { Card, IconButton, InputBase, Divider } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function FreeSolo() {
   const navigate = useNavigate()
   const [searchInput, setSearchValue] = useState("");
@@ -14,7 +12,6 @@ export default function FreeSolo() {
   }
 
   const handleSearch = (event) => {
-    console.log(event)
     const keyPress = event.key
 
     if (event.type === "click") {
@@ -25,9 +22,6 @@ export default function FreeSolo() {
 
       }
     }
-
-
-
   }
 
   return (

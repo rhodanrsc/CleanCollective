@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import PostCard from "./Post.Card";
 import axios from "axios";
 import SearchBar from "./SearchBar"
-import { Grid, Button } from "@mui/material"
-
-
+import { Grid } from "@mui/material"
 
 export default function PostPage() {
   const params = useParams()
@@ -22,9 +20,8 @@ export default function PostPage() {
     axios.get("http://localhost:5000/user.post.route/")
       .then((response) => {
         const data = response.data;
-
-
         if (searchValue) {
+          // eslint-disable-next-line array-callback-return
           data.map((post) => {
             if (post.postTitle.toLowerCase().match(searchValue.toLowerCase())) {
 
@@ -36,8 +33,6 @@ export default function PostPage() {
           setPosts(data.reverse())
 
         }
-
-
       })
       .catch((error) => {
         console.log("Error fetching posts: " + error)
@@ -66,9 +61,6 @@ export default function PostPage() {
           />
         )) : ""}
       </Grid>
-
-
-
     </Grid>
   );
 
