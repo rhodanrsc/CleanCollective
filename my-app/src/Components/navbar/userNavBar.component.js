@@ -15,7 +15,7 @@ import logo from '../../shared/images/CCLogo.png';
 import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
-const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions'];
+const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
 const settings = ['Profile', 'Account', 'Settings'];
 
 const ResponsiveAppBar = () => {
@@ -100,7 +100,12 @@ const ResponsiveAppBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => {
                   handleCloseNavMenu();
-                  navigate('/' + page.replace(' ', ''));
+                  if (page === 'Questions') {
+                    navigate('/forum');
+                  } else {
+                    navigate('/' + page.replace(' ', ''));
+                  }
+                  
                 }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
