@@ -1,82 +1,73 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PostCard from "./LikedPost.Card";
 import axios from "axios";
 import SearchBar from "../SearchBar";
 import { Grid } from "@mui/material";
 import { ReactSession } from "react-client-session";
 
-export class PostPage extends Component {
-  state = {
-    postUserName: "",
-    postTitle: "",
-    postBody: "",
-    posts: [],
-    search: [],
-    searched: "",
-    likes: [],
-    likedPosts: [],
-  };
+export default function PostPage() {
+  const userSession = ReactSession.get("userSession");
+  const params = useParams()
+  const [posts, setPosts] = useState()
+  const [searchValue, setSearchValue] = useState()
 
-  componentDidMount = () => {
-    this.getLikedPosts();
-  };
+  useEffect(() => {
+    setSearchValue(params.searchValue)
+  }, [params.searchValue])
 
-
-  getLikedPosts = () => {
+  useEffect(() => {
     var data = [];
-    const userSession = ReactSession.get("userSession");
     let userId = userSession._id;
+    let listOfSearchedPosts = []
     axios({
       method: "GET",
       url: "http://localhost:5000/user.post.route/getUserLikedPostsPage/" + userId,
     })
       .then((response) => {
         data = response.data;
-        console.log(data);
-        this.setState({ likedPosts: data });
+        if (searchValue) {
+          // eslint-disable-next-line array-callback-return
+          data.map((post) => {
+            if (post.postTitle.toLowerCase().match(searchValue.toLowerCase())) {
+              listOfSearchedPosts.push(post);
+            }
+          })
+          setPosts(listOfSearchedPosts.reverse())
+        } else {
+          setPosts(data.reverse())
+        }
+
       })
       .catch((err) => {
         alert("Error pulling user post data");
       });
-  };
+  }, [searchValue, userSession._id])
 
-  render() {
-    return (
-      <Grid container direction={"column"} spacing={2}>
+
+  return (
+    <Grid container direction={"column"} spacing={2}>
 
       <Grid item xs={6} md={8}>
-        <SearchBar />
+        <SearchBar page="LikedPosts" />
       </Grid>
       <Grid item xs={6} md={8}>
-        {this.state.searched
-          ? this.state.search
-              .reverse()
-              .map((post) => (
-                <PostCard
-                  id={post._id}
-                  username={post.postUserName}
-                  title={post.postTitle}
-                  body={post.postBody}
-                  likes={post.postLikes}
-                  key={post._id}
-                />
-              ))
-          : this.state.likedPosts
-              .reverse()
-              .map((post) => (
-                <PostCard
-                  id={post._id}
-                  username={post.postUserName}
-                  title={post.postTitle}
-                  body={post.postBody}
-                  likes={post.postLikes}
-                  createdAt={post.createdAt}
-                  key={post._id}
-                />
-              ))}
+        {posts
+          ? posts
+            .map((post) => (
+              <PostCard
+                id={post._id}
+                username={post.postUserName}
+                title={post.postTitle}
+                body={post.postBody}
+                likes={post.postLikes}
+                createdAt={post.createdAt}
+                key={post._id}
+              />
+            ))
+          : null}
       </Grid>
     </Grid>
-    );
-  }
+  );
+
 }
-export default PostPage;
