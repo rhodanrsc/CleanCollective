@@ -60,13 +60,15 @@ const App = () => {
                   />
                   <Route path="/editUser" element={<EditUser />} />
                   <Route path="/LikedPosts" element={<LikedPosts />} />
+                  <Route path="/LikedPosts/:searchValue" element={<LikedPosts />} />
                   <Route path="/SavedPosts" element={<SavedPosts />} />
+                  <Route path="/SavedPosts/:searchValue" element={<SavedPosts />} />
                   <Route path="/createPost" element={<CreatePost />} />
                   <Route path="/forum" element={<PostPage />} />
                   <Route path="/forum/:searchValue" element={<PostPage />} />
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
-                  
+
                 </Routes>
 
               </div>

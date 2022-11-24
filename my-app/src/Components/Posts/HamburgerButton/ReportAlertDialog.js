@@ -7,7 +7,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Flag from "@mui/icons-material/Flag";
-import { ReactSession } from "react-client-session";
 import RadioButtonsGroup from "./RadioButtons";
 
 
@@ -16,7 +15,7 @@ import RadioButtonsGroup from "./RadioButtons";
 
 
 export default function ReportAlertDialog(props) {
-  let userSession = ReactSession.get("userSession");
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -33,7 +32,7 @@ export default function ReportAlertDialog(props) {
 
   return (
     <div>
-      <IconButton variant="outlined" onClick={handleClickOpen}>
+      <IconButton variant="outlined" onClick={handleClickOpen} size='small'>
       <Flag/>Report
       </IconButton>
       <Dialog

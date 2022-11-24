@@ -8,7 +8,10 @@ const PCommentList = (props) => {
 
  let postId = props.postId;
   
- function getAllUserPost(){
+
+// Triggers these functions when 'comments' state changes and when componentMounts. 
+  useEffect(() => {
+    // getAllUserPost();
     axios({
       method: "GET",
       url: "http://localhost:5000/comment/getComment/"+postId, 
@@ -26,15 +29,11 @@ const PCommentList = (props) => {
       .catch((err) => {
         alert("Error pulling user post data");
       });
-  };
-// Triggers these functions when 'comments' state changes and when componentMounts. 
-  useEffect(() => {
-    getAllUserPost();
-    },[comments])
+    },[comments, postId])
     
      return (
     <div>
-<h6 style={{marginLeft:"20px", marginTop:"10px"}}><u>Comments</u></h6>
+<h6 style={{marginLeft:"10px", marginTop:"10px"}}><u>Comments</u></h6>
        {  comments.map((comment) => (
       <PComment
       username=<b>{comment.commentUsername}</b>

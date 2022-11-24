@@ -57,9 +57,9 @@ export default function PostCard(props) {
   let date = createdAt.toLocaleDateString("en-US", options);
   // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
-    checkLike();
-  })
-  // test push 
+  checkLike();
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
+// test push 
   return (
     <div>
       <Card sx={{ maxWidth: "95%", marginLeft: "15px" }}>
