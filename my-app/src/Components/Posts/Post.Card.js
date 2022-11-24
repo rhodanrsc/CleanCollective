@@ -6,7 +6,6 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import ToggleButton from "@mui/material/ToggleButton";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Hamburger from "./HamburgerButton/Hamburger";
@@ -59,7 +58,7 @@ export default function PostCard(props) {
   // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
     checkLike();
-  }, [])
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
   // test push 
    const pastelColorPallete = [
         "rgba(181, 234, 215, 0.6)",

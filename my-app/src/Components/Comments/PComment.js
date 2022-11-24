@@ -40,7 +40,7 @@ const createdAt =new Date(props.createdAt);
               >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-            <Avatar alt="user profile pic"  />
+            <Avatar  style={{backgroundColor:"#1682FD"}}alt="user profile pic"  />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
             <h6 style={{ margin: 0, textAlign: "left", fontSize:'small'}}>{props.username}</h6>
