@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ReactSession } from "react-client-session";
 import { useParams } from "react-router-dom";
 import { Box, Grid } from "@mui/material"
 
@@ -12,8 +13,12 @@ import CreateCompanyPost from "./createCompanyPost.js/createCompanyPost.componen
 
 
 export default function CompanyPage() {
+    let userSession = ReactSession.get("userSession");
     const params = useParams()
     const [company, setCompany] = useState()
+    const [companyOwner, setCompanyOwner] = useState()
+
+
 
     //Constantly grabs the current company depending on URL
     useEffect(() => {
@@ -27,6 +32,12 @@ export default function CompanyPage() {
 
     }, [params.companyName])
 
+
+    useEffect(() => {
+        if (company) {
+            setCompanyOwner(company.members[0].memberID)
+        }
+    })
     const myStyle = {
         width: "120%",
 
@@ -47,9 +58,11 @@ export default function CompanyPage() {
                 </Grid>
 
                 <Grid container spacing={2}>
-                    <Grid item xs={6} md={8}>
+                    {companyOwner === userSession._id ? <Grid item xs={6} md={8}>
+
                         <CreateCompanyPost />
-                    </Grid>
+                    </Grid> : null}
+
                     <Grid style={{ marginBottom: "100px" }} item xs={6} md={8}>
                         <CompanyPost />
                     </Grid>

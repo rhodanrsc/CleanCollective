@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const companyPost = require("../models/company.post.model")
 const Company = require("../models/company.model")
+const usersPost = require("../models/users.post.model");
 
 router.route("/").get((req, res) => {
     companyPost.CompanyPostCollection.find()
@@ -24,8 +25,8 @@ router.route("/addPost/:id").post((req, res) => {
         const userType = req.body.userType;
 
         //Create a new Post Object
-        const newPost = new companyPost.CompanyPostCollection({
-            postCompanyName: thisPostCompanyName,
+        const newPost = new usersPost.UserPostCollection({
+            postUserName: thisPostCompanyName,
             postTitle: thisPostTitle,
             postBody: thisPostBody,
             postSector: thisSector,

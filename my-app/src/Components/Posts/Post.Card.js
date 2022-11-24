@@ -13,7 +13,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { useEffect } from "react";
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 // Comments coponents
 import PCommentForm from "../Comments/PCommentForm";
 
@@ -74,7 +74,7 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{props.username}<br/>{date}</div>
+              <div>{props.anonymous ? "Anonymous" : props.username}<br />{date}</div>
               {props.userType === "company" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
@@ -124,7 +124,7 @@ export default function PostCard(props) {
           </IconButton>
           <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
 
-          
+
 
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
