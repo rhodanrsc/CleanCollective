@@ -85,6 +85,7 @@ export default function PostPage() {
                 id={post._id}
                 username={post.postUserName}
                 title={post.postTitle}
+                postsector = {post.postSector}
                 body={post.postBody}
                 likes={post.postLikes}
                 createdAt={post.createdAt}
