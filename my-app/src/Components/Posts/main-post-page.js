@@ -19,6 +19,7 @@ export default function PostPage() {
 
   useEffect(() => {
     let listOfSearchedPosts = []
+    let listOfPublicPosts = []
     axios.get("http://localhost:5000/user.post.route/")
       .then((response) => {
         const data = response.data;
@@ -26,13 +27,19 @@ export default function PostPage() {
           // eslint-disable-next-line array-callback-return
           data.map((post) => {
             if (post.postTitle.toLowerCase().match(searchValue.toLowerCase())) {
-
-              listOfSearchedPosts.push(post);
+              if (post.accessLevel !== false) {
+                listOfSearchedPosts.push(post);
+              }
             }
           })
           setPosts(listOfSearchedPosts.reverse())
         } else {
-          setPosts(data.reverse())
+          data.map((post) => {
+            if (post.accessLevel !== false) {
+              listOfPublicPosts.push(post)
+            }
+          })
+          setPosts(listOfPublicPosts.reverse())
 
         }
       })
@@ -83,6 +90,7 @@ export default function PostPage() {
                 likes={post.postLikes}
                 createdAt={post.createdAt}
                 key={post._id}
+                anonymous={post.anonymous}
               />
             )) : ""}
           </Grid>

@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { Button, Switch } from "@mui/material";
 //used for rendering tags
 import { Chip } from "@mui/material"
+
 // Comments coponents
 import PCommentForm from "../Comments/PCommentForm";
 
@@ -88,7 +89,7 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{props.username}<br/>{date}</div>
+              <div>{props.anonymous ? "Anonymous" : props.username}<br />{date}</div>
               {props.userType === "company" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
@@ -145,7 +146,7 @@ export default function PostCard(props) {
           </IconButton>
           <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
 
-          
+
 
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
