@@ -40,91 +40,91 @@ export default function PostCard(props) {
   const [isCommentToggle, setCommentToggle] = React.useState(false);
 
   //checks whether a post has been liked by the current user. Runs immediately when component mounts.
-  function checkLike(){
-    if(userSession){
+  function checkLike() {
+    if (userSession) {
       let userId = userSession._id;
-      axios.get("http://localhost:5000/user.post.route/getUserLikedPosts/"+userId)
-      .then((res) => {
-        let likedPosts = res.data;
-        if (likedPosts.includes(props.id)){
-          setSelectedLike(true);
-        }
-      })
+      axios.get("http://localhost:5000/user.post.route/getUserLikedPosts/" + userId)
+        .then((res) => {
+          let likedPosts = res.data;
+          if (likedPosts.includes(props.id)) {
+            setSelectedLike(true);
+          }
+        })
     }
   }
-  var options = {  year: 'numeric', month: 'short', day: 'numeric' };
-  const createdAt =new Date(props.createdAt);
-  let date= createdAt.toLocaleDateString("en-US", options);
- // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
+  var options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const createdAt = new Date(props.createdAt);
+  let date = createdAt.toLocaleDateString("en-US", options);
+  // Run a useEffect to compare the post id, and see if has been 'liked' by the current user through the userSession.
   useEffect(() => {
-  checkLike();
+    checkLike();
   })
-// test push 
+  // test push 
   return (
     <div>
-    <Card sx={{ maxWidth: "100%", marginLeft:"15px" }}>
-              
-      <CardHeader
-      
-        avatar={
-          <Avatar sx={{ bgcolor: "#309A47" }} aria-label="recipe"></Avatar>
-        }
-        action={
-          (userSession? <Hamburger id={props.id} postTitle={props.title}/> : null)}
+      <Card sx={{ maxWidth: "95%", marginLeft: "15px" }}>
+
+        <CardHeader
+
+          avatar={
+            <Avatar sx={{ bgcolor: "#309A47" }} aria-label="recipe"></Avatar>
+          }
+          action={
+            (userSession ? <Hamburger id={props.id} postTitle={props.title} /> : null)}
           title=<h6><b>{props.title}</b></h6>
-        subheader=<div>{props.username}<br/>{date}</div>
-      />
-      
-      <CardContent>
-      
-        <Typography variant="body2" color="text.secondary">
-          {props.body}
-<br/>
-          
+          subheader=<div>{props.username}<br />{date}</div>
+        />
 
-        </Typography>
-      </CardContent>
+        <CardContent>
 
-      <CardActions disableSpacing>
-        <div className="d-flex fd-column">
-        
-          <ToggleButton
-            id= {props.id}
-            value="check"
-            size="small"
-            color="success"
-            selected={selectedLike}
-            onChange={() => {
-              //changes the 'liked' state of the toggle button
-              setSelectedLike(!selectedLike);
-              //Cosmetically (front-end only) increments the like and decrements the unlike
-              if (!selectedLike){
-              setLikes(likes+1);
-              }else{
-                setLikes(likes-1);
-              }
-            }}
-            //determines whether to like or unlike based on the state.
-            onClick={selectedLike? unlike : like}
+          <Typography variant="body2" color="text.secondary">
+            {props.body}
+            <br />
 
-          >
 
-            <ThumbUpIcon style= {{paddingLeft:"6px",backgroundColor: "", color:"", border:"none"}}/>
-          <Typography style = {{marginLeft:"3px", paddingLeft:"2px", paddingRight:"2px", paddingTop:"0px", paddingBottom:"-5px", borderRadius:"0.2em", border:"none"}}>{likes}</Typography>
-          
-          </ToggleButton>
-        </div>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
-        
-        
+          </Typography>
+        </CardContent>
 
-      </CardActions>
-      {isCommentToggle && <PCommentForm currentUserId = {props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle}/>}
-    </Card>
-    <br/>
+        <CardActions disableSpacing>
+          <div className="d-flex fd-column">
+
+            <ToggleButton
+              id={props.id}
+              value="check"
+              size="small"
+              color="success"
+              selected={selectedLike}
+              onChange={() => {
+                //changes the 'liked' state of the toggle button
+                setSelectedLike(!selectedLike);
+                //Cosmetically (front-end only) increments the like and decrements the unlike
+                if (!selectedLike) {
+                  setLikes(likes + 1);
+                } else {
+                  setLikes(likes - 1);
+                }
+              }}
+              //determines whether to like or unlike based on the state.
+              onClick={selectedLike ? unlike : like}
+
+            >
+
+              <ThumbUpIcon style={{ paddingLeft: "6px", backgroundColor: "", color: "", border: "none" }} />
+              <Typography style={{ marginLeft: "3px", paddingLeft: "2px", paddingRight: "2px", paddingTop: "0px", paddingBottom: "-5px", borderRadius: "0.2em", border: "none" }}>{likes}</Typography>
+
+            </ToggleButton>
+          </div>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
+
+
+
+        </CardActions>
+        {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
+      </Card>
+      <br />
     </div>
   );
 }

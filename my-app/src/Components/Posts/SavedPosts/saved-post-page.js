@@ -43,7 +43,15 @@ export class PostPage extends Component {
 
   render() {
     return (
-      <Grid container direction={"column"} spacing={2}>
+      <Grid 
+      style={{ 
+        marginLeft: '16%', 
+        marginRight: 'auto', 
+        width: "70%" 
+        }} 
+      container 
+      direction={"column"} 
+      spacing={2}>
 
       <Grid item xs={6} md={8}>
         <SearchBar />

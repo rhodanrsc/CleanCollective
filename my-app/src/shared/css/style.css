@@ -1,9 +1,9 @@
 
-.wrapper {
+/* .wrapper {
     display: flexbox;
     width: 60%;
     margin: 0 auto;
-}
+} */
 
 body {
     background-color: rgb(234, 234, 234);
@@ -133,13 +133,13 @@ body {
     width: 80%;
 }
 
-.adoptor {
+.adopter {
     float: left;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-.adoptor, .innovator {
+.adopter, .innovator {
     text-align: center;
     width: 50%;
     padding: 0 50px;
