@@ -15,6 +15,8 @@ import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { useEffect } from "react";
 import { Button, Switch } from "@mui/material";
+//used for rendering tags
+import { Chip } from "@mui/material"
 // Comments coponents
 import PCommentForm from "../Comments/PCommentForm";
 
@@ -33,13 +35,11 @@ export default function PostCard(props) {
     const userId = userSession._id
     axios.post("http://localhost:5000/user.post.route/unlikePost/" + id + '/' + userId)
   }
-
   const [selectedLike, setSelectedLike] = React.useState(false);
   //For Front-end rendering
   const [likes, setLikes] = React.useState(props.likes);
   // Comments functions
   const [isCommentToggle, setCommentToggle] = React.useState(false);
-
   //checks whether a post has been liked by the current user. Runs immediately when component mounts.
   function checkLike() {
     if (userSession) {
@@ -61,6 +61,20 @@ export default function PostCard(props) {
     checkLike();
   }, [])
   // test push 
+   const pastelColorPallete = [
+        "rgba(181, 234, 215, 0.6)",
+        "rgba(224, 187, 228, 0.6)",
+        "rgba(104, 209, 197, 0.6)",
+        "rgba(244, 179, 206, 0.6)",
+        "rgba(249, 216, 206,0.6)",
+        "rgba(117, 199, 234, 0.6)",
+        "rgba(149, 125, 173, 0.6)",
+        "#CEF2E1",
+        "#FFFBD6",
+        "#D7FDDF",
+        "#D0D0FE",
+    ];
+
   return (
     <div>
       <Card elevation={5} sx={{ maxWidth: "95%", marginLeft: "15px" }}>
@@ -83,6 +97,13 @@ export default function PostCard(props) {
           }
         />
         <CardContent>
+          <div>
+          {props.postsector ? props.postsector.map((tag, index) => {
+                    return (
+                        <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
+                    )
+            }) : null}</div>
+          
           <Typography variant="body2" color="text.secondary">
             {props.body}
             <br />
