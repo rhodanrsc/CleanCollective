@@ -135,7 +135,7 @@ const ResponsiveAppBar = () => {
           {/* displays the nav buttons */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           </Box>
-          <Typography color="success" variant={"h5"} style={{ marginRight: "20px" }}>{userSession ? userSession.username : null}</Typography>
+          <Typography color="success" variant={"h6"} style={{ marginRight: "20px" }}>{userSession ? userSession.username : null}</Typography>
           {/* profile drop down */}
           <Box sx={{ flexGrow: 0 }}>
 
