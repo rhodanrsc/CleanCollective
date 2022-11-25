@@ -60,8 +60,6 @@ export default function ProfilePage() {
           <SideCompaniesCard title="Recommended Companies" />
         </Grid>
 
-        
-
         <Grid item xs={6} md={8}>
           <Card elevation={5}>
             <CardHeader
@@ -74,6 +72,7 @@ export default function ProfilePage() {
                   <PostCard
                     id={post._id}
                     username={post.postUserName}
+                    postsector={post.postSector}
                     title={post.postTitle}
                     body={post.postBody}
                     likes={post.postLikes}

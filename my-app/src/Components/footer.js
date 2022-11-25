@@ -13,10 +13,10 @@ export default function Footer() {
         fontSize='small'
         style={{
             marginTop:'50px',
-            zIndex:2000
+            padding:'10px'
         }}
         >
-            <Container maxWidth='lg'>
+            <Container maxWidth='lg' style={{padding:'20px'}}>
                 <Grid container spacing={5} marginLeft='100px'>
                     <Grid item xs={2} sm={2}>
                         <img className="logo" style={{width:'100px', height:'auto'}} src={logo} alt=""></img>
@@ -33,15 +33,6 @@ export default function Footer() {
                             <Link href="/" color='inherit'>Privacy Policy</Link>
                         </Box>
                     </Grid>
-                    {/* <Grid item xs={12} sm={4}>
-                        <Box borderBottom={1}>Account</Box>
-                        <Box>
-                            <Link href="/" color='inherit'>Manage Account</Link>
-                        </Box>
-                        <Box>
-                            <Link href="/" color='inherit'>Email Preferences</Link>
-                        </Box>
-                    </Grid> */}
                     <Grid item xs={12} sm={4}>
                         <Box borderBottom={1}>About</Box>
                         <Box>
@@ -55,7 +46,7 @@ export default function Footer() {
                         </Box>
                     </Grid>
                 </Grid>
-                <Box textAlign='center' pt={{xs: 5, sm: 10}} pb={{xs: 5, sm: 0}}>
+                <Box textAlign='center' pt={{xs: 5, sm: 10}} pb={{xs: 5, sm: 0}}  marginTop={-5}>
                     Clean Collective Inc. &reg; {new Date().getFullYear()}
                 </Box>
             </Container>

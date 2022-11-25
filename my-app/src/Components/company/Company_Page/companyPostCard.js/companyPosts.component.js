@@ -61,6 +61,7 @@ export default function CompanyPost() {
                             <PostCard
                                 id={post.id}
                                 username={post.postCompanyName}
+                                postsector={post.postSector}
                                 title={post.postTitle}
                                 body={post.postBody}
                                 likes={post.postLikes}

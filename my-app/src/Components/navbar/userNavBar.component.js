@@ -181,7 +181,7 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/userProfile');
+                    navigate('/profilePage');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
