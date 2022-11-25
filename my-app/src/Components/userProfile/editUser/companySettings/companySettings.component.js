@@ -35,6 +35,7 @@ export default function CompanySettings() {
 
 
     useEffect(() => {
+
         if (userSession.members) {
             axios.get("http://localhost:5000/company/getCompany/" + userSession.associatedCompanies[0].companyName)
                 .then((response) => {
@@ -42,6 +43,7 @@ export default function CompanySettings() {
                 })
                 .catch((error) => console.log("Error with getting company: " + error))
         }
+
 
 
     }, [userSession])
