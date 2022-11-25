@@ -136,7 +136,7 @@ export default function ControlledAccordions() {
                   <TableRow>
                     <TableCell>Current Professional Role</TableCell>
                     <TableCell>
-                      {userSession ? userSession.job : null}
+                      {userSession ? userSession.job[0]: null} 
                     </TableCell>
                   </TableRow>
 

@@ -68,6 +68,7 @@ const App = () => {
                   <Route path="/forum/:searchValue" element={<PostPage />} />
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
+                  <Route path="/profilePage/" element={<ProfilePage />} />
 
                 </Routes>
 
