@@ -43,9 +43,7 @@ export default function HomeTab(props) {
                     return (
                         <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
                     )
-
                 }) : null}
-
             </Typography>
 
         </div>

@@ -12,7 +12,7 @@ import { Chip } from "@mui/material";
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
 import Edit from "@mui/icons-material/Edit";
 import axios from "axios";
-import { Card, CardContent, Box, TextField, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Box, TextField, Grid, Typography, Divider } from "@mui/material";
 
 //EDIT AND SAVE BUTTONS FOR ABOUT PAGE
 // const handleEditClick = () => {
@@ -116,12 +116,14 @@ useEffect(() => {
                 noValidate
                 autoComplete="off"
               >
-                <Typography variant="h6" color="text.primary">
-                  About
+                <Typography variant="body1" color="text.primary">
+                    About
                 </Typography>
-                <Typography variant="body1">
-                  Test paragraph!
+                <Typography variant="body2" color="text.secondary">
+                    This section will contain information about the user that the user wants to share.
                 </Typography>
+
+                <Divider sx={{ height: "20px" }} variant="middle" />
                 {/* <TextField
                   id="aboutTextBox"
                   multiline
@@ -146,33 +148,55 @@ useEffect(() => {
             </CardContent>
 
             <CardContent>
-              <Typography variant="h6" color="text.primary">Associated Companies</Typography>
-              <Typography variant="body1" value= {data ? data.companyName : ""}></Typography>
+            <Typography variant="body1" color="text.primary">
+                    Associated Companies
+                </Typography>
+                <Typography variant="body1" value= {data ? data.companyName : ""}></Typography>
+
+                <Divider sx={{ height: "20px" }} variant="middle" />
+            </CardContent>
+
+            <CardContent>
+            <Typography variant="body1" color="text.primary">
+                    Social Media
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    This section will contain social media links that the user whats to share.
+                </Typography>
+
+                <Divider sx={{ height: "20px" }} variant="middle" />
               
             </CardContent>
 
             <CardContent>
-              <Typography variant="h6" color="text.primary">Social Links</Typography>
-              <Typography variant="body1">Nothing to show at this time.</Typography>
-              
+            <Typography variant="body1" color="text.primary">
+                    Professional Role
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    This section will contain the user's current professional role.
+                </Typography>
+
+                <Divider sx={{ height: "20px" }} variant="middle" />
             </CardContent>
 
             <CardContent>
-              <Typography variant="h6" color="text.primary">Current Professional Role</Typography>
-              <Typography variant="body1">Nothing to show at this time.</Typography>
-              
-            </CardContent>
+            <Typography variant="body1" color="text.primary">
+                    Education
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    This section will contain information about the user's education.
+                </Typography>
 
-            <CardContent>
-              <Typography variant="h6" color="text.primary">Education</Typography>
-              <Typography variant="body1">Nothing to show at this time.</Typography>
-              
+                <Divider sx={{ height: "20px" }} variant="middle" />
             </CardContent>
 
 
             {/* For tag display */}
             <CardContent>
-              <Typography variant="h6" color="text.primary" >Interests</Typography>
+            <Typography variant="body1" color="text.primary">
+                    Interests
+                </Typography>
+                <Divider sx={{ height: "20px" }} variant="middle" />
               <Typography variant="body2" color="text.secondary">
                 {data.tags
                   ? data.tags.map((tag, index) => {

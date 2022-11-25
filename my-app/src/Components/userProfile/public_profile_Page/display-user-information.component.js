@@ -51,15 +51,24 @@ export default function ProfilePage() {
   };
   return (
     <Box style={myStyle}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <DescriptionBox></DescriptionBox>
-        </Grid>
+      <Grid
+        style={{
+          marginLeft: '16%',
+          marginRight: 'auto',
+          width: "70%"
+        }}
+        container
+        direction={"column"}
+        spacing={2}>
+        <Grid container spacing={3}>
+          <Grid item xs={6} md={8}>
+            <DescriptionBox></DescriptionBox>
+          </Grid>
 
-        <Grid item xs={6} md={4}>
-          <SideCompaniesCard title="Recommended Companies" />
+          <Grid item xs={6} md={4}>
+            <SideCompaniesCard title="Recommended Companies" />
+          </Grid>
         </Grid>
-
         <Grid item xs={6} md={8}>
           <Card elevation={5}>
             <CardHeader
