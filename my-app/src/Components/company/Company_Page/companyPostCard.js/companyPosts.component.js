@@ -16,10 +16,18 @@ export default function CompanyPost() {
         axios.get("http://localhost:5000/company/getCompany/" + params.companyName)
             .then((response) => {
                 let thisCompany = response.data
+                let isMember = false;
                 if (response !== null && userSession) {
-                    //If the current user is the owner
+
+                    thisCompany.members.map((member) => {
+                        if (member.memberID === userSession._id) {
+                            isMember = true;
+                        }
+                    })
+
+                    //If the current user is a member
                     //Show all posts
-                    if (thisCompany.members[0].memberID === userSession._id) {
+                    if (isMember) {
                         setCompanyPosts(response.data.posts.reverse())
                     } else {
                         //If not then only show public post that are non-anonymous

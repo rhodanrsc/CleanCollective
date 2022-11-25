@@ -35,6 +35,15 @@ const userPostSchema = new Schema(
     userLikes: {
       type: [String],
       required: false
+    },
+    accessLevel: {
+      type: Boolean
+    },
+    anonymous: {
+      type: Boolean
+    },
+    userType: {
+      type: String
     }
   },
   {
