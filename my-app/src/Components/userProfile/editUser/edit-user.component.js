@@ -25,8 +25,8 @@ export default function ControlledAccordions() {
 
   let userEducationString;
   let education;
-  if (userSession) {
-     education = userSession.education[0];
+  if (userSession.education) {
+    education = userSession.education[0];
 
     const monthNames = [
       "January",
@@ -46,15 +46,15 @@ export default function ControlledAccordions() {
     let startMonth = new Date(education.dateStarted).getMonth();
     let thisMonthName = monthNames[startMonth];
     let startYear = new Date(education.dateStarted).getFullYear();
-    let startString  = thisMonthName + " " + startYear;
+    let startString = thisMonthName + " " + startYear;
 
     let endMonth = new Date(education.dateEnded).getMonth();
     let thisMonthNameEnd = monthNames[endMonth];
     let endYear = new Date(education.dateEnded).getFullYear();
-    let endString  = thisMonthNameEnd + " " + endYear;
+    let endString = thisMonthNameEnd + " " + endYear;
 
     userEducationString =
-    "Institution: " + 
+      "Institution: " +
       education.institution +
       " Date Attended: " +
       startString +
@@ -136,14 +136,14 @@ export default function ControlledAccordions() {
                   <TableRow>
                     <TableCell>Current Professional Role</TableCell>
                     <TableCell>
-                      {userSession ? userSession.job[0]: null} 
+                      {userSession ? userSession.job[0] : null}
                     </TableCell>
                   </TableRow>
 
                   <TableRow>
                     <TableCell>Education</TableCell>
                     <TableCell>
-                      {userSession ? userEducationString: null}
+                      {userEducationString ? userEducationString : null}
                     </TableCell>
                     <TableCell>
 
@@ -155,20 +155,20 @@ export default function ControlledAccordions() {
                     <TableCell>
                       {userSession.tags
                         ? userSession.tags.map((tag, index) => {
-                            return (
-                              <Chip
-                                component={"span"}
-                                key={tag}
-                                style={{
-                                  backgroundColor: pastelColorPallete[index],
-                                  marginRight: "5px",
-                                  display: "inline",
-                                }}
-                                variant="outlined"
-                                label={tag}
-                              />
-                            );
-                          })
+                          return (
+                            <Chip
+                              component={"span"}
+                              key={tag}
+                              style={{
+                                backgroundColor: pastelColorPallete[index],
+                                marginRight: "5px",
+                                display: "inline",
+                              }}
+                              variant="outlined"
+                              label={tag}
+                            />
+                          );
+                        })
                         : null}
                     </TableCell>
                   </TableRow>
@@ -177,12 +177,12 @@ export default function ControlledAccordions() {
                     <TableCell>Associated Companies: </TableCell>
                     {userSession.associatedCompanies
                       ? userSession.associatedCompanies.map(function (company) {
-                          return (
-                            <TableCell key={company._id}>
-                              {company.companyName}
-                            </TableCell>
-                          );
-                        })
+                        return (
+                          <TableCell key={company._id}>
+                            {company.companyName}
+                          </TableCell>
+                        );
+                      })
                       : null}
                   </TableRow>
                 </tbody>
