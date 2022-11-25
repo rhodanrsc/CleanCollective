@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ReactSession } from "react-client-session";
 import axios from "axios";
+import { Typography } from "@mui/material";
 
 
 
@@ -40,7 +41,10 @@ export default function DeleteAlertDialog(props) {
   return (
     <div>
       <IconButton size='small' variant="outlined" onClick={handleClickOpen}>
-      <DeleteOutlineIcon/>Delete
+      <DeleteOutlineIcon/>
+      <Typography>
+        Delete
+      </Typography>
       </IconButton>
       <Dialog
         open={open}

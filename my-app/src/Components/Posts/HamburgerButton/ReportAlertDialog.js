@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Flag from "@mui/icons-material/Flag";
 import RadioButtonsGroup from "./RadioButtons";
+import { Typography } from "@mui/material";
 
 
 
@@ -33,7 +34,11 @@ export default function ReportAlertDialog(props) {
   return (
     <div>
       <IconButton variant="outlined" onClick={handleClickOpen} size='small'>
-      <Flag/>Report
+      <Flag/>
+      <Typography>
+        Report
+      </Typography>
+      
       </IconButton>
       <Dialog
         open={open}

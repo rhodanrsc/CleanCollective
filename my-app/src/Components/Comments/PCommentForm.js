@@ -42,7 +42,7 @@ const PCommentForm = (props) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <Typography style={{ marginLeft: "10px", marginTop: "10px" }}>Comments</Typography>
+      <Typography marginLeft={2.5} marginTop={1}>Comments</Typography>
       <TextField label="Comments" id="fullWidth"
         multiline
         className="comment-form-textarea"
@@ -65,7 +65,7 @@ const PCommentForm = (props) => {
         cols={60}
 
       />
-      <Grid marginLeft={75} marginBottom={1}>
+      <Grid marginLeft={2} marginBottom={1}>
         <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
           Enter
         </Button>

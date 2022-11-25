@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { Button, Grid, Typography } from '@mui/material';
+import landingPageBG from '../shared/images/landingPage.jpg'
 
 let userSession = ReactSession.get("userSession")
 
@@ -32,7 +33,10 @@ const LandingPage = () => {
     // footer
 
     return (
-        <Box sx={{width: '100%' }} style={{ margin:'0' }}>
+        <Box sx={{width: '100%' }} style={{ 
+            margin:'0', 
+            backgroundImage: landingPageBG
+            }}>
             <Stack spacing={1}>
                 <Item>
                     <img className='bigLogo' src={logo} alt=''></img>

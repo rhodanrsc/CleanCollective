@@ -108,13 +108,13 @@ export default function PostCard(props) {
         </CardContent>
 
         <CardActions disableSpacing>
-        <Grid container marginLeft={1} marginBottom={1}>
+          <Grid container marginLeft={1} marginBottom={1}>
             {props.postsector ? props.postsector.map((tag, index) => {
               return (
                 <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
               )
             }) : null}
-        </Grid>
+          </Grid>
           <Grid container marginRight={-33} marginBottom={1} className="d-flex fd-column">
             <ToggleButton
               id={props.id}
@@ -141,12 +141,12 @@ export default function PostCard(props) {
               <Typography style={{ marginLeft: "3px", paddingLeft: "2px", paddingRight: "2px", paddingTop: "0px", paddingBottom: "-5px", borderRadius: "0.2em", border: "none" }}>{likes}</Typography>
 
             </ToggleButton>
-          
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <Button onClick={() => setCommentToggle(!isCommentToggle)}>View Comments</Button>
-        </Grid>
+
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+            <Button onClick={() => setCommentToggle(!isCommentToggle)}>View Comments</Button>
+          </Grid>
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
       </Card>

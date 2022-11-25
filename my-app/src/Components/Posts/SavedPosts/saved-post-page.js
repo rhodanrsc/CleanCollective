@@ -65,6 +65,7 @@ export default function PostPage() {
               <PostCard
                 id={post._id}
                 username={post.postUserName}
+                postsector={post.postSector}
                 title={post.postTitle}
                 body={post.postBody}
                 likes={post.postLikes}
