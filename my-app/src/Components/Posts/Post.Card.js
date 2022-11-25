@@ -13,7 +13,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { useEffect } from "react";
-import { Button, Switch } from "@mui/material";
+import { Button, Grid, Switch } from "@mui/material";
 //used for rendering tags
 import { Chip } from "@mui/material"
 
@@ -97,12 +97,7 @@ export default function PostCard(props) {
           }
         />
         <CardContent>
-          <div>
-          {props.postsector ? props.postsector.map((tag, index) => {
-                    return (
-                        <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
-                    )
-            }) : null}</div>
+          
           
           <Typography variant="body2" color="text.secondary">
             {props.body}
@@ -113,8 +108,14 @@ export default function PostCard(props) {
         </CardContent>
 
         <CardActions disableSpacing>
-          <div className="d-flex fd-column">
-
+          <Grid container marginLeft={1} marginBottom={1}>
+            {props.postsector ? props.postsector.map((tag, index) => {
+              return (
+                <Chip component={'span'} key={tag} style={{ backgroundColor: pastelColorPallete[index], marginRight: "5px" }} variant="outlined" label={tag} />
+              )
+            }) : null}
+          </Grid>
+          <Grid container marginRight={-33} marginBottom={1} className="d-flex fd-column">
             <ToggleButton
               id={props.id}
               value="check"
@@ -140,14 +141,12 @@ export default function PostCard(props) {
               <Typography style={{ marginLeft: "3px", paddingLeft: "2px", paddingRight: "2px", paddingTop: "0px", paddingBottom: "-5px", borderRadius: "0.2em", border: "none" }}>{likes}</Typography>
 
             </ToggleButton>
-          </div>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <Button onClick={() => setCommentToggle(!isCommentToggle)}>Comment</Button>
 
-
-
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+            <Button onClick={() => setCommentToggle(!isCommentToggle)}>View Comments</Button>
+          </Grid>
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
       </Card>

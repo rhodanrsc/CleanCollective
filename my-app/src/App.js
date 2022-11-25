@@ -16,7 +16,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
-import LandingPage from "./Components/landingPage";
+import LandingPage from "./Components/landingpage2";
 import ConfirmEmail from "./Components/registration/confirm-email.component";
 import RegisterPage from "./Components/registration/create-user.component"
 import CompanyCreation from "./Components/company/Create_Company_Form/create-company-components";
@@ -28,6 +28,7 @@ import { ReactSession } from "react-client-session";
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
 import CompanyPage from "./Components/company/Company_Page/company_page.component"
+import Footer from "./Components/footer";
 
 ReactSession.setStoreType("sessionStorage");
 // App Component
@@ -74,6 +75,7 @@ const App = () => {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </div>
     </Router>
 

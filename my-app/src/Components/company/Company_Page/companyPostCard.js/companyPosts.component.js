@@ -51,8 +51,6 @@ export default function CompanyPost() {
         <Box>
             <Card elevation={5}>
 
-                {/* <Button onClick={testButton}>Test</Button> */}
-
                 <CardHeader
                     title="Posts"
                 />

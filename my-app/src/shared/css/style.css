@@ -13,12 +13,6 @@
     height: 120%;
     }
 
-.wrapper {
-    display: flexbox;
-    width: 60%;
-    margin: 0 auto;
-}
-
 body {
     background-color: rgb(234, 234, 234);
 }
@@ -45,7 +39,7 @@ body {
 .logo {
     height: 40px;
     width: auto;
-    margin: 0.5em 1em ;
+    margin: 0.5em 2.5em ;
     display: inline;
     float: left;
 }
@@ -148,13 +142,13 @@ body {
     padding-bottom: 20px;
 }
 
-.adoptor {
+.adopter {
     float: left;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-.adoptor, .innovator {
+.adopter, .innovator {
     text-align: center;
     width: 50%;
     padding: 0 50px;

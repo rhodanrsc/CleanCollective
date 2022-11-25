@@ -56,7 +56,15 @@ export default function PostPage() {
 
   return (
 
-    <Grid style={{ marginTop: "2%", width: "140%" }} container direction={"row"} spacing={5}>
+    <Grid style={{ 
+      marginLeft: '15%', 
+      marginRight: 'auto', 
+      width: "85%" 
+      }} 
+      container 
+      direction={"row"} 
+      spacing={5}
+      >
 
       {/*Search and Create Grid */}
       <Grid item xs={6} md={12}>

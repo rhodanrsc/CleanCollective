@@ -1,27 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../shared/images/CCLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import axios from 'axios';
-import Logout from './logout/logout';
-import { ReactSession } from 'react-client-session';
-let userSession = ReactSession.get("userSession")
+
 const LandingPage = () => {
-
-    //////////////////////////////////////////////////////////////
-    // Pulling req.user and setting it to the state variable 'data'
-    //////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////   
-    let data = ReactSession.get("userSession");
 
     return (
         <div className='landingPage'>
             <div className='bannerArea'>
-                {data ? <h1>Example of rendering the user object data after logging in.</h1> : null}
-                {data ? <h2>username: {data.username} </h2> : null}
-                {data ? <h2>_id: {data._id} </h2> : null}
-                {data ? <h2>email: {data.email} </h2> : null}
-                {data ? <h2>createdAt: {data.createdAt} </h2> : null}
                 <img className='bigLogo' src={logo} />
                 <h3>Join Clean Collective</h3>
                 <br />
@@ -42,8 +27,8 @@ const LandingPage = () => {
                 </Link>
             </div>
             <div className='bigBlock'>
-                <div className='adoptor'>
-                    <h3>Adoptor</h3>
+                <div className='adopter'>
+                    <h3>Adopter</h3>
                     <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
                 </div>
                 <div className='innovator'>

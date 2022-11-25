@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -24,7 +23,9 @@ import FilledAskIcon from '@mui/icons-material/Chat';
 import About from '@mui/icons-material/InfoOutlined';
 import FilledAbout from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
+import { ReactSession } from "react-client-session";
 
+const userSession = ReactSession.get('userSession'); 
 
 const drawerWidth = 240;
 
@@ -79,7 +80,7 @@ export default function ClippedDrawer() {
       setPeopleIcon(<Matching />)
     }
 
-    if (currentPage === "AboutUs") {
+    if (currentPage === "") {
       setAboutIcon(<FilledAbout style={{ color: "green" }} />)
     } else {
       setAboutIcon(<About />)
@@ -91,11 +92,12 @@ export default function ClippedDrawer() {
 
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+    <div>
+    <Box sx={{ display: 'flex'}}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} style={bgColor}>
         <CustomNavBar />
       </AppBar>
+      {currentPage ? 
       <Drawer
         variant="permanent"
         sx={{
@@ -103,6 +105,7 @@ export default function ClippedDrawer() {
           display: { xs: 'none', md: 'flex' },
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          
         }}
       >
         <Toolbar />
@@ -122,23 +125,35 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'].map((text, index) => (
+            {['Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies'].map((text, index) => (
               <ListItem key={text} disablePadding onClick={() => { navigate('/' + text.replace(' ', '')); }}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Liked Posts' ? likeIcon :
                       text === 'Your Questions' ? askIcon :
                         text === 'Saved Posts' ? savedIcon :
-                          text === 'Matching Companies' ? peopleIcon :
-                            text === 'About Us' ? aboutIcon : null}
+                          text === 'Matching Companies' ? peopleIcon : null}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
+              
+            ))}
+            {['About Us'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/'); }}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {text === 'About Us' ? aboutIcon : null}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              
             ))}
           </List>
         </Box>
-      </Drawer>
+      </Drawer> : null }
     </Box>
+</div>
   );
 }

@@ -45,7 +45,15 @@ export default function CompanyPage() {
 
     return (
         <Box style={myStyle}>
-            <Grid container style={{ gap: 1 }}>
+            <Grid
+                style={{
+                    marginLeft: '16%',
+                    marginRight: 'auto',
+                    width: "70%"
+                }}
+                container
+                direction={"column"}
+                spacing={2}>
                 <Grid container spacing={3}>
                     <Grid item xs={6} md={8}>
                         <TopCard />

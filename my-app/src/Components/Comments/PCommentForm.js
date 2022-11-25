@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import PCommentList from "./PComment-list-component";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
@@ -11,28 +11,28 @@ const PCommentForm = (props) => {
   const [text, setText] = useState("");
   const isTextareaDisabled = text.length === 0;
 
-  function handleSubmit (){
+  function handleSubmit() {
     console.log("handle submit function");
-      axios
-        .post(
-          "http://localhost:5000/comment/addComment/" + props.postId,
-          {
-            commentUsername : userSession.username,
-            commentUserId: userSession._id,
-            commentPostId: props.postId,
-            commentBody: text
-          })
-          .then(() => {
-          console.log("Post added");
+    axios
+      .post(
+        "http://localhost:5000/comment/addComment/" + props.postId,
+        {
+          commentUsername: userSession.username,
+          commentUserId: userSession._id,
+          commentPostId: props.postId,
+          commentBody: text
         })
-        .catch((err) => {
-          console.log("Something went wrong: " + err);
-        });
-    }
-  
- function handleCancel(){
-  props.setCommentToggle(!props.isCommentToggle)
-    }
+      .then(() => {
+        console.log("Post added");
+      })
+      .catch((err) => {
+        console.log("Something went wrong: " + err);
+      });
+  }
+
+  function handleCancel() {
+    props.setCommentToggle(!props.isCommentToggle)
+  }
 
 
   const onSubmit = (event) => {
@@ -42,18 +42,33 @@ const PCommentForm = (props) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <TextField label="Comments" id="fullWidth" 
+      <Typography marginLeft={2.5} marginTop={1}>Comments</Typography>
+      <TextField label="Comments" id="fullWidth"
         multiline
         className="comment-form-textarea"
         value={text}
-        style= {{width:"550px", maxWidth: "100%", flex: 1, flexWrap: 'wrap', wordWrap:"break-word", wordBreak:"break-word", overflowWrap:"anywhere", marginLeft:"80px", paddingLeft:"20px", paddingRight:"0px", paddingTop:"5px",marginBottom:"10px", marginTop: "10px", borderRadius:"0.2em", border:"none"}}
+        style={{ 
+          width: "100%", 
+          maxWidth: "100%", 
+          flex: 1, 
+          flexWrap: 'wrap', 
+          wordWrap: "break-word", 
+          wordBreak: "break-word", 
+          overflowWrap: "anywhere", 
+          paddingLeft: "20px", 
+          paddingRight: "20px", 
+          marginBottom: "10px", 
+          marginTop: "10px", 
+          borderRadius: "0.2em", 
+          border: "none" }}
         onChange={(e) => setText(e.target.value)}
         cols={60}
-        
+
       />
-      <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled} style = {{marginLeft:"495px"}}>
-        Enter
-      </Button>
+      <Grid marginLeft={2} marginBottom={1}>
+        <Button onClick={onSubmit} className="comment-form-button" disabled={isTextareaDisabled}>
+          Enter
+        </Button>
         <Button
           type="button"
           className="comment-form-button comment-form-cancel-button"
@@ -61,7 +76,9 @@ const PCommentForm = (props) => {
         >
           Cancel
         </Button>
-        <PCommentList postId={props.postId} />
+      </Grid>
+      
+      <PCommentList postId={props.postId} />
     </form>
   );
 };

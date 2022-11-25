@@ -10,6 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { ReactSession } from "react-client-session";
 import axios from "axios";
 import ReportAlertDialog from "./ReportAlertDialog";
+import { Typography } from "@mui/material";
 
 export default function Hamburger(props) {
   let userSession = ReactSession.get("userSession");
@@ -117,40 +118,41 @@ export default function Hamburger(props) {
             size='small'
           >
             {!saved ? (
-              <div>
-                <BookmarkBorderIcon />
-                Save
-              </div>
+                <Typography padding={1}>
+                  <BookmarkBorderIcon />
+                  Save
+                </Typography>
             ) : (
-              <div>
-                <BookmarkIcon color="error" />
+              <Typography padding={1}>
+                <BookmarkIcon color="warning" />
                 Saved
-              </div>
+              </Typography>
             )}
           </IconButton>
         </div>
 
         {owned ? (
-          <div>
+          <Typography padding={1} color={'rgb(150,150,150)'} >
             <IconButton size='small'>
-              <div>
             <EditIcon/>
-            Edit
-            </div>
-            </IconButton>
-          </div>
+            
+            </IconButton>Edit
+          </Typography>
         ) : null}
 
         {owned ? (
-          <div>
+          <Typography padding={1}>
             <DeleteAlertDialog
               id={props.id}
               title={props.postTitle}
             ></DeleteAlertDialog>
-          </div>
+          </Typography>
         ) : null}
         
-        <ReportAlertDialog />
+        <Typography padding={1}>
+          <ReportAlertDialog />
+        </Typography>
+        
       </Popover>
     </div>
   );

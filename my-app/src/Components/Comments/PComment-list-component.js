@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PComment from './PComment'
 import axios from 'axios';
+import { Stack, Typography } from '@mui/material';
 
 const PCommentList = (props) => {
 
@@ -32,8 +33,7 @@ const PCommentList = (props) => {
     },[comments, postId])
     
      return (
-    <div>
-<h6 style={{marginLeft:"10px", marginTop:"10px"}}><u>Comments</u></h6>
+    <Stack spacing={1} marginLeft={1} marginRight={1} marginBottom={1}>
        {  comments.map((comment) => (
       <PComment
       username=<b>{comment.commentUsername}</b>
@@ -43,7 +43,7 @@ const PCommentList = (props) => {
         />
     ))  }
 
-    </div>
+    </Stack>
   );
 };
 export default PCommentList;
