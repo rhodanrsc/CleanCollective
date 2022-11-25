@@ -13,12 +13,6 @@
     height: 120%;
     }
 
-.wrapper {
-    display: flexbox;
-    width: 60%;
-    margin: 0 auto;
-} 
-
 body {
     background-color: rgb(234, 234, 234);
 }
