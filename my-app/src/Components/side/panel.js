@@ -1,8 +1,7 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -11,13 +10,22 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CustomNavBar from '../navbar/userNavBar.component';
-import QuestionsIcon from '@mui/icons-material/FormatListBulleted';
+import QuestionIcon from '@mui/icons-material/QuestionAnswerOutlined';
+import FilledQuestionIcon from '@mui/icons-material/QuestionAnswer';
 import HeartIcon from '@mui/icons-material/FavoriteBorder';
+import FilledHeartIcon from '@mui/icons-material/Favorite';
 import Matching from '@mui/icons-material/PeopleOutlined';
+import FilledMatching from '@mui/icons-material/People';
 import Saved from '@mui/icons-material/BookmarksOutlined';
+import FilledSaved from '@mui/icons-material/Bookmarks';
 import AskIcon from '@mui/icons-material/ChatOutlined';
+import FilledAskIcon from '@mui/icons-material/Chat';
 import About from '@mui/icons-material/InfoOutlined';
+import FilledAbout from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
+import { ReactSession } from "react-client-session";
+
+const userSession = ReactSession.get('userSession'); 
 
 const drawerWidth = 240;
 
@@ -27,29 +35,87 @@ const bgColor = {
 
 export default function ClippedDrawer() {
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState()
+  const [likeIcon, setLikedIcon] = useState()
+  const [savedIcon, setSavedIcon] = useState()
+  const [askIcon, setAskedIcon] = useState()
+  const [questionIcon, setQuestionIcon] = useState()
+  const [peopleIcon, setPeopleIcon] = useState()
+  const [aboutIcon, setAboutIcon] = useState()
+
+  useEffect(() => {
+    setCurrentPage(window.location.href.split("/")[3])
+  }, [window.location.href])
+
+
+  useEffect(() => {
+
+    if (currentPage === "LikedPosts") {
+      setLikedIcon(<FilledHeartIcon style={{ color: "green" }} />)
+    } else {
+      setLikedIcon(<HeartIcon />)
+    }
+
+    if (currentPage === "SavedPosts") {
+      setSavedIcon(<FilledSaved style={{ color: "green" }} />)
+    } else {
+      setSavedIcon(<Saved />)
+    }
+
+    if (currentPage === "YourQuestions") {
+      setAskedIcon(<FilledAskIcon style={{ color: "green" }} />)
+    } else {
+      setAskedIcon(<AskIcon />)
+    }
+
+    if (currentPage === "forum") {
+      setQuestionIcon(<FilledQuestionIcon style={{ color: "green" }} />)
+    } else {
+      setQuestionIcon(<QuestionIcon />)
+    }
+
+    if (currentPage === "MatchingCompanies") {
+      setPeopleIcon(<FilledMatching style={{ color: "green" }} />)
+    } else {
+      setPeopleIcon(<Matching />)
+    }
+
+    if (currentPage === "") {
+      setAboutIcon(<FilledAbout style={{ color: "green" }} />)
+    } else {
+      setAboutIcon(<About />)
+    }
+
+
+  }, [currentPage])
+
+
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+    <div>
+    <Box sx={{ display: 'flex'}}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} style={bgColor}>
-        <CustomNavBar/>
+        <CustomNavBar />
       </AppBar>
+      {currentPage ? 
       <Drawer
         variant="permanent"
         sx={{
           width: drawerWidth,
-          display: {xs: 'none', md: 'flex'},
+          display: { xs: 'none', md: 'flex' },
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto', marginTop: '10px' }}>
           <List>
             {['Questions'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>{navigate('/forum');}}>
+              <ListItem key={text} disablePadding onClick={() => { navigate('/forum'); }}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {index === 0 ? <QuestionsIcon /> : null}
+                    {index === 0 ? questionIcon : null}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
@@ -59,23 +125,35 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['Liked Posts', 'Saved Posts' , 'Your Questions','Matching Companies', 'About Us'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={()=>{navigate('/'+ text.replace(' ', ''));}}>
+            {['Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/' + text.replace(' ', '')); }}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {text === 'Liked Posts' ? <HeartIcon /> : 
-                    text === 'Your Questions' ? <AskIcon /> :
-                    text === 'Saved Posts' ? <Saved /> :
-                    text === 'Matching Companies' ? <Matching /> : 
-                    text === 'About Us' ? <About /> : null}
+                    {text === 'Liked Posts' ? likeIcon :
+                      text === 'Your Questions' ? askIcon :
+                        text === 'Saved Posts' ? savedIcon :
+                          text === 'Matching Companies' ? peopleIcon : null}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
+              
+            ))}
+            {['About Us'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/'); }}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {text === 'About Us' ? aboutIcon : null}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              
             ))}
           </List>
         </Box>
-      </Drawer>
+      </Drawer> : null }
     </Box>
+</div>
   );
 }

@@ -1,4 +1,4 @@
-import { Paper, Grid, Avatar } from '@mui/material';
+import { Paper, Grid, Avatar, Typography } from '@mui/material';
 
 const PComment = (props) => {
 
@@ -36,20 +36,19 @@ const createdAt =new Date(props.createdAt);
     
     <div>
       <div style={{ padding: 1 }} className="App">
-      <Paper style={{ padding: "10px 10px"}}
+      <Paper style={{ padding: "10px 10px", backgroundColor: 'rgb(252,252,252)'}}
               >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-            <Avatar alt="user profile pic"  />
+            <Avatar  style={{backgroundColor:"#1682FD"}}alt="user profile pic"  />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
             <h6 style={{ margin: 0, textAlign: "left", fontSize:'small'}}>{props.username}</h6>
-            <p style={{ fontSize:'small',textAlign: "left"}}>
+            <Typography style={{ fontSize:'small',textAlign: "left"}}>
             {props.body}
-            </p>
+            </Typography>
             <p style={{ textAlign: "left", color: "gray" ,fontSize:'small'}}>
               {timeSince(createdAt)} ago 
-              
             </p>
           </Grid>
         </Grid>

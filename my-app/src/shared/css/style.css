@@ -1,9 +1,17 @@
 
-.wrapper {
-    display: flexbox;
-    width: 60%;
-    margin: 0 auto;
-}
+.landingPage{
+    background-image: url("../images/gradient.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: fixed;
+    position: absolute;
+    top: 81px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 120%;
+    }
 
 body {
     background-color: rgb(234, 234, 234);
@@ -31,7 +39,7 @@ body {
 .logo {
     height: 40px;
     width: auto;
-    margin: 0.5em 1em ;
+    margin: 0.5em 2.5em ;
     display: inline;
     float: left;
 }
@@ -130,16 +138,17 @@ body {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     border: none;
-    width: 80%;
+    width: 55%;
+    padding-bottom: 20px;
 }
 
-.adoptor {
+.adopter {
     float: left;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-.adoptor, .innovator {
+.adopter, .innovator {
     text-align: center;
     width: 50%;
     padding: 0 50px;

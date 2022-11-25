@@ -45,8 +45,16 @@ export default function PostPage() {
   }, [searchValue, userSession._id])
 
 
-  return (
-    <Grid container direction={"column"} spacing={2}>
+    return (
+      <Grid 
+      style={{ 
+        marginLeft: '15.5%', 
+        marginRight: 'auto', 
+        width: "70%" 
+        }} 
+      container 
+      direction={"column"} 
+      spacing={2}>
 
       <Grid item xs={6} md={8}>
         <SearchBar page="LikedPosts" />
@@ -58,6 +66,7 @@ export default function PostPage() {
               <PostCard
                 id={post._id}
                 username={post.postUserName}
+                postsector={post.postSector}
                 title={post.postTitle}
                 body={post.postBody}
                 likes={post.postLikes}
