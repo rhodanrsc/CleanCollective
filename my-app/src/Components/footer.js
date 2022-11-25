@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Grid, Box, Link } from "@mui/material";
 import logo from '../shared/images/CCLogo.png'
 
+
 export default function Footer() {
     return <footer>
         <Box 
@@ -18,7 +19,7 @@ export default function Footer() {
             <Container maxWidth='lg'>
                 <Grid container spacing={5} marginLeft='100px'>
                     <Grid item xs={2} sm={2}>
-                        <img className="logo" style={{width:'100px'}} src={logo} alt=""></img>
+                        <img className="logo" style={{width:'100px', height:'auto'}} src={logo} alt=""></img>
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Box borderBottom={1}>Help</Box>

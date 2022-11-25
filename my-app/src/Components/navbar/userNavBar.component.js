@@ -12,12 +12,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import logo from '../../shared/images/CCLogo.png';
+import logo from '../../shared/images/logoOnly.png';
 import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
 const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
-const settings = ['Profile', 'Account', 'Settings'];
+const settings = ['Company Profile','Profile', 'Account', 'Settings'];
 
 const ResponsiveAppBar = () => {
   let userSession = ReactSession.get("userSession");
@@ -30,6 +30,7 @@ const ResponsiveAppBar = () => {
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    console.log(userSession)
   };
 
   const handleCloseNavMenu = () => {
@@ -46,6 +47,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
+    
     <AppBar position="static" style={bgColor}>
       <Container maxWidth="100%">
         <Toolbar disableGutters>
@@ -161,20 +163,32 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {/* options of drop down */}
-              {/* profile */}
+              {/* company profile */}
               {settings.slice(0, 1).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/companyProfile');
+                    navigate('/companyPage/' + userSession.associatedCompanies[0].companyName);
+                  }}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+
+              {/* profile */}
+              {settings.slice(1, 2).map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate('/userProfile');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
 
               {/* account */}
-              {settings.slice(1, 2).map((setting) => (
+              {settings.slice(2, 3).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {
@@ -186,7 +200,7 @@ const ResponsiveAppBar = () => {
               ))}
 
               {/* settings */}
-              {settings.slice(2, 3).map((setting) => (
+              {settings.slice(3, 4).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {

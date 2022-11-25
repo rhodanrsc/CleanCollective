@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -18,9 +19,9 @@ const Logout = () => {
         
       };
   return (
-    <div className="form-wrapper">
+    <Typography className="form-wrapper">
         <span onClick={logout}>Logout</span>
-    </div>
+    </Typography>
   );
 };
 

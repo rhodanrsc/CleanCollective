@@ -42,7 +42,6 @@ export default function ClippedDrawer() {
   const [questionIcon, setQuestionIcon] = useState()
   const [peopleIcon, setPeopleIcon] = useState()
   const [aboutIcon, setAboutIcon] = useState()
-  const [visibility, setVisibility] = useState()
 
   useEffect(() => {
     setCurrentPage(window.location.href.split("/")[3])
@@ -83,10 +82,8 @@ export default function ClippedDrawer() {
 
     if (currentPage === "") {
       setAboutIcon(<FilledAbout style={{ color: "green" }} />)
-      setVisibility('hidden')
     } else {
       setAboutIcon(<About />)
-      setVisibility('visible')
     }
 
 
@@ -96,11 +93,11 @@ export default function ClippedDrawer() {
 
   return (
     <div>
-    {userSession ?
     <Box sx={{ display: 'flex'}}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} style={bgColor}>
         <CustomNavBar />
       </AppBar>
+      {currentPage ? 
       <Drawer
         variant="permanent"
         sx={{
@@ -108,7 +105,7 @@ export default function ClippedDrawer() {
           display: { xs: 'none', md: 'flex' },
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-          contentVisibility: visibility
+          
         }}
       >
         <Toolbar />
@@ -155,8 +152,8 @@ export default function ClippedDrawer() {
             ))}
           </List>
         </Box>
-      </Drawer>
+      </Drawer> : null }
     </Box>
-           : null }</div>
+</div>
   );
 }
