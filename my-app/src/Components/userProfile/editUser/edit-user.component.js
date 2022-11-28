@@ -25,7 +25,7 @@ export default function ControlledAccordions() {
 
   let userEducationString;
   let education;
-  if (userSession.education) {
+  if (userSession) {
     education = userSession.education[0];
 
     const monthNames = [
@@ -143,7 +143,7 @@ export default function ControlledAccordions() {
                   <TableRow>
                     <TableCell>Education</TableCell>
                     <TableCell>
-                      {userEducationString ? userEducationString : null}
+                      {userSession ? userEducationString : null}
                     </TableCell>
                     <TableCell>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ReactSession } from "react-client-session";
 import { useParams } from "react-router-dom";
 import { Box, Grid, Card, CardHeader, CardContent, Avatar, IconButton, Typography, Button, ButtonGroup } from "@mui/material"
 import Hamburger from "../companyHamburger/Hamburger"
@@ -10,8 +11,9 @@ import MembersTab from "./tabs/membersTab";
 import ProductTab from "./tabs/productTab";
 
 
-export default function TopCard() {
 
+export default function TopCard() {
+    let userSession = ReactSession.get("userSession");
     const params = useParams()
     const [company, setCompany] = useState()
     const [companyLocation, setCompanyLocation] = useState()
@@ -77,50 +79,54 @@ export default function TopCard() {
         }
     }
 
-    return (
-        <Box>
-            <Grid>
-                {/*Avatar and Heading Info Section*/}
-                <Card elevation={5}>
-                    <CardHeader
-                        avatar={
-                            <Avatar variant="square" sx={{ bgcolor: "red" }} >
-                                {company ? company.companyName.toUpperCase().substring(0, 1) : null}
-                            </Avatar>
-                        }
-                        action={
-                            <Hamburger id={company ? company.members[0].memberID : ""} />}
-                        title={company ? company.companyName : null}
-                        subheader={company ? companyLocation : null}
-                    />
+    if (userSession) {
+        return (
 
-                    {/*Statement and companyType Section*/}
-                    <CardContent>
-                        <Typography variant="body1" color="text.primary">
-                            {company ? company.companyInformation.statement : null}
-                        </Typography>
-                        <Typography variant="body2" color="success.main">
-                            {company ? companyTypeInfo : null}
-                        </Typography>
-                    </CardContent>
+            <Box>
+                <Grid>
+                    {/*Avatar and Heading Info Section*/}
+                    <Card style={{ marginBottom: "100px" }} elevation={5}>
+                        <CardHeader
+                            avatar={
+                                <Avatar variant="square" sx={{ bgcolor: "red" }} >
+                                    {company ? company.companyName.toUpperCase().substring(0, 1) : null}
+                                </Avatar>
+                            }
+                            action={
+                                <Hamburger id={company ? company.members[0].memberID : ""} />}
+                            title={company ? company.companyName : null}
+                            subheader={company ? companyLocation : null}
+                        />
 
-                    {/*Button Section*/}
-                    <ButtonGroup variant="string" >
-                        <Button onClick={changeCurrentButton} id="homeButton">Home</Button>
-                        <Button onClick={changeCurrentButton} id="aboutButton">About</Button>
-                        <Button onClick={changeCurrentButton} id="membersButton">Members</Button>
-                        <Button onClick={changeCurrentButton} id="productsButton">Products</Button>
-                    </ButtonGroup>
+                        {/*Statement and companyType Section*/}
+                        <CardContent>
+                            <Typography variant="body1" color="text.primary">
+                                {company ? company.companyInformation.statement : null}
+                            </Typography>
+                            <Typography variant="body2" color="success.main">
+                                {company ? companyTypeInfo : null}
+                            </Typography>
+                        </CardContent>
+
+                        {/*Button Section*/}
+                        <ButtonGroup variant="string" >
+                            <Button onClick={changeCurrentButton} id="homeButton">Home</Button>
+                            <Button onClick={changeCurrentButton} id="aboutButton">About</Button>
+                            <Button onClick={changeCurrentButton} id="membersButton">Members</Button>
+                            <Button onClick={changeCurrentButton} id="productsButton">Products</Button>
+                        </ButtonGroup>
 
 
-                    {/*Dependency Tab Section*/}
-                    <CardContent>
-                        {renderTab(currentButton)}
-                    </CardContent>
-                </Card>
-                <Card></Card>
-            </Grid>
-        </Box >
+                        {/*Dependency Tab Section*/}
+                        <CardContent>
+                            {renderTab(currentButton)}
+                        </CardContent>
+                    </Card>
+                    <Card></Card>
+                </Grid>
+            </Box >
 
-    );
+        );
+    }
+
 }
