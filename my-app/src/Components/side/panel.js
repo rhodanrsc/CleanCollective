@@ -23,9 +23,6 @@ import FilledAskIcon from '@mui/icons-material/Chat';
 import About from '@mui/icons-material/InfoOutlined';
 import FilledAbout from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
-import { ReactSession } from "react-client-session";
-
-const userSession = ReactSession.get('userSession'); 
 
 const drawerWidth = 240;
 
@@ -125,12 +122,12 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies'].map((text, index) => (
+            {['Liked Posts', 'Saved Posts', 'Profile Page', 'Matching Companies'].map((text) => (
               <ListItem key={text} disablePadding onClick={() => { navigate('/' + text.replace(' ', '')); }}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Liked Posts' ? likeIcon :
-                      text === 'Your Questions' ? askIcon :
+                      text === 'Profile Page' ? askIcon :
                         text === 'Saved Posts' ? savedIcon :
                           text === 'Matching Companies' ? peopleIcon : null}
                   </ListItemIcon>

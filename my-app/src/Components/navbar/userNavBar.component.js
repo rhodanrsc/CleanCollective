@@ -17,7 +17,7 @@ import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
 const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
-const settings = ['Company Profile', 'Profile', 'Account', 'Settings'];
+const settings = ['Company Profile', 'Profile', 'Settings'];
 
 const ResponsiveAppBar = () => {
   let userSession = ReactSession.get("userSession");
@@ -187,20 +187,8 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
 
-              {/* account */}
-              {settings.slice(2, 3).map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => {
-                    handleCloseNavMenu();
-                    navigate('/');
-                  }}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-
               {/* settings */}
-              {settings.slice(3, 4).map((setting) => (
+              {settings.slice(2, 3).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {
