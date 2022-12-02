@@ -46,36 +46,37 @@ export default function CompanyPost() {
 
     }, [params.companyName, userSession])
 
+    if (userSession) {
+        return (
+            <Box>
+                <Card elevation={5}>
 
-    return (
-        <Box>
-            <Card elevation={5}>
+                    <CardHeader
+                        title="Posts"
+                    />
 
-                <CardHeader
-                    title="Posts"
-                />
+                    <CardContent>
+                        {companyPosts ? companyPosts.map((post) => {
+                            return (
+                                <PostCard
+                                    id={post.id}
+                                    username={post.postCompanyName}
+                                    title={post.postTitle}
+                                    body={post.postBody}
+                                    likes={post.postLikes}
+                                    createdAt={post.createdAt}
+                                    key={post._id}
+                                    accessLevel={post.accessLevel}
+                                    anonymous={post.anonymous}
+                                    userType={post.userType}
+                                />
+                            )
+                        }) : null}
 
-                <CardContent>
-                    {companyPosts ? companyPosts.map((post) => {
-                        return (
-                            <PostCard
-                                id={post.id}
-                                username={post.postCompanyName}
-                                postsector={post.postSector}
-                                title={post.postTitle}
-                                body={post.postBody}
-                                likes={post.postLikes}
-                                createdAt={post.createdAt}
-                                key={post._id}
-                                accessLevel={post.accessLevel}
-                                anonymous={post.anonymous}
-                                userType={post.userType}
-                            />
-                        )
-                    }) : null}
+                    </CardContent>
+                </Card>
+            </Box>
+        )
+    }
 
-                </CardContent>
-            </Card>
-        </Box>
-    )
 }

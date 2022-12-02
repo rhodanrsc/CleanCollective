@@ -17,7 +17,7 @@ import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
 const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
-const settings = ['Company Profile','Profile', 'Account', 'Settings'];
+const settings = ['Company Profile', 'Profile', 'Account', 'Settings'];
 
 const ResponsiveAppBar = () => {
   let userSession = ReactSession.get("userSession");
@@ -47,7 +47,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    
+
     <AppBar position="static" style={bgColor}>
       <Container maxWidth="100%">
         <Toolbar disableGutters>
@@ -181,7 +181,7 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/profilePage');
+                    navigate('/profilepage');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>

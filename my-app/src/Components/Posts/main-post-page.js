@@ -7,6 +7,7 @@ import axios from "axios";
 import SearchBar from "./SearchBar"
 import { Grid, Button } from "@mui/material"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CreateCompanySidePane from "../userProfile/public_profile_Page/side_panel/create_company_side_panel";
 export default function PostPage() {
   const params = useParams()
   const navigate = useNavigate()
@@ -56,15 +57,15 @@ export default function PostPage() {
 
   return (
 
-    <Grid style={{ 
-      marginLeft: '15%', 
-      marginRight: 'auto', 
-      width: "85%" 
-      }} 
-      container 
-      direction={"row"} 
+    <Grid style={{
+      marginLeft: '15%',
+      marginRight: 'auto',
+      width: "85%"
+    }}
+      container
+      direction={"row"}
       spacing={5}
-      >
+    >
 
       {/*Search and Create Grid */}
       <Grid item xs={6} md={12}>
@@ -93,7 +94,7 @@ export default function PostPage() {
                 id={post._id}
                 username={post.postUserName}
                 title={post.postTitle}
-                postsector = {post.postSector}
+                postsector={post.postSector}
                 body={post.postBody}
                 likes={post.postLikes}
                 createdAt={post.createdAt}
@@ -103,9 +104,17 @@ export default function PostPage() {
             )) : ""}
           </Grid>
           <Grid item xs={6} md={3}>
-            <SideCompaniesCard
-              title="Companies of Interest"
-            />
+            <Grid>
+              <Grid container spacing={6}>
+                <Grid item xs={6} md={10}>
+                  <SideCompaniesCard title="Comapnies of Interest" />
+                </Grid>
+                <Grid item xs={6} md={12}>
+                  <CreateCompanySidePane />
+                </Grid>
+              </Grid>
+            </Grid>
+
           </Grid>
         </Grid>
 

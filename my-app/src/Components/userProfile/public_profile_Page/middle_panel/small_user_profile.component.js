@@ -65,18 +65,18 @@ export default function BackgroundLetterAvatarsSmall() {
 
   //RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE
   return (
-    <Grid container direction="row" spacing={2}>
-      <Card>
-        <CardHeader
-          avatar={<Avatar {...stringAvatar({ profilename })} />}
-          title={profilename ? profilename : ""}
-          subheader={email ? email : ""}
-          action={
-           <CompanyHamburger id={data ? data._id : ""}/>
-          }
-        />
-      </Card>
-    </Grid>
+
+
+    <CardHeader
+      avatar={<Avatar {...stringAvatar({ profilename })} />}
+      title={profilename ? profilename : ""}
+      subheader={email ? email : ""}
+      action={
+        <CompanyHamburger id={data ? data._id : ""} />
+      }
+    />
+
+
 
   );
 }
