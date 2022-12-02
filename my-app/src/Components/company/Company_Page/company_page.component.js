@@ -12,6 +12,7 @@ import CreateCompanyPost from "./createCompanyPost.js/createCompanyPost.componen
 
 
 
+
 export default function CompanyPage() {
     let userSession = ReactSession.get("userSession");
     const params = useParams()
@@ -37,14 +38,17 @@ export default function CompanyPage() {
         if (company) {
             setCompanyOwner(company.members[0].memberID)
         }
-    })
+    }, [company])
     const myStyle = {
         width: "120%",
 
     }
 
+
     return (
-        <Box style={myStyle}>
+
+        < Box style={myStyle} >
+
             <Grid
                 style={{
                     marginLeft: '16%',
@@ -53,8 +57,8 @@ export default function CompanyPage() {
                 }}
                 container
                 direction={"column"}
-                spacing={2}>
-                <Grid container spacing={3}>
+                spacing={1}>
+                <Grid container spacing={5}>
                     <Grid item xs={6} md={8}>
                         <TopCard />
                     </Grid>
@@ -65,7 +69,7 @@ export default function CompanyPage() {
 
                 </Grid>
 
-                <Grid container spacing={2}>
+                <Grid container spacing={5}>
                     {companyOwner === userSession._id ? <Grid item xs={6} md={8}>
 
                         <CreateCompanyPost />
@@ -76,7 +80,9 @@ export default function CompanyPage() {
                     </Grid>
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
 
     );
+
+
 }

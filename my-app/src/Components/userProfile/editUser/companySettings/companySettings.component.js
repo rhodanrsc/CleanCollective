@@ -36,13 +36,14 @@ export default function CompanySettings() {
 
     useEffect(() => {
 
-        if (userSession.members) {
-            axios.get("http://localhost:5000/company/getCompany/" + userSession.associatedCompanies[0].companyName)
-                .then((response) => {
-                    setCompany(response.data)
-                })
-                .catch((error) => console.log("Error with getting company: " + error))
-        }
+
+        axios.get("http://localhost:5000/company/getCompany/" + userSession.associatedCompanies[0].companyName)
+            .then((response) => {
+
+                setCompany(response.data)
+            })
+            .catch((error) => console.log("Error with getting company: " + error))
+
 
 
 
@@ -56,7 +57,6 @@ export default function CompanySettings() {
             console.log("yes")
         }
     }
-
 
 
 

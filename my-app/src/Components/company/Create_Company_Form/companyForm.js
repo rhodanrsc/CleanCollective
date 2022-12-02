@@ -23,7 +23,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setAnchorEl(null);
     },
-      1500);
+      1000);
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -35,7 +35,7 @@ const CreateCompany = (props) => {
 
   //Handle updating the popover for TRL
   useEffect(() => {
-    let currentTRL = document.getElementById("formControlSelect4").value;
+    let currentTRL = document.getElementById("level").value;
     setTRlInput(currentTRL);
     if (listOfTRLStages) {
       listOfTRLStages.map(function (stage) {
@@ -55,7 +55,7 @@ const CreateCompany = (props) => {
     setTimeout(() => {
       setTRLAnchorEl(null);
     },
-      1500);
+      1000);
   };
   const trlOpen = Boolean(trlAnchorEl);
   const trlID = open ? 'simple-popover' : undefined;
@@ -119,7 +119,7 @@ const CreateCompany = (props) => {
           </div>
 
           <h2 className="second-header">Viewable by all users</h2>
-          <br/>
+          <br />
           <Formik {...props} validateOnChange={false} validateOnBlur={false}>
             {({ errors, touched, isValidating, values }) => (
               <Form>
@@ -137,11 +137,11 @@ const CreateCompany = (props) => {
                     />
                     {<div style={{ color: "red" }}>{errors.companyName}</div>}
                   </div>
-                  <br/>
+                  <br />
                   {/* Company Type*/}
                   <div className="type1">
                     <label htmlFor="companyType">Company Type:</label>
-            
+
                     <Field
                       as="select"
                       name="type"
@@ -178,7 +178,7 @@ const CreateCompany = (props) => {
                   </div>
 
                   {/* Company Logo*/}
-                  <br/>
+                  <br />
                   <div className="file">
                     <label htmlFor="formControlFile1">Company Logo:</label>
                     <Field
@@ -188,7 +188,7 @@ const CreateCompany = (props) => {
                       id="file"
                     />
                   </div>
-                  <br/>
+                  <br />
                   {/* Company Sector*/}
                   <div className="sector">
                     <label htmlFor="companyType">Sector:</label>
@@ -209,13 +209,13 @@ const CreateCompany = (props) => {
                         : null}
                     </Field>
                   </div>
-                  <br/>
+                  <br />
                   {/* Company Stage*/}
                   <div className="level">
                     <label htmlFor="companyStages" className="level">
                       Technology Readiness Level:
                     </label>
-                    
+
                     <Field
                       as="select"
                       name="stage"
@@ -251,7 +251,7 @@ const CreateCompany = (props) => {
                       <br></br>
                       {trlDescription}</Popover>
                   </div>
-                  <br/>
+                  <br />
                   {/* Company Employees*/}
                   <div className="employees">
                     <label htmlFor="numberOfEmployees">
@@ -277,7 +277,7 @@ const CreateCompany = (props) => {
                       </option>
                     </Field>
                   </div>
-                  <br/>
+                  <br />
                   {/* Year Found */}
                   <div className="year">
                     <label>Year Founded:</label>
@@ -296,7 +296,7 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-                  <br/>
+                  <br />
                   {/* Webiste URL*/}
                   <div className="website">
                     <label htmlFor="websiteURL">Website:</label>
@@ -310,7 +310,7 @@ const CreateCompany = (props) => {
                     />
                     {<div style={{ color: "red" }}>{errors.website}</div>}
                   </div>
-                  <br/>
+                  <br />
                   {/* Address */}
                   <div className="address">
                     <label>Address:</label>
@@ -324,7 +324,7 @@ const CreateCompany = (props) => {
                     />
                     {<div style={{ color: "red" }}>{errors.address}</div>}
                   </div>
-                  <br/>
+                  <br />
                   {/* City */}
                   <div className="city">
                     <label>City:</label>
@@ -338,7 +338,7 @@ const CreateCompany = (props) => {
                     />
                     {<div style={{ color: "red" }}>{errors.city}</div>}
                   </div>
-                  <br/>
+                  <br />
                   {/* ZIP */}
                   <div className="zip1">
                     <label>ZIP:</label>
@@ -352,7 +352,7 @@ const CreateCompany = (props) => {
                     />
                     {<div style={{ color: "red" }}>{errors.ZIP}</div>}
                   </div>
-                  <br/>
+                  <br />
                   {/* Country */}
 
                   <div className="country">
@@ -372,7 +372,7 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-                  <br/>
+                  <br />
                   {/* State/Province */}
                   <div className="province-state">
                     <label name="province">Province/State:</label>
@@ -396,7 +396,7 @@ const CreateCompany = (props) => {
                       })}
                     </Field>
                   </div>
-                  <br/>
+                  <br />
                   {/* Disclaimer Check*/}
                   <div className="form-check">
                     <Field

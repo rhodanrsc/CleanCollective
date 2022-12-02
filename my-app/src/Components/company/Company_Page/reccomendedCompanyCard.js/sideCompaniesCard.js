@@ -74,54 +74,57 @@ export default function SideCompaniesCard(props) {
     })
 
 
-    return (
-        <Box>
-            <Card elevation={5} style={{ width: "300px" }}>
-                <CardHeader
-                    titleTypographyProps={{ variant: 'h5' }}
-                    title={props.title}
-                />
-                <CardContent>
-                    {companies.map((company, index) => {
-                        return (
-                            <Card key={company.companyName + "Card"} style={{ marginTop: "7px", marginBottom: "7px" }} >
-                                <CardHeader
-                                    key={company.companyName}
-                                    avatar={
-                                        <Avatar variant="square" sx={{ backgroundColor: "green" }} aria-label="recipe">
-                                            {company.companyName.toUpperCase().substring(0, 1)}
-                                        </Avatar>
-                                    }
-                                    title={company.companyName}
-                                    subheader={company.companyType + " - " + company.sector.name}
+    if (companies) {
+        return (
+            <Box>
+                <Card elevation={5} style={{ width: "300px" }}>
+                    <CardHeader
+                        titleTypographyProps={{ variant: 'h5' }}
+                        title={props.title}
+                    />
+                    <CardContent>
+                        {companies.map((company, index) => {
+                            return (
+                                <Card key={company.companyName + "Card"} style={{ marginTop: "7px", marginBottom: "7px" }} >
+                                    <CardHeader
+                                        key={company.companyName}
+                                        avatar={
+                                            <Avatar variant="square" sx={{ backgroundColor: "green" }} aria-label="recipe">
+                                                {company.companyName.toUpperCase().substring(0, 1)}
+                                            </Avatar>
+                                        }
+                                        title={company.companyName}
+                                        subheader={company.companyType + " - " + company.sector.name}
 
-                                />
+                                    />
 
-                                {/*View profile Button Section*/}
-                                <Chip
-                                    key={company.companyName + "" + index}
+                                    {/*View profile Button Section*/}
+                                    <Chip
+                                        key={company.companyName + "" + index}
 
-                                    onMouseEnter={handleChipFill}
-                                    onMouseLeave={handleChipUnFill}
-                                    onClick={event => handleChipClick(event, company.companyName)}
+                                        onMouseEnter={handleChipFill}
+                                        onMouseLeave={handleChipUnFill}
+                                        onClick={event => handleChipClick(event, company.companyName)}
 
-                                    id={"chip" + index}
-                                    style={{ margin: "0px 0 10px 68px" }}
-                                    component={'span'}
-                                    variant={checkChipNumber(index)}
-                                    label="View Profile"
-                                    color="primary"
+                                        id={"chip" + index}
+                                        style={{ margin: "0px 0 10px 68px" }}
+                                        component={'span'}
+                                        variant={checkChipNumber(index)}
+                                        label="View Profile"
+                                        color="primary"
 
-                                />
-
-
-                            </Card>
-                        )
-                    })}
-                </CardContent>
+                                    />
 
 
-            </Card >
-        </Box >
-    )
+                                </Card>
+                            )
+                        })}
+                    </CardContent>
+
+
+                </Card >
+            </Box >
+        )
+    }
+
 }

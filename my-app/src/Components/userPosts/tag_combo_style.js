@@ -57,14 +57,22 @@ const InputWrapper = styled("div")(
 `
 );
 
+const styles = {
+
+  big: {
+    fontSize: 20
+  }
+
+};
+
 function Tag(props) {
   const { label, onDelete, ...other } = props;
   return (
     <div style={{ opacity: "0.4" }} {...other}>
       <span className="listOfTags">{label}</span>
       <CloseIcon
-        // iconstyle={window.location.pathname === "/createPost" ? styles.bigIcon : null}
-        // style={window.location.pathname === "/createPost" ? styles.big : null}
+
+        style={styles.big}
         onClick={onDelete}
       />
     </div>
