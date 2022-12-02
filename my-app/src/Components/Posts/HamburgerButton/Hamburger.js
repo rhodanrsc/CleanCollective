@@ -132,12 +132,14 @@ export default function Hamburger(props) {
         </div>
 
         {owned ? (
-          <Typography padding={1} color={'rgb(150,150,150)'} >
+          
             <IconButton size='small'>
-            <EditIcon/>
-            
-            </IconButton>Edit
-          </Typography>
+              <Typography padding={1} color={'rgb(120,120,120)'} >
+              <EditIcon/>
+              Edit
+            </Typography>
+            </IconButton>
+          
         ) : null}
 
         {owned ? (

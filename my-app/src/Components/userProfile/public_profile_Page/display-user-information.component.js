@@ -15,7 +15,7 @@ import CreateCompanySidePane from "./side_panel/create_company_side_panel";
 import DescriptionBox from "./middle_panel/information_edit_box.component";
 import axios from "axios";
 import { Card, CardHeader, CardContent } from "@mui/material";
-import PostCard from "../../Posts/Post.Card";
+import PostCard from "./ProfilePosts.Card";
 
 export default function ProfilePage() {
   //grabbing user session data

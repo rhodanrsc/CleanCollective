@@ -28,6 +28,11 @@ body {
 
 /* NavBar */
 
+.navUsername {
+    position: absolute;
+    right: 2%;
+}
+
 .navBar {
     background-color: white;
     border-bottom: 1px rgb(175, 171, 171) solid;
@@ -101,11 +106,11 @@ body {
 
 .buttonGreenBig {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 12px 60px;
     margin: 15px;
 
-    width: 200px;
-    height: 86px;
+    width: 500px;
+    height: 250px;
 
     background: #309A47;
     border-radius: 8px;
