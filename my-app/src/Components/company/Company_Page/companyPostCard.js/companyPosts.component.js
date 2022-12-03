@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, Card, CardHeader, CardContent } from "@mui/material"
 import { useParams } from "react-router-dom";
-import PostCard from "../../../Posts/Post.Card"
+import PostCard from "../../../userProfile/public_profile_Page/ProfilePosts.Card"
 import { ReactSession } from "react-client-session";
 
 
@@ -49,7 +49,7 @@ export default function CompanyPost() {
     if (userSession) {
         return (
             <Box>
-                <Card elevation={5}>
+                <Card elevation={5} >
 
                     <CardHeader
                         title="Posts"
