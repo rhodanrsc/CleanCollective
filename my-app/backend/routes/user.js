@@ -40,39 +40,39 @@ router.route('/').get((req, res) => {
 
 //Creates a new User
 router.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10); //HASHING and SALTING
-    const password = hashedPassword;
-    const email = req.body.email;
-    //Creates an empty array
-    const associatedCompanies = [];
-    const posts = [];
-    const tags = req.body.tags;
-    const jobList = [];
-    const job = req.body.job;
-    jobList.push(job)
-    const edu = [];
-    const thisEdu = {
-      institution: req.body.institution,
-      dateStarted: req.body.dateStarted,
-      dateEnded: req.body.dateEnded,
-      program: req.body.program,
-      educationLevel: req.body.educationLevel,
-    }
-    edu.push(thisEdu);
-    //Still need comfirm accounts and post
+  const username = req.body.username;
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10); //HASHING and SALTING
+  const password = hashedPassword;
+  const email = req.body.email;
+  //Creates an empty array
+  const associatedCompanies = [];
+  const posts = [];
+  const tags = req.body.tags;
+  const jobList = [];
+  const job = req.body.job;
+  jobList.push(job)
+  const edu = [];
+  const thisEdu = {
+    institution: req.body.institution,
+    dateStarted: req.body.dateStarted,
+    dateEnded: req.body.dateEnded,
+    program: req.body.program,
+    educationLevel: req.body.educationLevel,
+  }
+  edu.push(thisEdu);
+  //Still need comfirm accounts and post
 
-    const newUser = new User.UserCollection({
-        username : username,
-        password : password,
-        email : email,
-        associatedCompanies  : associatedCompanies,
-        posts  : posts,
-        tags : tags,
-        job : jobList,
-        education : edu,
+  const newUser = new User.UserCollection({
+    username: username,
+    password: password,
+    email: email,
+    associatedCompanies: associatedCompanies,
+    posts: posts,
+    tags: tags,
+    job: jobList,
+    education: edu,
 
-    });
+  });
 
   newUser.save()
     .then(() => res.json('User Added!'))
@@ -205,10 +205,10 @@ router.route('/updateOneField/:id').post((req, res) => {
             } else {
               message = 'passwordError'
             }
-        } else if (updateType === "about"){
-          user.about = aboutContent;
+          } else if (updateType === "about") {
+            user.about = aboutContent;
 
-        }
+          }
 
           user.save()
             .then(() => res.send(message))
@@ -226,8 +226,10 @@ router.route('/logout').post((req, res, next) => {
   });
 });
 
-router.route('/getUser').get((req, res) => {
-  (res.send(req.user));
+router.route('/getUser/:username').get((req, res) => {
+  User.UserCollection.findOne({ username: req.params.username })
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 

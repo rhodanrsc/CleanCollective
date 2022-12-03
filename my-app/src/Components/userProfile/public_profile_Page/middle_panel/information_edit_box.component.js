@@ -1,6 +1,5 @@
-import { ReactSession } from "react-client-session";
 import React, { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 
 import { Avatar, CardHeader, Chip } from "@mui/material";
 //profile pic
@@ -11,25 +10,41 @@ import { Card, CardContent, Box, TextField, Grid, Typography, Divider } from "@m
 
 export default function DescriptionBox() {
   //for grabbing associated companies 
+  const params = useParams()
   const [company, setCompany] = useState();
+  const [data, setData] = useState();
+
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/user/getUser/" + params.username)
+      .then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log("error!" + error);
+      });
+  }, [params.username])
 
 
 
   useEffect(() => {
-    if (data.associatedCompanies.length > 0) {
-      axios.get("http://localhost:5000/company/getCompany/" + data.associatedCompanies[0].companyName)
-        .then((response) => {
-          setCompany(response.data)
-        })
-        .catch((error) => console.log("Error with getting company: " + error))
+    if (data) {
+      if (data.associatedCompanies.length > 0) {
+        axios.get("http://localhost:5000/company/getCompany/" + data.associatedCompanies[0].companyName)
+          .then((response) => {
+            setCompany(response.data)
+          })
+          .catch((error) => console.log("Error with getting company: " + error))
+      }
     }
+
   })
 
 
 
 
 
-  let data = ReactSession.get("userSession");
 
 
   const pastelColorPallete = [
@@ -84,36 +99,7 @@ export default function DescriptionBox() {
 
   }
 
-  const [aboutContent, setAboutContent] = useState(data.about);
-  const [editMode, setEditMode] = useState(false);
-  const handleEditMode = () => {
-    let aboutInput = document.getElementById("aboutTextBox");
-    aboutInput.removeAttribute("disabled");
-    setEditMode(true);
-  };
 
-  const handleSaveClick = () => {
-    let aboutInput = document.getElementById("aboutTextBox");
-    aboutInput.setAttribute("disabled", true);
-    setEditMode(false);
-
-    axios
-      .post("http://localhost:5000/user/updateOneField/" + data._id, {
-        updateType: "about",
-        about: aboutContent,
-      })
-      .then((res) => {
-        alert("worked");
-        console.log(aboutContent);
-        data.about = aboutContent;
-        ReactSession.set("userSession", data);
-      })
-      .catch((err) => alert("Something went wrong: " + err));
-  };
-
-  const handleAboutChange = (event) => {
-    setAboutContent(event.target.value);
-  };
 
   return (
     <div>
@@ -134,7 +120,7 @@ export default function DescriptionBox() {
                     About
                   </Typography>
                   <Typography variant="body1">
-                    {data.about ? data.about : null}
+                    {data ? data.about : null}
                   </Typography>
 
                 </Box>
@@ -143,7 +129,7 @@ export default function DescriptionBox() {
               <CardContent>
                 <Typography style={{ marginBottom: "10px" }} variant="h6" color="text.primary" >Interests</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {data.tags
+                  {data
                     ? data.tags.map((tag, index) => {
                       return (
                         <Chip
@@ -165,14 +151,14 @@ export default function DescriptionBox() {
               <CardContent>
                 <Typography variant="h6" color="text.primary">Current Professional Role</Typography>
                 <Typography variant="body1">
-                  {data.job ? data.job : null}
+                  {data ? data.job : null}
                 </Typography>
 
               </CardContent>
 
               <CardContent>
                 <Typography style={{ marginBottom: "10px" }} variant="h6" color="text.primary">Associated Companies</Typography>
-                {data.associatedCompanies ? data.associatedCompanies.map((company) => {
+                {data ? data.associatedCompanies.map((company) => {
                   return (
                     <Card elevation={5}>
                       <CardHeader
@@ -199,7 +185,7 @@ export default function DescriptionBox() {
 
               <CardContent>
                 <Typography style={{ marginBottom: "10px" }} variant="h6" color="text.primary">Education</Typography>
-                {data.education ? data.education.map((education) => {
+                {data ? data.education.map((education) => {
                   return (
                     <Card elevation={5} key={education.institution}>
                       <CardHeader
