@@ -164,7 +164,8 @@ const ResponsiveAppBar = () => {
             >
               {/* options of drop down */}
               {/* company profile */}
-              {settings.slice(0, 1).map((setting) => (
+              {userSession.associatedCompanies[0] ? 
+              settings.slice(0, 1).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {
@@ -173,7 +174,18 @@ const ResponsiveAppBar = () => {
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))
+              :
+              settings.slice(0, 1).map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate('/createCompany');
+                  }}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+             ))}
 
               {/* profile */}
               {settings.slice(1, 2).map((setting) => (
@@ -181,7 +193,7 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/profilepage');
+                    navigate('/profilePage');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>

@@ -94,7 +94,7 @@ export default function ClippedDrawer() {
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} style={bgColor}>
         <CustomNavBar />
       </AppBar>
-      {currentPage ? 
+      {currentPage && currentPage !== 'MatchingCompanies' ? 
       <Drawer
         variant="permanent"
         sx={{
@@ -149,7 +149,7 @@ export default function ClippedDrawer() {
             ))}
           </List>
         </Box>
-      </Drawer> : null }
+      </Drawer> : null}
     </Box>
 </div>
   );

@@ -26,6 +26,7 @@ import EditUser from "./Components/userProfile/editUser/edit-user.component";
 import CreatePost from "./Components/userPosts/create_user_post.component";
 import { ReactSession } from "react-client-session";
 import ProfilePage from './Components/userProfile/public_profile_Page/display-user-information.component'
+import Matching from './Components/matching/matching'
 //Main Form
 import PostPage from "./Components/Posts/main-post-page";
 import CompanyPage from "./Components/company/Company_Page/company_page.component"
@@ -70,6 +71,7 @@ const App = () => {
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
                   <Route path="/profilePage/" element={<ProfilePage />} />
+                  <Route path="/MatchingCompanies" element={<Matching />} />
 
                 </Routes>
 

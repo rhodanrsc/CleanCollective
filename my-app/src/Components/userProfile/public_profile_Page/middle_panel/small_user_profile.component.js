@@ -65,8 +65,6 @@ export default function BackgroundLetterAvatarsSmall() {
 
   //RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE
   return (
-
-
     <CardHeader
       avatar={<Avatar {...stringAvatar({ profilename })} />}
       title={profilename ? profilename : ""}
@@ -75,8 +73,5 @@ export default function BackgroundLetterAvatarsSmall() {
         <CompanyHamburger id={data ? data._id : ""} />
       }
     />
-
-
-
   );
 }

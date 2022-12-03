@@ -27,7 +27,7 @@ export default function CompanyHamburger(props) {
 
 
     function checkOwned() {
-        if (userSession) {
+        if (userSession && userSession.associatedCompanies.length > 0) {
             let userId = userSession._id;
             let companyId = userSession.associatedCompanies[0]._id;
             if (props.id === userId || props.id === companyId) {

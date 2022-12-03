@@ -31,7 +31,6 @@ export default function Hamburger(props) {
 
   function save() {
     if (userSession) {
-      console.log("save function");
       let userId = userSession._id;
       let postId = props.id;
       axios
@@ -50,9 +49,6 @@ export default function Hamburger(props) {
         });
     }
   }
-
-
-
 
   // Run a useEffect to compare the post id, and see if has been 'saved' by the current user through the userSession.
 
