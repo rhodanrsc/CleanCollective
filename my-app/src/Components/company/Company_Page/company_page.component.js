@@ -9,6 +9,7 @@ import TopCard from "./top/topCard";
 import SideCompaniesCard from "./reccomendedCompanyCard.js/sideCompaniesCard";
 import CompanyPost from "./companyPostCard.js/companyPosts.component";
 import CreateCompanyPost from "./createCompanyPost.js/createCompanyPost.component";
+import CreateCompanySidePane from "../../userProfile/public_profile_Page/side_panel/create_company_side_panel";
 
 
 
@@ -77,6 +78,9 @@ export default function CompanyPage() {
 
                     <Grid style={{ marginBottom: "100px" }} item xs={6} md={8}>
                         <CompanyPost />
+                    </Grid>
+                    <Grid item xs={6} md={4}>
+                        <CreateCompanySidePane />
                     </Grid>
                 </Grid>
             </Grid>
