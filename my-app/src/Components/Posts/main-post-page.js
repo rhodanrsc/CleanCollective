@@ -102,6 +102,7 @@ export default function PostPage() {
                 createdAt={post.createdAt}
                 key={post._id}
                 anonymous={post.anonymous}
+                userType={post.userType}
               />
             )) : ""}
           </Grid>

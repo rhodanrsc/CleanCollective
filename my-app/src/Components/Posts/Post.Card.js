@@ -91,6 +91,15 @@ export default function PostCard(props) {
     "#D0D0FE",
   ];
 
+  const handlePageNavigation = (userType, username) => {
+    if (userType === "company") {
+      return "/companyPage/" + username
+    } else {
+      return "/profilePage/" + username
+    }
+  }
+
+
   return (
     <div>
       <Card elevation={5} sx={{ maxWidth: "95%", marginLeft: "15px" }}>
@@ -105,8 +114,8 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{props.anonymous ? "Anonymous" : <a href={"/profilePage/" + props.username}>{props.username}</a>}<br />{date}</div>
-              {props.userType === "company" ?
+              <div>{props.anonymous ? "Anonymous" : <a href={handlePageNavigation(props.userType, props.username)} >{props.username}</a>}<br />{date}</div>
+              {props.userType === "company" && window.location.href.split("/")[3] === "companyPage" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
             </div>

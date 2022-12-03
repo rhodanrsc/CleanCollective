@@ -122,6 +122,11 @@ const CreateUser = () => {
         setOpen(true)
       })
       .catch((err) => alert("Something went wrong: " + err));
+
+    axios.post("http://localhost:5000/user/" + userSession._id)
+      .then((response) => {
+        ReactSession.set("userSession", response.data)
+      })
   }
 
   return (
