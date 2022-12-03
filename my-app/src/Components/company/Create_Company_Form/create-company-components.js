@@ -87,6 +87,8 @@ const CreateUser = () => {
           showMessage(message)
         }
 
+        navigate("/companyPage/" + newCompanyName)
+
       })
       .catch((err) => alert("Something went wrong: " + err));
   }
@@ -129,7 +131,7 @@ const CreateUser = () => {
         onSubmit={OnSubmit}
         enableReinitialize
       >
-   
+
       </CompanyForm>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Congratulations! {newCompanyName} is now in business!</DialogTitle>
