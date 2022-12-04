@@ -78,7 +78,7 @@ export default function ProfilePage() {
         </Grid>
 
         <Grid item xs={6} md={8}>
-          <Card elevation={5}>
+          <Card elevation={5} style={{backgroundColor: 'rgb(240,240,240)'}}>
             <CardHeader
               title="Posts"
             />

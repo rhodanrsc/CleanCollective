@@ -74,7 +74,7 @@ export default function SideCompaniesCard(props) {
     if (companies) {
         return (
             <Box>
-                <Card elevation={5} style={{ width: "300px" }}>
+                <Card elevation={5} style={{ width: "300px", backgroundColor: 'rgb(240,240,240)' }}>
                     <CardHeader
                         titleTypographyProps={{ variant: 'h5' }}
                         title={props.title}

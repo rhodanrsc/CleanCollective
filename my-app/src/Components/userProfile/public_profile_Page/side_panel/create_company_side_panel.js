@@ -17,7 +17,7 @@ export default function CreateCompanySidePane() {
 
 
     return (
-        <Card style={{ width: "300px" }} elevation={5}>
+        <Card style={{ width: "300px", backgroundColor: 'rgb(240,240,240)' }} elevation={5}>
             <CardHeader
                 style={{ textAlign: "center" }}
                 title="Add Your Company"

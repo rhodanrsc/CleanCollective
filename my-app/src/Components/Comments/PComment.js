@@ -36,7 +36,7 @@ const createdAt =new Date(props.createdAt);
     
     <div>
       <div style={{ padding: 1 }} className="App">
-      <Paper style={{ padding: "10px 10px", backgroundColor: 'rgb(252,252,252)'}}
+      <Paper style={{ padding: "10px 10px"}}
               >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
