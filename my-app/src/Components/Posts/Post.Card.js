@@ -172,7 +172,9 @@ export default function PostCard(props) {
             </IconButton>
             <Button onClick={function () {
               handleSignupDialog()
-              setCommentToggle(!isCommentToggle)
+              if (userSession) {
+                setCommentToggle(!isCommentToggle)
+              }
 
             }}>View Comments</Button>
             <Dialog open={open} onClose={handleClose}>

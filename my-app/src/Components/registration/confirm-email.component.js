@@ -1,13 +1,18 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-const ConfirmEmail = props =>(
-    <div className="card">
-        <div className="container">
-            <h2 className="card-header">A verification link has been sent to your email</h2>
-            <p className="card-body">Please click the link that has just been sent to complete registration!</p>
+export default function ConfirmEmail() {
+
+    const params = useParams()
+
+    return (
+        <div className="card">
+            <div className="container">
+                <h2 className="card-header">An email has been sent to {params.email}</h2>
+                <p className="card-body">Please check that your account information is correct.</p>
+            </div>
         </div>
-    </div>
-    
-)
+    )
 
-export default ConfirmEmail;
+}
+

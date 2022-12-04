@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import Slide from '@mui/material/Slide';
-import { ReactSession }  from 'react-client-session';
+import { ReactSession } from 'react-client-session';
 
 //Handles slide up animation of dialog boxes
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -16,7 +16,7 @@ export default function ChangeUsername() {
   const [error, setMessage] = useState({
     color: "",
     text: ""
-  }); 
+  });
 
   //Handles filling/unfilling of buttons
   const [buttonColor, setButton] = useState("outlined")
@@ -45,20 +45,20 @@ export default function ChangeUsername() {
   success : If all validation passes.
   */
   const showMessage = (event) => {
-    if(event === "emptyError"){
+    if (event === "emptyError") {
       setMessage({
         color: "red",
-        text : "*Username cannot be blank"
+        text: "*Username cannot be blank"
       });
-    } else if(event === "existError"){
+    } else if (event === "existError") {
       setMessage({
         color: "red",
-        text : "*Username already in use"
+        text: "*Username already in use"
       });
     } else {
       setMessage({
         color: "",
-        text : "Username succesfully changed!"
+        text: "Username succesfully changed!"
       });
     }
   };
@@ -75,33 +75,34 @@ export default function ChangeUsername() {
   }
 
   const onSubmit = () => {
-    if(userSession){
-    //Post request to change username
-    axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
-        updateType : "username",
-        username : newUsername
-    })
-    .then((res) => {
-        if (res.status === 200){
-            if(res.data === "emptyError"){
+    if (userSession) {
+      //Post request to change username
+      axios.post("http://localhost:5000/user/updateOneField/" + userSession._id, {
+        updateType: "username",
+        username: newUsername
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data === "emptyError") {
               showMessage('emptyError');
             }
             //If the user exists. Backend will return existError string
-            else if(res.data === "existError"){
+            else if (res.data === "existError") {
               showMessage('existError');
-            } else{
+            } else {
               showMessage('sucess');
               userSession.username = newUsername;
               ReactSession.set("userSession", userSession);
+              window.location.reload();
             }
-        } 
-        else{
-          Promise.reject();
-        } 
-      })
-    .catch((err) => alert("Something went wrong: " + err));
+          }
+          else {
+            Promise.reject();
+          }
+        })
+        .catch((err) => alert("Something went wrong: " + err));
+    };
   };
-};
 
   return (
     <div>
@@ -136,9 +137,9 @@ export default function ChangeUsername() {
             variant="standard"
             onChange={handleSetUsername}
           />
-          <span style={{color: error.color}}>{error.text}</span>
+          <span style={{ color: error.color }}>{error.text}</span>
         </DialogContent>
-        
+
         <DialogActions>
           <Button onClick={handleClose}>Exit</Button>
           <Button type="submit" onClick={onSubmit}>
