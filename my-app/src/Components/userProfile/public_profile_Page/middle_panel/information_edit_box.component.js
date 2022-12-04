@@ -106,7 +106,7 @@ export default function DescriptionBox() {
       <Box>
         <Grid>
           <Grid item xs={6} md={8}>
-            <Card elevation={5} style={{ backgroundColor: 'rgb(240,240,240)'}}>
+            <Card elevation={5} style={{ backgroundColor: 'rgb(240,240,240)' }}>
               <BackgroundLetterAvatarsSmall />
 
               <CardContent>
@@ -150,7 +150,7 @@ export default function DescriptionBox() {
 
               <CardContent>
                 <Typography variant="h6" color="text.primary">Current Professional Role</Typography>
-                <Typography variant="body1">
+                <Typography style={{ color: "green", marginTop: "8px", marginLeft: "5px" }} variant="body1">
                   {data ? data.job : null}
                 </Typography>
 

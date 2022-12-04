@@ -90,7 +90,7 @@ export default function CreateCompanyPost() {
 
     return (
         <Box>
-            <Card elevation={5}>
+            <Card style={{ marginTop: "-150px" }} elevation={5}>
 
                 <CardContent >
                     <Grid style={{ width: "100%" }} container spacing={1}>

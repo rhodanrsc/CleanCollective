@@ -79,7 +79,7 @@ export default function CompanyPage() {
                     <Grid style={{ marginBottom: "100px" }} item xs={6} md={8}>
                         <CompanyPost />
                     </Grid>
-                    <Grid item xs={6} md={4}>
+                    <Grid style={userSession._id !== companyOwner ? { marginTop: "60px" } : { marginTop: "-400px" }} item xs={6} md={4}>
                         <CreateCompanySidePane />
                     </Grid>
                 </Grid>
