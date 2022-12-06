@@ -89,7 +89,7 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{props.anonymous ? "Anonymous" : props.username}<br />{date}</div>
+              <div>{props.anonymous ? "Anonymous" : props.username}<div>{date}</div></div>
               {props.userType === "company" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
