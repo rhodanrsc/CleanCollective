@@ -58,12 +58,12 @@ export default function SideCompaniesCard(props) {
         axios.get("http://localhost:5000/company/")
             .then((response) => {
                 let allCompanies = response.data;
-                
+
                 // eslint-disable-next-line array-callback-return
                 allCompanies.map((company) => {
                     listOfCompanies.push(company)
                 })
-                
+
                 setCompanies(listOfCompanies)
 
             })
@@ -81,38 +81,38 @@ export default function SideCompaniesCard(props) {
                     />
                     <CardContent>
                         {companies.map((company, index) => {
-                            if (index <= 3) {  
+                            if (index < 3) {
                                 return (
-                                        <Card key={company.companyName + "Card"} style={{ marginTop: "7px", marginBottom: "7px" }} >
-                                            <CardHeader
-                                                key={company.companyName}
-                                                avatar={
-                                                    <Avatar variant="square" sx={{ backgroundColor: "green" }} aria-label="recipe">
-                                                        {company.companyName.toUpperCase().substring(0, 1)}
-                                                    </Avatar>
-                                                }
-                                                title={company.companyName}
-                                                subheader={company.companyType + " - " + company.sector.name}
-                                            />
+                                    <Card key={company.companyName + "Card"} style={{ marginTop: "7px", marginBottom: "7px" }} >
+                                        <CardHeader
+                                            key={company.companyName}
+                                            avatar={
+                                                <Avatar variant="square" sx={{ backgroundColor: "green" }} aria-label="recipe">
+                                                    {company.companyName.toUpperCase().substring(0, 1)}
+                                                </Avatar>
+                                            }
+                                            title={company.companyName}
+                                            subheader={company.companyType + " - " + company.sector.name}
+                                        />
 
-                                            {/*View profile Button Section*/}
-                                            <Chip
-                                                key={company.companyName + "" + index}
+                                        {/*View profile Button Section*/}
+                                        <Chip
+                                            key={company.companyName + "" + index}
 
-                                                onMouseEnter={handleChipFill}
-                                                onMouseLeave={handleChipUnFill}
-                                                onClick={event => handleChipClick(event, company.companyName)}
+                                            onMouseEnter={handleChipFill}
+                                            onMouseLeave={handleChipUnFill}
+                                            onClick={event => handleChipClick(event, company.companyName)}
 
-                                                id={"chip" + index}
-                                                style={{ margin: "0px 0 10px 68px" }}
-                                                component={'span'}
-                                                variant={checkChipNumber(index)}
-                                                label="View Profile"
-                                                color="primary"
-                                            />
-                                        </Card>
-                                    )
-                                }
+                                            id={"chip" + index}
+                                            style={{ margin: "0px 0 10px 68px" }}
+                                            component={'span'}
+                                            variant={checkChipNumber(index)}
+                                            label="View Profile"
+                                            color="primary"
+                                        />
+                                    </Card>
+                                )
+                            }
                         })}
                     </CardContent>
 

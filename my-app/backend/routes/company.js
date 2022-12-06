@@ -62,7 +62,7 @@ router.route("/add/:id").post((req, res) => {
         .then(function (foundTRL) {
           User.UserCollection.findById(req.params.id).then((user) => {
             let thisTRL;
-
+            let today = new Date()
             //if returned, assign  that object to thisTRL
             thisTRL = foundTRL[0];
 
@@ -71,6 +71,7 @@ router.route("/add/:id").post((req, res) => {
             let member = {
               memberName: user.username,
               memberID: user._id.toString(),
+              dateJoined: today
             };
             memberList.push(member);
 
