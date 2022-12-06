@@ -23,7 +23,8 @@ export default function ControlledAccordions() {
   let userSession = ReactSession.get("userSession");
   const [expanded, setExpanded] = useState(false);
 
-  let userEducationString;
+  let institueAndDate;
+  let programAndLevel;
   let education;
   if (userSession) {
     education = userSession.education[0];
@@ -53,16 +54,17 @@ export default function ControlledAccordions() {
     let endYear = new Date(education.dateEnded).getFullYear();
     let endString = thisMonthNameEnd + " " + endYear;
 
-    userEducationString =
+    institueAndDate =
       "Institution: " +
       education.institution +
-      " Date Attended: " +
+      " | Date Attended: " +
       startString +
       " - " +
-      endString +
-      " Program: " +
+      endString
+    programAndLevel =
+      "Program: " +
       education.program +
-      " Education level: " +
+      " | Education level: " +
       education.educationLevel;
   }
 
@@ -143,7 +145,11 @@ export default function ControlledAccordions() {
                   <TableRow>
                     <TableCell>Education</TableCell>
                     <TableCell>
-                      {userSession ? userEducationString : null}
+                      <Typography>
+                        {userSession ? institueAndDate : null}
+                      </Typography>
+
+                      <Typography>{userSession ? programAndLevel : null}</Typography>
                     </TableCell>
                     <TableCell>
 
