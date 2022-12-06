@@ -4,6 +4,7 @@ import Popover from "@mui/material/Popover";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import DeleteAlertDialog from "../companyHamburger/EditButton";
+import { Typography } from "@mui/material";
 import { ReactSession } from "react-client-session";
 
 import ReportAlertDialog from "../../../Posts/HamburgerButton/ReportAlertDialog";
@@ -26,9 +27,10 @@ export default function CompanyHamburger(props) {
 
 
     function checkOwned() {
-        if (userSession) {
+        if (userSession && userSession.associatedCompanies.length > 0) {
             let userId = userSession._id;
-            if (props.id === userId) {
+            let companyId = userSession.associatedCompanies[0]._id;
+            if (props.id === userId || props.id === companyId) {
                 setOwned(true)
             }
         }
@@ -69,7 +71,9 @@ export default function CompanyHamburger(props) {
                         ></DeleteAlertDialog>
                     </div>
                 ) : null}
-                <ReportAlertDialog />
+                <Typography padding={1}>
+                    <ReportAlertDialog />
+                </Typography>
             </Popover>
         </div>
     );

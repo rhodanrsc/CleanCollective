@@ -2,6 +2,7 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 export default function EditButton(props) {
 
@@ -14,7 +15,7 @@ export default function EditButton(props) {
     return (
         <div>
             <IconButton variant="outlined" onClick={handleClickOpen}>
-                <EditIcon />Edit
+                <EditIcon /><Typography padding={1}>Edit</Typography>
             </IconButton>
         </div>
     );

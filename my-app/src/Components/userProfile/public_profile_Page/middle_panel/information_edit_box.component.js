@@ -5,9 +5,8 @@ import React, { useEffect, useState } from "react";
 import { Avatar, CardHeader, Chip } from "@mui/material";
 //profile pic
 import BackgroundLetterAvatarsSmall from "./small_user_profile.component";
-import Edit from "@mui/icons-material/Edit";
 import axios from "axios";
-import { Card, CardContent, Box, TextField, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Box, TextField, Grid, Typography, Divider } from "@mui/material";
 
 
 export default function DescriptionBox() {

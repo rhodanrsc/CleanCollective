@@ -17,7 +17,7 @@ import Logout from '../logout/logout';
 import { useNavigate } from "react-router-dom";
 
 const pages = ['Questions', 'Liked Posts', 'Saved Posts', 'Your Questions', 'Matching Companies', 'About Us'];
-const settings = ['Company Profile', 'Profile', 'Account', 'Settings'];
+const settings = ['Company Profile', 'Profile', 'Settings'];
 
 const ResponsiveAppBar = () => {
   let userSession = ReactSession.get("userSession");
@@ -137,7 +137,7 @@ const ResponsiveAppBar = () => {
           {/* displays the nav buttons */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           </Box>
-          <Typography color="success" variant={"h6"} style={{ marginRight: "20px" }}>{userSession ? userSession.username : null}</Typography>
+          <Typography color="success" variant={"h6"} style={{ marginRight: "20px" }} className='navUsername'>{userSession ? userSession.username : null}</Typography>
           {/* profile drop down */}
           <Box sx={{ flexGrow: 0 }}>
 
@@ -164,7 +164,8 @@ const ResponsiveAppBar = () => {
             >
               {/* options of drop down */}
               {/* company profile */}
-              {settings.slice(0, 1).map((setting) => (
+              {userSession.associatedCompanies[0] ? 
+              settings.slice(0, 1).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {
@@ -173,7 +174,18 @@ const ResponsiveAppBar = () => {
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))
+              :
+              settings.slice(0, 1).map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate('/createCompany');
+                  }}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+             ))}
 
               {/* profile */}
               {settings.slice(1, 2).map((setting) => (
@@ -181,26 +193,14 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate('/profilepage');
-                  }}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-
-              {/* account */}
-              {settings.slice(2, 3).map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => {
-                    handleCloseNavMenu();
-                    navigate('/');
+                    navigate('/profilePage');
                   }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
 
               {/* settings */}
-              {settings.slice(3, 4).map((setting) => (
+              {settings.slice(2, 3).map((setting) => (
                 <MenuItem
                   key={setting}
                   onClick={() => {

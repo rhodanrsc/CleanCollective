@@ -70,6 +70,7 @@ export default function CreateCompanyPost() {
                 {
                     postCompanyName: company.companyName,
                     postTitle: postTitle,
+                    postSector: arrayOfTags,
                     postBody: postBody,
                     accessLevel: accessSwitch,
                     anonymous: anonSwitch,

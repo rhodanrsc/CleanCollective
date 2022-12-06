@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { Button, Grid, Typography } from '@mui/material';
 import landingPageBG from '../shared/images/landingPage.jpg'
+import Footer from './footer';
 
 let userSession = ReactSession.get("userSession")
 
@@ -33,38 +34,51 @@ const LandingPage = () => {
     // footer
 
     return (
-        <Box sx={{width: '100%' }} style={{ 
-            margin:'0', 
-            backgroundImage: landingPageBG
-            }}>
-            <Stack spacing={1}>
-                <Item>
+        <Box sx={{width: '100%', marginRight:'0', top:80 }} className='landingPage'>
+            <Stack spacing={0}>
+                <Item className='banner' style={{boxShadow:'none', padding:100 }}>
                     <img className='bigLogo' src={logo} alt=''></img>
-                    <Typography>Get more features and privileges by joining the most helpful community</Typography>
+                    <br/>
+                    <Typography>Sign up today to be part the world’s best innovative clean technology community!</Typography>
                 </Item>
                 <Item style={{
-                    padding:'60px'
+                    padding:'60px',
+                    boxShadow:'none' 
                 }}>
-                    <Typography>This is just filler text. There is no point to what you are reading. This is just to test what the section looks like with text. You do not need to read this. Why are you still reading this. You are actually just wasting your time. How does it feel to have your time wasted? You could be productive and doing more important things but here you are. Wasting time. Do you feel bad? If you don't you should. You should feel bad that you're procrastinating by reading this pointless block of text. Quack. I'm running out of things to say. If you read the entire block of text, I dare you to send a random emoji to the capstone channel on the server and never explain what it means if anyone asks. just follow any questions with a random gif. Thank you for your time lol</Typography>
+                    <Typography>Clean technology is a growing industry that helps companies avoid environmental damage at the source with new innovative technology through materials, processes and practices to eliminate or completely reduce the creation of pollutants or waste. We strive to create a community of companies, startups and individuals who are passionate about our planet and wants to participate in the clean technology movement. Clean Collective is here to connect everyone with similar goals to help accelerate the movement and increase technological innovations in every industry.</Typography>
                 </Item>
-                <Item>
-                    <Grid container direction={'column'}>
-                        <Link to={"/forum"} className="nav-link">
-                            <button type='submit' className='buttonGreenBig landingFont'>Questions & Answers</button>
-                        </Link>
-                        <Link to={"/FAQ"} className="nav-link">
-                            <button type='submit' className='buttonGreenBig landingFont'>FAQs</button>
-                        </Link>
-                        <Link className="nav-link team">
-                            <button type='submit' className='buttonGreenBig landingFont'>Meet The Team</button>
-                        </Link>
+                <Item style={{ backgroundColor: 'rgb(234,234,234)', boxShadow:'none', padding:50 }}>
+                    <Grid container direction={'row'} spacing={0} style={{marginLeft: '0'}}>
+                        <Grid item md={2}></Grid>
+                        <Grid item md={4}>
+                            <Link to={"/forum"} className="nav-link">
+                                <button className='buttonGreenBig landingFont'>
+                                <Typography variant='h4' >Forum Page</Typography>
+                                    <br/>
+                                    <br/>
+                                    <Typography variant='body1'>Explore and create ideas and questions related to clean technology problems. </Typography>
+                                </button>
+                            </Link>
+                        </Grid>
+                        <Grid item md={4}>
+                            <Link to={"/MatchingCompanies"} className="nav-link">
+                                <button className='buttonGreenBig landingFont'>
+                                    <Typography variant='h4'>Company Matching</Typography>
+                                    <br/>
+                                    <br/>
+                                    <Typography variant='body1'> Our matching algorithm will connect you with the perfect innovator or adopter to solve your problem. </Typography>
+                                </button>
+                                
+                            </Link>
+                        </Grid>
                     </Grid>
                     
                 </Item>
-                <Item>
+                <Item style={{boxShadow:'none' }}>
                     Meet the team. Insert team photo here and small block of text or something lol
                 </Item>
             </Stack>
+            <Footer/>
         </Box>
         
     );
