@@ -39,13 +39,13 @@ const LandingPage = () => {
                 <Item className='banner' style={{boxShadow:'none', padding:100 }}>
                     <img className='bigLogo' src={logo} alt=''></img>
                     <br/>
-                    <Typography>Get more features and privileges by joining the most helpful community</Typography>
+                    <Typography>Sign up today to be part the world’s best innovative clean technology community!</Typography>
                 </Item>
                 <Item style={{
                     padding:'60px',
                     boxShadow:'none' 
                 }}>
-                    <Typography>This is just filler text. There is no point to what you are reading. This is just to test what the section looks like with text. You do not need to read this. Why are you still reading this. You are actually just wasting your time. How does it feel to have your time wasted? You could be productive and doing more important things but here you are. Wasting time. Do you feel bad? If you don't you should. You should feel bad that you're procrastinating by reading this pointless block of text. Quack. I'm running out of things to say. If you read the entire block of text, I dare you to send a random emoji to the capstone channel on the server and never explain what it means if anyone asks. just follow any questions with a random gif. Thank you for your time lol</Typography>
+                    <Typography>Clean technology is a growing industry that helps companies avoid environmental damage at the source with new innovative technology through materials, processes and practices to eliminate or completely reduce the creation of pollutants or waste. We strive to create a community of companies, startups and individuals who are passionate about our planet and wants to participate in the clean technology movement. Clean Collective is here to connect everyone with similar goals to help accelerate the movement and increase technological innovations in every industry.</Typography>
                 </Item>
                 <Item style={{ backgroundColor: 'rgb(234,234,234)', boxShadow:'none', padding:50 }}>
                     <Grid container direction={'row'} spacing={0} style={{marginLeft: '0'}}>
@@ -56,7 +56,7 @@ const LandingPage = () => {
                                 <Typography variant='h4' >Forum Page</Typography>
                                     <br/>
                                     <br/>
-                                    <Typography variant='body1'>Get the answers you've been seeking for to reach your net zero goals!</Typography>
+                                    <Typography variant='body1'>Explore and create ideas and questions related to clean technology problems. </Typography>
                                 </button>
                             </Link>
                         </Grid>
@@ -66,7 +66,7 @@ const LandingPage = () => {
                                     <Typography variant='h4'>Company Matching</Typography>
                                     <br/>
                                     <br/>
-                                    <Typography variant='body1'>The Tinder of clean tech! Find aligned companies that will help you achieve your goals!</Typography>
+                                    <Typography variant='body1'> Our matching algorithm will connect you with the perfect innovator or adopter to solve your problem. </Typography>
                                 </button>
                                 
                             </Link>
