@@ -12,8 +12,8 @@ const CreateUser = () => {
   const navigate = useNavigate();
 
   //Values for Product Form
-  const [productName, setProductName] = useState()
-  const [productDescription, setProductDescription] = useState()
+  const [productName, setProductName] = useState("Modular Carbon Capture")
+  const [productDescription, setProductDescription] = useState("Using small-scale modular systems, we capture excess carbon emissions released from waste streams.")
   const [companyID, setCompanyID] = useState();
   const [open, setOpen] = useState(false);
   const [newCompanyName, setNewCompanyName] = useState()

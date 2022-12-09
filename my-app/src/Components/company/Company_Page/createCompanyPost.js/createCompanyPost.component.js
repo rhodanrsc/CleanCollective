@@ -12,8 +12,8 @@ import InfoIcon from '@mui/icons-material/Info';
 export default function CreateCompanyPost() {
     const params = useParams()
     const [company, setCompany] = useState()
-    const [postTitle, setPostTitle] = useState();
-    const [postBody, setPostBody] = useState();
+    const [postTitle, setPostTitle] = useState("Looking for a solution: Carbon Emissions");
+    const [postBody, setPostBody] = useState("My company is facing issues with the local regulations of released emissions. Bulk of emissions are being released in the waste stream. Looking for a technical solution to solve this problem.");
     const [accessSwitch, setAccessSwitch] = useState(true);
     const [anonSwitch, setAnonSwitch] = useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);

@@ -49,10 +49,10 @@ export default function CreatePost() {
     arrayOfTags = [];
     let listOfTags = document.getElementsByClassName("listOfTags");
     for (let i = 0; i < listOfTags.length; i++) {
-      
+
       arrayOfTags.push(listOfTags[i].innerHTML);
       console.log(arrayOfTags)
-      
+
     }
   });
 
@@ -82,78 +82,78 @@ export default function CreatePost() {
 
   return (
     <body className="user-question">
-    <div>
-      <Paper
-        elevation={0}
-        style={{
-          marginTop: "2%",
-          marginBottom: "1%",
-          marginLeft: "27.5%",
-          color: "#808080",
-          fontSize: "30px",
-          width: "14%",
-          padding: "0 10px 0 10px",
-          background:"none"
-        }}
-      >
-      
-        New Question
-      </Paper>
-      <Box display="flex" justifyContent="center" minHeight="20vh">
-        <Paper className="paper" style={{ width: "45%", background: "rgba(255,255,255,.80)"}} elevation={5}>
-          <Box style={boxStyle}>
-            <FormControl>
-              <FormGroup>
-                <TagComboBox></TagComboBox>
+      <div>
+        <Paper
+          elevation={0}
+          style={{
+            marginTop: "2%",
+            marginBottom: "1%",
+            marginLeft: "27.5%",
+            color: "#808080",
+            fontSize: "30px",
+            width: "14%",
+            padding: "0 10px 0 10px",
+            background: "none"
+          }}
+        >
 
-                <TextField
-                  onChange={handlePostTitle}
-                  style={{mystyle, background:"white", marginTop:"2%"}}
-                  label="Title"
-                ></TextField>
-
-                <TextField
-                  onChange={handlePostBody}
-                  multiline
-                  rows={10}
-                  style={{mystyle, background:"white", marginTop:"3%"}}
-                  label="Type your question/post"
-                ></TextField>
-<br/>
-                <Grid container spacing={32}>
-                  <Grid item>
-                    <Button
-                      style={{ backgroundColor: "#1682FD" }}
-                      variant="contained"
-                    >
-                      {" "}
-                      <CollectionsIcon
-                        sx={{ fontSize: "18px", marginRight: "4px" }}
-                      ></CollectionsIcon>
-                      Add Image
-                    </Button>
-                  </Grid>
-
-                  <Grid item>
-                    <Button
-                      onClick={onSubmit}
-                      type="submit"
-                      variant="contained"
-                      color="success"
-                    >
-                      <SendIcon
-                        sx={{ fontSize: "18px", marginRight: "4px" }}
-                      ></SendIcon>{" "}
-                      Publish
-                    </Button>
-                  </Grid>
-                </Grid>
-              </FormGroup>
-            </FormControl>
-          </Box>
+          New Question
         </Paper>
-      </Box>
-    </div>
+        <Box display="flex" justifyContent="center" minHeight="20vh">
+          <Paper className="paper" style={{ width: "45%", background: "rgba(255,255,255,.80)" }} elevation={5}>
+            <Box style={boxStyle}>
+              <FormControl>
+                <FormGroup>
+                  <TagComboBox></TagComboBox>
+
+                  <TextField
+                    onChange={handlePostTitle}
+                    style={{ mystyle, background: "white", marginTop: "2%" }}
+                    label="Title"
+                  ></TextField>
+
+                  <TextField
+                    onChange={handlePostBody}
+                    multiline
+                    rows={10}
+                    style={{ mystyle, background: "white", marginTop: "3%" }}
+                    label="Type your question/post"
+                  ></TextField>
+                  <br />
+                  <Grid container spacing={32}>
+                    <Grid item>
+                      <Button
+                        style={{ backgroundColor: "#1682FD" }}
+                        variant="contained"
+                      >
+                        {" "}
+                        <CollectionsIcon
+                          sx={{ fontSize: "18px", marginRight: "4px" }}
+                        ></CollectionsIcon>
+                        Add Image
+                      </Button>
+                    </Grid>
+
+                    <Grid item>
+                      <Button
+                        onClick={onSubmit}
+                        type="submit"
+                        variant="contained"
+                        color="success"
+                      >
+                        <SendIcon
+                          sx={{ fontSize: "18px", marginRight: "4px" }}
+                        ></SendIcon>{" "}
+                        Publish
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </FormGroup>
+              </FormControl>
+            </Box>
+          </Paper>
+        </Box>
+      </div>
     </body>
   );
 }

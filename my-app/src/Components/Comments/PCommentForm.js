@@ -8,7 +8,7 @@ import { ReactSession } from 'react-client-session';
 const PCommentForm = (props) => {
   let userSession = ReactSession.get("userSession");
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState("I believe I have an innovative solution to this problem. My company uses modular carbon capture units. Let's get in touch.");
   const isTextareaDisabled = text.length === 0;
 
   function handleSubmit() {
@@ -47,20 +47,21 @@ const PCommentForm = (props) => {
         multiline
         className="comment-form-textarea"
         value={text}
-        style={{ 
-          width: "100%", 
-          maxWidth: "100%", 
-          flex: 1, 
-          flexWrap: 'wrap', 
-          wordWrap: "break-word", 
-          wordBreak: "break-word", 
-          overflowWrap: "anywhere", 
-          paddingLeft: "20px", 
-          paddingRight: "20px", 
-          marginBottom: "10px", 
-          marginTop: "10px", 
-          borderRadius: "0.2em", 
-          border: "none" }}
+        style={{
+          width: "100%",
+          maxWidth: "100%",
+          flex: 1,
+          flexWrap: 'wrap',
+          wordWrap: "break-word",
+          wordBreak: "break-word",
+          overflowWrap: "anywhere",
+          paddingLeft: "20px",
+          paddingRight: "20px",
+          marginBottom: "10px",
+          marginTop: "10px",
+          borderRadius: "0.2em",
+          border: "none"
+        }}
         onChange={(e) => setText(e.target.value)}
         cols={60}
 
@@ -77,7 +78,7 @@ const PCommentForm = (props) => {
           Cancel
         </Button>
       </Grid>
-      
+
       <PCommentList postId={props.postId} />
     </form>
   );
