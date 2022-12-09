@@ -39,12 +39,12 @@ const CreateUser = () => {
     companyType: "Oil",
     stage: "Level 1: Basic principles of concept are observed and reported",
     employees: "0,10",
-    website: "",
+    website: "http://www.unWaste.com",
     check: false,
-    address: "",
-    city: "",
-    ZIP: "",
-    province: "N/A",
+    address: "99 clean street NW",
+    city: "Calgary",
+    ZIP: "T1Y 0C3",
+    province: "Alberta",
     yearFounded: 2022,
     country: "Canada"
   });
