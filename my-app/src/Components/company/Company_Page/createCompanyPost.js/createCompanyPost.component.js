@@ -12,7 +12,7 @@ import { ReactSession } from "react-client-session";
 
 export default function CreateCompanyPost() {
 
-    const checkUsernameForTitle = () => {
+    const checkUsernameForBody = () => {
         if (userSession) {
             if (userSession.username === "Mark S. Little") {
                 return "My company is facing issues with the local regulations of released emissions. Bulk of emissions are being released in the waste stream. Looking for a technical solution to solve this problem."
@@ -22,7 +22,7 @@ export default function CreateCompanyPost() {
         }
     }
 
-    const checkUsernameForBody = () => {
+    const checkUsernameForTitle = () => {
         if (userSession) {
             if (userSession.username === "Mark S. Little") {
                 return "Looking for a solution: Carbon Emissions"
