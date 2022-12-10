@@ -2,19 +2,20 @@
 
 ## Table of Contents
 
-- Description
-- Technologies Used
-- Software Requirements
-- After fetching
-- Installing Dependencies
-- Functionality
-- Contributors
+- [Description](./#desc)
+    - [File Structure](./#fileStructure)
+- [Technologies Used](./#techUsed)
+- [Software Requirements](./#software)
+- [After fetching](./#afterFetch)
+- [Installing Dependencies](./#insDeps)
+- [Functionality](./#func)
+- [Contributors](./#contributors)
 
-## Description
+## [Description](#desc)
 
 The Clean Tech industry involves many different companies that strive for a better, cleaner future. It is populated with many big-name companies that attract most of the attention of investors. With the number of companies, startups struggle to gain exposure and find innovators and solutions to their problems. Clean Collective is a Clean Tech networking website that allows Clean Tech companies to connect and help each other find innovative solutions to create a more sustainable future.
 
-### File Structure
+### [File Structure](#fileStructure)
 The application is split into two parts, front-end and backend
 - The 'src' folder contains all the front-end
     - The 'components' folder contains all the components that make up the application
@@ -28,7 +29,7 @@ The application is split into two parts, front-end and backend
     - The server.js file handles all the routing for the backend
     - The README.NamingConvention.backend file contains the naming convention used for the backend
 
-## Technologies Used 
+## [Technologies Used](#techUsed) 
 Technology | Description 
 --- | --- 
 MERN | This is the stack used during the development of the project. This stack includes: MongoDB, Express.js, React.js, and Node.js
@@ -43,7 +44,7 @@ Axios | Axios is a React library that handles the routing of the pages
 Formik | React library that simplifies the creation of forms. It is an open source form library for React and React Native.
 
 
-## Software Requirements 
+## [Software Requirements](#software)
 
 - MongoDB Community Server 
     - [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
@@ -58,7 +59,7 @@ Formik | React library that simplifies the creation of forms. It is an open sour
     ```
     
 
-## After Fetching 
+## [After Fetching](#afterFetch) 
 
 - Change directory to ‘/my-app’
     
@@ -92,14 +93,14 @@ Formik | React library that simplifies the creation of forms. It is an open sour
     ```
     
 
-## Installing Dependencies 
+## [Installing Dependencies](#insDeps)
 
 - There is a chance that an error will appear when installing the dependencies. If this error occurs, the server will not run. To resolve this issue, install the npm modules with the —legacy-peer-deps extension
   ```bash
   npm install --legacy-peer-deps
   ```
   
-## Functionality 
+## [Functionality](#func) 
 User will be able to: |
 --- |
 Create accounts that hold information |
@@ -117,7 +118,7 @@ Make public or private posts |
 Make anonymous posts |
 Create tags for posts |
 
-## Contributors
+## [Contributors](#contributors)
 Thanks go to:
 Name | Roles
 --- | ---
