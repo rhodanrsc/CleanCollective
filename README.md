@@ -6,7 +6,7 @@
     - [File Structure](#file-structure)
 - [Technologies Used](#technologies-used)
 - [Software Requirements](#software-requirements)
-- [After fetching](#after-fetching)
+- [After Fetching](#after-fetching)
 - [Installing Dependencies](#installing-dependencies)
 - [Functionality](#functionality)
 - [Contributors](#contributors)
