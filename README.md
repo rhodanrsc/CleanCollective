@@ -13,6 +13,21 @@
 ## Description
 
 The Clean Tech industry involves many different companies that strive for a better, cleaner future. It is populated with many big-name companies that attract most of the attention of investors. With the number of companies, startups struggle to gain exposure and find innovators and solutions to their problems. Clean Collective is a Clean Tech networking website that allows Clean Tech companies to connect and help each other find innovative solutions to create a more sustainable future.
+
+### File Structure
+The application is split into two parts, front-end and backend
+- The 'src' folder contains all the front-end
+    - The 'components' folder contains all the components that make up the application
+    - The App.js file handles all the URL routing
+    - All the main styling is done within the 'shared/css' folder outside of the 'components' folder
+    - Any minor styling is done using inline CSS within the components
+-  All the backend was handled outside of the 'src' folder in the 'backend' folder
+    - The 'models' folder contains all the information to create the collections in the Mongo database
+    - The passportConfig.js handled the user session
+    - The 'routes' folder is where all the backend logic is ran. It also handles the CRUD functionality of the users, companies, and posts
+    - The server.js file handles all the routing for the backend
+    - The README.NamingConvention.backend file contains the naming convention used for the backend
+
 ## Technologies Used 
 Technology | Description 
 --- | --- 
