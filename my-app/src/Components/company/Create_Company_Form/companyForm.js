@@ -149,7 +149,7 @@ const CreateCompany = (props) => {
                       id="type"
                     >
                       <option value={"Adopter"}>Adoptor</option>
-                      <option value={"Inovator"}>Innovator</option>
+                      <option value={"Innovator"}>Innovator</option>
                     </Field>
                     <InfoIcon onMouseEnter={handleCompanyTypeInfo} onMouseLeave={handleClose}></InfoIcon>
 

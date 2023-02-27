@@ -1,7 +1,8 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import axios from "axios";
 
-import { ReactSession } from "react-client-session";
 import { Card, CardHeader, Grid, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
@@ -29,17 +30,6 @@ function stringToColor(string) {
   return color;
 }
 
-function stringAvatar(name) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-      width: 45,
-      height: 45,
-    },
-    // children: name.charAt(0).toUpperCase(),
-    children: `${name.profilename.charAt(0).toUpperCase()}`,
-  };
-}
 
 //for edit menu
 const options = ["Edit"];
@@ -49,26 +39,26 @@ const ITEM_HEIGHT = 10;
 
 
 export default function BackgroundLetterAvatarsSmall() {
-  let data = ReactSession.get("userSession");
-  let profilename = data.username;
-  let email = data.email;
+  const [data, setData] = useState()
+  const params = useParams()
 
-  //for edit menu 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  useEffect(() => {
+    axios.get("http://localhost:5000/user/getUser/" + params.username)
+      .then((response) => {
+        setData(response.data)
+      })
+      .catch((error) => {
+        console.log("error!" + error);
+      });
+  }, [params.username])
 
-  //RETURNS SMALL PROFILE PIC + USERNAME SIDE BY SIDE
   return (
     <CardHeader
-      avatar={<Avatar {...stringAvatar({ profilename })} />}
-      title={profilename ? profilename : ""}
-      subheader={email ? email : ""}
+      avatar=<Avatar variant="square" sx={{ bgcolor: "red" }} >
+        {data ? data.username.toUpperCase().substring(0, 1) : null}
+      </Avatar>
+      title={data ? data.username : ""}
+      subheader={data ? data.email : ""}
       action={
         <CompanyHamburger id={data ? data._id : ""} />
       }

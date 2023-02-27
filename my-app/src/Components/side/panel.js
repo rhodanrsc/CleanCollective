@@ -23,6 +23,7 @@ import FilledAskIcon from '@mui/icons-material/Chat';
 import About from '@mui/icons-material/InfoOutlined';
 import FilledAbout from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
+import {ReactSession} from 'react-client-session'
 
 const drawerWidth = 240;
 
@@ -31,6 +32,7 @@ const bgColor = {
 };
 
 export default function ClippedDrawer() {
+  let userSession = ReactSession.get("userSession");
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState()
   const [likeIcon, setLikedIcon] = useState()
@@ -122,30 +124,47 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['Liked Posts', 'Saved Posts', 'Profile Page', 'Matching Companies'].map((text) => (
+            {['Liked Posts', 'Saved Posts'].map((text) => (
               <ListItem key={text} disablePadding onClick={() => { navigate('/' + text.replace(' ', '')); }}>
                 <ListItemButton>
                   <ListItemIcon>
                     {text === 'Liked Posts' ? likeIcon :
-                      text === 'Profile Page' ? askIcon :
-                        text === 'Saved Posts' ? savedIcon :
-                          text === 'Matching Companies' ? peopleIcon : null}
+                        text === 'Saved Posts' ? savedIcon : null}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
               
             ))}
-            {['About Us'].map((text, index) => (
-              <ListItem key={text} disablePadding onClick={() => { navigate('/'); }}>
+            {['Profile Page'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/profilePage/' + userSession.username); }}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {text === 'About Us' ? aboutIcon : null}
+                    {askIcon}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
-              
+            ))}
+            {['Matching Companies'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/MatchingCompanies'); }}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {peopleIcon}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            {['About Us'].map((text, index) => (
+              <ListItem key={text} disablePadding onClick={() => { navigate('/'); }}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {aboutIcon}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
             ))}
           </List>
         </Box>

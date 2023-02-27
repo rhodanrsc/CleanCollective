@@ -13,7 +13,6 @@ import "./shared/css/style.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import other React Component
-import CreateUser from "./Components/registration/create-user.component";
 import CustomNavBar from "./Components/navbar/NavBar";
 import UserLoginForm from "./Components/Login/user-login-form.component";
 import LandingPage from "./Components/landingpage2";
@@ -53,11 +52,10 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path="/" element={<LandingPage />} />
-                  <Route path="/create-user" element={<CreateUser />} />
                   <Route path="/login" element={<UserLoginForm />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route
-                    path="/register/confirmEmail"
+                    path="/register/confirmEmail/:email"
                     element={<ConfirmEmail />}
                   />
                   <Route path="/editUser" element={<EditUser />} />
@@ -70,7 +68,8 @@ const App = () => {
                   <Route path="/forum/:searchValue" element={<PostPage />} />
                   <Route path="/CreateCompany" element={<CompanyCreation />} />
                   <Route path="/companyPage/:companyName" element={<CompanyPage />} />
-                  <Route path="/profilePage/" element={<ProfilePage />} />
+                  <Route path="/profilePage/:username" element={<ProfilePage />} />
+
                   <Route path="/MatchingCompanies" element={<Matching />} />
 
                 </Routes>

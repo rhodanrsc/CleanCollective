@@ -6,17 +6,41 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import SendIcon from "@mui/icons-material/Send";
 import { TagComboBox } from "../../../userPosts/tag_combo_box";
 import InfoIcon from '@mui/icons-material/Info';
+import { ReactSession } from "react-client-session";
 
 
 
 export default function CreateCompanyPost() {
+
+    const checkUsernameForBody = () => {
+        if (userSession) {
+            if (userSession.username === "Mark S. Little") {
+                return "My company is facing issues with the local regulations of released emissions. Bulk of emissions are being released in the waste stream. Looking for a technical solution to solve this problem."
+            } else {
+                return ""
+            }
+        }
+    }
+
+    const checkUsernameForTitle = () => {
+        if (userSession) {
+            if (userSession.username === "Mark S. Little") {
+                return "Looking for a solution: Carbon Emissions"
+            } else {
+                return ""
+            }
+        }
+    }
+    let userSession = ReactSession.get("userSession");
     const params = useParams()
     const [company, setCompany] = useState()
-    const [postTitle, setPostTitle] = useState();
-    const [postBody, setPostBody] = useState();
+    const [postTitle, setPostTitle] = useState(checkUsernameForTitle());
+    const [postBody, setPostBody] = useState(checkUsernameForBody());
     const [accessSwitch, setAccessSwitch] = useState(true);
     const [anonSwitch, setAnonSwitch] = useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+
 
     const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -90,7 +114,7 @@ export default function CreateCompanyPost() {
 
     return (
         <Box>
-            <Card elevation={5}>
+            <Card style={{ marginTop: "-150px" }} elevation={5}>
 
                 <CardContent >
                     <Grid style={{ width: "100%" }} container spacing={1}>

@@ -1,5 +1,6 @@
 import { ReactSession } from "react-client-session";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 //material ui imports
 import Box from "@mui/material/Box";
@@ -17,10 +18,12 @@ import axios from "axios";
 import { Card, CardHeader, CardContent } from "@mui/material";
 import PostCard from "./ProfilePosts.Card";
 
+
 export default function ProfilePage() {
   //grabbing user session data
   let data = ReactSession.get("userSession");
   let name = data.username;
+  const params = useParams()
 
   const [value, setValue] = useState("");
   const [thisUserPosts, setThisUserPosts] = useState("");
@@ -28,7 +31,7 @@ export default function ProfilePage() {
   useEffect(() => {
     let userPostList = [];
     axios
-      .get("http://localhost:5000/user/" + data._id)
+      .get("http://localhost:5000/user/getUser/" + params.username)
       .then((response) => {
         userPostList = response.data.posts;
         setThisUserPosts(userPostList);
@@ -75,28 +78,28 @@ export default function ProfilePage() {
         </Grid>
 
         <Grid item xs={6} md={8}>
-          <Card elevation={5}>
+          <Card elevation={5} style={{backgroundColor: 'rgb(240,240,240)'}}>
             <CardHeader
               title="Posts"
             />
-          <CardContent>
-        {thisUserPosts
-            ? thisUserPosts.reverse().map(function (post) {
-                return (
-                  <PostCard
-                    id={post._id}
-                    username={post.postUserName}
-                    postsector={post.postSector}
-                    title={post.postTitle}
-                    body={post.postBody}
-                    likes={post.postLikes}
-                    createdAt={post.createdAt}
-                    postLikes={post.postLikes}
-                    key={post._id}
-                  />
-                );
-              })
-            : null}
+            <CardContent>
+              {thisUserPosts
+                ? thisUserPosts.reverse().map(function (post) {
+                  return (
+                    <PostCard
+                      id={post._id}
+                      username={post.postUserName}
+                      postsector={post.postSector}
+                      title={post.postTitle}
+                      body={post.postBody}
+                      likes={post.postLikes}
+                      createdAt={post.createdAt}
+                      postLikes={post.postLikes}
+                      key={post._id}
+                    />
+                  );
+                })
+                : null}
             </CardContent>
           </Card>
         </Grid>

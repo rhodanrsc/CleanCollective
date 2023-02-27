@@ -17,46 +17,46 @@ const CreateUser = () => {
     confirmPassword: "",
     isSignedUp: false
   });
- 
+
   // onSubmit handler
   const OnSubmit = (userObject) => {
 
-    
-      //Adding the user to database
-      axios.post("http://localhost:5000/user/add", {
-      username : userObject.username,
-      email : userObject.email,
-      password : userObject.password,
+
+    //Adding the user to database
+    axios.post("http://localhost:5000/user/add", {
+      username: userObject.username,
+      email: userObject.email,
+      password: userObject.password,
       withCredentials: true
-      })
-      
+    })
+
       .then((res) => {
-        if (res.status === 200){ 
-            alert("User successfully created");
-        } 
-        else{
+        if (res.status === 200) {
+
+        }
+        else {
           Promise.reject();
-        } 
+        }
       })
       .catch((err) => alert("Something went wrong: " + err));
 
-      //Take us to the email page after sending the email
-      try{
+    //Take us to the email page after sending the email
+    try {
       //Sends the email
       axios.post("http://localhost:5000/send_email", {
-        username : userObject.username,
-        userEmail : userObject.email
+        username: userObject.username,
+        userEmail: userObject.email
       });
-        //Takes us to the confirmEmail page if it was sent
-        navigate('/register/confirmEmail');
-      }catch (error){
-        console.log("Error: SendMail not working " + error)
-      }
+      //Takes us to the confirmEmail page if it was sent
+      navigate('/register/confirmEmail/' + userObject.email);
+    } catch (error) {
+      console.log("Error: SendMail not working " + error)
+    }
   };
 
   // Return student form
- 
-    return (
+
+  return (
     <UserForm
       initialValues={formValues}
       onSubmit={OnSubmit}
@@ -65,8 +65,8 @@ const CreateUser = () => {
       Sign Up
     </UserForm>
   );
-  
-  
+
+
 };
 
 // Export CreateStudent Component

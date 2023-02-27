@@ -77,7 +77,7 @@ export default function PostCard(props) {
 
   return (
     <div>
-      <Card sx={{ maxWidth: "95%", marginLeft: "15px" }}>
+      <Card sx={{ maxWidth: "95%", marginLeft: "15px", backgroundColor: 'rgb(240,240,240)' }}>
 
         <CardHeader
 

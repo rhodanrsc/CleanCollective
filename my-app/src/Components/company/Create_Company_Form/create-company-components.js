@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CompanyForm from "./companyForm";
@@ -12,8 +15,8 @@ const CreateUser = () => {
   const navigate = useNavigate();
 
   //Values for Product Form
-  const [productName, setProductName] = useState()
-  const [productDescription, setProductDescription] = useState()
+  const [productName, setProductName] = useState("Modular Carbon Capture")
+  const [productDescription, setProductDescription] = useState("Using small-scale modular systems, we capture excess carbon emissions released from waste streams.")
   const [companyID, setCompanyID] = useState();
   const [open, setOpen] = useState(false);
   const [newCompanyName, setNewCompanyName] = useState()
@@ -39,12 +42,12 @@ const CreateUser = () => {
     companyType: "Oil",
     stage: "Level 1: Basic principles of concept are observed and reported",
     employees: "0,10",
-    website: "",
+    website: "http://www.unWaste.com",
     check: false,
-    address: "",
-    city: "",
-    ZIP: "",
-    province: "N/A",
+    address: "99 clean street NW",
+    city: "Calgary",
+    ZIP: "T1Y 0C3",
+    province: "Alberta",
     yearFounded: 2022,
     country: "Canada"
   });
@@ -87,6 +90,8 @@ const CreateUser = () => {
           showMessage(message)
         }
 
+        navigate("/companyPage/" + newCompanyName)
+
       })
       .catch((err) => alert("Something went wrong: " + err));
   }
@@ -120,6 +125,11 @@ const CreateUser = () => {
         setOpen(true)
       })
       .catch((err) => alert("Something went wrong: " + err));
+
+    axios.post("http://localhost:5000/user/" + userSession._id)
+      .then((response) => {
+        ReactSession.set("userSession", response.data)
+      })
   }
 
   return (
@@ -129,7 +139,7 @@ const CreateUser = () => {
         onSubmit={OnSubmit}
         enableReinitialize
       >
-   
+
       </CompanyForm>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Congratulations! {newCompanyName} is now in business!</DialogTitle>

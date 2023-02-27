@@ -19,6 +19,7 @@ export default function TopCard() {
     const [companyLocation, setCompanyLocation] = useState()
     const [companyTypeInfo, setCompanyTypeInfo] = useState()
     const [currentButton, setCurrentButton] = useState("homeButton")
+    const [companyOwner, setCompanyOwner] = useState()
 
     //Constantly grabs the current company depending on URL
     useEffect(() => {
@@ -33,6 +34,12 @@ export default function TopCard() {
             .catch((error) => console.log("Error with getting company: " + error))
 
     }, [params.companyName])
+
+    useEffect(() => {
+        if (company) {
+            setCompanyOwner(company.members[0].memberID)
+        }
+    }, [company])
 
     //Constantly ensuring the current clicked button is green
     useEffect(() => {
@@ -85,7 +92,7 @@ export default function TopCard() {
             <Box>
                 <Grid>
                     {/*Avatar and Heading Info Section*/}
-                    <Card style={{ marginBottom: "100px" }} elevation={5}>
+                    <Card sx={userSession._id !== companyOwner && currentButton !== "homeButton" ? { marginBottom: "80px" } : null} style={userSession._id === companyOwner ? { marginBottom: "230px" } : null} elevation={5}>
                         <CardHeader
                             avatar={
                                 <Avatar variant="square" sx={{ bgcolor: "red" }} >

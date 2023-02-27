@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -12,8 +12,7 @@ import Hamburger from "./HamburgerButton/Hamburger";
 import ShareIcon from "@mui/icons-material/Share";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
-import { useEffect } from "react";
-import { Button, Grid, Switch } from "@mui/material";
+import { Button, Grid, Switch, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 //used for rendering tags
 import { Chip } from "@mui/material"
 
@@ -25,6 +24,9 @@ let id = '';
 export default function PostCard(props) {
 
   let userSession = ReactSession.get("userSession");
+
+
+
   function like(e) {
     id = e.currentTarget.id;
     const userId = userSession._id
@@ -61,23 +63,46 @@ export default function PostCard(props) {
     checkLike();
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
   // test push 
-   const pastelColorPallete = [
-        "rgba(181, 234, 215, 0.6)",
-        "rgba(224, 187, 228, 0.6)",
-        "rgba(104, 209, 197, 0.6)",
-        "rgba(244, 179, 206, 0.6)",
-        "rgba(249, 216, 206,0.6)",
-        "rgba(117, 199, 234, 0.6)",
-        "rgba(149, 125, 173, 0.6)",
-        "#CEF2E1",
-        "#FFFBD6",
-        "#D7FDDF",
-        "#D0D0FE",
-    ];
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSignupDialog = () => {
+    if (!userSession) {
+      setOpen(true)
+    }
+  }
+
+
+  const pastelColorPallete = [
+    "rgba(181, 234, 215, 0.6)",
+    "rgba(224, 187, 228, 0.6)",
+    "rgba(104, 209, 197, 0.6)",
+    "rgba(244, 179, 206, 0.6)",
+    "rgba(249, 216, 206,0.6)",
+    "rgba(117, 199, 234, 0.6)",
+    "rgba(149, 125, 173, 0.6)",
+    "#CEF2E1",
+    "#FFFBD6",
+    "#D7FDDF",
+    "#D0D0FE",
+  ];
+
+  const handlePageNavigation = (userType, username) => {
+    if (userType === "company") {
+      return "/companyPage/" + username
+    } else {
+      return "/profilePage/" + username
+    }
+  }
+
 
   return (
     <div>
-      <Card elevation={5} sx={{ maxWidth: "95%", marginLeft: "15px" }}>
+      <Card elevation={5} sx={{ maxWidth: "95%", marginLeft: "15px", backgroundColor: 'rgb(240,240,240)' }}>
 
         <CardHeader
 
@@ -89,16 +114,16 @@ export default function PostCard(props) {
           title=<h6><b>{props.title}</b></h6>
           subheader={
             <div>
-              <div>{props.anonymous ? "Anonymous" : props.username}<br />{date}</div>
-              {props.userType === "company" ?
+              <div>{props.anonymous ? "Anonymous" : <a href={handlePageNavigation(props.userType, props.username)} >{props.username}</a>}<br />{date}</div>
+              {props.userType === "company" && window.location.href.split("/")[3] === "companyPage" ?
                 <div style={{ color: props.accessLevel ? "green" : "red" }}>{props.accessLevel ? "Public" : "Private"}</div>
                 : null}
             </div>
           }
         />
         <CardContent>
-          
-          
+
+
           <Typography variant="body2" color="text.secondary">
             {props.body}
             <br />
@@ -145,7 +170,28 @@ export default function PostCard(props) {
             <IconButton aria-label="share">
               <ShareIcon />
             </IconButton>
-            <Button onClick={() => setCommentToggle(!isCommentToggle)}>View Comments</Button>
+            <Button onClick={function () {
+              handleSignupDialog()
+              if (userSession) {
+                setCommentToggle(!isCommentToggle)
+              }
+
+            }}>View Comments</Button>
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Looks like you aren't logged in!</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Have an account? <a href="/login">Login Now!</a>
+                </DialogContentText>
+                <DialogContentText>
+                  If you don't have an account. <a href="/register">Register Here!</a>
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+
+              </DialogActions>
+            </Dialog>
           </Grid>
         </CardActions>
         {isCommentToggle && <PCommentForm currentUserId={props.userId} postId={props.id} isCommentToggle={isCommentToggle} setCommentToggle={setCommentToggle} />}
