@@ -30,7 +30,7 @@ const LandingPage = () => {
                 <div className='adopter'>
                     <h3>Adopter</h3>
                     <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
-                </div>
+                </div> 
                 <div className='innovator'>
                     <h3>Innovator</h3>
                     <p>This text is just a placeholder for the infomation that will be displayed here in the future. This website is still a work in progress. Please be patient while our developers work on this website.</p>
