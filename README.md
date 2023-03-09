@@ -122,7 +122,7 @@ Create tags for posts |
 Thanks go to:
 Name | Roles
 --- | ---
-Rhodan Cervantes | UI/UX Design / Full-Stack
+Rhodan Cervantes | UI/UX Design / Full-Stack Developer
 Julian Lee | Technical Program Manager / Front-End Developer
 Hayley Mead | Lead Project Manager / Full-Stack Developer
 Jimmy Van | Lead Back-End / Full-Stack Developer
